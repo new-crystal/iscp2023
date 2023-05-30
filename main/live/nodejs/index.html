@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>WebSocket</title>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
+</head>
+<style>
+	body{margin-left: 20px;}
+	p.title{display: inline-block;width: 100px;}
+	input[name=id]{padding: 5px;width: 300px}
+</style>
+<body>
+	<p>웹소켓 테스트 페이지입니다~! 콘솔을 켜서 내용을 확인하세요.</p>
+	<br>
+	<p>이 브라우저의 Socket ID <button type="button" name="copy">복사하기</button></p>
+	<div>
+		<p class="title">Socket ID</p>
+		<input type="text" name="id" placeholder=",로 구분하여 다중 발송 가능">
+	</div>
+	<div>
+		<p class="title">Send chat</p>
+		<button type="button" class="chat" name="alert_chat">Send</button>
+	</div>
+	<!-- <div>
+		<p class="title">Alert detail</p>
+		<button type="button" class="chat" name="chat_to_detail">Send</button>
+	</div> -->
+	<script>
+		var socket = io.connect("http://54.180.86.106:3000");
+		//console.log(socket);
+
+		// 연결 완료 시 ID 보여줌
+		var soc_id = "";
+		socket.on('connection_complete',function(data){
+			//$('#socket_id').text(data);
+			soc_id = data;
+		});
+
+		$('button[name=copy]').click(function(){
+			if (soc_id == "") {
+				alert("잠시만 기다려주세요.");
+			} else {
+				var t = document.createElement("textarea");
+				document.body.appendChild(t);
+				t.value = soc_id;
+				t.select();
+				document.execCommand('copy');
+				document.body.removeChild(t);
+				console.log('복사 완료!');
+			}
+		});
+
+		// send
+		$('button.chat').click(function(){
+			var ids = $('[name=id]').val();
+			var id_arr = ids.split(",");
+			if (ids == "" || id_arr.indexOf("") >= 0) {
+				alert("발송할 ID가 유효하지 않습니다~");
+				$('[name=id]').focus();
+			} else {
+				var evt_name = $(this).attr('name');
+				var soc_data = { ids : id_arr }
+				//console.log(evt_name, new Date());
+				socket.emit(evt_name, soc_data);
+			}
+		});
+
+		// 새 메시지 알림
+		socket.on('alert_chat',function(data){
+			console.log('alert_chat');
+		});
+	</script>
+</body>
+</html>

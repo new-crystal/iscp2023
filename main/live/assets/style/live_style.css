@@ -1,0 +1,144 @@
+﻿/*live update*/
+.pop_contents .mT10{
+    margin-top: 10px;   
+}
+.pop_contents .mT20{
+    margin-top: 20px;   
+}
+.pop_contents ul li{
+    line-height: 22px;
+}
+
+.pop_contents .bold_txt{
+    font-weight: bold !important;
+}
+
+.pop_contents .txt_red{
+    color: #ff0000;
+    font-weight: 300;
+}
+
+.pop_contents .point_txt{    
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.pop_contents .point_txt:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 8px;
+    background: rgba(173,240,2,0.6);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.pop_contents .alert p.font_thin{
+    font-weight: 300 !important;
+    font-size: 14px !important;
+    margin-top: 20px;
+}
+.luckyDraw_good_popup .msg2, .luckyDraw_bad_popup .msg2{
+    font-size: 25px;
+    font-weight: 900;
+    padding: 0 24px 10px;
+}
+.eventZone_1{
+    display: inline-block;
+    padding: 30px;
+}
+.event_intro .eventZone_1 .outlines_g{
+    font-weight: 600;
+    text-align: center;
+    margin: 0 0 30px;
+    font-size: 40px;
+}
+.eventZone_1 .event_info{
+    width: 50%;
+    display: inline-block;
+    float: left;
+    padding: 10px;
+}
+.eventZone_1 .event_info img{
+    max-width: 100%;
+}
+.btn_seeMyEvent{
+    margin: 0 0 30px;
+    
+}
+.gameRanking{
+    padding: 30px;
+}
+.lecture_information{
+    height: 270px;
+}
+.lecture_info_white{
+    padding: 28px 50px 28px
+}
+.lecture_info_white .bottom{
+    height: 174px;
+}
+.pc_only .scroll_chat{
+    padding: 62px 25px 12px 30px;
+}
+.pc_only .scroll_chat > div{
+    height: 130px;
+}
+.pc_only .scroll_chat li{
+    font-size: 20px;
+    background-color: rgba(0,0,0,0.6);
+    border-radius: 20px;
+    padding: 10px;
+}
+/* .video_container .pc_only .tab_wrap{
+    height: calc(100% - 21px);
+}*/
+.searchPoster input::placeholder{
+    color: #fff;
+}
+.ePoster_list{
+    height: calc(100% - 145px);
+}
+.time_table{
+    padding: 30px;
+}
+.time_page > div{
+    padding: 30px 90px;
+}
+.tab_pager li a{
+    font-size: 25px;
+}
+.img_spot{
+    background-size: cover;
+}
+.popup .speaker p.medium{
+    font-weight: 600;
+}
+.small_player, .big_player{
+    background-image: url(/main/live/images/player_icon2.png);
+    background-color: transparent;
+    background-size: contain;
+    top: 10px;
+    right: 10px !important;
+    cursor: pointer;
+}
+
+@media screen and (max-width : 1100px) {
+    .contents_bg.eventZone_1{
+        padding: 30px;
+    }
+    .eventZone_1 .event_info:first-child{
+        margin-bottom: 30px;
+    }
+}
+
+@media screen and (max-width : 450px) {
+    .event_intro .eventZone_1 .outlines_g{
+        font-size: 25px;
+    }
+    .eventZone_1 .event_info{
+        width: 100%;
+    }
+}

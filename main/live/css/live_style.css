@@ -1,0 +1,256 @@
+﻿/*live update*/
+.pop_contents .mT10{
+    margin-top: 10px;   
+}
+.pop_contents .mT20{
+    margin-top: 20px;   
+}
+.pop_contents ul li{
+    line-height: 22px;
+}
+
+.pop_contents .bold_txt{
+    font-weight: bold !important;
+}
+
+.pop_contents .txt_red{
+    color: #ff0000;
+    font-weight: 300;
+}
+
+.pop_contents .point_txt{    
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.pop_contents .point_txt:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 8px;
+    background: rgba(173,240,2,0.6);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+.pop_contents .alert p{
+    word-break: keep-all;
+}
+
+.pop_contents .alert p.font_thin{
+    font-weight: 300;
+    font-size: 14px;
+    margin-top: 20px;
+}
+.list_pop .pop_cont li{
+    word-break: keep-all;
+}
+.luckyDraw_good_popup .msg2, .luckyDraw_bad_popup .msg2{
+    font-size: 25px;
+    font-weight: 900;
+    padding: 0 24px 10px;
+}
+.eventZone_1{
+    display: inline-block;
+    padding: 30px;
+}
+.eventZone_1 .outlines_g{
+    font-weight: 600;
+    text-align: center;
+    margin: 0 0 30px;
+    font-size: 40px;
+}
+.eventZone_1 .event_info{
+    width: 50%;
+    display: inline-block;
+    float: left;
+    padding: 10px;
+}
+.eventZone_1 .event_info img{
+    max-width: 100%;
+}
+.btn_seeMyEvent{
+    margin: 0 0 30px;
+    
+}
+.gameRanking{
+    padding: 30px;
+}
+.lecture_information{
+    height: 270px;
+}
+.lecture_info_white{
+    padding: 28px 50px 28px;
+}
+.lecture_info_white .bottom{
+    height: 174px;
+}
+.pc_only .scroll_chat{
+    padding: 62px 25px 12px 30px;
+}
+.pc_only .scroll_chat > div{
+    height: 130px;
+}
+.pc_only .scroll_chat li{
+    font-size: 20px;
+    background-color: rgba(0,0,0,0.6);
+    border-radius: 20px;
+    padding: 10px;
+}
+.pc_only .video_container .tab_wrap{
+    height: calc(100% - 21px);
+}
+.searchPoster input::placeholder{
+    color: #fff;
+}
+.ePoster_list{
+    height: calc(100% - 145px);
+}
+/*210916 홍유진 주석*/
+/*.timetable_box .time_table{
+    padding: 30px;
+    overflow-y: none;
+}*/
+/*.timetable_box .time_table .table_inner{
+    height: 100%;
+}*/
+.timetable_box .program_detail{
+    margin-bottom: 10px;
+}
+.timetable_box .timetable_list{
+    height: calc(100% - 155px);
+}
+.time_page > div{
+    padding: 30px 90px ;
+}
+.tab_pager li a{
+    font-size: 25px;
+}
+.img_spot{
+    background-size: cover;
+}
+.popup .speaker p.medium{
+    font-weight: 600;
+}
+.small_player, .big_player{
+    background-image: url(/main/live/images/player_icon2.png);
+    background-color: transparent;
+    background-size: contain;
+    top: 10px;
+    right: 10px !important;
+    cursor: pointer;
+}
+@media screen and (max-width : 1400px) {
+    html{
+		/*21-09-15 홍유진 주석*/
+        /*min-width: 1200px;*/
+    }
+    header{
+        padding: 0 10px;
+    }
+    /*.container{
+        padding: 48px 10px;
+    }*/
+    .pop_contents{
+        max-width: 854px !important;
+		/*210916 홍유진 주석*/
+        /*width: 84% !important;*/
+        max-height: 90%;
+        overflow-y: scroll !important;
+    }
+    .list_pop .pop_cont ul{
+        margin-top: 20px;
+    }
+    .popup .label{
+        margin-top: 30px;
+    }
+	/*210916 홍유진 주석*/
+    /*.pop_cont + button{
+        margin-top: 0px
+    }*/
+    .index_pop .pop_contents{
+        width: 80%;
+    }
+    .index_pop .pop_contents iframe{
+        width: 100%!important;
+    }
+	/*210916 홍유진 주석*/
+    /*.cardGame_setting_popup .pop_contents{
+        height: 90%;
+    }*/
+    /*.cardGame_info_popup table{
+        width: 100%;
+        display: inline-block;
+        overflow-x: scroll;
+    }*/
+    .btn_atted_wrap{
+        left: 60%;
+    }
+  /*.ePoster_list > li > div p.ePoster_list_title{
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: calc(100% - 45px);
+    }*/
+    .time_page > div{
+        padding: 30px 10px;
+    }
+    
+}
+@media screen and (max-width : 1024px) {
+    html, body{
+        height: auto;
+    }
+    .ePoster_chat{
+        padding: 71px 80px 0;
+    }
+    
+}
+@media screen and (max-width : 768px) {
+    .lecture_pop .pop_cont{
+        widows: 100%;
+    }
+    .table_pop .tab_pager{
+        width: 100% !important;
+    }
+    .table_pop .tab_cont{
+        padding: 42px 0;
+    }
+    .cardGame_info_popup thead td{
+        padding: 7.5px 165px;   
+    }
+    
+}
+@media screen and (max-width : 450px) {
+    html{
+        min-width: auto !important;
+    }
+    /*.container{
+        padding: 75px 18px 22px;
+    }*/
+    .contents_bg.eventZone_1{
+        padding: 30px;
+    }
+    .eventZone_1 .event_info{
+        width: 100%;
+    }
+    .eventZone_1 .event_info:first-child{
+        margin-bottom: 30px;
+    }
+    .eventZone_1 .outlines_g{
+        font-size: 25px;
+    }
+    .pop_contents{
+    border-radius: 0;
+    padding: 0 17px;
+    height: calc(100% - 50px);
+    width: 100% !important;
+    bottom: 0;
+    transform: none;
+    left: 0;
+    top: auto;
+    background-color: #fff;
+        
+    }
+}

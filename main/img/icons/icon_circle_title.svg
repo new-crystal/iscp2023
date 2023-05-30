@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+  <defs>
+    <radialGradient id="radial-gradient" cx="0.5" cy="0.5" r="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#bd1847"/>
+      <stop offset="1" stop-color="#5f0c24"/>
+    </radialGradient>
+  </defs>
+  <g id="그룹_349" data-name="그룹 349" transform="translate(-345 -422)">
+    <circle id="타원_44" data-name="타원 44" cx="8" cy="8" r="8" transform="translate(345 438) rotate(-90)" fill="url(#radial-gradient)"/>
+    <circle id="타원_45" data-name="타원 45" cx="4" cy="4" r="4" transform="translate(349 426)" fill="#fff"/>
+  </g>
+</svg>

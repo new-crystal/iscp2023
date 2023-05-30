@@ -1,0 +1,534 @@
+/* common available */
+* {box-sizing: border-box;}
+button {cursor: pointer;}
+.pointer {cursor: pointer;} /* 0726 추후 각 버튼 및 a태그들 확인해보기 */
+.contents_bg {width: 100%; height: 100%; background-color: rgba(0,0,0,0.4); border-radius: 37px; padding: 81px 88px 90px 90px; position: relative;}
+.menu_title {display: inline-block; font-size: 31px; font-weight: 900; padding-bottom: 15px; border-bottom: 2px solid #ADF002;}
+table {border-spacing: 0;}
+.yellow_txt {color: #ADF002 !important;}
+.imgBottom {vertical-align: bottom}
+.disappear {display: none !important;}
+.appear {display: block !important;}
+.noHeight {max-height: none !important;}
+
+
+
+/* Event Zone 1 : Event Intro */
+.eventZone_1 .outlines_g {font-size: 30px; font-weight: 900; color: #ADF002; letter-spacing: -2px; margin-top: 33px}
+.eventZone_1 .outlines_w {font-size: 26px; font-weight: 500;}
+.eventZone_1 .txt_box {font-size: 22px; font-weight: 300; padding: 31px 0 38px;}
+.eventZone_1 .txt_box p {line-height: 37px;}
+.eventZone_1 .txt_box span {font-weight: bold;}
+.stamp_num p {font-size: 26px; font-weight: bold; margin-bottom: 19px;}
+.stampInfo{width: 100%; margin-top: 19px; border-radius: 14px; background-color: #fff; overflow: hidden;}
+.stampInfo thead{background: linear-gradient(to right, #71FFDF, #71ECEF, #71D8FF, #BD9AEC);}
+.stampInfo th, .stampInfo td {font-size: 26px; color: #191919; border-color: transparent;}
+.stampInfo th:last-child, .stampInfo td:last-child {border-right: none;}
+.stampInfo th {font-weight: bold; position: relative; text-align: center; padding: 17px 0 16px;}
+.stampInfo th::after, .stampInfo td:after{content:''; display: inline-block; height: 46.5px; border: 1px solid #707070; position: absolute; right: 0; top: 50%; transform: translateY(-50%);}
+.stampInfo th:last-child::after, .stampInfo td:last-child::after {border-color: transparent;}
+.stampInfo td {font-weight: 500; position: relative; text-align: center; padding: 17px 0 18px;}
+.btn_seeMyEvent {margin-top: 42px; padding: 18px 59px; border-radius: 36px; border: 1px solid #fff;}
+.btn_seeMyEvent:hover {background: #adf002; border-color: #adf002; color: #000;}
+/* Event Zone 2-1 : myAttendance */
+.myAttendance.tab_cont {padding: 0}
+.myAttendance .outlines_g {font-size: 26px; font-weight: bold; color: #ADF002; margin: 15px 0 51px;}
+.btn_atted_wrap {position: absolute; top: 77px; left: 50%; transform: translateX(-50%);}
+.btn_atted_wrap ul li a {color: #fff;}
+/*
+.btn_attend, .btn_eBooth {font-size: 30px; font-weight: bold; border-radius: 27px;}
+.btn_attend {padding: 7px 121px 6px 120px; margin-right: 25px;}
+.btn_eBooth {padding: 7px 44px 6px 43px;}
+*/
+.btn_lucky {margin-top: 83px; padding: 9px 30px; border-radius: 36px; border: 1px solid #fff; font-weight: 500; color: #fff;}
+
+.attend_gift {width: 276px; height: 343px; border-radius: 10px; background-color: #fff; padding: 23px 0 35px; display: inline-block; margin-right: 25px;}
+.attend_gift:last-child {margin-right: 0}
+.attend_gift .attend_num {font-size: 24px; font-weight: bold; color: #000; margin-bottom: 10px; padding: 4px 0;}
+.attend_gift:nth-child(1) .attend_num {background-color: #71FFDF}
+.attend_gift:nth-child(2) .attend_num {background-color: #71D8FF}
+.attend_gift:nth-child(3) .attend_num {background-color: #CCA6FF}
+.attend_gift .attend_date {font-size: 22px; font-weight: 500; color: #585858; margin-bottom: 58px;}
+
+/* Event Zone 2-2 : visitStamp */
+.visitStamp.tab_cont {padding: 0;}
+.eventDate {margin: 70px 0 26px;}
+.eventDate span a {font-size: 28px; font-weight: bold; color: #fff; margin-left: 83px;}
+.eventDate span:first-child a {margin-left: 0;}
+.gameRanking {
+	display: inline-block; padding: 30px 133.5px; color: #fff; 
+	border-radius: 11px; background-color: #121212; border: 1px solid #9B9B9B; box-shadow: 0 6px 12px 0 rgba(0,0,0,0.92)}
+.gameRanking_title {font-size: 22px; font-weight: bold; color: #fff; padding: 36px 37.8px 36px 0; border-right: 1px solid #fff;}
+.gameRanking_name {padding-left: 52px;}
+.gameRanking_name p {font-size: 22px; font-weight: 500; color: #fff; margin-bottom: 5px;}
+.gameRanking_name p:last-child {margin-bottom: 0;}
+.userStamp {font-size: 25px; font-weight: bold; margin: 39px 0 50px; color: #fff;}
+.userStamp span {color: #fff}
+.userStamp span[name=stamp_count] {color: #ADF002}
+.stamp_wrap img{margin-right: 5px; margin-bottom: 9px;max-width: 100px;}
+.btn_gameIn {font-weight: 500; padding: 9px 74px; border-radius: 28px; margin-top: 49px; color: #fff;}
+
+/*************** POP UP : start ***************/
+/* event : lucky draw */
+.luckyDraw_bad_popup .pop_cont img, .luckyDraw_good_popup .pop_cont img {width:100%;}
+/* 보물상자 열고난 후 */
+.gray_btn {background-color:#D3D3D3; font-size:24px; color:#707070;}
+/* 보물상자 good&bad */
+.luckyDraw_good_popup .msg, .luckyDraw_bad_popup .msg {font-size: 33px; font-weight: 900; padding: 27px 0 24px;}
+.btn_treasure {margin: 27px auto 0; font-size: 33px;}
+
+/* event : 같은카드찾기게임 */
+/* 게임소개 */
+.cardGame_info_popup .pop_cont {background-color: transparent; padding: 47px 63px 16px;}
+.cardGame_info_popup table {border-radius: 20px; overflow: hidden; margin-bottom: 19px;}
+.cardGame_info_popup thead tr {background: linear-gradient(to right, #71FFDF, #71D8FF, #BD9AEC);}
+.cardGame_info_popup th, .cardGame_info_popup td {border-color: transparent;}
+.cardGame_info_popup thead td {padding: 7.5px 0; font-size: 26px; font-weight: bold;}
+.cardGame_info_popup tbody td {padding: 38.5px 0; background-color: #fff;}
+.cardGame_info_popup tbody td h5{font-size: 18px; font-weight: 500; margin-bottom: 8px;}
+.cardGame_info_popup tbody td h5:last-child {margin-bottom: 0;}
+.cardGame_info_popup h2 {margin-bottom: 15px;}
+.cardGame_info_popup .userGame_count {margin-top: 50px; font-size: 26px; font-weight: bold; line-height:1.5;}
+.cardGame_info_popup .pop_cont + button {margin: 0 auto;}
+.cardGame_info_popup .pop_cont .game_info {margin-top:30px;}
+/* 시간종료 */
+.timeBox {font-size: 40px; font-weight: bold; line-height: 54px;}
+.timeBox span {font-weight: 400; color: #FC0202;}
+.cardGame_timeOut_popup .msg {font-size: 26px; font-weight: bold; padding: 39px 0 69px;}
+/* 게임시작전세팅 */
+.cardGame_setting_popup .pop_contents {max-width: 1640px; background-color: #fff;}
+.cardGame_setting_popup .pop_cont {padding: 18px 9% 0;}
+.cardGame_set {border-spacing: 7px; margin-top: 48px;}
+.cardGame_set li{width:calc(14.2857% - 10px);margin-right:5px;height:40px;float:left;}
+.cardGame_set li {overflow: hidden; padding: 18px 0; /*min-width: 189px;*/width:calc(14.27% - 5px); height: 79px; border-radius: 5px; border: 1px solid #A7A7A7; background-color: #eeeeee; cursor: pointer; margin-bottom:8px;}
+.card {perspective: 140px;}
+.card-inner {position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.8s; transform-style: preserve-3d;}
+.card.flipped .card-inner {transform: rotateY(180deg);}
+.card-front, .card-back {width: 100%; position: absolute; top: 50%; transform: translateY(-50%); backface-visibility: hidden; -webkit-backface-visibility: hidden;}
+.card-back {transform: rotateY(180deg) translateY(-50%) !important;}
+.card-back img{width: 100%;}
+/*************** POP UP : end ***************/
+
+/* E-poster : list */
+.ePoster_top {margin-top: 45.5px;}
+label.chk_liked {font-size: 21px; font-weight: bold;}
+input[type="checkbox"] + label.chk_liked span{margin-right: 10px; display: inline-block; position: relative; width: 25px; height: 25px; border-radius: 50%; border: 1px solid #fff; vertical-align: middle;}
+input[type="checkbox"]:checked + label.chk_liked span::after {content: ""; display: block; width: 19px; height: 19px; border-radius: 50%; background-color: #ADF002; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);}
+.ePoster_select {padding: 12px 49px 13px 19px; margin: 0 11px 0 21px; border-radius: 20px; border: 1px solid #fff; color: #fff;font-size: 16px;font-weight: 500; background: url("../images/icon/arrow_down_yellow.png") right 20px center no-repeat; background-color: transparent;}
+.ePoster_select option {color: #000;}
+.searchPoster {min-width:293px; padding: 9px 55px 9px 14px; background-color: transparent; border: 1px solid #fff; border-radius: 20px; position: relative; font-size: 16px; font-weight: 500;}
+.searchPoster input {background-color: transparent;}
+.searchPoster button {position: absolute; right: 20px; top: 50%; transform: translateY(-50%); background-color: transparent;}
+.ePoster_list {width:100%; margin-top: 21px; overflow: auto; height: calc(100% - 145px);}
+.ePoster_list > li {margin-bottom: 16px; height:75px; transition:all 0.6s;}
+.ePoster_list > li.on {height:100%;}
+.ePoster_list  > li > div:first-child {background-color: rgba(0,0,0,0.4); border-radius: 10px; border: 1px solid #fff; padding: 16.5px 35px; font-size: 31px; font-weight: bold; cursor:pointer;}
+.ePoster_list > li:last-child {margin-bottom: 0;}
+.ePoster_list_title span {margin-right: 18px;}
+.ePoster_list_more {width: 40px; height: 40px; border-radius: 50%; cursor: pointer; position: relative;}
+.ePoster_list_more img {position: absolute; left: 50%; top: 55%; transition: transform 0.3s; transform: translate(-50%, -50%);}
+.ePoster_list > li.on .ePoster_list_more img {top: 50%; transform: translate(-50%, -50%) rotate(180deg);}
+.scrollImg {margin-top:40px;}
+.ePoster_cont * {color:#000}
+
+
+/* 카테고리 박스 글자색, 선색, 버튼색*/
+/* list color - 1번 연보라색 */
+.ePoster_list li.contents01 > div {border-color: #C3C1D3}
+.ePoster_list li.contents01 .ePoster_list_title span:first-child {color: #C3C1D3}
+.ePoster_list li.contents01 .ePoster_list_more {background-color: #C3C1D3}
+/* list color - 2번 하늘색 */
+.ePoster_list li.contents02 > div {border-color: #A9CDD1}
+.ePoster_list li.contents02 .ePoster_list_title  span:first-child {color: #A9CDD1}
+.ePoster_list li.contents02 .ePoster_list_more {background-color: #A9CDD1}
+/* list color - 3번 파랑색 */
+.ePoster_list li.contents03 > div {border-color: #84D1DB}
+.ePoster_list li.contents03 .ePoster_list_title  span:first-child {color: #84D1DB}
+.ePoster_list li.contents03 .ePoster_list_more {background-color: #84D1DB}
+/* list color - 4번 연두색 */
+.ePoster_list li.contents04 > div {border-color: #AED1A9}
+.ePoster_list li.contents04 .ePoster_list_title  span:first-child {color: #AED1A9}
+.ePoster_list li.contents04 .ePoster_list_more {background-color: #AED1A9}
+/* list color - 5번 초록색 */
+.ePoster_list li.contents05 > div {border-color: #84DB9B}
+.ePoster_list li.contents05 .ePoster_list_title  span:first-child {color: #84DB9B}
+.ePoster_list li.contents05 .ePoster_list_more {background-color: #84DB9B}
+/* list color - 6번 노랑색 */
+.ePoster_list li.contents06 > div {border-color: #C4DB84}
+.ePoster_list li.contents06 .ePoster_list_title  span:first-child {color: #C4DB84}
+.ePoster_list li.contents06 .ePoster_list_more {background-color: #C4DB84}
+/* list color - 7번 연주황색 */
+.ePoster_list li.contents07 > div {border-color: #DBC084}
+.ePoster_list li.contents07 .ePoster_list_title  span:first-child {color: #DBC084}
+.ePoster_list li.contents07 .ePoster_list_more {background-color: #DBC084}
+/* list color - 8번 주황색 */
+.ePoster_list li.contents08 > div {border-color: #DB9B84}
+.ePoster_list li.contents08 .ePoster_list_title  span:first-child {color: #DB9B84}
+.ePoster_list li.contents08 .ePoster_list_more {background-color: #DB9B84}
+/* list color - 9번 빨강색 */
+.ePoster_list li.contents09 > div {border-color: #DB6262}
+.ePoster_list li.contents09 .ePoster_list_title  span:first-child {color: #DB6262}
+.ePoster_list li.contents09 .ePoster_list_more {background-color: #DB6262}
+/* list color - 10번 분홍색 */
+.ePoster_list li.contents10 > div {border-color: #F28FD0}
+.ePoster_list li.contents10 .ePoster_list_title  span:first-child {color: #F28FD0}
+.ePoster_list li.contents10 .ePoster_list_more {background-color: #F28FD0}
+
+/*
+.contents01 .ePoster_cont_wrap .ePoster_cont {background-color: #C3C1D3;}
+.contents02 .ePoster_cont_wrap .ePoster_cont {background-color: #A9CDD1;}
+.contents03 .ePoster_cont_wrap .ePoster_cont {background-color: #84D1DB;}
+.contents04 .ePoster_cont_wrap .ePoster_cont {background-color: #AED1A9;}
+.contents05 .ePoster_cont_wrap .ePoster_cont {background-color: #84DB9B;}
+.contents06 .ePoster_cont_wrap .ePoster_cont {background-color: #C4DB84;}
+.contents07 .ePoster_cont_wrap .ePoster_cont {background-color: #DBC084;}
+.contents08 .ePoster_cont_wrap .ePoster_cont {background-color: #DB9B84;}
+.contents09 .ePoster_cont_wrap .ePoster_cont {background-color: #DB6262;}
+.contents10 .ePoster_cont_wrap .ePoster_cont {background-color: #F28FD0;}
+*/
+
+.ePoster_cont_wrap {height: 0; padding: 0; overflow:hidden;}
+.ePoster_cont_wrap ul {padding:0 20px; height:100%; overflow-y:auto}
+.ePoster_list > li.on .ePoster_cont_wrap {padding:45px 50px; height: calc(100% - 50px);}
+.ePoster_cont_wrap li {float:left; width: calc(33.33% - 12px); border-radius:12px; padding: 25.3px 25px 35.4px; margin-top:15px;}
+.ePoster_cont_wrap li:nth-child(3n-1) {margin-left:18px; margin-right:18px;}
+.ePoster_cont_wrap li:nth-child(-n+3) {margin-top:0;}
+.ePoster_cont_wrap li > a {width:100%;}
+.ePoster_cont_like {padding: 5px 10px; border-radius: 1.5px; border: 0.3px solid #000000; font-size: 14px;}
+.ePoster_cont_like img {margin-right: 5px; width:17px; height:16px;}
+.ePoster_cont_like span {font-size: 15px; font-weight: 300;}
+.ePoster_cont_comments {line-height: 30px; float:right;}
+.ePoster_cont_comments span {font-size: 15px; font-weight: 300; margin-left: 18px;}
+.ePoster_cont_title {font-size: 21px; font-weight: 900; margin: 65px 0 8.5px; padding-bottom: 10px; border-bottom: 3px solid;}
+.ePoster_cont_from {text-overflow: ellipsis; white-space: nowrap; overflow: hidden; width: 100%;}
+.ePoster_cont_txt {font-size: 20px; font-weight: 300; height: 120px; margin-bottom: 49px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical;}
+.ePoster_cont_writer {padding-bottom: 10.4px; border-bottom: 1px dashed;}
+.ePoster_cont_name {margin: 6.5px 0 5.5px;}
+.ePoster_list .mCSB_inside > .mCSB_container {margin-right: 0;}
+.posrter_article {height: calc(100% - 61px);}
+/*.ePoster_cont_wrap {margin: 47px 37.5px 32px 73.6px; padding-right: 36px; max-height: 542px; overflow: auto;}
+div.ePoster_cont {width: calc(33.33% - 12px); border-radius: 12px; padding: 25.3px 25px 35.4px; margin-bottom: 15px;}
+div.ePoster_cont:nth-child(3n-1) {margin: 0 18px;}
+.ePoster_cont * {font-size: 16px; font-weight: bold; color: #000;}
+.ePoster_cont_like {padding: 5px 10px; border-radius: 1.5px; border: 0.3px solid #000000; font-size: 14px;}
+.ePoster_cont_like img {margin-right: 5px;}
+.ePoster_cont_like span {font-size: 15px; font-weight: 300;}
+.ePoster_cont_comments {line-height: 30px;}
+.ePoster_cont_comments span {font-size: 15px; font-weight: 300; margin-left: 18px;}
+.ePoster_cont_title {font-size: 21px; font-weight: 900; margin: 65px 0 8.5px; padding-bottom: 10px; border-bottom: 3px solid;}
+.ePoster_cont_txt {font-size: 20px; font-weight: 300; margin-bottom: 49px;}
+.ePoster_cont_writer {padding-bottom: 10.4px; border-bottom: 1px dashed;}
+.ePoster_cont_name {margin: 6.5px 0 5.5px;}
+.ePoster_cont_from {font-size: 12px; font-weight: 300;}
+.scrollImg {margin-top: 83px;}*/
+
+/* E-poster : like 좋아요 색상 */
+.ePoster_list.likedPoster {max-height: none;}
+/* list color - 좋아요: 진한초록색 */
+.ePoster_list li.category_strongGreen > div {border-color: #ADF002}
+.ePoster_list li.category_strongGreen .ePoster_list_title span {color: #ADF002}
+.ePoster_list li.category_strongGreen .ePoster_list_more {background-color: #ADF002}
+/* 좋아요 컨텐츠 color - 1번 보라색 */
+.likedBG_purple {background-color: #D9D6EA;}
+.likedBG_purple .ePoster_cont_title, .likedBG_purple .ePoster_cont_writer {border-color: #6F6A95;}
+/* 좋아요 컨텐츠 color - 2번 회색빛파랑색 */
+.likedBG_grayBlue {background-color: #93B0B4;}
+.likedBG_grayBlue .ePoster_cont_title, .likedBG_grayBlue .ePoster_cont_writer {border-color: #6A9595;}
+/* 좋아요 컨텐츠 color - 3번 초록색 */
+.likedBG_green {background-color: #83C995;}
+.likedBG_green .ePoster_cont_title, .likedBG_green .ePoster_cont_writer {border-color: #3D9576;}
+/* 좋아요 컨텐츠 color - 4번 파랑색 */
+.likedBG_blue {background-color: #86C4CC;}
+.likedBG_blue .ePoster_cont_title, .likedBG_blue .ePoster_cont_writer {border-color: #3E7C8E;}
+/* 좋아요 컨텐츠 color - 5번 노랑색 */
+.likedBG_yellow {background-color: #C9B483;}
+.likedBG_yellow .ePoster_cont_title, .likedBG_yellow .ePoster_cont_writer {border-color: #807946;}
+/* 좋아요 컨텐츠 color - 6번 빨강색 */
+.likedBG_red {background-color: #CC927E;}
+.likedBG_red .ePoster_cont_title, .likedBG_red .ePoster_cont_writer {border-color: #956A6A;}
+
+
+
+/* 0818 추가 (이정희작업) */
+/* e-poster 컨텐츠 color - 1번 보라색 */
+.likedBG_purple {background-color: #D9D6EA;}
+.likedBG_purple .ePoster_cont_title, .likedBG_purple .ePoster_cont_writer {border-color: #6F6A95;}
+/* e-poster 컨텐츠 color - 2번 회색빛파랑색 */
+.likedBG_grayBlue {background-color: #93B0B4;}
+.likedBG_grayBlue .ePoster_cont_title, .likedBG_grayBlue .ePoster_cont_writer {border-color: #6A9595;}
+/* e-poster 컨텐츠 color - 3번 에메랄드색 */
+.likedBG_emerald {background: #84D1DB;}
+.likedBG_emerald .ePoster_cont_title, .likedBG_emerald .ePoster_cont_writer {border-color: #3e8c96;}
+/* e-poster 컨텐츠 color - 4번 연두색 */
+.likedBG_lightGreen {background: #AED1A9;}
+.likedBG_lightGreen .ePoster_cont_title, .likedBG_lightGreen .ePoster_cont_writer {border-color: #63875f;}
+/* e-poster 컨텐츠 color - 5번 초록색 */
+.likedBG_green {background-color: #83C995;}
+.likedBG_green .ePoster_cont_title, .likedBG_green .ePoster_cont_writer {border-color: #3D9576;}
+/* e-poster 컨텐츠 color - 6번 진한노랑색 */
+.likedBG_darkYellow {background: #C4DB84}
+.likedBG_darkYellow .ePoster_cont_title, .likedBG_darkYellow .ePoster_cont_writer {border-color: #798a49;}
+/* e-poster 컨텐츠 color - 7번 노랑색 */
+.likedBG_yellow {background-color: #C9B483;}
+.likedBG_yellow .ePoster_cont_title, .likedBG_yellow .ePoster_cont_writer {border-color: #807946;}
+/* e-poster 컨텐츠 color - 8번 빨강색 */
+.likedBG_red {background-color: #CC927E;}
+.likedBG_red .ePoster_cont_title, .likedBG_red .ePoster_cont_writer {border-color: #956A6A;}
+/* e-poster 컨텐츠 color - 9번 진한빨강색 */
+.likedBG_darkRed {background: #CC927E;}
+.likedBG_darkRed .ePoster_cont_title, .likedBG_darkRed .ePoster_cont_writer {border-color: #752929;}
+/* e-poster 컨텐츠 color - 10번 분홍색 */
+.likedBG_pink {background: #F28FD0;}
+.likedBG_pink .ePoster_cont_title, .likedBG_pink .ePoster_cont_writer {border-color: #6e2354;}
+
+
+
+
+
+
+/* E-Poster : chat */
+.ePoster_chat {height: 100%; padding: 71px 180px 0;}
+.chat_category {font-size: 25px; font-weight: 900; margin-top: 19px;}
+.chat_likeBox {display: inline-block;padding: 8.5px 21px; width: max-content; margin: 27px 0; border-radius: 1.39px; border: 1px solid #fff; border-radius: 25px; font-size: 21px; font-weight: bold; cursor: pointer;}
+.chat_likeBox:hover {background: #adf002; border-color: #adf002}
+.chat_likeBox.on {background: #adf002; border-color: #adf002; color: #000}
+.chat_likeBox img {margin-right: 10px;}
+.chat_likeBox span {margin-left: 30px; font-size: 23px; font-weight: 300; color: inherit;}
+.chat_likeBox_comment {color: #fff; margin-right: 10px; font-size: 18px;}
+.poster_name, .poster_uploader {margin-top: 5px;}
+.poster_name {font-size: 30px; font-weight: 900; color: #CAC8DA;}
+.poster_uploader {font-size: 26px; font-weight: 500; color: #ADF002;}
+.ePoster_chat_cont {margin-top: 26.5px; border-top: 1px solid #fff; padding: /*55.5px*/0  20px}
+.chat_cont_L {width: 335px;}
+.img_spot {height: 465px; background-color: #121212; border: 1px solid #9B9B9B; border-radius: 11px; box-shadow: 0 6px 12px 0 rgba(0,0,0,0.42); margin-bottom: 14px; text-align: center; line-height: 465px; font-size: 41px; font-weight: 900;}
+
+
+
+
+
+.ePoster_btn_download {width: 100%; padding: 18px 50px; border: 1px solid #fff; border-radius: 11px; font-size: 22px; font-weight: #fff; background-color: transparent; color: #fff;}
+.ePoster_btn_download:hover {background: #adf002; border-color: #adf002; color: #000;}
+.chat_cont_R {width: calc(100% - 390px);}
+.comments_count {font-size: 30px; font-weight: bold; margin-bottom: 41px;}
+.comments_count span {margin-left: 20px;}
+.ePoster_chat_area {padding: 0 0 37px 0; height: 386px; overflow: auto; }
+.ePoster_chat_box {margin-bottom: 23px;}
+.ePoster_chat_box:last-child {margin-bottom: 0;}
+.userChat {width: calc(100% - 100px); margin-left: 16px;}
+.userChat p {font-size: 20px; font-weight: 500; line-height: 27px; word-break: break-word;}
+.userChat p:first-child {font-weight: bold; margin: 5px 0 6px;}
+.userChat p:first-child span {margin-left: 25px;}
+.ePoster_chat_write {margin-top: 14px; padding: 15px 25px 15px 0;}
+.ePoster_chat_write div.floatL {display: block; width: calc(100% - 292px);}
+input#chat_write_area {font-size: 20px; font-weight: 500; color: #fff; background-color: transparent; width: 100%;}
+input#chat_write_area::placeholder {color: #FFFFFF;}
+label.chat_write_area {display: block; padding: 5.5px 27px; background-color: rgba(255, 255, 255, 0.29); border-radius: 24px;}
+.chat_btn {width: 134px; line-height: 33px; font-size: 22px; font-weight: bold; color: #000; background-color: #ADF002; border-radius: 17px;}
+.ePoster_chat_write .chat_btn:first-child {margin: 0 10px;}
+
+
+
+
+
+/* 기타 */
+.btnClicked {background-color: #ADF002; border-color: #ADF002; color: #000000}
+.table_pop table th, table td {font-size: 14px;}
+.h100 {height: 100% !important;}
+.mb_pg_title {display: none;}
+.stampInfo.pc_only {display: table !important;}
+.luckyDraw_good_popup p img {width: 100%; max-width: 408px;}
+
+@media screen and (max-width:1400px) {
+	.contents_bg {padding:40px;}
+	.btn_atted_wrap {top:40px;}
+	.myAttendance .outlines_g {margin-bottom:30px;}
+
+	/*eposter comment*/
+	.ePoster_chat {padding:0;}
+}
+
+@media screen and (max-width:1280px) {
+	
+	/* 이벤트존(event_myAttendance) */
+	.contents_bg {text-align:center;}
+	.event_myAttendance .menu_title {font-size: 25px; padding: 16px 0 6px 0;}
+	.event_myAttendance .btn_atted_wrap {top: 130px;}
+	.event_myAttendance .btn_atted_wrap .tab_pager {margin-top: 0; margin: 0 17px;}
+	.event_myAttendance .tab_pager li {width: calc(50% - 5px);}
+	.event_myAttendance .tab_pager li:last-child {margin-left: 10px;}
+	.event_myAttendance .tab_pager li a {padding: 10px 0; font-size: 16px;}
+	.event_myAttendance .tab_wrap {margin-top: 110px;} 
+	.myAttendance .outlines_g {font-size: 16px; margin-bottom: 20px;}
+	.myAttendance > div:nth-of-type(1) {white-space: nowrap; overflow: scroll;}
+	.attend_gift {margin: 0 0 0 15px;}
+	.attend_gift:last-child {margin-right: 15px;}
+	.btn_lucky {padding: 11px 55px; font-size: 16px; margin: 30px 0 75px;}
+	
+	/*eposter_list*/
+	.ePoster_cont_wrap li {width:calc(50% - 10px);}
+	.ePoster_cont_wrap li:nth-child(1), .ePoster_cont_wrap li:nth-child(3) {margin-top: 15px;} 
+	.ePoster_cont_wrap li:nth-child(3n-1) {margin:15px 0 0 ;}
+	.ePoster_cont_wrap li:nth-child(even) {margin-left:10px;}
+	.ePoster_list > li.on .ePoster_cont_wrap {padding:30px 0;}
+	.ePoster_cont_wrap ul {padding:0;}
+
+	/*event*/
+	.gameRanking {padding: 25px 30px 30px; display: block;}
+	.gameRanking_title {font-size: 18px; padding: 0 0 20px; border-bottom: 2px solid #b4b4b4; margin-bottom: 20px; float: none;  border-right: 0;}
+	.gameRanking_name {padding-left: 0; float: none;}
+	.gameRanking_name p {font-size: 18px; text-align: center; margin-top: 13px;}
+}
+
+
+
+@media screen and (max-width:900px) {
+	/*event*/
+	.eventDate span a {font-size:20px; margin-left:40px;}
+
+	/*게임랭킹 팝업*/
+	.cardGame_info_popup .pop_cont {padding:20px 0;}
+}
+
+
+@media screen and (max-width:480px) {
+	.table_pop .short_txt {display: inline-block; width: calc(100% - 30px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+
+	/* 이벤트존(event_intro) */
+	section.event_intro.container {padding: 53px 0 0; height: calc(100% - 53px); overflow: initial;}
+	.event_intro .contents_bg {padding: 16px 17px 0; text-align: center; border-radius: 15px 15px 0 0;}
+	.event_intro .menu_title {font-size: 25px; padding-bottom: 6px;}
+	.event_intro .outlines_g {margin: 40px 0 22px; font-size: 18px; /*line-height: 1.2;*/}
+	.eventZone_1 .outlines_w {margin-bottom: 30px; font-size: 16px;}
+	.eventZone_1 .txt_box {font-size: 15px; padding-top:0; padding-bottom:0;}
+	.eventZone_1 .txt_box p {line-height: 1.5; margin-bottom: 21px;}
+	.eventZone_1 .txt_box span {display: block;}
+	.eventZone_1 .stamp_num p {margin: 42px 0 23px; font-size: 16px;}
+	.stampInfo.pc_only {display: none !important;}
+	.stampInfo.mb_only {display: table !important;}
+	.stampInfo.mb_only th, .stampInfo.mb_only td {display: inline-block; width: 50%; padding: 14px 0; font-size: 16px; border-bottom: 1px solid #F2F2F2;}
+	.stampInfo.mb_only th {background: linear-gradient(to right, #71FFDF, #71ECEF, #71D8FF, #BD9AEC); float: left; border-right: 1px solid #fff;}
+	.stampInfo.mb_only th::after, .stampInfo.mb_only td:after {display: none;}
+	.btn_seeMyEvent {margin: 30px 0; font-size: 18px; padding: 12px 45px;}
+	.event_intro .eventZone_1 .outlines_g {font-size:20px;}
+
+	/* 이벤트존(event_myAttendance) */
+	section.event_myAttendance.container {padding: 83px 0 0;}
+	.event_myAttendance .contents_bg {padding: 0; text-align: center; border-radius: 15px 15px 0 0;}
+	.event_myAttendance .menu_title {font-size: 25px; padding: 16px 0 6px 0;}
+	.event_myAttendance .btn_atted_wrap {top: 92px; left: 0; transform: none;}
+	.event_myAttendance .btn_atted_wrap .tab_pager {margin-top: 0; margin: 0 17px;}
+	.event_myAttendance .tab_pager li {width: calc(50% - 5px);}
+	.event_myAttendance .tab_pager li:last-child {margin-left: 10px;}
+	.event_myAttendance .tab_pager li a {padding: 10px 0; font-size: 16px;}
+	.event_myAttendance .tab_wrap {margin-top: 110px;} 
+	.myAttendance .outlines_g {font-size: 16px; margin-bottom: 20px;}
+	.myAttendance > div:nth-of-type(1) {white-space: nowrap; overflow: scroll;}
+	.attend_gift {margin: 0 0 0 15px;}
+	.attend_gift:last-child {margin-right: 15px;}
+	.btn_lucky {padding: 11px 55px; font-size: 16px; margin: 30px 0 75px;}
+
+	/* 이벤트존(e-Booth stamp) */
+	.visitStamp.tab_cont {padding: 0 17px;}
+	.eventDate span a {width:100px; font-size: 16px; margin-left: 16px; /*margin-left:40px;*/}
+	.eventDate span:first-child a {margin-left: 0;}
+	.userStamp {font-size: 18px; margin: 40px 20px;}
+	.btn_gameIn {margin: 40px 0; font-size: 16px; padding: 11px 70px;}
+	.stamp_wrap img {max-width: 60px;}
+	.eventDate span a {font-size: 14px; margin-left: 0;}
+
+	/* 보물상자 팝업 */
+	.luckyDraw_before_popup .pop_contents, .luckyDraw_good_popup .pop_contents, .luckyDraw_bad_popup .pop_contents {height: 100%; padding-top: 19px; max-height: none; /*height: calc(100% - 52px); padding-top: 60px;*/ }
+	.luckyDraw_before_popup .pop_cont {position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);}
+	.luckyDraw_before_popup button {position: fixed; left: 0; bottom: 0; border-radius: 0; padding: 13px 0 25px; font-size: 16px;}
+	/* 보물상자 성공&실패 팝업 수정전
+	.luckyDraw_good_popup .pop_cont, .luckyDraw_bad_popup .pop_cont {width: 100%; position: absolute; left: 50%; top: 45%; transform: translate(-50%, -50%);}
+	.luckyDraw_good_popup .pop_cont + p.msg, .luckyDraw_bad_popup .pop_cont + p.msg {font-size: 25px; position: absolute; left: 50%; top: 59%; transform: translate(-50%, -50%);}
+	.luckyDraw_good_popup .pop_cont {top: 54%;}
+	.luckyDraw_good_popup .pop_cont + p.msg {top: 64%;}*/
+	/* 보물상자 성공&실패 팝업 수정후 */
+	.luckyDraw_good_popup .pop_cont, .luckyDraw_bad_popup .pop_cont {margin-top: 20px;}
+	.luckyDraw_good_popup .msg, .luckyDraw_bad_popup .msg {padding: 0;}
+	.luckyDraw_before_popup .pop_close, .luckyDraw_good_popup .pop_close, .luckyDraw_bad_popup .pop_close {margin-top: 18px;}
+	.luckyDraw_before_popup .pop_cont + button {max-width: none;}
+
+	/* e-Poster list */
+	/*section.eposter_list {overflow-x:hidden;}*/section {overflow-x:hidden;}
+	.eposter_list.container {height: calc(100% - 15px);padding: 75px 22px 18px 22px;}
+	.scrollImg {display: none !important;}
+	.ePoster_top {text-align: left !important; margin-top: 25px;}
+	input[type="checkbox"] + label.chk_liked span {width: 20px; height: 20px;}
+	label.chk_liked {display: block; text-align: left; margin-bottom:12px; font-size: 16px;}
+	.ePoster_select {float: left; min-width: 150px; margin: 0 10px 0 0; padding: 10px 15px;}
+	.searchPoster {float: right; display: inline-block; width: calc(100% - 160px); min-width: initial; padding: 9px 15px;}
+	.searchPoster img {height: 24px;}
+	.posrter_article, .ePoster_list {height: 100% !important;}
+	.ePoster_list {overflow: initial;}
+	.ePoster_list_title {font-size: 18px; width: calc(100% - 50px);}
+	.ePoster_list_title span {font-size: 18px; display: block; margin-bottom: 4px;}
+	.ePoster_list_title span.detail {/*overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp:2; -webkit-box-orient: vertical;*/}
+	.ePoster_list_more {width: 32px; height: 32px; margin: 7px 0;}
+	.ePoster_list > li {height:auto; margin-bottom:0;}
+	.ePoster_list > li.likedPoster {/*height: 82px;*/ margin-bottom: 16px;}
+	/*.ePoster_list > li.small {height:82px;}
+	.ePoster_list > li.on {height:554px}
+	.ePoster_list > li.small.on {height:533px}*/
+	.ePoster_list > li:last-child {margin-bottom: 16px;}
+	.ePoster_list > li > div:first-child {padding: 17px; margin-bottom: 10px;}
+	.ePoster_list > li.on {height:auto;}
+	.ePoster_list > li .ePoster_cont_wrap {height:0; /*max-height:0;*/ overflow: hidden; transition:all 0.8s;}
+	.ePoster_list > li.on .ePoster_cont_wrap {/*max-height: 438px;*/ padding: 0; overflow-y:auto; height:450px; margin-bottom:10px;}
+/*	.ePoster_cont_wrap ul {width:calc(100% + 16px);}*/
+	.ePoster_cont_wrap li {width: 100%; margin: 0 0 10px 0 !important;}
+	.ePoster_cont_wrap li:last-child {margin-bottom: 0;}
+
+	/* 포스터 댓글 */
+	.ePoster_chat {padding: 0;}
+	.poster_comment.container {padding: 25px 17px 0;}
+
+
+
+
+
+
+
+
+
+	.poster_comment.container {padding: 83px 17px 20px;}
+	.chat_category {font-size: 16px; margin-top: 0;}
+	.poster_name, .poster_uploader {font-size: 16px; margin-top:8px;}
+	.ePoster_chat_cont {margin-top: 20px; padding: 0;}
+	.ePoster_chat_cont > div:first-child > div {float: none; margin: 20px 0;}
+	.ePoster_chat_cont > div:first-child > div:after {content: ''; display: block; clear: both;}
+	.chat_likeBox_comment {display: inline-block; width: 50%; float: left; font-size: 13px; font-weight: 300; line-height: 1.5;}
+	.chat_likeBox {float: right; margin: 0; font-size: 14px;}
+	.chat_likeBox span {font-size: 14px; margin-left: 10px;}
+	.chat_likeBox img {height: 15px;}
+	.chat_cont_R {display: none;}
+	.chat_cont_R * {color: #fff;}
+	.chat_cont_R.on {display: block; position: fixed; width: 100%; height: 100%; top: 0; left: 0;}
+	.pop_bg {position: absolute; z-index:-1; background-color: rgba(0,0,0,0.6);}
+	.comments_count {font-size:22px;}
+	.chat_inner {height:calc(100% - 150px); position:absolute; bottom:0; background-color:#222; padding:35px 17px 0;}
+	.chat_inner > i {position:absolute; top:-37px; right:17px; width:17px;}
+	.chat_inner > i img {width:100%;}
+	.chat_cont_L {width: 260px; margin: auto; float: none;}
+	.ePoster_btn_download {font-size: 18px; padding: 14px 0;}
+	.poster_comment .btn_wrap.mb_only {margin: 35px 0 22px;}
+	.poster_comment .btn_wrap.mb_only button {width: calc(50% - 10px); margin-right: 10px; font-size: 18px; border-radius: 30px;}
+	.poster_comment .btn_wrap.mb_only button:last-child {margin-right: 0;}
+	.ePoster_chat_area {height:calc(100% - 220px); overflow-y: auto; padding-bottom: 0;}
+	.ePoster_chat_write {padding:0; margin-top: 45px;}
+	.ePoster_chat_write div.floatL {width:100%; margin-bottom:10px;}
+	.ePoster_chat_write div.floatR {width:100%;}
+	.ePoster_chat_write div.floatR button {width:calc(50% - 7px); margin:0; margin-left:10px; color: #000; font-size: 18px}
+	.ePoster_chat_write div.floatR button:first-child {margin:0;}
+	.profile_img {width: 60px; height: 60px;}
+	.userChat > p:first-child {font-size: 14px;}
+	.userChat > p:nth-child(2) {font-size: 16px;}
+	.userChat + div {text-align: left; margin-left: 70px;}
+	.userChat + div button {margin-top: 12px;}
+}
+
+
+
+.popup *::-webkit-scrollbar {display:none;}

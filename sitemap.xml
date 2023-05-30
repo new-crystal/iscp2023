@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+<!-- ICoLA 2022 -->
+<url>
+  <loc>https://iscp2023.org</loc>
+  <lastmod>2022-04-25T00:00:00+09:00</lastmod>
+</url>
+<url>
+  <loc>https://iscp2023.org/main</loc>
+  <lastmod>2022-04-30T00:00:00+09:00</lastmod>
+</url>
+
+<url>
+  <loc>https://iscp2023.org/main/welcome.php</loc>
+  <lastmod>2022-04-25T00:00:00+09:00</lastmod>
+</url>
+
+<url>
+  <loc>https://iscp2023.org/main/organizing_committee.php</loc>
+  <lastmod>2022-04-25T00:00:00+09:00</lastmod>
+</url>
+
+<!-- 
+	// accomandation
+	// news&notice
+ -->
+<!-- //ICoLA 2022 -->
+
+<!-- Program -->
+<url>
+  <loc>https://iscp2023.org/main/program_glance.php</loc>
+  <lastmod>2022-04-25T00:00:00+09:00</lastmod>
+</url>
+
+<!-- 
+	// scientific program
+	// plenary lectures
+ -->
+<!-- //Program -->
+
+<!-- Call for Abstracts -->
+<url>
+  <loc>https://iscp2023.org/main/submission_guideline.php</loc>
+  <lastmod>2022-04-25T00:00:00+09:00</lastmod>
+</url>
+
+<!-- 
+	// presentation guidelines
+ -->
+<!-- //Call for Abstracts -->
+
+<!-- Registration -->
+<url>
+  <loc>https://iscp2023.org/main/registration_guidelines.php</loc>
+  <lastmod>2022-04-25T00:00:00+09:00</lastmod>
+</url>
+
+<!-- 
+	// registration
+ -->
+<!-- //Registration -->
+
+<!-- Sponsorship -->
+<!-- 
+	// sponsors
+	// exhibition
+ -->
+<!-- //Sponsorship -->
+
+<!-- General Information -->
+<url>
+  <loc>https://iscp2023.org/main/covid_faq.php</loc>
+  <lastmod>2022-04-25T00:00:00+09:00</lastmod>
+</url>
+
+<url>
+  <loc>https://iscp2023.org/main/about_korea.php</loc>
+  <lastmod>2022-04-25T00:00:00+09:00</lastmod>
+</url>
+
+<url>
+  <loc>https://iscp2023.org/main/attraction_seoul.php</loc>
+  <lastmod>2022-04-25T00:00:00+09:00</lastmod>
+</url>
+
+<url>
+  <loc>https://iscp2023.org/main/transportation.php</loc>
+  <lastmod>2022-04-25T00:00:00+09:00</lastmod>
+</url>
+
+<url>
+  <loc>https://iscp2023.org/main/useful_information.php</loc>
+  <lastmod>2022-04-25T00:00:00+09:00</lastmod>
+</url>
+
+<url>
+  <loc>https://iscp2023.org/main/visa.php</loc>
+  <lastmod>2022-04-25T00:00:00+09:00</lastmod>
+</url>
+<!-- //General Information -->
+
+</urlset>

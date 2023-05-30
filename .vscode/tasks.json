@@ -1,0 +1,23 @@
+{
+  "version": "2.0.0",
+  "command": "chrome",
+  "windows": {
+    "command": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\chrome.exe"
+  },
+  "args": ["localhost\\${workspaceRootFolderName}\\${fileBasename}"],
+  "problemMatchers": []
+  // "tasks": [
+  //   {
+  //     "type": "npm",
+  //     "script": "test",
+  //     "path": "iscp/main/live/nodejs",
+  //     "group": {
+  //       "kind": "build",
+  //       "isDefault": true
+  //     },
+  //     "problemMatcher": [],
+  //     "label": "npm: test - iscp/main/live/nodejs",
+  //     "detail": "echo \"Error: no test specified\" && exit 1"
+  //   }
+  // ]
+}

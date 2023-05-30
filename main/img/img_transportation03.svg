@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="369" height="73" viewBox="0 0 369 73">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="사각형_560" data-name="사각형 560" width="15" height="25" transform="translate(377 1574)" fill="none" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="그룹_515" data-name="그룹 515" transform="translate(-383 -1290)">
+    <path id="패스_1761" data-name="패스 1761" d="M0,0H304.5" transform="translate(412.5 1301.5)" fill="none" stroke="#cea339" stroke-width="1"/>
+    <text id="Gimpo_Airport" data-name="Gimpo
+Airport" transform="translate(410 1336)" font-size="16" font-family="OpenSans, Open Sans"><tspan x="-25.023" y="0">Gimpo</tspan><tspan x="-26.176" y="22">Airport</tspan></text>
+    <text id="Conrad_Hotel" data-name="Conrad
+Hotel" transform="translate(724 1336)" font-size="16" font-family="OpenSans, Open Sans"><tspan x="-27.406" y="0">Conrad</tspan><tspan x="-20.07" y="22">Hotel</tspan></text>
+    <circle id="타원_105" data-name="타원 105" cx="12.5" cy="12.5" r="12.5" transform="translate(397 1290)" fill="#cea339"/>
+    <circle id="타원_107" data-name="타원 107" cx="12.5" cy="12.5" r="12.5" transform="translate(711 1290)" fill="#cea339"/>
+    <g id="마스크_그룹_30" data-name="마스크 그룹 30" transform="translate(33 -284)" clip-path="url(#clip-path)">
+      <circle id="타원_112" data-name="타원 112" cx="12.5" cy="12.5" r="12.5" transform="translate(364 1574)" fill="#8936e0"/>
+    </g>
+    <g id="마스크_그룹_31" data-name="마스크 그룹 31" transform="translate(347 -284)" clip-path="url(#clip-path)">
+      <circle id="타원_113" data-name="타원 113" cx="12.5" cy="12.5" r="12.5" transform="translate(364 1574)" fill="#8936e0"/>
+    </g>
+    <circle id="타원_110" data-name="타원 110" cx="8.5" cy="8.5" r="8.5" transform="translate(401 1294)" fill="#fff"/>
+    <circle id="타원_111" data-name="타원 111" cx="8.5" cy="8.5" r="8.5" transform="translate(715 1294)" fill="#fff"/>
+  </g>
+</svg>

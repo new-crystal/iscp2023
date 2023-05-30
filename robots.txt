@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /main/admin/
+Disallow: /main/live/
+Disallow: /main/pdf_library/
+Disallow: /main/pg_demo(local)/
+Disallow: /main/php_kcp_api_pay_sample/
+Disallow: /main/plugin/
+Allow: /
+Allow: /main/
+Sitemap: https://iscp2023.org/sitemap.xml

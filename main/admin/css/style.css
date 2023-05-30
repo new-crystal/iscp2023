@@ -1,0 +1,126 @@
+/*admin login*/
+.adm_login{width:300px; text-align:center; position:absolute; top:50%; left:50%; transform:translate(-50%, -80%);}
+.adm_login .logo{margin-bottom:40px; margin-left: 28px;}
+.adm_login .logo img{width: 100px;}
+.adm_login .logo span{margin-left:14px; font-weight:bold;  }
+.adm_login input[type='text'],.adm_login input[type='password']{width:100%; border-radius:4px; border:1px solid #999; margin-bottom:14px;}
+.adm_login button{width:100%; padding:15px;  background:#1E1E1E; color:#fff; border-radius: 5px;font-weight:bold; margin-top: 25px;}
+
+/*member_detail*/
+.info a{margin-left:10px;color:#0080ff;}
+
+/*photo_gallery*/
+.gallery td .clearfix .img_wrap{margin-right:10px;min-width:180px;}
+.gallery #preview{margin-top:10px;}
+#file-input{display:none;}
+#preview .img_wrap{position:relative;}
+#preview .delete_img{position:absolute;top:10px;right:10px;}
+#preview .delete_img i{color:#333;font-size:30px;}
+
+/* 21.06.03 육현석 - no data 공통처리 */
+.no_data {text-align:center;}
+
+/*엑셀 다운로드버튼*/
+.excel_download_btn {float: right;margin-right: 10px;}
+
+.nav {z-index: 999;}
+
+.file_name {max-width:200px; height:24px;}
+
+
+/***** 210802 이정희 작업 START *****/
+.pop_close i {display: inline-block; width: 26px; height: 26px; vertical-align: middle; background: url(../img/icon_x.png) no-repeat center; background-size: cover; cursor: pointer;}
+
+/* input[type="radio"] 예&아니오 스타일*/
+input[type="radio"].approveNO, input[type="radio"].approveNO + button {margin-left: 10px;}
+
+/*테이블 td 일부 왼쪽정렬*/
+.no1_td_left td:nth-child(1), .no2_td_left td:nth-child(2) {text-align: left;}
+
+/*라이브플랫폼관리 > Lecture관리*/
+.lec_listToDetail tbody td:nth-child(1), .lec_listToDetail tbody td:nth-child(2) {cursor: pointer;}
+.w50 {width: 50%;}
+
+/*라이브플랫폼관리 > LectureQA*/
+.qna_listToDetail tbody td:nth-child(1), .qna_listToDetail tbody td:nth-child(2) {cursor: pointer;}
+
+/*테이블 말줄임 관련*/
+table.shortCut {table-layout: fixed; width: 100%; white-space: nowrap;}
+td.shortHere {display: table-cell; text-overflow: ellipsis; overflow: hidden;}
+/***** 210802 이정희 작업 END *****/
+
+/*210802 홍유진 수정*/
+th, td {font-size:13px; border-right:none;}
+th {}
+.tag_input input {max-width:150px; height:24px;}
+.tag_add {height:24px; padding:0 8px; margin-left:10px;}
+.tag_list {margin-left:15px;}
+.tag_list:after {content:''; display:block; clear:both;}
+.tag_list li {float:left; margin-left:8px; line-height:24px; padding:0 10px; border:1px solid #ccc; border-radius:4px;}
+.tag_list li:first-child {margin-left:0;}
+.tag_list li i {display:inline-block; width:15px; height:15px; margin-left:6px; vertical-align:middle; background:url("../img/icon_x.png") no-repeat center /10px;}
+.file_name.big {height:35px;}
+.tab_box {position:relative;}
+.absolute_btn {position:absolute; top:50%; right:0; transform:translateY(-50%);}
+#preview {margin-top:20px;}
+#preview li {position:relative; width:100px; height:100px; border:1px solid; float:left; margin-right:10px; margin-bottom:10px; overflow: hidden;}
+#preview img {position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); max-height:100%;}
+#preview i {display:inline-block; width:12px; height:12px; background:url("../img/icon_x.png") no-repeat center /cover; position:absolute; top:10px; right:10px; cursor: pointer;}
+.table_title {text-align: left; font-size: 18px; margin-bottom: 6px;}
+table .input3_td input[type="text"] {width:calc(33.33% - 10px); margin-left:10px;}
+table .input3_td input[type="text"]:first-child {margin-left:0;}
+.textarea_editor {width:100%; height:150px; min-height:auto;}
+.category_select select {max-width:200px;}
+.category_select .tag_list {margin-top:10px; margin-left:0;}
+.photo_create select {max-width:150px;}
+
+.phone_num select {width:80px; height:39px;}
+table .phone_num input[type="text"] {width:calc(100% - 85px);}
+.address_form > div {margin-bottom:8px;}
+.qrcode_page div.tit {font-size:16px; font-weight:bold;}
+.qrcode_page div.tit button {width:auto; height:auto; padding: 6px 15px; margin-top:0; margin-left:10px;}
+
+/*QR code 로그인*/
+.adm_login.qrcode_page {width:700px;}
+.qrcode_page ul {margin-top:50px;}
+.qrcode_page li > div {float:left; width:50%;}
+.adm_login.qrcode_page li label {display:inline-block; width:110px;}
+.qrcode_page li > div:nth-child(2) label {margin-left:10px;}
+.adm_login.qrcode_page li input {width:calc(100% - 125px);}
+.qrcode_page li button {width:100px; padding: 8px 15px; margin-top:0;}
+.qrcode_page li > div.w100 {width:400px; margin:0 auto 40px; float:none;}
+.qrcode_page li > div.w100 input {margin-bottom:0;}
+.qrcode_page button {width:400px;}
+
+/*0810 이정희 작업*/
+.approve_QA_window_top li {margin-right: 10px;}
+.approve_QA_window_top input {padding: 6px 10px;}
+.manage_lectureQA_detail2 .scroll_container {overflow: auto; height: 167px; margin-bottom: 20px;}
+.manage_lectureQA_detail2 .scroll_container table {margin-bottom: 0;}
+.manage_lectureQA_detail2 .scroll_container::-webkit-scrollbar {width: 10px; background-color: #eee;}
+.manage_lectureQA_detail2 .scroll_container::-webkit-scrollbar-thumb {background-color: #ccc;}
+
+/*승인질문 노출페이지*/
+.container.approval {height:100vh; background: url("../img/img_approval.jpg") no-repeat top center /contain; padding:70px 160px;}
+.approval .bigTitle {font-size:84px; font-family:"lato", sans-serif; font-weight:900; width: 100%; line-height: 100px; text-align: center; color: #fff;}
+.question_slick {height: 472px; margin:50px 0;box-shadow: 6px 6px 12px rgb(0 0 0 / 42%); padding:0; border-radius:18px; overflow:hidden;}
+.question_slick .slick-list, .question_slick .slick-track {height:100%;}
+.question_slick li.slick-slide {width: 100%;height:100%; /*font-size:54px;*/ font-size:2.2vw; font-weight:bold; font-family:"lato", sans-serif; line-height:1.2; /*line-height:70px;*/ color:#000; background-color:#fff; padding:28px 96px; margin-left:0; word-wrap:break-word; word-break:break-all;}
+.question_slick .slick-slide {min-height:500px;}
+.question_slick .slick-dots {display:none !important;}
+.question_slick .slick-arrow {}
+.custom_option {margin-top:50px; position:relative;}
+.pagingInfo {display:block; width:410px; height:80px; line-height:80px; text-align:center; border-radius:66px; background:#7CA6FA; font-size:49px; font-weight:bold; font-family:"lato", sans-serif; color:#fff; margin:0 auto;}
+.custom_arrow {width: 28px; height: 49px; left:50%; position: absolute; left: 50%; top: 50%; transform:translateY(-50%); background-image:url("../img/icon_slick_arrow_w.png");}
+.next_arrow {margin-left:160px;}
+.prev_arrow {margin-left:-180px;  transform: translateY(-50%) rotateY(-180deg);}
+
+/* lecture list - popup */
+.pop_category .form_tr input, .pop_place .form_tr input{width: calc(50% - 50px);}
+.pop_place input[name=url]{width: calc(90% - 50px);text-align: left;}
+.pop_speaker .form_tr input{width: 49%;}
+.pop_speaker img.thumbnail{max-width: 150px;max-height: 150px;}
+
+.list_scroll {max-height:440px; overflow-y:auto;}
+.pop_speaker .list_scroll {max-height:400px;}
+.approve_td input[type="radio"] + label {margin:0;}
