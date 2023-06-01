@@ -477,7 +477,7 @@ $('.submit_btn').click(function() {
         success: function(res) {
             console.log(res);
             if (res.code == 200) {
-                abstract_gmail(res.email, res.name, res.subject, res.title, res.topic_text);
+                //abstract_gmail(res.email, res.name, res.subject, res.title, res.topic_text);
 		location.href = './mypage_abstract.php';
                 //alert(locale(language.value)("send_mail_success"));
               
