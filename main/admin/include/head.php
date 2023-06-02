@@ -43,7 +43,7 @@
 <html lang="ko">
 <head>
 	<meta charset="utf-8">
-	<title>ICoLA - 관리자</title>
+	<title>ISCP - 관리자</title>
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<!--외부 라이브러리-->
 	<link href="dist/css/datepicker.css" rel="stylesheet" type="text/css">	

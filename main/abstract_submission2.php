@@ -628,11 +628,11 @@ $("input.abstract_file").on("change", function() {
 
     //파일 용량 제한
     var file = target[0].files[0];
-    if (file.size > (10 * 1024 * 1024)) {
-        alert("You can only save files that are less than 10MB.");
-        target.val('');
-        return false;
-    }
+    // if (file.size > (10 * 1024 * 1024)) {
+    //     alert("You can only save files that are less than 10MB.");
+    //     target.val('');
+    //     return false;
+    // }
     var fileCheck = true; //fileCheck(file);
 
     if (!lecture_file_type.includes(type)) {

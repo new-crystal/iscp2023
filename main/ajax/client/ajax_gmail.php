@@ -20,7 +20,8 @@ function getClient()
 	$client = new Google_Client();
 	$client->setApplicationName('Gmail API PHP Quickstart');
 	//$client->setScopes(Google_Service_Gmail::GMAIL_READONLY);
-	$client->setAuthConfig('../../../../icomes.or.kr/main/plugin/google-api-php-client-main/icola_credentials.json');
+	// 23.06.02 HUBDNC_NYM ICSP용으로 URL변경
+	$client->setAuthConfig('../../../../icomes.or.kr/main/plugin/google-api-php-client-main/iscp_credentials.json');
 	$client->setIncludeGrantedScopes(true);
 	$client->setAccessType('offline');
 	$client->setPrompt('select_account consent');
@@ -188,7 +189,6 @@ function createMessage($language, $mail_type, $fname, $to, $subject, $time, $tmp
 		}
 	}
 
-
 	$rawMessage = strtr(base64_encode($rawMessageString), array('+' => '-', '/' => '_'));
 	$message->setRaw($rawMessage);
 	return $message;
@@ -308,7 +308,7 @@ if ($_POST["flag"] == "find_password") {
 	$subject = $locale("mail_find_password_subject");
 	//$callback_url = "http://54.180.86.106/main/password_reset.php?e=".$email."&t=".$random_token;
 	$callback_url = "https://iscp2023.org/main/password_reset.php?e=" . $email . "&t=" . $random_token;
-	$mail_result = mailer($language, "find_password", $name, $email, "[ISCP]" . $subject, date("Y-m-d H:i:s"), $temporary_password, $callback_url, 0);
+	//$mail_result = mailer($language, "find_password", $name, $email, "[ISCP]" . $subject, date("Y-m-d H:i:s"), $temporary_password, $callback_url, 0);
 
 	$message = createMessage($language, "find_password", $name, $email, "[ISCP]" . $subject, date("Y-m-d H:i:s"), $temporary_password, $callback_url, 0);
 	createDraft($service, "secretariat@iscp2023.org", $message);

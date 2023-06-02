@@ -299,10 +299,10 @@ $d_days = $intvl->days + 1;
     const info = document.querySelector("#information")
     const pre = document.querySelector(".pre")
 
-    program.addEventListener("click", () => alert("준비 중입니다."))
-    abstract.addEventListener("click", () => alert("준비 중입니다."))
-    registration.addEventListener("click", () => alert("준비 중입니다."))
-    sponship.addEventListener("click", () => alert("준비 중입니다."))
-    info.addEventListener("click", () => alert("준비 중입니다."))
+   // program.addEventListener("click", () => alert("준비 중입니다."))
+   // abstract.addEventListener("click", () => alert("준비 중입니다."))
+   // registration.addEventListener("click", () => alert("준비 중입니다."))
+   // sponship.addEventListener("click", () => alert("준비 중입니다."))
+   // info.addEventListener("click", () => alert("준비 중입니다."))
     // pre.addEventListener("click", () => alert("준비 중입니다."))
 </script>
