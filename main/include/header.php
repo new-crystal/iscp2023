@@ -303,6 +303,10 @@ $d_days = $intvl->days + 1;
    // abstract.addEventListener("click", () => alert("준비 중입니다."))
    // registration.addEventListener("click", () => alert("준비 중입니다."))
    // sponship.addEventListener("click", () => alert("준비 중입니다."))
+<<<<<<< HEAD
    // info.addEventListener("click", () => alert("준비 중입니다."))
+=======
+    //info.addEventListener("click", () => alert("준비 중입니다."))
+>>>>>>> 4fa5a2330f240109bbc91c9e2cb496a2f4f1da2b
     // pre.addEventListener("click", () => alert("준비 중입니다."))
 </script>
