@@ -13,313 +13,313 @@ $nation_list = get_data($nation_query);
 ?>
 
 <style>
-/*ldh 작성*/
-.red_alert {
-    display: none;
-}
+    /*ldh 작성*/
+    .red_alert {
+        display: none;
+    }
 
-.mo_red_alert {
-    display: none;
-}
+    .mo_red_alert {
+        display: none;
+    }
 
-.red_alert_option {
-    /*display:none;*/
-}
+    .red_alert_option {
+        /*display:none;*/
+    }
 
-.korea_only,
-.korea_radio {
-    display: none;
-}
+    .korea_only,
+    .korea_radio {
+        display: none;
+    }
 
-.korea_only.on,
-.korea_radio.on {
-    display: revert;
-}
+    .korea_only.on,
+    .korea_radio.on {
+        display: revert;
+    }
 
-.mo_korea_only,
-.korea_radio {
-    display: none;
-}
+    .mo_korea_only,
+    .korea_radio {
+        display: none;
+    }
 
-.mo_korea_only.on,
-.korea_radio.on {
-    display: revert;
-}
+    .mo_korea_only.on,
+    .korea_radio.on {
+        display: revert;
+    }
 
-.ksola_signup {
-    display: none;
-}
+    .ksola_signup {
+        display: none;
+    }
 
-.mo_ksola_signup {
-    display: none;
-}
+    .mo_ksola_signup {
+        display: none;
+    }
 
-.ksola_signup.on {
-    display: revert;
-}
+    .ksola_signup.on {
+        display: revert;
+    }
 
-.mo_ksola_signup.on {
-    display: revert;
-}
+    .mo_ksola_signup.on {
+        display: revert;
+    }
 
-/*태그 오른쪽 정렬*/
-.checkbox_wrap {
-    padding-top: 30px;
-}
+    /*태그 오른쪽 정렬*/
+    .checkbox_wrap {
+        padding-top: 30px;
+    }
 
-.checkbox_wrap ul {
-    text-align: right;
-}
+    .checkbox_wrap ul {
+        text-align: right;
+    }
 
-.checkbox_wrap li {
-    display: inline-block;
-}
+    .checkbox_wrap li {
+        display: inline-block;
+    }
 
-.checkbox_wrap li:last-child {
-    margin-left: 20px;
-}
+    .checkbox_wrap li:last-child {
+        margin-left: 20px;
+    }
 
-.mo_other_radio {
-    display: none;
-}
+    .mo_other_radio {
+        display: none;
+    }
 
 
-/*2022-05-09*/
-.select_others {
-    margin-bottom: 5px;
-}
+    /*2022-05-09*/
+    .select_others {
+        margin-bottom: 5px;
+    }
 
-.input_others {
-    display: none;
-    width: 100px;
-    float: right;
+    .input_others {
+        display: none;
+        width: 100px;
+        float: right;
 
-}
+    }
 
-/* 2022-05-10 HUBDNC LJH2 수정 */
-.pc_only input.tel_number {
-    width: 96px;
-}
+    /* 2022-05-10 HUBDNC LJH2 수정 */
+    .pc_only input.tel_number {
+        width: 96px;
+    }
 
-.pc_only input.tel_numbers {
-    width: 115px;
-    margin-left: 2px;
-}
+    .pc_only input.tel_numbers {
+        width: 115px;
+        margin-left: 2px;
+    }
 
-.mb_only input.tel_numbers {
-    margin-left: 10px;
-}
-
-.mb_only input.tel_number,
-.mb_only input.tel_numbers.tel_phone {
-    width: 100px;
-}
-
-.mb_only input.tel_numbers.tel_phone2 {
-    width: calc(100% - 220px);
-}
-
-@media screen and (max-width: 480px) {
+    .mb_only input.tel_numbers {
+        margin-left: 10px;
+    }
 
     .mb_only input.tel_number,
     .mb_only input.tel_numbers.tel_phone {
-        width: calc(50% - 5px);
+        width: 100px;
     }
 
     .mb_only input.tel_numbers.tel_phone2 {
-        width: 100%;
-        margin: 10px 0 0;
+        width: calc(100% - 220px);
     }
-}
+
+    @media screen and (max-width: 480px) {
+
+        .mb_only input.tel_number,
+        .mb_only input.tel_numbers.tel_phone {
+            width: calc(50% - 5px);
+        }
+
+        .mb_only input.tel_numbers.tel_phone2 {
+            width: 100%;
+            margin: 10px 0 0;
+        }
+    }
 </style>
 <script>
-$(document).ready(function() {
-    $("#user1").change(function() {
-        if ($("#user1").prop('checked') == true) {
-            $(".ksola_signup").addClass("on");
-        }
+    $(document).ready(function() {
+        $("#user1").change(function() {
+            if ($("#user1").prop('checked') == true) {
+                $(".ksola_signup").addClass("on");
+            }
+        });
+        $("#user2").change(function() {
+            if ($("#user2").prop('checked') == true) {
+                $(".ksola_signup").removeClass("on");
+            }
+        });
+
+        $("select[name=nation_no]").change(function() {
+
+            var value = $(this).val();
+
+            if (value == 25) {
+                $(".red_alert").eq(0).html("");
+                $(".red_alert").eq(1).html("");
+                $(".red_alert").eq(2).html("");
+                $(".red_alert").eq(3).html("");
+                $(".red_alert").eq(4).html("");
+
+                $(".korea_only").addClass("on");
+                $(".korea_radio").addClass("on");
+            } else {
+                $(".korea_radio").removeClass("on");
+                $(".korea_only").removeClass("on");
+                $(".ksola_signup").removeClass("on");
+
+                remove_value();
+                $("#user3").prop('checked', true);
+            }
+
+            var nt = $("#nation_no option:selected").data("nt");
+            $("input[name=nation_tel]").val(nt);
+            $("input[name=tel_nation_tel]").val(nt);
+
+            if (nt != 82) {
+                $(".red_alert").eq(0).html("good");
+                $(".red_alert").eq(1).html("good");
+                $(".red_alert").eq(2).html("good");
+                $(".red_alert").eq(3).html("good");
+                $(".red_alert").eq(4).html("good");
+            }
+        });
+
+
+        $("input[name=food]").change(function() {
+
+            var this_chk = $(this).val();
+            if (this_chk == "Others") {
+                $(".other_radio").next("label").find("input").addClass("on");
+            } else {
+                $(".other_radio").next("label").find("input").removeClass("on");
+            }
+        });
+
+        $(".select_others").change(function() {
+
+            var this_chk = $(this).val();
+            if (this_chk == "Others" || this_chk == "Other Professional") {
+                $(this).next().attr("style", "display:block;");
+            } else {
+                $(this).next().attr("style", "display:none;");
+                $(this).next().val("");
+            }
+        });
+
+
+        $(".not_checkbox").click(function() {
+            var _this = $(this).is(":checked");
+            if (_this == true) {
+                $(this).next().next().attr("disabled", true);
+                $(this).next().next().val("");
+                $(this).next().next().next().html("good");
+            } else {
+                $(this).next().next().attr("disabled", false);
+                $(this).next().next().next().html("");
+            }
+        });
+
     });
-    $("#user2").change(function() {
-        if ($("#user2").prop('checked') == true) {
-            $(".ksola_signup").removeClass("on");
-        }
+
+    function remove_value() {
+        $("input[name=affiliation_kor]").val("");
+        $("input[name=name_kor]").val("");
+
+        $(".red_alert").eq(0).html("good");
+        $(".red_alert").eq(1).html("good");
+        $(".red_alert").eq(2).html("good");
+        $(".red_alert").eq(3).html("good");
+        $(".red_alert").eq(4).html("good");
+
+        $("input[name=licence_number]").val("");
+        $("input[name=specialty_number]").val("");
+        $("input[name=nutritionist_number]").val("");
+
+    }
+
+
+    $(document).ready(function() {
+        //$("#category").change(function(){
+        //	var value = $(this).val();
+        //	if (value == "Others"){
+        //		$(this).addClass("on");
+        //		$(this).next("input").addClass("on");
+        //	} else {
+        //		$(this).removeClass("on");
+        //		$(this).next("input").removeClass("on");
+        //	}
+
+        //});
+        $("#mo_user1").change(function() {
+            if ($("#mo_user1").prop('checked') == true) {
+                $(".mo_ksola_signup").addClass("on");
+
+            }
+        });
+        $("#mo_user2").change(function() {
+            if ($("#mo_user2").prop('checked') == true) {
+                $(".mo_ksola_signup").removeClass("on");
+            }
+        });
+        $("select[name='mo_nation_no']").change(function() {
+
+            var value = $(this).val();
+
+            if (value == 25) {
+                $(".mo_red_alert").eq(0).html("");
+                $(".mo_red_alert").eq(1).html("");
+                $(".mo_red_alert").eq(2).html("");
+                $(".mo_red_alert").eq(3).html("");
+                $(".mo_red_alert").eq(4).html("");
+
+                $(".mo_korea_only").addClass("on");
+                $(".mo_korea_radio").addClass("on");
+            } else {
+                $(".mo_korea_radio").removeClass("on");
+                $(".mo_korea_only").removeClass("on");
+                $(".mo_ksola_signup").removeClass("on");
+
+                remove_value();
+                $("#mo_user2").prop('checked', true);
+            }
+
+            var nt = $("#mo_nation_no option:selected").data("nt");
+            $("input[name=mo_nation_tel]").val(nt);
+            $("input[name=mo_tel_nation_tel]").val(nt);
+
+            if (nt != 82) {
+                $(".mo_red_alert").eq(0).html("good");
+                $(".mo_red_alert").eq(1).html("good");
+                $(".mo_red_alert").eq(2).html("good");
+                $(".mo_red_alert").eq(3).html("good");
+                $(".mo_red_alert").eq(4).html("good");
+            }
+        });
+        $("input[name=mo_food]").change(function() {
+
+            var this_chk = $(this).val();
+            //console.log(this_chk);
+            if (this_chk == "Others") {
+                //$(".mo_other_radio").next("label").find("input").addClass("on");
+                $("input[name=mo_short_input]").removeClass("mo_other_radio");
+            } else {
+                //$(".mo_other_radio").next("label").find("input").removeClass("on");
+                $("input[name=mo_short_input]").addClass("mo_other_radio");
+            }
+        });
     });
 
-    $("select[name=nation_no]").change(function() {
+    function remove_value() {
+        $("input[name=mo_affiliation_kor]").val("");
+        $("input[name=mo_name_kor]").val("");
 
-        var value = $(this).val();
+        $(".mo_red_alert").eq(0).html("good");
+        $(".mo_red_alert").eq(1).html("good");
+        $(".mo_red_alert").eq(2).html("good");
+        $(".mo_red_alert").eq(3).html("good");
+        $(".mo_red_alert").eq(4).html("good");
 
-        if (value == 25) {
-            $(".red_alert").eq(0).html("");
-            $(".red_alert").eq(1).html("");
-            $(".red_alert").eq(2).html("");
-            $(".red_alert").eq(3).html("");
-            $(".red_alert").eq(4).html("");
+        $("input[name=mo_licence_number]").val("");
+        $("input[name=mo_specialty_number]").val("");
+        $("input[name=mo_nutritionist_number]").val("");
 
-            $(".korea_only").addClass("on");
-            $(".korea_radio").addClass("on");
-        } else {
-            $(".korea_radio").removeClass("on");
-            $(".korea_only").removeClass("on");
-            $(".ksola_signup").removeClass("on");
-
-            remove_value();
-            $("#user3").prop('checked', true);
-        }
-
-        var nt = $("#nation_no option:selected").data("nt");
-        $("input[name=nation_tel]").val(nt);
-        $("input[name=tel_nation_tel]").val(nt);
-
-        if (nt != 82) {
-            $(".red_alert").eq(0).html("good");
-            $(".red_alert").eq(1).html("good");
-            $(".red_alert").eq(2).html("good");
-            $(".red_alert").eq(3).html("good");
-            $(".red_alert").eq(4).html("good");
-        }
-    });
-
-
-    $("input[name=food]").change(function() {
-
-        var this_chk = $(this).val();
-        if (this_chk == "Others") {
-            $(".other_radio").next("label").find("input").addClass("on");
-        } else {
-            $(".other_radio").next("label").find("input").removeClass("on");
-        }
-    });
-
-    $(".select_others").change(function() {
-
-        var this_chk = $(this).val();
-        if (this_chk == "Others" || this_chk == "Other Professional") {
-            $(this).next().attr("style", "display:block;");
-        } else {
-            $(this).next().attr("style", "display:none;");
-            $(this).next().val("");
-        }
-    });
-
-
-    $(".not_checkbox").click(function() {
-        var _this = $(this).is(":checked");
-        if (_this == true) {
-            $(this).next().next().attr("disabled", true);
-            $(this).next().next().val("");
-            $(this).next().next().next().html("good");
-        } else {
-            $(this).next().next().attr("disabled", false);
-            $(this).next().next().next().html("");
-        }
-    });
-
-});
-
-function remove_value() {
-    $("input[name=affiliation_kor]").val("");
-    $("input[name=name_kor]").val("");
-
-    $(".red_alert").eq(0).html("good");
-    $(".red_alert").eq(1).html("good");
-    $(".red_alert").eq(2).html("good");
-    $(".red_alert").eq(3).html("good");
-    $(".red_alert").eq(4).html("good");
-
-    $("input[name=licence_number]").val("");
-    $("input[name=specialty_number]").val("");
-    $("input[name=nutritionist_number]").val("");
-
-}
-
-
-$(document).ready(function() {
-    //$("#category").change(function(){
-    //	var value = $(this).val();
-    //	if (value == "Others"){
-    //		$(this).addClass("on");
-    //		$(this).next("input").addClass("on");
-    //	} else {
-    //		$(this).removeClass("on");
-    //		$(this).next("input").removeClass("on");
-    //	}
-
-    //});
-    $("#mo_user1").change(function() {
-        if ($("#mo_user1").prop('checked') == true) {
-            $(".mo_ksola_signup").addClass("on");
-
-        }
-    });
-    $("#mo_user2").change(function() {
-        if ($("#mo_user2").prop('checked') == true) {
-            $(".mo_ksola_signup").removeClass("on");
-        }
-    });
-    $("select[name='mo_nation_no']").change(function() {
-
-        var value = $(this).val();
-
-        if (value == 25) {
-            $(".mo_red_alert").eq(0).html("");
-            $(".mo_red_alert").eq(1).html("");
-            $(".mo_red_alert").eq(2).html("");
-            $(".mo_red_alert").eq(3).html("");
-            $(".mo_red_alert").eq(4).html("");
-
-            $(".mo_korea_only").addClass("on");
-            $(".mo_korea_radio").addClass("on");
-        } else {
-            $(".mo_korea_radio").removeClass("on");
-            $(".mo_korea_only").removeClass("on");
-            $(".mo_ksola_signup").removeClass("on");
-
-            remove_value();
-            $("#mo_user2").prop('checked', true);
-        }
-
-        var nt = $("#mo_nation_no option:selected").data("nt");
-        $("input[name=mo_nation_tel]").val(nt);
-        $("input[name=mo_tel_nation_tel]").val(nt);
-
-        if (nt != 82) {
-            $(".mo_red_alert").eq(0).html("good");
-            $(".mo_red_alert").eq(1).html("good");
-            $(".mo_red_alert").eq(2).html("good");
-            $(".mo_red_alert").eq(3).html("good");
-            $(".mo_red_alert").eq(4).html("good");
-        }
-    });
-    $("input[name=mo_food]").change(function() {
-
-        var this_chk = $(this).val();
-        //console.log(this_chk);
-        if (this_chk == "Others") {
-            //$(".mo_other_radio").next("label").find("input").addClass("on");
-            $("input[name=mo_short_input]").removeClass("mo_other_radio");
-        } else {
-            //$(".mo_other_radio").next("label").find("input").removeClass("on");
-            $("input[name=mo_short_input]").addClass("mo_other_radio");
-        }
-    });
-});
-
-function remove_value() {
-    $("input[name=mo_affiliation_kor]").val("");
-    $("input[name=mo_name_kor]").val("");
-
-    $(".mo_red_alert").eq(0).html("good");
-    $(".mo_red_alert").eq(1).html("good");
-    $(".mo_red_alert").eq(2).html("good");
-    $(".mo_red_alert").eq(3).html("good");
-    $(".mo_red_alert").eq(4).html("good");
-
-    $("input[name=mo_licence_number]").val("");
-    $("input[name=mo_specialty_number]").val("");
-    $("input[name=mo_nutritionist_number]").val("");
-
-}
+    }
 </script>
 
 <section class="container form_page sign_up">
@@ -364,8 +364,7 @@ function remove_value() {
                                                 $nation = $n["nation_en"];
                                             }
                                         ?>
-                                        <option data-nt="<?= $n['nation_tel']; ?>" value="<?= $n["idx"] ?>"
-                                            <?= $select_option ?>><?= $nation ?></option>
+                                            <option data-nt="<?= $n['nation_tel']; ?>" value="<?= $n["idx"] ?>" <?= $select_option ?>><?= $nation ?></option>
                                         <?php
                                         }
                                         ?>
@@ -399,8 +398,7 @@ function remove_value() {
                                     </li>
                                     <li>
                                         <label for="">KSoLA PW*</label>
-                                        <input class="passwords" name="kor_pw" type="password" maxlength="60"
-                                            minlength="10">
+                                        <input class="passwords" name="kor_pw" type="password" maxlength="60" minlength="10">
                                     </li>
                                     <li>
                                         <button onclick="kor_api()" type="button" class="btn">회원인증</button>
@@ -414,8 +412,7 @@ function remove_value() {
                                             <!-- <a href="javascript:;" class="term2_btn red_txt"> Details ></a> -->
                                         </label>
                                     </div>
-                                    <a href="https://www.lipid.or.kr/member/find_id_and_pw.php" target="_blank"
-                                        class="id_pw_find">KSoLA 회원 ID/PW 찾기</a>
+                                    <a href="https://www.lipid.or.kr/member/find_id_and_pw.php" target="_blank" class="id_pw_find">KSoLA 회원 ID/PW 찾기</a>
                                 </div>
 
                                 <!-- <div> -->
@@ -438,8 +435,7 @@ function remove_value() {
                             <th><span class="red_txt">*</span><?= $locale("password") ?></th>
                             <td>
                                 <div class="max_long">
-                                    <input class="passwords" type="password" name="password" class="required"
-                                        placeholder="Password" maxlength="60">
+                                    <input class="passwords" type="password" name="password" class="required" placeholder="Password" maxlength="60">
                                     <!-- <span class="mini_alert red_txt red_alert"></span> -->
                                 </div>
                             </td>
@@ -448,8 +444,7 @@ function remove_value() {
                             <th><span class="red_txt">*</span><?= $locale("verify_password") ?></th>
                             <td>
                                 <div class="max_long">
-                                    <input class="passwords" type="password" name="password2" class="required"
-                                        placeholder="Re-type Password" maxlength="60">
+                                    <input class="passwords" type="password" name="password2" class="required" placeholder="Re-type Password" maxlength="60">
                                     <!-- <span class="mini_alert red_txt red_alert"></span> -->
                                 </div>
                             </td>
@@ -590,8 +585,7 @@ function remove_value() {
                             <th><span class="red_txt">*</span>의사 면허번호</th>
                             <td>
                                 <div class="max_long">
-                                    <input type="checkbox" class="checkbox input not_checkbox" id="licence_number"
-                                        name="licence_number2" value="Not applicable"><label for="licence_number">Not
+                                    <input type="checkbox" class="checkbox input not_checkbox" id="licence_number" name="licence_number2" value="Not applicable"><label for="licence_number">Not
                                         applicable</label>
                                     <input name="licence_number" type="text" maxlength="60" class="kor_check_number">
                                     <span class="mini_alert red_txt red_alert">good</span>
@@ -602,9 +596,7 @@ function remove_value() {
                             <th><span class="red_txt">*</span>전문의 번호</th>
                             <td>
                                 <div class="max_long">
-                                    <input type="checkbox" class="checkbox input not_checkbox" id="specialty_number"
-                                        name="specialty_number2" value="Not applicable"><label
-                                        for="specialty_number">Not applicable</label>
+                                    <input type="checkbox" class="checkbox input not_checkbox" id="specialty_number" name="specialty_number2" value="Not applicable"><label for="specialty_number">Not applicable</label>
                                     <input name="specialty_number" type="text" maxlength="60" class="kor_check_number">
                                     <span class="mini_alert red_txt red_alert">good</span>
                                 </div>
@@ -614,11 +606,8 @@ function remove_value() {
                             <th><span class="red_txt">*</span>영양사 면허번호</th>
                             <td>
                                 <div class="max_long">
-                                    <input type="checkbox" class="checkbox input not_checkbox" id="nutritionist_number"
-                                        name="nutritionist_number2" value="Not applicable"><label
-                                        for="nutritionist_number">Not applicable</label>
-                                    <input name="nutritionist_number" type="text" maxlength="60"
-                                        class="kor_check_number">
+                                    <input type="checkbox" class="checkbox input not_checkbox" id="nutritionist_number" name="nutritionist_number2" value="Not applicable"><label for="nutritionist_number">Not applicable</label>
+                                    <input name="nutritionist_number" type="text" maxlength="60" class="kor_check_number">
                                     <span class="mini_alert red_txt red_alert">good</span>
                                 </div>
                             </td>
@@ -658,8 +647,7 @@ function remove_value() {
                             <th><span class="red_txt">*</span>Date of Birth</th>
                             <td>
                                 <div class="max_normal">
-                                    <input maxlength="10" name="date_of_birth" type="text" placeholder="dd.mm.yyyy"
-                                        id="datepicker">
+                                    <input maxlength="10" name="date_of_birth" type="text" placeholder="dd.mm.yyyy" id="datepicker">
                                     <!-- <span class="mini_alert red_txt red_alert">good</span> -->
                                 </div>
                             </td>
@@ -674,12 +662,10 @@ function remove_value() {
                                     <label for="vegetarian">Vegetarian</label>
                                     <input value="Halal" type="radio" id="halal" class="radio" name="food">
                                     <label for="halal">Halal</label>
-                                    <input value="Others" type="radio" id="Others" class="radio other_radio"
-                                        name="food">
+                                    <input value="Others" type="radio" id="Others" class="radio other_radio" name="food">
                                     <label for="Others">
                                         Others
-                                        <input name="short_input" type="text" class="short_input en_check"
-                                            maxlength="60">
+                                        <input name="short_input" type="text" class="short_input en_check" maxlength="60">
                                     </label>
                                 </div>
                             </td>
@@ -750,8 +736,7 @@ function remove_value() {
                         </label>
                     </li> -->
                     <li>
-                        <input type="checkbox" class="checkbox input required" data-name="terms 2" id="terms2"
-                            name="terms2" value="Y">
+                        <input type="checkbox" class="checkbox input required" data-name="terms 2" id="terms2" name="terms2" value="Y">
                         <label for="terms2"> Privacy Policy
                             <a href="javascript:;" class="term2_btn red_txt"> Details ></a>
                         </label>
@@ -773,9 +758,8 @@ function remove_value() {
                                         $nation = $n["nation_en"];
                                     }
                                 ?>
-                                <option data-nt="<?= $n['nation_tel']; ?>" value="<?= $n["idx"] ?>"
-                                    <?= $select_option ?>>
-                                    <?= $nation ?></option>
+                                    <option data-nt="<?= $n['nation_tel']; ?>" value="<?= $n["idx"] ?>" <?= $select_option ?>>
+                                        <?= $nation ?></option>
                                 <?php
                                 }
                                 ?>
@@ -807,8 +791,7 @@ function remove_value() {
                                 <input class="passwords" name="mo_kor_pw" type="password" maxlength="60">
                             </li>
                             <li>
-                                <button onclick="mo_kor_api()" type="button"
-                                    class="btn btn_small gray_btn">회원인증</button>
+                                <button onclick="mo_kor_api()" type="button" class="btn btn_small gray_btn">회원인증</button>
                             </li>
                         </ul>
                         <div class="clearfix2">
@@ -819,8 +802,7 @@ function remove_value() {
                                     <!-- <a href="javascript:;" class="red_txt"> Details ></a> -->
                                 </label>
                             </div>
-                            <a href="https://www.lipid.or.kr/member/find_id_and_pw.php" target="_blank"
-                                class="id_pw_find">KSoLA
+                            <a href="https://www.lipid.or.kr/member/find_id_and_pw.php" target="_blank" class="id_pw_find">KSoLA
                                 회원 ID/PW 찾기</a>
                         </div>
                         <div>
@@ -847,8 +829,7 @@ function remove_value() {
                     <li>
                         <p class="label"><span class="red_txt">*</span><?= $locale("verify_password") ?></p>
                         <div>
-                            <input class="passwords" type="password" name="mo_password2" class="required"
-                                maxlength="60">
+                            <input class="passwords" type="password" name="mo_password2" class="required" maxlength="60">
                             <!-- <span class="mini_alert red_txt mo_red_alert"></span> -->
                         </div>
                     </li>
@@ -856,19 +837,17 @@ function remove_value() {
                         <p class="label"><span class="red_txt">*</span><?= $locale("name") ?></p>
                         <div class="clearfix">
                             <div class="">
-                                <input name="mo_first_name" type="text" placeholder="First name" maxlength="50"
-                                    class="en_check">
+                                <input name="mo_first_name" type="text" placeholder="First name" maxlength="50" class="en_check">
                                 <!-- <span class="mini_alert red_txt mo_red_alert"></span> -->
                             </div>
                             <div class="">
-                                <input name="mo_last_name" type="text" placeholder="Last name" maxlength="50"
-                                    class="en_check">
+                                <input name="mo_last_name" type="text" placeholder="Last name" maxlength="50" class="en_check">
                                 <!-- <span class="mini_alert red_txt mo_red_alert"></span> -->
                             </div>
                         </div>
                         <p class="font_small brown_txt">Note.<br />your name will appear on your name badge exactly as
                             it is entered in these fields.<br />It you wish your name to appear in a specific way,
-                            please contact the Secretariat via<br />e-mail(secretariat@icola2022.org)</p>
+                            please contact the Secretariat via<br />e-mail(secretariat@icscp2023.org)</p>
                     </li>
                     <li class="mo_korea_only">
                         <p class="label"><span class="red_txt">*</span><?= $locale("name") ?>(KOR)</p>
@@ -974,8 +953,7 @@ function remove_value() {
                     <li class="mo_korea_only">
                         <p class="label"><span class="red_txt">*</span>의사 면허번호</p>
                         <div>
-                            <input type="checkbox" class="checkbox input not_checkbox" id="mo_licence_number"
-                                name="mo_licence_number2" value="Not applicable"><label for="mo_licence_number">Not
+                            <input type="checkbox" class="checkbox input not_checkbox" id="mo_licence_number" name="mo_licence_number2" value="Not applicable"><label for="mo_licence_number">Not
                                 applicable</label>
                             <input name="mo_licence_number" type="text" maxlength="60" class="kor_check_number">
                             <span class="mini_alert red_txt mo_red_alert">good</span>
@@ -984,8 +962,7 @@ function remove_value() {
                     <li class="mo_korea_only">
                         <p class="label"><span class="red_txt">*</span>전문의 번호</p>
                         <div>
-                            <input type="checkbox" class="checkbox input not_checkbox" id="mo_specialty_number"
-                                name="mo_specialty_number2" value="Not applicable"><label for="mo_specialty_number">Not
+                            <input type="checkbox" class="checkbox input not_checkbox" id="mo_specialty_number" name="mo_specialty_number2" value="Not applicable"><label for="mo_specialty_number">Not
                                 applicable</label>
                             <input name="mo_specialty_number" type="text" maxlength="60" class="kor_check_number">
                             <span class="mini_alert red_txt mo_red_alert">good</span>
@@ -994,9 +971,7 @@ function remove_value() {
                     <li class="mo_korea_only">
                         <p class="label"><span class="red_txt">*</span>영양사 면허번호</p>
                         <div>
-                            <input type="checkbox" class="checkbox input not_checkbox" id="mo_nutritionist_number"
-                                name="mo_nutritionist_number2" value="Not applicable"><label
-                                for="mo_nutritionist_number">Not
+                            <input type="checkbox" class="checkbox input not_checkbox" id="mo_nutritionist_number" name="mo_nutritionist_number2" value="Not applicable"><label for="mo_nutritionist_number">Not
                                 applicable</label>
                             <input name="mo_nutritionist_number" type="text" maxlength="60" class="kor_check_number">
                             <span class="mini_alert red_txt mo_red_alert">good</span>
@@ -1031,8 +1006,7 @@ function remove_value() {
                     <li>
                         <p class="label"><span class="red_txt">*</span>Date of Birth</p>
                         <div>
-                            <input maxlength="10" name="mo_date_of_birth" type="text" placeholder="dd.mm.yyyy"
-                                id="mb_datepicker">
+                            <input maxlength="10" name="mo_date_of_birth" type="text" placeholder="dd.mm.yyyy" id="mb_datepicker">
                             <!-- <span class="mini_alert red_txt mo_red_alert">good</span> -->
                         </div>
                     </li>
@@ -1047,8 +1021,7 @@ function remove_value() {
                             <label for="mb_halal">Halal</label>
                             <input value="Others" type="radio" id="mo_others" class="radio" name="mo_food">
                             <label for="mo_others">Others
-                                <input name="mo_short_input" type="text" class="short_input mo_other_radio en_check"
-                                    maxlength="60">
+                                <input name="mo_short_input" type="text" class="short_input mo_other_radio en_check" maxlength="60">
                             </label>
                         </div>
 
@@ -1064,8 +1037,7 @@ function remove_value() {
                         </label>
                     </li> -->
                     <li>
-                        <input type="checkbox" class="checkbox input required" data-name="terms 2" id="mo_terms2"
-                            name="mo_terms2" value="Y">
+                        <input type="checkbox" class="checkbox input required" data-name="terms 2" id="mo_terms2" name="mo_terms2" value="Y">
                         <label for="mo_terms2"> Privacy Policy
                             <a href="javascript:;" class="term2_btn red_txt"> Details ></a>
                         </label>
@@ -1557,1149 +1529,1168 @@ function remove_value() {
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-function sample6_execDaumPostcode() {
-    new daum.Postcode({
-        oncomplete: function(data) {
-            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-            var addr = ''; // 주소 변수
-            var extraAddr = ''; // 참고항목 변수
-            let enAddr = ""; //영문주소
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+                let enAddr = ""; //영문주소
 
-            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                addr = data.roadAddress;
-                enAddr = data.addressEnglish
-            } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                addr = data.jibunAddress;
-                enAddr = data.addressEnglish
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                    enAddr = data.addressEnglish
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                    enAddr = data.addressEnglish
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                if (data.userSelectedType === 'R') {
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if (data.buildingName !== '' && data.apartment === 'Y') {
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if (extraAddr !== '') {
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    // 조합된 참고항목을 해당 필드에 넣는다.
+                    document.getElementById("sample6_extraAddress").value = extraAddr;
+
+                } else {
+                    document.getElementById("sample6_extraAddress").value = '';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('sample6_postcode').value = data.zonecode;
+                document.getElementById("sample6_address").value = addr;
+                document.getElementById("sample6_extraAddress").value = enAddr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("sample6_detailAddress").focus();
             }
-
-            // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-            if (data.userSelectedType === 'R') {
-                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
-                    extraAddr += data.bname;
-                }
-                // 건물명이 있고, 공동주택일 경우 추가한다.
-                if (data.buildingName !== '' && data.apartment === 'Y') {
-                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                }
-                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                if (extraAddr !== '') {
-                    extraAddr = ' (' + extraAddr + ')';
-                }
-                // 조합된 참고항목을 해당 필드에 넣는다.
-                document.getElementById("sample6_extraAddress").value = extraAddr;
-
-            } else {
-                document.getElementById("sample6_extraAddress").value = '';
-            }
-
-            // 우편번호와 주소 정보를 해당 필드에 넣는다.
-            document.getElementById('sample6_postcode').value = data.zonecode;
-            document.getElementById("sample6_address").value = addr;
-            document.getElementById("sample6_extraAddress").value = enAddr;
-            // 커서를 상세주소 필드로 이동한다.
-            document.getElementById("sample6_detailAddress").focus();
-        }
-    }).open();
-}
+        }).open();
+    }
 </script>
 
 <script src="./js/script/client/member.js?day=2022-04-25"></script>
 <script>
-$(document).ready(function() {
-    $(".term1_btn").click(function() {
-        $(".popup.term1").show();
+    $(document).ready(function() {
+        $(".term1_btn").click(function() {
+            $(".popup.term1").show();
+        });
+        $(".term2_btn").click(function() {
+            console.log("hello")
+            $(".popup.term2").show();
+        });
+        $(document).on("keyup", ".kor_check_number", function() {
+            var _this = $(this).val();
+            if (_this == "") {
+                $(this).next().html("");
+            } else {
+                $(this).next().html("good");
+            }
+        });
+
     });
-    $(".term2_btn").click(function() {
-        console.log("hello")
-        $(".popup.term2").show();
-    });
-    $(document).on("keyup", ".kor_check_number", function() {
-        var _this = $(this).val();
-        if (_this == "") {
-            $(this).next().html("");
-        } else {
-            $(this).next().html("good");
+
+
+    function name_check(name, mo = "") {
+
+        //console.log(name);
+
+        var first_name = $("input[name=" + name + "]").val();
+        var first_name_len = first_name.trim().length;
+        first_name = (typeof(first_name) != "undefined") ? first_name : null;
+
+        if (!first_name || first_name_len <= 0) {
+            $("input[name=" + name + "]").focus();
+            if (mo === "mo") {
+                name = name.replace("mo_", "");
+            }
+            if (name === "short_input") {
+                alert("Invalid Others");
+            } else {
+                if (name == "first_name") {
+                    name = "first name";
+                } else if (name == "last_name") {
+                    name = "last name";
+                } else if (name == "name_kor") {
+                    name = "name (KOR)";
+                } else if (name == "affiliation_kor") {
+                    name = "affiliation (KOR)";
+                } else if (name == "licence_number") {
+                    name = "licence number";
+                } else if (name == "nutritionist_number") {
+                    name = "nutritionist number";
+                } else if (name == "specialty_number") {
+                    name = "specialty number";
+                }
+                alert("Invalid " + name);
+            }
+            return false;
         }
+        return true;
+    }
+
+    function pw_check(i, password, password2) {
+        var pw1 = $("input[name=" + password + "]").val();
+        var pw1_len = pw1.trim().length;
+        pw1 = (typeof(pw1) != "undefined") ? pw1 : null;
+
+        var pw2 = $("input[name=" + password2 + "]").val();
+        var pw2_len = pw2.trim().length;
+        pw2 = (typeof(pw2) != "undefined") ? pw2 : null;
+
+        if (i == 1) {
+            if (!pw1 || pw1_len <= 0) {
+                $("input[name=" + password + "]").focus();
+                alert("Invalid passwrod");
+                return false;
+            }
+        } else {
+            if (!pw2 || pw2_len <= 0) {
+                $("input[name=" + password2 + "]").focus();
+                alert("Invalid passwrod");
+                return false;
+            }
+        }
+        if (pw1_len > 0 && pw2_len > 0) {
+            if (pw1 !== pw2) {
+                $("input[name=" + password + "]").focus();
+                alert("inconsistency passwrod");
+                return false;
+            }
+        }
+    }
+
+    //국가 선택시 자동 국가번호 삽입
+    //function option_changes() {
+
+    //	var value = $(this).val();
+    //			
+    //	if (value == 25){
+    //		$(".red_alert").eq(0).html("");
+    //		$(".red_alert").eq(1).html("");
+    //		$(".red_alert").eq(2).html("");
+    //		$(".red_alert").eq(3).html("");
+    //		$(".red_alert").eq(4).html("");
+
+    //		$(".korea_only").addClass("on");
+    //		$(".korea_radio").addClass("on");
+    //	}else {
+    //		$(".korea_radio").removeClass("on");
+    //		$(".korea_only").removeClass("on");
+    //		$(".ksola_signup").removeClass("on");
+
+    //		remove_value();
+    //		$("#user2").prop('checked', true);
+    //	}
+
+    //	var nt = $("#nation_no option:selected").data("nt");
+    //	$("input[name=nation_tel]").val(nt);
+    //	$("input[name=tel_nation_tel]").val(nt);
+
+    //	if(nt != 82) {
+    //		$(".red_alert").eq(0).html("good");
+    //		$(".red_alert").eq(1).html("good");
+    //		$(".red_alert").eq(2).html("good");
+    //		$(".red_alert").eq(3).html("good");
+    //		$(".red_alert").eq(4).html("good");
+    //	}
+    //}
+    //function mo_option_changes() {
+    //	
+    //	//var red_alert_option = $(".mo_red_alert_option");
+
+    //	//red_alert_option.eq(i).html("");
+    //	var nt = $("#mo_nation_no option:selected").data("nt");
+    //	$("input[name=mo_nation_tel]").val(nt);
+    //	$("input[name=mo_tel_nation_tel]").val(nt);
+
+    //	if(nt != 82) {
+    //		$(".mo_red_alert").eq(0).html("good");
+    //		$(".mo_red_alert").eq(1).html("good");
+    //		$(".mo_red_alert").eq(2).html("good");
+    //		$(".mo_red_alert").eq(3).html("good");
+    //		$(".mo_red_alert").eq(4).html("good");
+    //	}
+
+    //	//if(i== 0) {
+    //	//	var nt = $("#mo_nation_no option:selected").data("nt");
+    //	//	$("input[name=mo_nation_tel]").val(nt);
+    //	//	//$(".mo_red_alert").eq(8).html("good");
+    //	//	//$(".mo_red_alert").eq(8).css('display', 'none');
+    //	//}
+    //}
+
+
+    $(document).on("click", "#mo_submit", function() {
+
+        //var red_alert_option = $(".mo_red_alert_option");
+
+        var value_arr = ["ID(email)", "Password", "Verify Password", "Frist_name", "Last_name", "Name(KOR)",
+            "Affiliation", "Affiliation(KOR)", "Mobile Phone Number", "Mobile Phone Number", "Date of Birth"
+        ];
+        var option_arr = ["Country", "Department", "Category", "Title", "Degree"];
+
+        var red_alert = document.getElementsByClassName("mo_red_alert");
+
+        //국가 유효성
+        var nation_no = $("#mo_nation_no option:selected").val();
+
+        if (!nation_no) {
+            alert("Invalid " + option_arr[0]);
+            //red_alert_option.eq(0).html("check_"+option_arr[0]);
+            return;
+        }
+
+        //for(var i=0; i<red_alert.length-3; i++) {
+        //	
+        //	if(red_alert[i].innerHTML !== "good") {
+        //		red_alert[i].innerHTML = "enter_"+value_arr[i];
+        //		red_alert[i].style.display = "block";
+        //		return;
+        //	}
+        //}
+
+        var check = name_check("mo_email", "mo");
+
+        if (check == false) return;
+
+        check = pw_check(1, "mo_password", "mo_password2");
+
+        if (check == false) return;
+
+        check = pw_check(2, "mo_password", "mo_password2");
+
+        if (check == false) return;
+
+        check = name_check("mo_first_name", "mo");
+        if (check == false) return;
+        check = name_check("mo_last_name", "mo");
+        if (check == false) return;
+
+        if (red_alert[0].innerHTML !== "good") {
+            check = name_check("mo_name_kor", "mo");
+            if (check == false) return;
+        }
+
+        check = name_check("mo_affiliation", "mo");
+        if (check == false) return;
+
+        if (red_alert[1].innerHTML !== "good") {
+            check = name_check("mo_affiliation_kor", "mo");
+            if (check == false) return;
+        }
+
+        var department = $("#mo_department option:selected").val();
+        var category_input = $("input[name=department_input").val();
+        if (department == "" || department == null) {
+            alert("Invalid " + option_arr[1]);
+            return;
+        }
+
+        var category = $("#mo_category option:selected").val();
+        var category_input = $("input[name=mo_category_input").val();
+
+        if (!category) {
+            alert("Invalid " + option_arr[2]);
+            return;
+        } else if (category == "Others") {
+            if (category_input == "" || category_input == null) {
+                alert("Invalid category others");
+                return;
+            }
+        }
+
+        //2022-05-09 추가
+        var title = $("#mo_title option:selected").val();
+        var title_input = $("input[name=mo_title_input").val();
+
+        if (title == "" || title == null) {
+            alert("Invalid " + option_arr[3]);
+            return;
+        } else if (title == "Others") {
+            if (title_input == "" || title_input == null) {
+                alert("Invalid title others");
+                return;
+            }
+        }
+
+        var degree = $("#mo_degree option:selected").val();
+        var degree_input = $("input[name=mo_degree_input").val();
+
+        if (degree == "" || degree == null) {
+            alert("Invalid " + option_arr[4]);
+            return;
+        } else if (degree == "Others") {
+            if (degree_input == "" || degree_input == null) {
+                alert("Invalid degree others");
+                return;
+            }
+        }
+
+
+        var licence_number = $("input[name=mo_licence_number]").val();
+        var licence_number2 = $("input[name=mo_licence_number2]").is(":checked");
+        var nutritionist_number = $("input[name=mo_nutritionist_number]").val();
+        var nutritionist_number2 = $("input[name=mo_nutritionist_number2]").is(":checked");
+        var specialty_number = $("input[name=mo_specialty_number]").val();
+        var specialty_number2 = $("input[name=mo_specialty_number2]").is(":checked");
+
+        if (red_alert[2].innerHTML !== "good") {
+            if (licence_number == "" && licence_number2 == false) {
+                check = name_check("licence_number", "mo");
+                if (check == false) return;
+            }
+        }
+
+        if (red_alert[3].innerHTML !== "good") {
+            if (specialty_number == "" && specialty_number2 == false) {
+                check = name_check("specialty_number", "mo");
+                if (check == false) return;
+            }
+        }
+
+        if (red_alert[4].innerHTML !== "good") {
+            if (nutritionist_number == "" && nutritionist_number2 == false) {
+                check = name_check("nutritionist_number", "mo");
+                if (check == false) return;
+            }
+        }
+
+
+        check = name_check("mo_nation_tel", "mo");
+        if (check == false) return;
+        check = name_check("mo_phone", "mo");
+        if (check == false) return;
+
+        var tel_nation_tel = $("input[name=mo_tel_nation_tel]").val();
+        var telephone1 = $("input[name=mo_telephone1]").val();
+        var telephone2 = $("input[name=mo_telephone2]").val();
+
+        if (telephone1 != "") {
+            if (tel_nation_tel == null || tel_nation_tel == "" || telephone2 == null || telephone2 == "") {
+                alert("Invalid telephone");
+                return;
+            }
+        }
+        if (telephone2 != "") {
+            if (tel_nation_tel == null || tel_nation_tel == "" || telephone1 == null || telephone1 == "") {
+                alert("Invalid telephone");
+                return;
+            }
+        }
+
+        var date_of_birth = $("input[name=mo_date_of_birth]").val();
+        if (date_of_birth.length < 10) {
+            alert("Invalid date of birth\nex) 01-01-1970");
+            return;
+        }
+
+        if ($("input[name=mo_food]:checked").val() == "Others") {
+            var check = name_check("mo_short_input", "mo");
+            if (check == false) {
+                return;
+            }
+        }
+
+        //console.log(red_alert.length);
+        //두개를 빼내서 작업하는 이유는 option을 체크해야 돼서
+        //for(var i=8; i<red_alert.length; i++) {
+        //	
+        //	if(red_alert[i].innerHTML !== "good") {
+        //	
+        //		red_alert[i].innerHTML = "enter_"+value_arr[i];
+        //		red_alert[i].style.display = "block";
+        //		return;
+        //	}
+        //}
+
+        //이용약관 동의
+        var terms1 = $("#mo_terms1").is(":checked");
+        //개인정보 동의
+        var terms2 = $("#mo_terms2").is(":checked");
+
+        if (terms1 == false) {
+            //alert("Please agree to Terms.");
+            //22.04.12 고객사 요청으로 alert 문구 변경 (HUBDNC LJH2)
+            alert("Please agree to Terms & Conditions.");
+            return;
+        }
+        if (terms2 == false) {
+            alert("Please agree to Privacy Policy.");
+            return;
+        }
+
+        if (!confirm("Would you like to join?")) return;
+
+        var ksola_member_status = "";
+        if ($("#mo_user1").prop('checked') == true) {
+            ksola_member_status = 1;
+        } else {
+            ksola_member_status = 0;
+        }
+
+        var email = $("input[name=mo_email]").val();
+
+        var pw = $("input[name=mo_password]").val();
+        var pw2 = $("input[name=mo_password2]").val();
+
+        var first_name = $("input[name=mo_first_name]").val();
+        var last_name = $("input[name=mo_last_name]").val();
+
+        var affiliation = $("input[name=mo_affiliation]").val();
+
+        var nation_tel = $("input[name=mo_nation_tel]").val();
+        var phone = $("input[name=mo_phone]").val();
+
+        var food = $("input[name=mo_food]:checked").val();
+
+        var name_kor = $("input[name=mo_name_kor]").val();
+        var affiliation_kor = $("input[name=mo_affiliation_kor]").val();
+        var licence_number3 = $("input[name=mo_licence_number2]").val();
+        var specialty_number3 = $("input[name=mo_specialty_number2]").val();
+        var nutritionist_number3 = $("input[name=mo_nutritionist_number2]").val();
+        var short_input = $("input[name=mo_short_input]").val();
+
+        var ksola_member_check = $("input[name=ksola_member_check]").val();
+
+        var data = {
+            "flag": "signup_join",
+            "ksola_member_status": ksola_member_status,
+            "nation_no": nation_no,
+            "email": email,
+            "password": pw,
+            "first_name": first_name,
+            "last_name": last_name,
+            "affiliation": affiliation,
+            "department": department,
+            "category": category,
+            "category_input": category_input,
+            "nation_tel": nation_tel,
+            "phone": phone,
+            "date_of_birth": date_of_birth,
+            "food": food,
+            "name_kor": name_kor,
+            "affiliation_kor": affiliation_kor,
+            "licence_number": licence_number,
+            "specialty_number": specialty_number,
+            "nutritionist_number": nutritionist_number,
+            "licence_number2": licence_number3,
+            "specialty_number2": specialty_number3,
+            "nutritionist_number2": nutritionist_number3,
+            "short_input": short_input,
+            "terms1": terms1,
+            "terms2": terms2,
+            "ksola_member_check": ksola_member_check,
+            "type": "INSERT",
+            "title": title,
+            "title_input": title_input,
+            "degree": degree,
+            "degree_input": degree_input,
+            "tel_nation_tel": tel_nation_tel,
+            "telephone1": telephone1,
+            "telephone2": telephone2
+        };
+
+        save(data);
     });
 
-});
+    $(document).on("click", "#submit", function() {
+
+        //var red_alert_option = $(".red_alert_option");
+
+        var value_arr = ["ID(email)", "Password", "Verify Password", "Frist_name", "Last_name", "Name(KOR)",
+            "Affiliation", "Affiliation(KOR)", "Mobile Phone Number", "Mobile Phone Number", "Date of Birth"
+        ];
+        var option_arr = ["Country", "Department", "Category", "Title", "Degree"];
+
+        var red_alert = document.getElementsByClassName("red_alert");
+
+        //국가 유효성
+        var nation_no = $("#nation_no option:selected").val();
+        if (!nation_no) {
+            alert("Invalid " + option_arr[0]);
+            //red_alert_option.eq(0).html("check_"+option_arr[0]);
+            return;
+        }
+
+        //for(var i=0; i<red_alert.length-3; i++) {
+        //	
+        //	if(red_alert[i].innerHTML !== "good") {
+        //		red_alert[i].innerHTML = "enter_"+value_arr[i];
+        //		red_alert[i].style.display = "block";
+        //		return;
+        //	}
+        //}
+
+        var check = name_check("email");
+
+        if (check == false) return;
+
+        check = pw_check(1, "password", "password2");
+
+        if (check == false) return;
+
+        check = pw_check(2, "password", "password2");
+
+        if (check == false) return;
+
+        check = name_check("first_name");
+        if (check == false) return;
+        check = name_check("last_name");
+        if (check == false) return;
+
+        if (red_alert[0].innerHTML !== "good") {
+            check = name_check("name_kor");
+            if (check == false) return;
+        }
+
+        check = name_check("affiliation");
+        if (check == false) return;
+
+        if (red_alert[1].innerHTML !== "good") {
+            check = name_check("affiliation_kor");
+            if (check == false) return;
+        }
+
+        var department = $("#department option:selected").val();
+        var department_input = $("input[name=department_input").val();
+        if (department == "" || department == null) {
+            alert("Invalid " + option_arr[1]);
+            //red_alert_option.eq(1).html("check_"+option_arr[1]);
+            return;
+        } else if (department == "Other Professional") {
+            if (department_input == "" || department_input == null) {
+                alert("Invalid department others");
+                return;
+            }
+        }
+
+        var category = $("#category option:selected").val();
+        var category_input = $("input[name=category_input").val();
+
+        if (category == "" || category == null) {
+            alert("Invalid " + option_arr[2]);
+            //red_alert_option.eq(2).html("check_"+option_arr[2]);
+            return;
+        } else if (category == "Others") {
+            if (category_input == "" || category_input == null) {
+                alert("Invalid category others");
+                return;
+            }
+        }
+
+        //2022-05-09 추가
+        var title = $("#title option:selected").val();
+        var title_input = $("input[name=title_input").val();
+
+        if (title == "" || title == null) {
+            alert("Invalid " + option_arr[3]);
+            return;
+        } else if (title == "Others") {
+            if (title_input == "" || title_input == null) {
+                alert("Invalid title others");
+                return;
+            }
+        }
+
+        var degree = $("#degree option:selected").val();
+        var degree_input = $("input[name=degree_input").val();
+
+        if (degree == "" || degree == null) {
+            alert("Invalid " + option_arr[4]);
+            return;
+        } else if (degree == "Others") {
+            if (degree_input == "" || degree_input == null) {
+                alert("Invalid degree others");
+                return;
+            }
+        }
+
+        var licence_number = $("input[name=licence_number]").val();
+        var licence_number2 = $("input[name=licence_number2]").is(":checked");
+        var nutritionist_number = $("input[name=nutritionist_number]").val();
+        var nutritionist_number2 = $("input[name=nutritionist_number2]").is(":checked");
+        var specialty_number = $("input[name=specialty_number]").val();
+        var specialty_number2 = $("input[name=specialty_number2]").is(":checked");
+
+        if (red_alert[2].innerHTML !== "good") {
+            if (licence_number == "" && licence_number2 == false) {
+                check = name_check("licence_number");
+                if (check == false) return;
+            }
+        }
+
+        if (red_alert[3].innerHTML !== "good") {
+            if (specialty_number == "" && specialty_number2 == false) {
+                check = name_check("specialty_number");
+                if (check == false) return;
+            }
+        }
+
+        if (red_alert[4].innerHTML !== "good") {
+            if (nutritionist_number == "" && nutritionist_number2 == false) {
+                check = name_check("nutritionist_number");
+                if (check == false) return;
+            }
+        }
+
+        check = name_check("nation_tel");
+        if (check == false) return;
+
+        check = name_check("phone");
+        if (check == false) return;
+
+        var tel_nation_tel = $("input[name=tel_nation_tel]").val();
+        var telephone1 = $("input[name=telephone1]").val();
+        var telephone2 = $("input[name=telephone2]").val();
+
+        if (telephone1 != "") {
+            if (tel_nation_tel == null || tel_nation_tel == "" || telephone2 == null || telephone2 == "") {
+                alert("Invalid telephone");
+                return;
+            }
+        }
+        if (telephone2 != "") {
+            if (tel_nation_tel == null || tel_nation_tel == "" || telephone1 == null || telephone1 == "") {
+                alert("Invalid telephone");
+                return;
+            }
+        }
+
+        var date_of_birth = $("input[name=date_of_birth]").val();
+        if (date_of_birth.length < 10) {
+            alert("Invalid date of birth\nex) 01-01-1970");
+            return;
+        }
 
 
-function name_check(name, mo = "") {
+        if ($("input[name=food]:checked").val() == "Others") {
+            var check = name_check("short_input");
+            if (check == false) {
+                return;
+            }
+        }
 
-    //console.log(name);
+        //두개를 빼내서 작업하는 이유는 option을 체크해야 돼서
+        //for(var i=8; i<red_alert.length; i++) {
+        //	
+        //	if(red_alert[i].innerHTML !== "good") {
+        //	
+        //		red_alert[i].innerHTML = "enter_"+value_arr[i];
+        //		red_alert[i].style.display = "block";
+        //		return;
+        //	}
+        //}
 
-    var first_name = $("input[name=" + name + "]").val();
-    var first_name_len = first_name.trim().length;
-    first_name = (typeof(first_name) != "undefined") ? first_name : null;
+        //이용약관 동의
+        var terms1 = $("#terms1").is(":checked");
+        //개인정보 동의
+        var terms2 = $("#terms2").is(":checked");
 
-    if (!first_name || first_name_len <= 0) {
-        $("input[name=" + name + "]").focus();
+        // if (terms1 == false) {
+        //     alert("Please agree to Terms & Conditions.");
+        //     return;
+        // }
+        if (terms2 == false) {
+            alert("Please agree to Privacy Policy.");
+            return;
+        }
+
+        if (!confirm("Would you like to join?")) return;
+
+        var ksola_member_status = "";
+        if ($("#user4").prop('checked') == true) {
+            ksola_member_status = "KSCVP";
+        } else if ($("#user5").prop('checked') == true) {
+            ksola_member_status = "KSCP";
+        } else {
+            ksola_member_status = "NON";
+        }
+
+        var email = $("input[name=email]").val();
+
+        var pw = $("input[name=password]").val();
+        var pw2 = $("input[name=password2]").val();
+
+        var first_name = $("input[name=first_name]").val();
+        var last_name = $("input[name=last_name]").val();
+
+        var affiliation = $("input[name=affiliation]").val();
+
+        var nation_tel = $("input[name=nation_tel]").val();
+        var phone = $("input[name=phone]").val();
+
+        var food = $("input[name=food]:checked").val();
+
+        var name_kor = $("input[name=name_kor]").val();
+        var affiliation_kor = $("input[name=affiliation_kor]").val();
+
+        var licence_number3 = $("input[name=licence_number2]").val();
+        var specialty_number3 = $("input[name=specialty_number2]").val()
+        var nutritionist_number3 = $("input[name=nutritionist_number2]").val();
+        var short_input = $("input[name=short_input]").val();
+
+        var ksola_member_check = $("input[name=ksola_member_check]").val();
+
+        var data = {
+            "flag": "signup_join",
+            "ksola_member_status": ksola_member_status,
+            "nation_no": nation_no,
+            "email": email,
+            "password": pw,
+            "first_name": first_name,
+            "last_name": last_name,
+            "affiliation": affiliation,
+            "department": department,
+            "category": category,
+            "category_input": category_input,
+            "nation_tel": nation_tel,
+            "phone": phone,
+            "date_of_birth": date_of_birth,
+            "food": food,
+            "name_kor": name_kor,
+            "affiliation_kor": affiliation_kor,
+            "licence_number": licence_number,
+            "specialty_number": specialty_number,
+            "nutritionist_number": nutritionist_number,
+            "licence_number2": licence_number3,
+            "specialty_number2": specialty_number3,
+            "nutritionist_number2": nutritionist_number3,
+            "short_input": short_input,
+            "terms1": terms1,
+            "terms2": terms2,
+            "ksola_member_check": ksola_member_check,
+            "type": "INSERT",
+            "title": title,
+            "title_input": title_input,
+            "degree": degree,
+            "degree_input": degree_input,
+            "tel_nation_tel": tel_nation_tel,
+            "telephone1": telephone1,
+            "telephone2": telephone2
+        };
+
+        save(data)
+    });
+    // 구글 메일 발송
+    function gmailMail(data) {
+        $.ajax({
+            url: PATH + "ajax/client/ajax_gmail.php",
+            type: "POST",
+            data: {
+                flag: "signup_join",
+                data: data
+            },
+            dataType: "JSON",
+            success: function(res) {
+                console.log(res)
+            },
+
+            error: function(request, status, error) {
+                console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" +
+                    "error:" + error);
+            }
+        });
+    }
+
+    function save(data) {
+
+        $.ajax({
+            url: PATH + "ajax/client/ajax_member.php",
+            type: "POST",
+            data: data,
+            dataType: "JSON",
+            success: success,
+            fail: fail,
+            error: error
+        });
+
+        function success(res) {
+            gmailMail(data);
+            alert("Your Sign-up is complete.");
+            window.location.replace("signup_complete.php");
+        }
+
+        function fail(res) {
+            alert("Failed.\nPlease try again later.");
+            return false;
+        }
+
+        function error(res) {
+            alert("An error has occurred. \nPlease try again later.");
+            return false;
+        }
+    }
+
+    //red_api
+    $("input[name=mo_kor_id]").on("change", function() {
+        var _this = $(this);
+        _this.val();
+        kor_api_check("mo_kor_id", _this.val(), "mo");
+    });
+    $("input[name=mo_kor_pw]").on("change", function() {
+        var _this = $(this);
+        _this.val();
+        kor_api_check("mo_kor_password", _this.val(), "mo");
+    });
+
+
+    $("input[name=kor_id]").on("change", function() {
+        var _this = $(this);
+        _this.val();
+        kor_api_check("kor_id", _this.val());
+    });
+    $("input[name=kor_pw]").on("change", function() {
+        var _this = $(this);
+        _this.val();
+        kor_api_check("kor_password", _this.val());
+    });
+
+    function kor_api_check(name, value, mo = "") {
+        var first_name = value;
+        var first_name_len = first_name.trim().length;
+        first_name = (typeof(first_name) != "undefined") ? first_name : null;
+
         if (mo === "mo") {
             name = name.replace("mo_", "");
         }
-        if (name === "short_input") {
-            alert("Invalid Others");
-        } else {
-            if (name == "first_name") {
-                name = "first name";
-            } else if (name == "last_name") {
-                name = "last name";
-            } else if (name == "name_kor") {
-                name = "name (KOR)";
-            } else if (name == "affiliation_kor") {
-                name = "affiliation (KOR)";
-            } else if (name == "licence_number") {
-                name = "licence number";
-            } else if (name == "nutritionist_number") {
-                name = "nutritionist number";
-            } else if (name == "specialty_number") {
-                name = "specialty number";
-            }
-            alert("Invalid " + name);
+
+        if (!first_name || first_name_len <= 0) {
+            alert("Invalid_" + name);
+            //$(".red_api").eq(0).html("format_"+name);
+            //$(".mo_red_api").eq(0).html("format_"+name);
         }
-        return false;
-    }
-    return true;
-}
-
-function pw_check(i, password, password2) {
-    var pw1 = $("input[name=" + password + "]").val();
-    var pw1_len = pw1.trim().length;
-    pw1 = (typeof(pw1) != "undefined") ? pw1 : null;
-
-    var pw2 = $("input[name=" + password2 + "]").val();
-    var pw2_len = pw2.trim().length;
-    pw2 = (typeof(pw2) != "undefined") ? pw2 : null;
-
-    if (i == 1) {
-        if (!pw1 || pw1_len <= 0) {
-            $("input[name=" + password + "]").focus();
-            alert("Invalid passwrod");
-            return false;
-        }
-    } else {
-        if (!pw2 || pw2_len <= 0) {
-            $("input[name=" + password2 + "]").focus();
-            alert("Invalid passwrod");
-            return false;
-        }
-    }
-    if (pw1_len > 0 && pw2_len > 0) {
-        if (pw1 !== pw2) {
-            $("input[name=" + password + "]").focus();
-            alert("inconsistency passwrod");
-            return false;
-        }
-    }
-}
-
-//국가 선택시 자동 국가번호 삽입
-//function option_changes() {
-
-//	var value = $(this).val();
-//			
-//	if (value == 25){
-//		$(".red_alert").eq(0).html("");
-//		$(".red_alert").eq(1).html("");
-//		$(".red_alert").eq(2).html("");
-//		$(".red_alert").eq(3).html("");
-//		$(".red_alert").eq(4).html("");
-
-//		$(".korea_only").addClass("on");
-//		$(".korea_radio").addClass("on");
-//	}else {
-//		$(".korea_radio").removeClass("on");
-//		$(".korea_only").removeClass("on");
-//		$(".ksola_signup").removeClass("on");
-
-//		remove_value();
-//		$("#user2").prop('checked', true);
-//	}
-
-//	var nt = $("#nation_no option:selected").data("nt");
-//	$("input[name=nation_tel]").val(nt);
-//	$("input[name=tel_nation_tel]").val(nt);
-
-//	if(nt != 82) {
-//		$(".red_alert").eq(0).html("good");
-//		$(".red_alert").eq(1).html("good");
-//		$(".red_alert").eq(2).html("good");
-//		$(".red_alert").eq(3).html("good");
-//		$(".red_alert").eq(4).html("good");
-//	}
-//}
-//function mo_option_changes() {
-//	
-//	//var red_alert_option = $(".mo_red_alert_option");
-
-//	//red_alert_option.eq(i).html("");
-//	var nt = $("#mo_nation_no option:selected").data("nt");
-//	$("input[name=mo_nation_tel]").val(nt);
-//	$("input[name=mo_tel_nation_tel]").val(nt);
-
-//	if(nt != 82) {
-//		$(".mo_red_alert").eq(0).html("good");
-//		$(".mo_red_alert").eq(1).html("good");
-//		$(".mo_red_alert").eq(2).html("good");
-//		$(".mo_red_alert").eq(3).html("good");
-//		$(".mo_red_alert").eq(4).html("good");
-//	}
-
-//	//if(i== 0) {
-//	//	var nt = $("#mo_nation_no option:selected").data("nt");
-//	//	$("input[name=mo_nation_tel]").val(nt);
-//	//	//$(".mo_red_alert").eq(8).html("good");
-//	//	//$(".mo_red_alert").eq(8).css('display', 'none');
-//	//}
-//}
-
-
-$(document).on("click", "#mo_submit", function() {
-
-    //var red_alert_option = $(".mo_red_alert_option");
-
-    var value_arr = ["ID(email)", "Password", "Verify Password", "Frist_name", "Last_name", "Name(KOR)",
-        "Affiliation", "Affiliation(KOR)", "Mobile Phone Number", "Mobile Phone Number", "Date of Birth"
-    ];
-    var option_arr = ["Country", "Department", "Category", "Title", "Degree"];
-
-    var red_alert = document.getElementsByClassName("mo_red_alert");
-
-    //국가 유효성
-    var nation_no = $("#mo_nation_no option:selected").val();
-
-    if (!nation_no) {
-        alert("Invalid " + option_arr[0]);
-        //red_alert_option.eq(0).html("check_"+option_arr[0]);
-        return;
+        //else {
+        //	$(".red_api").eq(0).html("");
+        //	$(".mo_red_api").eq(0).html("");
+        //}
     }
 
-    //for(var i=0; i<red_alert.length-3; i++) {
-    //	
-    //	if(red_alert[i].innerHTML !== "good") {
-    //		red_alert[i].innerHTML = "enter_"+value_arr[i];
-    //		red_alert[i].style.display = "block";
-    //		return;
-    //	}
-    //}
+    //한국 회원 인증시 api호출
+    function mo_kor_api() {
 
-    var check = name_check("mo_email", "mo");
+        var kor_id = $("input[name=mo_kor_id]").val().trim();
+        var kor_pw = $("input[name=mo_kor_pw]").val().trim();
+        //제 3자 개인정보 수집에 동의 여부
+        var privacy = $("#mo_privacy").is(":checked");
 
-    if (check == false) return;
-
-    check = pw_check(1, "mo_password", "mo_password2");
-
-    if (check == false) return;
-
-    check = pw_check(2, "mo_password", "mo_password2");
-
-    if (check == false) return;
-
-    check = name_check("mo_first_name", "mo");
-    if (check == false) return;
-    check = name_check("mo_last_name", "mo");
-    if (check == false) return;
-
-    if (red_alert[0].innerHTML !== "good") {
-        check = name_check("mo_name_kor", "mo");
-        if (check == false) return;
-    }
-
-    check = name_check("mo_affiliation", "mo");
-    if (check == false) return;
-
-    if (red_alert[1].innerHTML !== "good") {
-        check = name_check("mo_affiliation_kor", "mo");
-        if (check == false) return;
-    }
-
-    var department = $("#mo_department option:selected").val();
-    var category_input = $("input[name=department_input").val();
-    if (department == "" || department == null) {
-        alert("Invalid " + option_arr[1]);
-        return;
-    }
-
-    var category = $("#mo_category option:selected").val();
-    var category_input = $("input[name=mo_category_input").val();
-
-    if (!category) {
-        alert("Invalid " + option_arr[2]);
-        return;
-    } else if (category == "Others") {
-        if (category_input == "" || category_input == null) {
-            alert("Invalid category others");
+        if (!kor_id) {
+            //$(".mo_red_api").eq(0).html("format_id");
+            alert("Invalid id");
             return;
         }
-    }
-
-    //2022-05-09 추가
-    var title = $("#mo_title option:selected").val();
-    var title_input = $("input[name=mo_title_input").val();
-
-    if (title == "" || title == null) {
-        alert("Invalid " + option_arr[3]);
-        return;
-    } else if (title == "Others") {
-        if (title_input == "" || title_input == null) {
-            alert("Invalid title others");
+        if (!kor_pw) {
+            //$(".mo_red_api").eq(0).html("Invalid_password");
+            alert("Invalid password");
             return;
         }
-    }
 
-    var degree = $("#mo_degree option:selected").val();
-    var degree_input = $("input[name=mo_degree_input").val();
-
-    if (degree == "" || degree == null) {
-        alert("Invalid " + option_arr[4]);
-        return;
-    } else if (degree == "Others") {
-        if (degree_input == "" || degree_input == null) {
-            alert("Invalid degree others");
+        if (privacy == false) {
+            alert("Please agree to the collection of personal information.");
+            //$(".mo_red_api").eq(0).html("Please agree to the collection of personal information.");
             return;
         }
-    }
 
-
-    var licence_number = $("input[name=mo_licence_number]").val();
-    var licence_number2 = $("input[name=mo_licence_number2]").is(":checked");
-    var nutritionist_number = $("input[name=mo_nutritionist_number]").val();
-    var nutritionist_number2 = $("input[name=mo_nutritionist_number2]").is(":checked");
-    var specialty_number = $("input[name=mo_specialty_number]").val();
-    var specialty_number2 = $("input[name=mo_specialty_number2]").is(":checked");
-
-    if (red_alert[2].innerHTML !== "good") {
-        if (licence_number == "" && licence_number2 == false) {
-            check = name_check("licence_number", "mo");
-            if (check == false) return;
-        }
-    }
-
-    if (red_alert[3].innerHTML !== "good") {
-        if (specialty_number == "" && specialty_number2 == false) {
-            check = name_check("specialty_number", "mo");
-            if (check == false) return;
-        }
-    }
-
-    if (red_alert[4].innerHTML !== "good") {
-        if (nutritionist_number == "" && nutritionist_number2 == false) {
-            check = name_check("nutritionist_number", "mo");
-            if (check == false) return;
-        }
-    }
-
-
-    check = name_check("mo_nation_tel", "mo");
-    if (check == false) return;
-    check = name_check("mo_phone", "mo");
-    if (check == false) return;
-
-    var tel_nation_tel = $("input[name=mo_tel_nation_tel]").val();
-    var telephone1 = $("input[name=mo_telephone1]").val();
-    var telephone2 = $("input[name=mo_telephone2]").val();
-
-    if (telephone1 != "") {
-        if (tel_nation_tel == null || tel_nation_tel == "" || telephone2 == null || telephone2 == "") {
-            alert("Invalid telephone");
-            return;
-        }
-    }
-    if (telephone2 != "") {
-        if (tel_nation_tel == null || tel_nation_tel == "" || telephone1 == null || telephone1 == "") {
-            alert("Invalid telephone");
-            return;
-        }
-    }
-
-    var date_of_birth = $("input[name=mo_date_of_birth]").val();
-    if (date_of_birth.length < 10) {
-        alert("Invalid date of birth\nex) 01-01-1970");
-        return;
-    }
-
-    if ($("input[name=mo_food]:checked").val() == "Others") {
-        var check = name_check("mo_short_input", "mo");
-        if (check == false) {
-            return;
-        }
-    }
-
-    //console.log(red_alert.length);
-    //두개를 빼내서 작업하는 이유는 option을 체크해야 돼서
-    //for(var i=8; i<red_alert.length; i++) {
-    //	
-    //	if(red_alert[i].innerHTML !== "good") {
-    //	
-    //		red_alert[i].innerHTML = "enter_"+value_arr[i];
-    //		red_alert[i].style.display = "block";
-    //		return;
-    //	}
-    //}
-
-    //이용약관 동의
-    var terms1 = $("#mo_terms1").is(":checked");
-    //개인정보 동의
-    var terms2 = $("#mo_terms2").is(":checked");
-
-    if (terms1 == false) {
-        //alert("Please agree to Terms.");
-        //22.04.12 고객사 요청으로 alert 문구 변경 (HUBDNC LJH2)
-        alert("Please agree to Terms & Conditions.");
-        return;
-    }
-    if (terms2 == false) {
-        alert("Please agree to Privacy Policy.");
-        return;
-    }
-
-    if (!confirm("Would you like to join?")) return;
-
-    var ksola_member_status = "";
-    if ($("#mo_user1").prop('checked') == true) {
-        ksola_member_status = 1;
-    } else {
-        ksola_member_status = 0;
-    }
-
-    var email = $("input[name=mo_email]").val();
-
-    var pw = $("input[name=mo_password]").val();
-    var pw2 = $("input[name=mo_password2]").val();
-
-    var first_name = $("input[name=mo_first_name]").val();
-    var last_name = $("input[name=mo_last_name]").val();
-
-    var affiliation = $("input[name=mo_affiliation]").val();
-
-    var nation_tel = $("input[name=mo_nation_tel]").val();
-    var phone = $("input[name=mo_phone]").val();
-
-    var food = $("input[name=mo_food]:checked").val();
-
-    var name_kor = $("input[name=mo_name_kor]").val();
-    var affiliation_kor = $("input[name=mo_affiliation_kor]").val();
-    var licence_number3 = $("input[name=mo_licence_number2]").val();
-    var specialty_number3 = $("input[name=mo_specialty_number2]").val();
-    var nutritionist_number3 = $("input[name=mo_nutritionist_number2]").val();
-    var short_input = $("input[name=mo_short_input]").val();
-
-    var ksola_member_check = $("input[name=ksola_member_check]").val();
-
-    var data = {
-        "flag": "signup_join",
-        "ksola_member_status": ksola_member_status,
-        "nation_no": nation_no,
-        "email": email,
-        "password": pw,
-        "first_name": first_name,
-        "last_name": last_name,
-        "affiliation": affiliation,
-        "department": department,
-        "category": category,
-        "category_input": category_input,
-        "nation_tel": nation_tel,
-        "phone": phone,
-        "date_of_birth": date_of_birth,
-        "food": food,
-        "name_kor": name_kor,
-        "affiliation_kor": affiliation_kor,
-        "licence_number": licence_number,
-        "specialty_number": specialty_number,
-        "nutritionist_number": nutritionist_number,
-        "licence_number2": licence_number3,
-        "specialty_number2": specialty_number3,
-        "nutritionist_number2": nutritionist_number3,
-        "short_input": short_input,
-        "terms1": terms1,
-        "terms2": terms2,
-        "ksola_member_check": ksola_member_check,
-        "type": "INSERT",
-        "title": title,
-        "title_input": title_input,
-        "degree": degree,
-        "degree_input": degree_input,
-        "tel_nation_tel": tel_nation_tel,
-        "telephone1": telephone1,
-        "telephone2": telephone2
-    };
-
-    save(data);
-});
-
-$(document).on("click", "#submit", function() {
-
-    //var red_alert_option = $(".red_alert_option");
-
-    var value_arr = ["ID(email)", "Password", "Verify Password", "Frist_name", "Last_name", "Name(KOR)",
-        "Affiliation", "Affiliation(KOR)", "Mobile Phone Number", "Mobile Phone Number", "Date of Birth"
-    ];
-    var option_arr = ["Country", "Department", "Category", "Title", "Degree"];
-
-    var red_alert = document.getElementsByClassName("red_alert");
-
-    //국가 유효성
-    var nation_no = $("#nation_no option:selected").val();
-    if (!nation_no) {
-        alert("Invalid " + option_arr[0]);
-        //red_alert_option.eq(0).html("check_"+option_arr[0]);
-        return;
-    }
-
-    //for(var i=0; i<red_alert.length-3; i++) {
-    //	
-    //	if(red_alert[i].innerHTML !== "good") {
-    //		red_alert[i].innerHTML = "enter_"+value_arr[i];
-    //		red_alert[i].style.display = "block";
-    //		return;
-    //	}
-    //}
-
-    var check = name_check("email");
-
-    if (check == false) return;
-
-    check = pw_check(1, "password", "password2");
-
-    if (check == false) return;
-
-    check = pw_check(2, "password", "password2");
-
-    if (check == false) return;
-
-    check = name_check("first_name");
-    if (check == false) return;
-    check = name_check("last_name");
-    if (check == false) return;
-
-    if (red_alert[0].innerHTML !== "good") {
-        check = name_check("name_kor");
-        if (check == false) return;
-    }
-
-    check = name_check("affiliation");
-    if (check == false) return;
-
-    if (red_alert[1].innerHTML !== "good") {
-        check = name_check("affiliation_kor");
-        if (check == false) return;
-    }
-
-    var department = $("#department option:selected").val();
-    var department_input = $("input[name=department_input").val();
-    if (department == "" || department == null) {
-        alert("Invalid " + option_arr[1]);
-        //red_alert_option.eq(1).html("check_"+option_arr[1]);
-        return;
-    } else if (department == "Other Professional") {
-        if (department_input == "" || department_input == null) {
-            alert("Invalid department others");
-            return;
-        }
-    }
-
-    var category = $("#category option:selected").val();
-    var category_input = $("input[name=category_input").val();
-
-    if (category == "" || category == null) {
-        alert("Invalid " + option_arr[2]);
-        //red_alert_option.eq(2).html("check_"+option_arr[2]);
-        return;
-    } else if (category == "Others") {
-        if (category_input == "" || category_input == null) {
-            alert("Invalid category others");
-            return;
-        }
-    }
-
-    //2022-05-09 추가
-    var title = $("#title option:selected").val();
-    var title_input = $("input[name=title_input").val();
-
-    if (title == "" || title == null) {
-        alert("Invalid " + option_arr[3]);
-        return;
-    } else if (title == "Others") {
-        if (title_input == "" || title_input == null) {
-            alert("Invalid title others");
-            return;
-        }
-    }
-
-    var degree = $("#degree option:selected").val();
-    var degree_input = $("input[name=degree_input").val();
-
-    if (degree == "" || degree == null) {
-        alert("Invalid " + option_arr[4]);
-        return;
-    } else if (degree == "Others") {
-        if (degree_input == "" || degree_input == null) {
-            alert("Invalid degree others");
-            return;
-        }
-    }
-
-    var licence_number = $("input[name=licence_number]").val();
-    var licence_number2 = $("input[name=licence_number2]").is(":checked");
-    var nutritionist_number = $("input[name=nutritionist_number]").val();
-    var nutritionist_number2 = $("input[name=nutritionist_number2]").is(":checked");
-    var specialty_number = $("input[name=specialty_number]").val();
-    var specialty_number2 = $("input[name=specialty_number2]").is(":checked");
-
-    if (red_alert[2].innerHTML !== "good") {
-        if (licence_number == "" && licence_number2 == false) {
-            check = name_check("licence_number");
-            if (check == false) return;
-        }
-    }
-
-    if (red_alert[3].innerHTML !== "good") {
-        if (specialty_number == "" && specialty_number2 == false) {
-            check = name_check("specialty_number");
-            if (check == false) return;
-        }
-    }
-
-    if (red_alert[4].innerHTML !== "good") {
-        if (nutritionist_number == "" && nutritionist_number2 == false) {
-            check = name_check("nutritionist_number");
-            if (check == false) return;
-        }
-    }
-
-    check = name_check("nation_tel");
-    if (check == false) return;
-
-    check = name_check("phone");
-    if (check == false) return;
-
-    var tel_nation_tel = $("input[name=tel_nation_tel]").val();
-    var telephone1 = $("input[name=telephone1]").val();
-    var telephone2 = $("input[name=telephone2]").val();
-
-    if (telephone1 != "") {
-        if (tel_nation_tel == null || tel_nation_tel == "" || telephone2 == null || telephone2 == "") {
-            alert("Invalid telephone");
-            return;
-        }
-    }
-    if (telephone2 != "") {
-        if (tel_nation_tel == null || tel_nation_tel == "" || telephone1 == null || telephone1 == "") {
-            alert("Invalid telephone");
-            return;
-        }
-    }
-
-    var date_of_birth = $("input[name=date_of_birth]").val();
-    if (date_of_birth.length < 10) {
-        alert("Invalid date of birth\nex) 01-01-1970");
-        return;
-    }
-
-
-    if ($("input[name=food]:checked").val() == "Others") {
-        var check = name_check("short_input");
-        if (check == false) {
-            return;
-        }
-    }
-
-    //두개를 빼내서 작업하는 이유는 option을 체크해야 돼서
-    //for(var i=8; i<red_alert.length; i++) {
-    //	
-    //	if(red_alert[i].innerHTML !== "good") {
-    //	
-    //		red_alert[i].innerHTML = "enter_"+value_arr[i];
-    //		red_alert[i].style.display = "block";
-    //		return;
-    //	}
-    //}
-
-    //이용약관 동의
-    var terms1 = $("#terms1").is(":checked");
-    //개인정보 동의
-    var terms2 = $("#terms2").is(":checked");
-
-    // if (terms1 == false) {
-    //     alert("Please agree to Terms & Conditions.");
-    //     return;
-    // }
-    if (terms2 == false) {
-        alert("Please agree to Privacy Policy.");
-        return;
-    }
-
-    if (!confirm("Would you like to join?")) return;
-
-    var ksola_member_status = "";
-    if ($("#user4").prop('checked') == true) {
-        ksola_member_status = "KSCVP";
-    } else if ($("#user5").prop('checked') == true) {
-        ksola_member_status = "KSCP";
-    } else {
-        ksola_member_status = "NON";
-    }
-
-    var email = $("input[name=email]").val();
-
-    var pw = $("input[name=password]").val();
-    var pw2 = $("input[name=password2]").val();
-
-    var first_name = $("input[name=first_name]").val();
-    var last_name = $("input[name=last_name]").val();
-
-    var affiliation = $("input[name=affiliation]").val();
-
-    var nation_tel = $("input[name=nation_tel]").val();
-    var phone = $("input[name=phone]").val();
-
-    var food = $("input[name=food]:checked").val();
-
-    var name_kor = $("input[name=name_kor]").val();
-    var affiliation_kor = $("input[name=affiliation_kor]").val();
-
-    var licence_number3 = $("input[name=licence_number2]").val();
-    var specialty_number3 = $("input[name=specialty_number2]").val()
-    var nutritionist_number3 = $("input[name=nutritionist_number2]").val();
-    var short_input = $("input[name=short_input]").val();
-
-    var ksola_member_check = $("input[name=ksola_member_check]").val();
-
-    var data = {
-        "flag": "signup_join",
-        "ksola_member_status": ksola_member_status,
-        "nation_no": nation_no,
-        "email": email,
-        "password": pw,
-        "first_name": first_name,
-        "last_name": last_name,
-        "affiliation": affiliation,
-        "department": department,
-        "category": category,
-        "category_input": category_input,
-        "nation_tel": nation_tel,
-        "phone": phone,
-        "date_of_birth": date_of_birth,
-        "food": food,
-        "name_kor": name_kor,
-        "affiliation_kor": affiliation_kor,
-        "licence_number": licence_number,
-        "specialty_number": specialty_number,
-        "nutritionist_number": nutritionist_number,
-        "licence_number2": licence_number3,
-        "specialty_number2": specialty_number3,
-        "nutritionist_number2": nutritionist_number3,
-        "short_input": short_input,
-        "terms1": terms1,
-        "terms2": terms2,
-        "ksola_member_check": ksola_member_check,
-        "type": "INSERT",
-        "title": title,
-        "title_input": title_input,
-        "degree": degree,
-        "degree_input": degree_input,
-        "tel_nation_tel": tel_nation_tel,
-        "telephone1": telephone1,
-        "telephone2": telephone2
-    };
-
-    save(data)
-});
-
-
-function save(data) {
-
-    $.ajax({
-        url: PATH + "ajax/client/ajax_member.php",
-        type: "POST",
-        data: data,
-        dataType: "JSON",
-        success: success,
-        fail: fail,
-        error: error
-    });
-
-    function success(res) {
-        alert("Your Sign-up is complete.");
-        window.location.replace("signup_complete.php");
-    }
-
-    function fail(res) {
-        alert("Failed.\nPlease try again later.");
-        return false;
-    }
-
-    function error(res) {
-        alert("An error has occurred. \nPlease try again later.");
-        return false;
-    }
-}
-
-//red_api
-$("input[name=mo_kor_id]").on("change", function() {
-    var _this = $(this);
-    _this.val();
-    kor_api_check("mo_kor_id", _this.val(), "mo");
-});
-$("input[name=mo_kor_pw]").on("change", function() {
-    var _this = $(this);
-    _this.val();
-    kor_api_check("mo_kor_password", _this.val(), "mo");
-});
-
-
-$("input[name=kor_id]").on("change", function() {
-    var _this = $(this);
-    _this.val();
-    kor_api_check("kor_id", _this.val());
-});
-$("input[name=kor_pw]").on("change", function() {
-    var _this = $(this);
-    _this.val();
-    kor_api_check("kor_password", _this.val());
-});
-
-function kor_api_check(name, value, mo = "") {
-    var first_name = value;
-    var first_name_len = first_name.trim().length;
-    first_name = (typeof(first_name) != "undefined") ? first_name : null;
-
-    if (mo === "mo") {
-        name = name.replace("mo_", "");
-    }
-
-    if (!first_name || first_name_len <= 0) {
-        alert("Invalid_" + name);
-        //$(".red_api").eq(0).html("format_"+name);
-        //$(".mo_red_api").eq(0).html("format_"+name);
-    }
-    //else {
-    //	$(".red_api").eq(0).html("");
-    //	$(".mo_red_api").eq(0).html("");
-    //}
-}
-
-//한국 회원 인증시 api호출
-function mo_kor_api() {
-
-    var kor_id = $("input[name=mo_kor_id]").val().trim();
-    var kor_pw = $("input[name=mo_kor_pw]").val().trim();
-    //제 3자 개인정보 수집에 동의 여부
-    var privacy = $("#mo_privacy").is(":checked");
-
-    if (!kor_id) {
-        //$(".mo_red_api").eq(0).html("format_id");
-        alert("Invalid id");
-        return;
-    }
-    if (!kor_pw) {
-        //$(".mo_red_api").eq(0).html("Invalid_password");
-        alert("Invalid password");
-        return;
-    }
-
-    if (privacy == false) {
-        alert("Please agree to the collection of personal information.");
-        //$(".mo_red_api").eq(0).html("Please agree to the collection of personal information.");
-        return;
-    }
-
-    var data = {
-        'id': kor_id,
-        'password': kor_pw
-    };
-
-    $.ajax({
-        url: "signup_api.php",
-        type: "POST",
-        data: data,
-        dataType: "JSON",
-        success: success,
-        fail: fail,
-        error: error
-    });
-
-    function success(res) {
-
-        var kor_sign = JSON.parse(res.value);
-        if (kor_sign.msg == "N1") {
-            alert("아이디를 입력해주세요.");
-            //$(".mo_red_api").eq(0).html("아이디를 입력해주세요.");
-        } else if (kor_sign.msg == "N2") {
-            alert("비밀번호를 입력해주세요.");
-            //$(".mo_red_api").eq(0).html("비밀번호를 입력해주세요.");
-        } else if (kor_sign.msg == "N3") {
-            alert("가입되지 않은 아이디입니다.");
-            //$(".mo_red_api").eq(0).html("가입되지 않은 아이디입니다.");
-        } else if (kor_sign.msg == "N4") {
-            alert("잘못된 비밀번호 입니다.");
-            //$(".mo_red_api").eq(0).html("잘못된 비밀번호 입니다.");
-        } else if (kor_sign.msg == "N5") {
-            alert("탈퇴된 아이디 입니다.");
-            //$(".mo_red_api").eq(0).html("탈퇴된 아이디 입니다.");
-        } else if (kor_sign.msg == "Y") {
-
-            //$(".mo_red_api").eq(0).html("");
-
-            var name_eng_arr = kor_sign.name_eng.split(" ");
-
-            //이거 실행했을 때도 이메일 중복체크
-            var check_email = email_check(kor_sign.email);
-            if (check_email == false) {
-                return;
+        var data = {
+            'id': kor_id,
+            'password': kor_pw
+        };
+
+        $.ajax({
+            url: "signup_api.php",
+            type: "POST",
+            data: data,
+            dataType: "JSON",
+            success: success,
+            fail: fail,
+            error: error
+        });
+
+        function success(res) {
+
+            var kor_sign = JSON.parse(res.value);
+            if (kor_sign.msg == "N1") {
+                alert("아이디를 입력해주세요.");
+                //$(".mo_red_api").eq(0).html("아이디를 입력해주세요.");
+            } else if (kor_sign.msg == "N2") {
+                alert("비밀번호를 입력해주세요.");
+                //$(".mo_red_api").eq(0).html("비밀번호를 입력해주세요.");
+            } else if (kor_sign.msg == "N3") {
+                alert("가입되지 않은 아이디입니다.");
+                //$(".mo_red_api").eq(0).html("가입되지 않은 아이디입니다.");
+            } else if (kor_sign.msg == "N4") {
+                alert("잘못된 비밀번호 입니다.");
+                //$(".mo_red_api").eq(0).html("잘못된 비밀번호 입니다.");
+            } else if (kor_sign.msg == "N5") {
+                alert("탈퇴된 아이디 입니다.");
+                //$(".mo_red_api").eq(0).html("탈퇴된 아이디 입니다.");
+            } else if (kor_sign.msg == "Y") {
+
+                //$(".mo_red_api").eq(0).html("");
+
+                var name_eng_arr = kor_sign.name_eng.split(" ");
+
+                //이거 실행했을 때도 이메일 중복체크
+                var check_email = email_check(kor_sign.email);
+                if (check_email == false) {
+                    return;
+                }
+
+                $("input[name=ksola_member_check]").val(kor_sign.id);
+                $("input[name=mo_email]").val(kor_sign.email);
+                $("input[name=mo_name_kor]").val(kor_sign.name);
+                $("input[name=mo_first_name]").val(name_eng_arr[0]);
+                $("input[name=mo_last_name]").val(name_eng_arr[1]);
+                $("input[name=mo_phone]").val(kor_sign.phone);
+                $("input[name=mo_nation_tel]").val("82");
+
+                //select option에 비교해서 selected 처리
+                var options = $('#mo_department').find('option').map(function() {
+                    return $(this).val();
+                }).get()
+                for (var i = 0; i < options.length; i++) {
+                    if (options[i] == kor_sign.depart && options[i] !== '') {
+                        $("#mo_department option:eq(" + i + ")").attr("selected", "selected");
+                    }
+                }
+
+                var birthday_arr = kor_sign.birthday.split("-");
+
+                $("input[name=mo_date_of_birth]").val(birthday_arr[2] + "-" + birthday_arr[1] + "-" + birthday_arr[0]);
+                $("input[name=mo_licence_number]").val(kor_sign.license_number);
+                $("input[name=mo_affiliation_kor]").val(kor_sign.office_name);
+
+                //for(var i=0; i<$(".mo_red_alert").length; i++) {
+                //	//한국 아이디 입력했을 때 입력 안 되는 값들은 제외
+                //	if(i==1 || i==2 || i==6) {
+                //		continue;
+                //	}
+                //	$(".mo_red_alert").eq(i).html("good");
+                //	$(".mo_red_alert").eq(i).css('display', 'none');
+                //}
             }
 
-            $("input[name=ksola_member_check]").val(kor_sign.id);
-            $("input[name=mo_email]").val(kor_sign.email);
-            $("input[name=mo_name_kor]").val(kor_sign.name);
-            $("input[name=mo_first_name]").val(name_eng_arr[0]);
-            $("input[name=mo_last_name]").val(name_eng_arr[1]);
-            $("input[name=mo_phone]").val(kor_sign.phone);
-            $("input[name=mo_nation_tel]").val("82");
+        }
 
-            //select option에 비교해서 selected 처리
-            var options = $('#mo_department').find('option').map(function() {
-                return $(this).val();
-            }).get()
-            for (var i = 0; i < options.length; i++) {
-                if (options[i] == kor_sign.depart && options[i] !== '') {
-                    $("#mo_department option:eq(" + i + ")").attr("selected", "selected");
+        function fail(res) {
+            alert("Failed.\nPlease try again later.");
+            return false;
+        }
+
+        function error(res) {
+            alert("An error has occurred. \nPlease try again later.");
+            return false;
+        }
+    }
+
+    function kor_api() {
+
+        var kor_id = $("input[name=kor_id]").val().trim();
+        var kor_pw = $("input[name=kor_pw]").val().trim();
+        //제 3자 개인정보 수집에 동의 여부
+        var privacy = $("#privacy").is(":checked");
+
+        if (!kor_id) {
+            alert("Invalid id");
+            //$(".red_api").eq(0).html("format_id");
+            return;
+        }
+        if (!kor_pw) {
+            alert("Invalid password");
+            //$(".red_api").eq(0).html("format_password");
+            return;
+        }
+
+        if (privacy == false) {
+            alert("Please agree to the collection of personal information.");
+            $(".red_api").eq(0).html("Please agree to the collection of personal information.");
+            return;
+        }
+
+        var data = {
+            'id': kor_id,
+            'password': kor_pw
+        };
+
+        $.ajax({
+            url: "signup_api.php",
+            type: "POST",
+            data: data,
+            dataType: "JSON",
+            success: success,
+            fail: fail,
+            error: error
+        });
+
+        function success(res) {
+            var kor_sign = JSON.parse(res.value);
+            //console.log(kor_sign.id);
+            if (kor_sign.msg == "N1") {
+                alert("아이디를 입력해주세요.");
+            } else if (kor_sign.msg == "N2") {
+                alert("비밀번호를 입력해주세요.");
+            } else if (kor_sign.msg == "N3") {
+                alert("가입되지 않은 아이디입니다.");
+            } else if (kor_sign.msg == "N4") {
+                alert("잘못된 비밀번호 입니다.");
+            } else if (kor_sign.msg == "N5") {
+                alert("탈퇴된 아이디 입니다.");
+            } else if (kor_sign.msg == "N6") {
+                alert("이미 가입된 아이디 입니다.");
+            } else if (kor_sign.msg == "Y") {
+
+                var name_eng_arr = kor_sign.name_eng.split(" ");
+
+                //이거 실행했을 때도 이메일 중복체크
+                var check_email = email_check(kor_sign.email);
+                if (check_email == false) {
+                    return;
+                }
+
+                $("input[name=ksola_member_check]").val(kor_sign.id);
+                $("input[name=email]").val(kor_sign.email);
+                $("input[name=name_kor]").val(kor_sign.name);
+                $("input[name=first_name]").val(name_eng_arr[0]);
+                $("input[name=last_name]").val(name_eng_arr[1]);
+                $("input[name=phone]").val(kor_sign.phone);
+                $("input[name=nation_tel]").val("82");
+
+                //select option에 비교해서 selected 처리
+                var options = $('#department').find('option').map(function() {
+                    return $(this).val();
+                }).get()
+                for (var i = 0; i < options.length; i++) {
+                    if (options[i] == kor_sign.depart && options[i] !== '') {
+                        $("#department option:eq(" + i + ")").attr("selected", "selected");
+                    }
+                }
+
+                var birthday_arr = kor_sign.birthday.split("-");
+
+                $("input[name=date_of_birth]").val(birthday_arr[2] + "-" + birthday_arr[1] + "-" + birthday_arr[0]);
+                $("input[name=licence_number]").val(kor_sign.license_number);
+                $("input[name=affiliation_kor]").val(kor_sign.office_name);
+
+                //for(var i=0; i<$(".red_alert").length; i++) {
+                //	//한국 아이디 입력했을 때 입력 안 되는 값들은 제외
+                //	if(i==1 || i==2 || i==6) {
+                //		continue;
+                //	}
+                //	$(".red_alert").eq(i).html("good");
+                //	$(".red_alert").eq(i).css('display', 'none');
+                //}
+            }
+
+        }
+
+        function fail(res) {
+            alert("Failed.\nPlease try again later.");
+            return false;
+        }
+
+        function error(res) {
+            alert("An error has occurred. \nPlease try again later.");
+            return false;
+        }
+    }
+
+
+    //이메일 중복 체크 한국으로 체크시
+    function email_check(email) {
+        $.ajax({
+            url: PATH + "ajax/client/ajax_member.php",
+            type: "POST",
+            data: {
+                flag: "id_check",
+                email: email
+            },
+            dataType: "JSON",
+            success: function(res) {
+                if (res.code == 200) {
+                    //$(".red_alert").eq(0).html("good");
+                    //$(".red_alert").eq(0).css('display', 'none');
+                    //$(".mo_red_alert").eq(0).html("good");
+                    //$(".mo_red_alert").eq(0).css('display', 'none');
+                } else if (res.code == 400) {
+                    alert("used_email_msg");
+                    $("input[name=email]").val("");
+                    $("input[name=mo_email]").val("");
+                    //$(".mo_red_alert").eq(0).html("used_email_msg");
+                    //$(".mo_red_alert").eq(0).css('display', 'block');
+                    return false;
+                } else {
+                    alert("reject_msg");
+                    //$(".mo_red_alert").eq(0).html("reject_msg");
+                    //$(".mo_red_alert").eq(0).css('display', 'block');
+                    return false;
                 }
             }
-
-            var birthday_arr = kor_sign.birthday.split("-");
-
-            $("input[name=mo_date_of_birth]").val(birthday_arr[2] + "-" + birthday_arr[1] + "-" + birthday_arr[0]);
-            $("input[name=mo_licence_number]").val(kor_sign.license_number);
-            $("input[name=mo_affiliation_kor]").val(kor_sign.office_name);
-
-            //for(var i=0; i<$(".mo_red_alert").length; i++) {
-            //	//한국 아이디 입력했을 때 입력 안 되는 값들은 제외
-            //	if(i==1 || i==2 || i==6) {
-            //		continue;
-            //	}
-            //	$(".mo_red_alert").eq(i).html("good");
-            //	$(".mo_red_alert").eq(i).css('display', 'none');
-            //}
-        }
-
+        });
     }
 
-    function fail(res) {
-        alert("Failed.\nPlease try again later.");
-        return false;
-    }
+    /*$(document).ready(function(){
+        $('select[name=nation_no]').val('25').trigger('change');
+        
+    	//회원가입 이벤트
+    	$(document).on("click", "#submit", function(){
+    		var formData = $("form[name=signup_form]").serializeArray();
 
-    function error(res) {
-        alert("An error has occurred. \nPlease try again later.");
-        return false;
-    }
-}
+    		var process = inputCheck(formData, checkType);
+    		var is_checked = process.status;
+    		var data = process.data;
 
-function kor_api() {
+    		if(is_checked) {
+    			$(".loading").show();
+    			$("body").css("overflow-y","hidden");
 
-    var kor_id = $("input[name=kor_id]").val().trim();
-    var kor_pw = $("input[name=kor_pw]").val().trim();
-    //제 3자 개인정보 수집에 동의 여부
-    var privacy = $("#privacy").is(":checked");
+    			$.ajax({
+    				url : PATH+"ajax/client/ajax_member.php",
+    				type : "POST",
+    				data : {
+    					flag : "signup",
+    					data : data
+    				},
+    				dataType : "JSON",
+    				success : function(res) {
+    					if(res.code == 200) {
+    						alert(locale(language.value)("complet_signup"))
+    						window.location.replace(PATH);
+    					} else if(res.code == 400) {
+    						alert(locale(language.value)("error_signup"))
+    						return false;
+    					} else {
+    						alert(locale(language.value)("reject_msg"))
+    						return false;
+    					}
+    				},
+    				complete:function(){
+    					$(".loading").hide();
+    					$("body").css("overflow-y","auto");
+    				}
+    			});
+    		}
+    	});
 
-    if (!kor_id) {
-        alert("Invalid id");
-        //$(".red_api").eq(0).html("format_id");
-        return;
-    }
-    if (!kor_pw) {
-        alert("Invalid password");
-        //$(".red_api").eq(0).html("format_password");
-        return;
-    }
-
-    if (privacy == false) {
-        alert("Please agree to the collection of personal information.");
-        $(".red_api").eq(0).html("Please agree to the collection of personal information.");
-        return;
-    }
-
-    var data = {
-        'id': kor_id,
-        'password': kor_pw
-    };
-
-    $.ajax({
-        url: "signup_api.php",
-        type: "POST",
-        data: data,
-        dataType: "JSON",
-        success: success,
-        fail: fail,
-        error: error
-    });
-
-    function success(res) {
-
-        var kor_sign = JSON.parse(res.value);
-        //console.log(kor_sign.id);
-        if (kor_sign.msg == "N1") {
-            alert("아이디를 입력해주세요.");
-        } else if (kor_sign.msg == "N2") {
-            alert("비밀번호를 입력해주세요.");
-        } else if (kor_sign.msg == "N3") {
-            alert("가입되지 않은 아이디입니다.");
-        } else if (kor_sign.msg == "N4") {
-            alert("잘못된 비밀번호 입니다.");
-        } else if (kor_sign.msg == "N5") {
-            alert("탈퇴된 아이디 입니다.");
-        } else if (kor_sign.msg == "N6") {
-            alert("이미 가입된 아이디 입니다.");
-        } else if (kor_sign.msg == "Y") {
-
-            var name_eng_arr = kor_sign.name_eng.split(" ");
-
-            //이거 실행했을 때도 이메일 중복체크
-            var check_email = email_check(kor_sign.email);
-            if (check_email == false) {
-                return;
-            }
-
-            $("input[name=ksola_member_check]").val(kor_sign.id);
-            $("input[name=email]").val(kor_sign.email);
-            $("input[name=name_kor]").val(kor_sign.name);
-            $("input[name=first_name]").val(name_eng_arr[0]);
-            $("input[name=last_name]").val(name_eng_arr[1]);
-            $("input[name=phone]").val(kor_sign.phone);
-            $("input[name=nation_tel]").val("82");
-
-            //select option에 비교해서 selected 처리
-            var options = $('#department').find('option').map(function() {
-                return $(this).val();
-            }).get()
-            for (var i = 0; i < options.length; i++) {
-                if (options[i] == kor_sign.depart && options[i] !== '') {
-                    $("#department option:eq(" + i + ")").attr("selected", "selected");
-                }
-            }
-
-            var birthday_arr = kor_sign.birthday.split("-");
-
-            $("input[name=date_of_birth]").val(birthday_arr[2] + "-" + birthday_arr[1] + "-" + birthday_arr[0]);
-            $("input[name=licence_number]").val(kor_sign.license_number);
-            $("input[name=affiliation_kor]").val(kor_sign.office_name);
-
-            //for(var i=0; i<$(".red_alert").length; i++) {
-            //	//한국 아이디 입력했을 때 입력 안 되는 값들은 제외
-            //	if(i==1 || i==2 || i==6) {
-            //		continue;
-            //	}
-            //	$(".red_alert").eq(i).html("good");
-            //	$(".red_alert").eq(i).css('display', 'none');
-            //}
-        }
-
-    }
-
-    function fail(res) {
-        alert("Failed.\nPlease try again later.");
-        return false;
-    }
-
-    function error(res) {
-        alert("An error has occurred. \nPlease try again later.");
-        return false;
-    }
-}
-
-
-//이메일 중복 체크 한국으로 체크시
-function email_check(email) {
-    $.ajax({
-        url: PATH + "ajax/client/ajax_member.php",
-        type: "POST",
-        data: {
-            flag: "id_check",
-            email: email
-        },
-        dataType: "JSON",
-        success: function(res) {
-            if (res.code == 200) {
-                //$(".red_alert").eq(0).html("good");
-                //$(".red_alert").eq(0).css('display', 'none');
-                //$(".mo_red_alert").eq(0).html("good");
-                //$(".mo_red_alert").eq(0).css('display', 'none');
-            } else if (res.code == 400) {
-                alert("used_email_msg");
-                $("input[name=email]").val("");
-                $("input[name=mo_email]").val("");
-                //$(".mo_red_alert").eq(0).html("used_email_msg");
-                //$(".mo_red_alert").eq(0).css('display', 'block');
-                return false;
-            } else {
-                alert("reject_msg");
-                //$(".mo_red_alert").eq(0).html("reject_msg");
-                //$(".mo_red_alert").eq(0).css('display', 'block');
-                return false;
-            }
-        }
-    });
-}
-
-/*$(document).ready(function(){
-    $('select[name=nation_no]').val('25').trigger('change');
-    
-	//회원가입 이벤트
-	$(document).on("click", "#submit", function(){
-		var formData = $("form[name=signup_form]").serializeArray();
-
-		var process = inputCheck(formData, checkType);
-		var is_checked = process.status;
-		var data = process.data;
-
-		if(is_checked) {
-			$(".loading").show();
-			$("body").css("overflow-y","hidden");
-
-			$.ajax({
-				url : PATH+"ajax/client/ajax_member.php",
-				type : "POST",
-				data : {
-					flag : "signup",
-					data : data
-				},
-				dataType : "JSON",
-				success : function(res) {
-					if(res.code == 200) {
-						alert(locale(language.value)("complet_signup"))
-						window.location.replace(PATH);
-					} else if(res.code == 400) {
-						alert(locale(language.value)("error_signup"))
-						return false;
-					} else {
-						alert(locale(language.value)("reject_msg"))
-						return false;
-					}
-				},
-				complete:function(){
-					$(".loading").hide();
-					$("body").css("overflow-y","auto");
-				}
-			});
-		}
-	});
-
-	$('.term1_btn').on('click',function(){
-		$('.term1').show();
-		$('#terms1').attr("checked", true);
-	});
-	$('.term2_btn').on('click',function(){
-		$('.term2').show();
-		$('#terms2').attr("checked", true);
-	});
-});*/
+    	$('.term1_btn').on('click',function(){
+    		$('.term1').show();
+    		$('#terms1').attr("checked", true);
+    	});
+    	$('.term2_btn').on('click',function(){
+    		$('.term2').show();
+    		$('#terms2').attr("checked", true);
+    	});
+    });*/
 </script>

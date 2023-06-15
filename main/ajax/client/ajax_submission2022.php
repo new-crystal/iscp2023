@@ -363,17 +363,17 @@ if ($flag == "step1") {
 			$rs_detail['topic_text'] = $tp['name_en'];
 		}
 	}
-	foreach ($topic2_list as $tp) {
-		if ($tp['idx'] == $rs_detail['topic']) {
-			$rs_detail['topic_text'] .= " > " . $tp['name_en'];
-		}
-	}
+	// foreach ($topic2_list as $tp) {
+	// 	if ($tp['idx'] == $rs_detail['topic']) {
+	// 		$rs_detail['topic_text'] .= " > " . $tp['name_en'];
+	// 	}
+	//}
 
 	$name = $member["first_name"] . " " . $member["last_name"]; //$language == "en" ? $member["first_name"]." ".$member["last_name"] : $member["last_name"].$member["first_name"];
 	$email = $member['email'];
 	$subject = "[ISCP 2023] Abstract Successfully Submitted";
 	$time = date("Y-m-d H:i:s");
-	
+
 	//0602 임시주석 에러로 페이지가 넘어가지 않는 현상
 	// $mail_result = mailer("en", "abstract", $name, $email, $subject, $time, "", "", 1, "", "", "", $email, $time, $rs_detail['topic_text'], $rs_detail['title']);
 

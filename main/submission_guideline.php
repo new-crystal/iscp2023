@@ -274,7 +274,7 @@ if ($during_yn === "Y") {
                         <tbody>
                             <tr>
                                 <!-- <td>Americas / Europe</td> -->
-                                <td>USD 600</td>
+                                <td>USD 500</td>
                                 <td rowspan="4">
                                     To be notified individually <br>before the congress
                                 </td>
@@ -285,7 +285,7 @@ if ($during_yn === "Y") {
                             </tr>
                             <tr>
                                 <td>Southeast Asia</td>
-                                <td>USD 600</td>
+                                <td>USD 500</td>
                             </tr>
                             <tr>
                                 <td>Northeast Asia</td>

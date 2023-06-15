@@ -1,3 +1,4 @@
+
 <?php
 include_once($_SERVER["DOCUMENT_ROOT"] . "/main/plugin/PHPMailer/PHPMailerAutoload.php");
 include_once($_SERVER["DOCUMENT_ROOT"] . "/main/plugin/PHPMailer/class.phpmailer.php");
@@ -317,3 +318,4 @@ function attach_file($filename, $tmp_name)
 	$tmpfile = array("name" => $filename, "path" => $dest_file);
 	return $tmpfile;
 }
+

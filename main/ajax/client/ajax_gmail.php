@@ -91,7 +91,6 @@ if (count($results->getLabels()) == 0) {
 	}
 }
 
-
 function createMessage($language, $mail_type, $fname, $to, $subject, $time, $tmp_password, $callback_url, $type = 0, $file = "", $cc = "", $bcc = "", $id = "", $date = "", $category = "", $title = "")
 {
 	$message = new Google_Service_Gmail_Message();
@@ -102,6 +101,103 @@ function createMessage($language, $mail_type, $fname, $to, $subject, $time, $tmp
 	$rawMessageString .= "MIME-Version: 1.0\r\n";
 	$rawMessageString .= "Content-Type: text/html; charset=utf-8\r\n";
 	$rawMessageString .= 'Content-Transfer-Encoding: base64' . "\r\n\r\n";
+
+
+	if ($mail_type == "signup_join") {
+		$rawMessageString .= "
+		<table width='750' style='border:1px solid #000; border-radius:27px 27px 0 0; padding: 0;'>
+			<tbody>
+				<tr>
+					<td colspan='3'>
+						<img src='https://iscp2023.org/main/img/mail_header.png' width='750' style='width:750px;'>
+					</td>
+				</tr>
+				<tr>
+					<td colspan='3'>
+						<div style='font-weight:bold; text-align:center;font-size: 21px; color: #00666B;padding: 20px 0;'>[ISCP 2023] Welcome to ISCP 2023!</div>
+					</td>
+				</tr>
+				<tr>
+					<td width='74' style='width:74px;'></td>
+					<td>
+						<div>
+							<p style='font-size:15px; font-weight:bold; color:#000; margin:0;'>Dear {$fname},</p>
+							<p style='font-size:14px;color:#170F00;margin-top:14px;'>Thank you for signing up for the ISCP 2023.<br>Your profile has been successfully created.<br>Please review the information that you have entered as below.<br>If necessary, you can access ISCP 2023 website - MY PAGE’ to review, modify or update your personal information.</p>
+							<table width='586' style='width:586px; border-collapse:collapse; border-top:2px solid #000; width:100%; margin:17px 0;'>
+								<tbody>
+									<tr>
+										<th style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>ID (Email Address)</th>
+										<td colspan='2' style='font-size:14px; padding:10px; border-left:1px solid #000; border-bottom:1px solid #000;'><a href='mailto:{$to}' class='link font_inherit'>{$to}</a></td>
+									</tr>
+									<tr>
+										<th style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>Name</th>
+										<td colspan='2' style='font-size:14px; padding:10px; border-left:1px solid #000; width:165px; border-bottom:1px solid #000;'>{$fname}</td>
+										
+									</tr>
+									
+								</tbody>	
+							</table>
+							<p>We express our gratitude to you for your interest in ISCP 2023.</p>
+						</div>
+					</td>
+					<td width='74' style='width:74px;'></td>
+				</tr>
+				<tr>
+					<td width='74' style='width:74px;'></td>
+					<td style='padding-top:16px;'>
+						<p>Warmest regards, ISCP</p>
+						<div style='text-align: center;'>
+						<a href='https://iscp2023.org/main/login.php' style='cursor: pointer;' target='_blank'><img src='https://iscp2023.org/main/img/mail_button.png' style='display:block; margin:0 auto; width:250px;'></a>
+						</div>
+					</td>
+					<td width='74' style='width:74px;'></td>
+				</tr>
+				<tr>
+					<td colspan='3' style='padding-top:50px;'>
+						<img src='https://iscp2023.org/main/img/mail_footer.png' width='750' style='width:750px;'>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+";
+	} else if ($mail_type == "abstract") {
+		$rawMessageString .= "
+					<div style='width:670px;background-color:#fff;border:1px solid #000; font-size:0;'>
+						<img src='https://iscp2023.org/main/img/mail_header.png' style='width:100%; margin:0;'>
+						<div style='width:100%;margin:0 0 60px 0;background-color:#00666B;text-align:center;font-size: 21px; color: #FFF;padding: 10px 0;'>[ISCP 2023 with APSAVD] Abstract Successfully Submitted</div>	
+						<div style='padding:0 40px;'>
+							<div style='margin-bottom:25px; background-color:#F8F8F8;border-top:2px solid #707070; padding:17px 34px; box-sizing:border-box;'>
+								<div style='margin-bottom:40px;'>
+									<p style='font-size:15px; font-weight:bold; color:#000; margin:0;'>Dear {$fname}</p>
+									<p style='font-size:14px;color:#170F00;margin-top:14px;'>
+										Attention Potential Presenting Author: Upon successful submission of your abstract, you will immediately see the following confirmation notice on your screen, followed by the same message via e&#45;mail. If you did not receive the following message, your abstract was not successfully submitted. Please try again, or contact (iscp@into-on.com) for assistance if you are having difficulty. 
+										<br>
+										The deadline for abstract submissions is September 5 (submissions close at 11:59pm Korea Standard Time). It is your responsibility to address questions about submissions before September 5, so that if there is a problem, we can still help you make the submission on time. Be sure to print and/or save the confirmation of submission notices for reference in case of a problem or question.
+										</p>
+
+									<p style='font-size:15px; font-weight:bold; color:#000; margin-top:30px;'>Abstract Successfully Submitted</p>
+									<p style='font-size:14px; color:#170F00; margin-top:14px;'>This is an automated message. Please do not reply</p>
+									<ul style='list-style:none; padding-left:10px;'>
+										<li style='font-size:14px; font-weight:bold; color:#000'>ID : <span style='font-size:14px; font-weight:400; color:#000;'>[{$to}]</span></li>
+										<li style='font-size:14px; font-weight:bold; color:#000'>Submission date : <span style='font-size:14px; font-weight:400; color:#000;'>{$date}</span></li>
+										<li style='font-size:14px; font-weight:bold; color:#000'>Topic : <span style='font-size:14px; font-weight:400; color:#000;'>{$category}</span></li>
+										<li style='font-size:14px; font-weight:bold; color:#000'>Abstract title : <span style='font-size:14px; font-weight:400; color:#000;'>{$title}</span></li>
+									</ul>
+									<p style='font-size:14px;color:#170F00;margin-top:14px;'>If you have any questions regarding call for abstracts, please contact the secretariat (<a href='mailto:iscp@into-on.com)'>iscp@into-on.com</a>)</p>
+									<p style='font-size:14px;color:#170F00;margin-top:14px;'>We look forward to seeing you in ISCP 2023.</p>
+									<p style='font-size:14px;color:#170F00;margin-top:14px;'>Warmest regards,</p>
+									<p style='font-size:14px;color:#170F00;margin-top:14px;'>ISCP 2023 Secretariat. </p>
+								</div>
+							</div>
+							<div style='text-align: center;'>
+								<a href='https://iscp2023.org/main/login.php' style='cursor: pointer;' target='_blank'><img src='https://iscp2023.org/main/img/mail_button.png' style='display:block; margin:0 auto;  width:250px;'></a>
+							</div>
+						</div>
+						<img src='https://iscp2023.org/main/img/mail_footer.png' style='width:100%;margin-top:40px;'>
+					</div>
+					";
+	}
 
 	if ($language == "ko") {
 		if ($mail_type == "find_password") {
@@ -122,7 +218,7 @@ function createMessage($language, $mail_type, $fname, $to, $subject, $time, $tmp
 										<p style='font-size:14px;color:#AAAAAA;margin-top:14px;'>After logging in, please change to a new password from the Modify Information menu.</p>
 										<p style='font-size:13px;color:#170F00;margin-top:20px;margin-bottom:5px;'>Member ID<span style='font-size:14px;color:#170F00;margin-left:5px;'>{$to}</span></p>
 										<p style='font-size:13px;color:#170F00;margin-top:0px;'>Temporary password<span style='font-size:14px;color:#170F00;margin-left:5px;'>{$tmp_password}</span></p>
-										<p style='font-size:14px;color:#170F00;margin-top:40px;'>Regards, <br> ICoLA</p>
+										<p style='font-size:14px;color:#170F00;margin-top:40px;'>Regards, <br> ISCP</p>
 									</div>
 								</div>
 								<!-- <p style='padding-left:60px;text-align:left;font-size:15px;color:#170F00;line-height:1.8;'>Member of mini, <br>You requested a temporary password at 2022-04-07 18:30:08</p> -->
@@ -135,7 +231,7 @@ function createMessage($language, $mail_type, $fname, $to, $subject, $time, $tmp
 								<!-- <p style='padding-left:60px;text-align:left;font-size:12px;color:#AAAAAA;margin-top:17px;'>After logging in, please change to a new password from the Modify Information menu.</p> -->
 								<!-- <p style='padding-left:60px;text-align:left;font-size:13px;color:#170F00;margin-top:32px;'>Member ID<span style='text-align:left;font-size:14px;color:#170F00;margin-left:5px;'>icomes@naver.com</span></p> -->
 								<!-- <p style='padding-left:60px;text-align:left;font-size:13px;color:#170F00;margin-top:11px;'>Temporary password<span style='text-align:left;font-size:14px;color:#170F00;margin-left:5px;'>123456789</span></p> -->
-								<!-- <p style='padding-left:60px;text-align:left;font-size:14px;color:#170F00;margin-top:51px;'>Regards, <br> ICoLA</p> -->
+								<!-- <p style='padding-left:60px;text-align:left;font-size:14px;color:#170F00;margin-top:51px;'>Regards, <br> ISCP</p> -->
 								
 								<a href='https://iscp2023.org/main/login.php' style='cursor: pointer;' target='_blank'><img src='https://iscp2023.org/main/img/mail_button.png' style='display:block; margin:0 auto;'></a>
 							
@@ -147,45 +243,9 @@ function createMessage($language, $mail_type, $fname, $to, $subject, $time, $tmp
 		}
 	} else {
 		if ($mail_type == "find_password") {
-			$rawMessageString .= "<div style='width:670px;background-color:#fff;border:1px solid #000;'><img src='https://iscp2023.org/main/img/mail_header.png' style='width:100%;'><img src='https://iscp2023.org/main/img/mail_header_bom.png' style='width:100%; margin-bottom:60px;'><div style='padding:0 40px'><div style='margin-bottom:25px; background-color:#F8F8F8;border-top:2px solid #707070; padding:17px 34px; box-sizing:border-box;'><div style='margin-bottom:40px;'><p style='font-size:15px; font-weight:bold; color:#000; margin:0;'>member of {$fname}, <br>You requested a temporary password at {$time}</p><p style='font-size:14px;color:#AAAAAA;margin-top:14px;'>(If you have never requested a temporary password, please delete the email.)</p><p style='font-size:14px;color:#170F00;margin-top:30px;'>Since our site does not have your password even if you are an administrator,<br>Instead of giving you your password, we're creating a new one and guiding you.<br>Check the password below to change.</p><p style='font-size:14px;color:#FF0000;margin-top:14px;'>Click the Change to temporary password button.</p><p style='font-size:14px;color:#170F00;margin-top:30px;'>When an authentication message is printed stating that the password has been changed,<br>Please enter your member ID and changed password on the homepage and log in.</p><p style='font-size:14px;color:#AAAAAA;margin-top:14px;'>After logging in, please change to a new password from the Modify Information menu.</p><p style='font-size:13px;color:#170F00;margin-top:20px;margin-bottom:5px;'>Member ID<span style='font-size:14px;color:#170F00;margin-left:5px;'>{$to}</span></p><p style='font-size:13px;color:#170F00;margin-top:0px;'>Temporary password<span style='font-size:14px;color:#170F00;margin-left:5px;'>{$tmp_password}</span></p><p style='font-size:14px;color:#170F00;margin-top:40px;'>Regards, <br> ICoLA</p></div></div>
+			$rawMessageString .= "<div style='width:670px;background-color:#fff;border:1px solid #000;'><img src='https://iscp2023.org/main/img/mail_header.png' style='width:100%;'><img src='https://iscp2023.org/main/img/mail_header_bom.png' style='width:100%; margin-bottom:60px;'><div style='padding:0 40px'><div style='margin-bottom:25px; background-color:#F8F8F8;border-top:2px solid #707070; padding:17px 34px; box-sizing:border-box;'><div style='margin-bottom:40px;'><p style='font-size:15px; font-weight:bold; color:#000; margin:0;'>member of {$fname}, <br>You requested a temporary password at {$time}</p><p style='font-size:14px;color:#AAAAAA;margin-top:14px;'>(If you have never requested a temporary password, please delete the email.)</p><p style='font-size:14px;color:#170F00;margin-top:30px;'>Since our site does not have your password even if you are an administrator,<br>Instead of giving you your password, we're creating a new one and guiding you.<br>Check the password below to change.</p><p style='font-size:14px;color:#FF0000;margin-top:14px;'>Click the Change to temporary password button.</p><p style='font-size:14px;color:#170F00;margin-top:30px;'>When an authentication message is printed stating that the password has been changed,<br>Please enter your member ID and changed password on the homepage and log in.</p><p style='font-size:14px;color:#AAAAAA;margin-top:14px;'>After logging in, please change to a new password from the Modify Information menu.</p><p style='font-size:13px;color:#170F00;margin-top:20px;margin-bottom:5px;'>Member ID<span style='font-size:14px;color:#170F00;margin-left:5px;'>{$to}</span></p><p style='font-size:13px;color:#170F00;margin-top:0px;'>Temporary password<span style='font-size:14px;color:#170F00;margin-left:5px;'>{$tmp_password}</span></p><p style='font-size:14px;color:#170F00;margin-top:40px;'>Regards, <br> ISCP</p></div></div>
 			<div style='text-align: center;'>
 			<a href='{$callback_url}' type='button' style='display: inline-block; width: 300px; height: 35px; line-height: 35px; border-radius: 25px;border: 2px solid #174A77;outline: 2px solid #DFDFDF;background: linear-gradient(to top, #293380, #8CC5D1);font-size: 18px;font-weight: 500;color: #FFFFFF;cursor: pointer; text-decoration: none;'>Change to temporary password</a></div></div><img src='https://iscp2023.org/main/img/mail_footer.png' style='width:100%; margin-top:40px;'>";
-		} else if ($mail_type == "abstract") {
-			$rawMessageString .= "
-						<div style='width:670px;background-color:#fff;border:1px solid #000; font-size:0;'>
-							<img src='https://iscp2023.org/main/img/mail_header.png' style='width:100%; margin:0;'>
-							<div style='width:100%;margin:0 0 60px 0;background-color:#00666B;text-align:center;font-size: 21px; color: #FFF;padding: 10px 0;'>[ISCP 2023 with APSAVD] Abstract Successfully Submitted</div>	
-							<div style='padding:0 40px;'>
-								<div style='margin-bottom:25px; background-color:#F8F8F8;border-top:2px solid #707070; padding:17px 34px; box-sizing:border-box;'>
-									<div style='margin-bottom:40px;'>
-										<p style='font-size:15px; font-weight:bold; color:#000; margin:0;'>Dear {$fname}</p>
-										<p style='font-size:14px;color:#170F00;margin-top:14px;'>
-											Attention Potential Presenting Author: Upon successful submission of your abstract, you will immediately see the following confirmation notice on your screen, followed by the same message via e&#45;mail. If you did not receive the following message, your abstract was not successfully submitted. Please try again, or contact (secretariat@iscp2023.org) for assistance if you are having difficulty. 
-											<br>
-											The deadline for abstract submissions is 30 June (submissions close at 11:59pm Korea Standard Time). It is your responsibility to address questions about submissions before 30 June, so that if there is a problem, we can still help you make the submission on time. Be sure to print and/or save the confirmation of submission notices for reference in case of a problem or question.
-										</p>
-
-										<p style='font-size:15px; font-weight:bold; color:#000; margin-top:30px;'>Abstract Successfully Submitted</p>
-										<p style='font-size:14px; color:#170F00; margin-top:14px;'>This is an automated message. Please do not reply</p>
-										<ul style='list-style:none; padding-left:10px;'>
-											<li style='font-size:14px; font-weight:bold; color:#000'>ID : <span style='font-size:14px; font-weight:400; color:#000;'>[{$to}]</span></li>
-											<li style='font-size:14px; font-weight:bold; color:#000'>Submission date : <span style='font-size:14px; font-weight:400; color:#000;'>{$date}</span></li>
-											<li style='font-size:14px; font-weight:bold; color:#000'>Topic : <span style='font-size:14px; font-weight:400; color:#000;'>{$category}</span></li>
-											<li style='font-size:14px; font-weight:bold; color:#000'>Abstract title : <span style='font-size:14px; font-weight:400; color:#000;'>{$title}</span></li>
-										</ul>
-										<p style='font-size:14px;color:#170F00;margin-top:14px;'>If you have any questions regarding call for abstracts, please contact the secretariat (<a href='mailto:secretariat@iscp2023.org)'>secretariat@iscp2023.org</a>)</p>
-										<p style='font-size:14px;color:#170F00;margin-top:14px;'>We look forward to seeing you in ISCP 2023.</p>
-										<p style='font-size:14px;color:#170F00;margin-top:14px;'>Warmest regards,</p>
-										<p style='font-size:14px;color:#170F00;margin-top:14px;'>ISCP 2023 Secretariat. </p>
-									</div>
-								</div>
-								<div style='text-align: center;'>
-									<a href='https://iscp2023.org/main/login.php' type='button' style='display: inline-block; width: 300px; height: 35px; line-height: 35px; border-radius: 25px;border: 2px solid #174A77;outline: 2px solid #DFDFDF;background: linear-gradient(to top, #293380, #8CC5D1);font-size: 18px;font-weight: 500;color: #FFFFFF;cursor: pointer; text-decoration: none;'>Go to <b>ISCP 2023</b> Website</a>
-								</div>
-							</div>
-							<img src='https://iscp2023.org/main/img/mail_footer.png' style='width:100%;margin-top:40px;'>
-						</div>
-						";
 		}
 	}
 
@@ -193,7 +253,6 @@ function createMessage($language, $mail_type, $fname, $to, $subject, $time, $tmp
 	$message->setRaw($rawMessage);
 	return $message;
 }
-
 /**
  * @param $service Google_Service_Gmail an authorized Gmail API service instance.
  * @param $user string User's email address or "me"
@@ -347,23 +406,56 @@ if ($_POST["flag"] == "find_password") {
 
 if ($_POST["flag"] == "abstract") {
 
-	$email = $_POST["email"];
-	$name = $_POST["name"];
-	$subject = $_POST["subject"];
-	$title = $_POST["title"];
-	$topic_text = $_POST["topic_text"];
-	$time = date("Y-m-d H:i:s");
+	try {
+		$email = $_POST["email"];
+		$name = $_POST["name"];
+		$subject = $_POST["subject"];
+		$title = $_POST["title"];
+		$topic_text = $_POST["topic_text"];
+		$time = date("Y-m-d H:i:s");
 
-	$message = createMessage("en", "abstract", $name, $email, $subject, $time, "", "", 1, "", "", "", $email, $time, $topic_text, $title);
+		$message = createMessage("en", "abstract", $name, $email, $subject, $time, "", "", 1, "", "", "", $email, $time, $topic_text, $title);
+		createDraft($service, "secretariat@iscp2023.org", $message);
+		sendMessage($service, "secretariat@iscp2023.org", $message);
+
+		$res = [
+			code => 200,
+			msg => "success"
+		];
+		echo json_encode($res);
+		exit;
+	} catch (\Throwable $tw) {
+		echo $tw->getMessage();
+		exit;
+	}
+}
+
+if ($_POST["flag"] == "signup_join") {
+	$data = isset($_POST["data"]) ? $_POST["data"] : "";
+	$name = $data["last_name"] . " " . $data["first_name"];
+	$email = $data["email"];
+	$time = date("Y-m-d H:i:s");
+	$subject = $locale("mail_sign_up_subject");
+	$message = createMessage("ko", "signup_join", $name, $email, $subject, $time, "", "", 1, "", "", "", $email, $time, "", "");
 	createDraft($service, "secretariat@iscp2023.org", $message);
 	sendMessage($service, "secretariat@iscp2023.org", $message);
 
-	$res = [
-		code => 200,
-		msg => "success"
-	];
-	echo json_encode($res);
-	exit;
+	if ($message) {
+		$res = [
+			code => 200,
+			msg => "success"
+
+		];
+		echo json_encode($res);
+		exit;
+	} else {
+		$res = [
+			code => 402,
+			msg => "error"
+		];
+		echo json_encode($res);
+		exit;
+	}
 }
 
 
