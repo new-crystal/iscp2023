@@ -754,7 +754,7 @@ $en = [
 
 	//메일
 	"mail_find_password_subject" => "This is a find password mail.",
-	"mail_sign_up_subject" => "Welcome",
+	"mail_sign_up_subject" => "[ISCP 2023] Welcome to ISCP 2023!",
 
 	//약관
 	"terms" => "

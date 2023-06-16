@@ -95,7 +95,7 @@ function createMessage($language, $mail_type, $fname, $to, $subject, $time, $tmp
 {
 	$message = new Google_Service_Gmail_Message();
 
-	$rawMessageString = "From: ISCP<secretariat@iscp2023.org>\r\n";
+	$rawMessageString = "From: ISCP 2023<secretariat@iscp2023.org>\r\n";
 	$rawMessageString .= "To: <{$to}>\r\n";
 	$rawMessageString .= 'Subject: =?utf-8?B?' . base64_encode($subject) . "?=\r\n";
 	$rawMessageString .= "MIME-Version: 1.0\r\n";
@@ -105,7 +105,7 @@ function createMessage($language, $mail_type, $fname, $to, $subject, $time, $tmp
 
 	if ($mail_type == "signup_join") {
 		$rawMessageString .= "
-		<table width='750' style='border:1px solid #000; border-radius:27px 27px 0 0; padding: 0;'>
+		<table width='750' style='border:1px solid #000; padding: 0;'>
 			<tbody>
 				<tr>
 					<td colspan='3'>
@@ -322,7 +322,7 @@ if ($_POST["flag"] == "push_mail") {
 			$email = $ed['email'];
 
 			if (!empty($email) && !empty($name)) {
-				$message = createMessage($language, "find_password", $name, $email, "[ISCP] mail_subject", date("Y-m-d H:i:s"), "", "", 0);
+				$message = createMessage($language, "find_password", $name, $email, "[ISCP 2023] mail_subject", date("Y-m-d H:i:s"), "", "", 0);
 				createDraft($service, "secretariat@iscp2023.org", $message);
 				sendMessage($service, "secretariat@iscp2023.org", $message);
 			}
@@ -369,7 +369,7 @@ if ($_POST["flag"] == "find_password") {
 	$callback_url = "https://iscp2023.org/main/password_reset.php?e=" . $email . "&t=" . $random_token;
 	//$mail_result = mailer($language, "find_password", $name, $email, "[ISCP]" . $subject, date("Y-m-d H:i:s"), $temporary_password, $callback_url, 0);
 
-	$message = createMessage($language, "find_password", $name, $email, "[ISCP]" . $subject, date("Y-m-d H:i:s"), $temporary_password, $callback_url, 0);
+	$message = createMessage($language, "find_password", $name, $email, "[ISCP 2023]" . $subject, date("Y-m-d H:i:s"), $temporary_password, $callback_url, 0);
 	createDraft($service, "secretariat@iscp2023.org", $message);
 	sendMessage($service, "secretariat@iscp2023.org", $message);
 
