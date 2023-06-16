@@ -95,7 +95,7 @@ function createMessage($language, $mail_type, $fname, $to, $subject, $time, $tmp
 {
 	$message = new Google_Service_Gmail_Message();
 
-	$rawMessageString = "From: ISCP 2023<secretariat@iscp2023.org>\r\n";
+	$rawMessageString = "From: ISCP2023<secretariat@iscp2023.org>\r\n";
 	$rawMessageString .= "To: <{$to}>\r\n";
 	$rawMessageString .= 'Subject: =?utf-8?B?' . base64_encode($subject) . "?=\r\n";
 	$rawMessageString .= "MIME-Version: 1.0\r\n";
@@ -165,7 +165,7 @@ function createMessage($language, $mail_type, $fname, $to, $subject, $time, $tmp
 		$rawMessageString .= "
 					<div style='width:670px;background-color:#fff;border:1px solid #000; font-size:0;'>
 						<img src='https://iscp2023.org/main/img/mail_header.png' style='width:100%; margin:0;'>
-						<div style='width:100%;margin:0 0 60px 0;background-color:#00666B;text-align:center;font-size: 21px; color: #FFF;padding: 10px 0;'>[ISCP 2023 with APSAVD] Abstract Successfully Submitted</div>	
+						<div style='width:100%;margin:0 0 60px 0;background-color:#00666B;text-align:center;font-size: 21px; color: #FFF;padding: 10px 0;'>[ISCP 2023] Abstract Successfully Submitted</div>	
 						<div style='padding:0 40px;'>
 							<div style='margin-bottom:25px; background-color:#F8F8F8;border-top:2px solid #707070; padding:17px 34px; box-sizing:border-box;'>
 								<div style='margin-bottom:40px;'>
@@ -202,50 +202,120 @@ function createMessage($language, $mail_type, $fname, $to, $subject, $time, $tmp
 	if ($language == "ko") {
 		if ($mail_type == "find_password") {
 			$rawMessageString .= "
-						<div style='width:670px;background-color:#fff;border:1px solid #000; padding:0 40px;'>
-							<img src='https://iscp2023.org/main/img/mail_header.png' style='width:calc(100% + 80px);margin-left:-40px;'>
-							<img src='https://iscp2023.org/main/img/mail_header_bom.png' style='width:calc(100% + 80px);margin-left:-40px;margin-bottom:60px;'>
-							<div>
-								<div style='margin-bottom:25px; background-color:#F8F8F8;border-top:2px solid #707070; padding:17px 34px; box-sizing:border-box;'>
-									<div style='margin-bottom:40px;'>
-										<p style='font-size:15px; font-weight:bold; color:#000; margin:0;'>member of {$fname}, <br>You requested a temporary password at {$time}</p>
-										<p style='font-size:14px;color:#AAAAAA;margin-top:14px;'>(If you have never requested a temporary password, please delete the email.)</p>
-										<p style='font-size:14px;color:#170F00;margin-top:30px;'>Since our site does not have your password even if you are an administrator,<br>
-										Instead of giving you your password, we're creating a new one and guiding you.<br>Check the password below to change.</p>
-										<p style='font-size:14px;color:#FF0000;margin-top:14px;'>Click the Change to temporary password button.</p>
-										<p style='font-size:14px;color:#170F00;margin-top:30px;'>When an authentication message is printed stating that the password has been changed,<br>
-										Please enter your member ID and changed password on the homepage and log in.</p>
-										<p style='font-size:14px;color:#AAAAAA;margin-top:14px;'>After logging in, please change to a new password from the Modify Information menu.</p>
-										<p style='font-size:13px;color:#170F00;margin-top:20px;margin-bottom:5px;'>Member ID<span style='font-size:14px;color:#170F00;margin-left:5px;'>{$to}</span></p>
-										<p style='font-size:13px;color:#170F00;margin-top:0px;'>Temporary password<span style='font-size:14px;color:#170F00;margin-left:5px;'>{$tmp_password}</span></p>
-										<p style='font-size:14px;color:#170F00;margin-top:40px;'>Regards, <br> ISCP</p>
-									</div>
-								</div>
-								<!-- <p style='padding-left:60px;text-align:left;font-size:15px;color:#170F00;line-height:1.8;'>Member of mini, <br>You requested a temporary password at 2022-04-07 18:30:08</p> -->
-								<!-- <p style='padding-left:60px;text-align:left;font-size:12px;color:#AAAAAA;margin-top:22px;'>(If you have never requested a temporary password, please delete the email.)</p> -->
-								<!-- <p style='padding-left:60px;text-align:left;font-size:12px;color:#170F00;margin-top:42px;line-height:1.8;'>Since our site does not have your password even if you are an administrator,<br> -->
-								<!-- Instead of giving you your password, we're creating a new one and guiding you.<br>Check the password below to change.</p> -->
-								<!-- <p style='padding-left:60px;font-size:13px;color:#FF0000;margin-top:17px;'>Click the Change to temporary password button.</p> -->
-								<!-- <p style='padding-left:60px;text-align:left;font-size:12px;color:#170F00;margin-top:42px;line-height:1.8;'>When an authentication message is printed stating that the password has been changed,<br> -->
-								<!-- Please enter your member ID and changed password on the homepage and log in.</p> -->
-								<!-- <p style='padding-left:60px;text-align:left;font-size:12px;color:#AAAAAA;margin-top:17px;'>After logging in, please change to a new password from the Modify Information menu.</p> -->
-								<!-- <p style='padding-left:60px;text-align:left;font-size:13px;color:#170F00;margin-top:32px;'>Member ID<span style='text-align:left;font-size:14px;color:#170F00;margin-left:5px;'>icomes@naver.com</span></p> -->
-								<!-- <p style='padding-left:60px;text-align:left;font-size:13px;color:#170F00;margin-top:11px;'>Temporary password<span style='text-align:left;font-size:14px;color:#170F00;margin-left:5px;'>123456789</span></p> -->
-								<!-- <p style='padding-left:60px;text-align:left;font-size:14px;color:#170F00;margin-top:51px;'>Regards, <br> ISCP</p> -->
-								
-								<a href='https://iscp2023.org/main/login.php' style='cursor: pointer;' target='_blank'><img src='https://iscp2023.org/main/img/mail_button.png' style='display:block; margin:0 auto;'></a>
-							
+			<table width='750' style='border:1px solid #000; border-radius:27px 27px 0 0; padding: 0;'>
+			<tbody>
+				<tr>
+					<td colspan='3'>
+						<img src='https://iscp2023.org/main/img/mail_header.png' width='750' style='width:100%; max-width:100%;'><img src='https://iscp2023.org/main/img/mail_header_bom.png' width='750' style='width:100%; max-width:100%;'>
+					</td>
+				</tr>
+				<tr>
+					<td colspan='3'>
+						<div style='font-weight:bold; text-align:center;font-size: 21px; color: #00666B;padding: 20px 0;'>[ICOMES 2023] Temporary Password</div>
+					</td>
+				</tr>
+				<tr>
+					<td width='74' style='width:74px;'></td>
+					<td>
+						<div>
+							<div style='margin-bottom:20px'>
+								<p style='font-size:15px; font-weight:bold; color:#000; margin:0;'>Member of : {$fname}<br><span style='font-size:14px;color:#170F00;font-weight:normal;'>You requested a temporary password at : {$time}</span></p>
 							</div>
-							<!-- <a href='{$callback_url}' style='display:block;text-decoration:none;text-align:center;width:180px;max-width:180px;background:#fff;margin-left:60px;border:1px solid #585859;border-radius:30px;padding:14px 50px;background:#fff;cursor:pointer;color:#000;'>Change to temporary password</a> -->
-							<img src='https://iscp2023.org/main/img/mail_footer.png' style='width:calc(100% + 80px);margin-left:-40px;margin-top:40px;'>
+							<p style='font-size:15px; font-weight:bold; color:#000; margin:0;'>Dear {$fname},</p>
+							<p style='font-size:14px;color:#170F00;margin-top:14px;'>You can log in to the ICOMES 2023 website using the ID & Temporary Password below and modify your password on the personal information on my page.</p>
+							<table width='586' style='width:586px; border-collapse:collapse; border-top:2px solid #000; width:100%; margin:17px 0;'>
+								<tbody>
+									<tr>
+										<th style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>ID(Email Address)</th>
+										<td style='font-size:14px; padding:10px; border-left:1px solid #000; border-bottom:1px solid #000;'><a href='mailto:{$to}' class='link font_inherit'>{$to}</a></td>
+									</tr>
+									<tr>
+										<th style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>Temporary Password</th>
+										<td style='font-size:14px; padding:10px; border-left:1px solid #000; border-bottom:1px solid #000;'>{$tmp_password}</td>
+									</tr>
+								</tbody>	
+							</table>
+							<p style='color:#f00;'>Click the 'Change to temporary password' button to check your changed log-in information.</p>
 						</div>
+					</td>
+					<td width='74' style='width:74px;'></td>
+				</tr>
+				<tr>
+					<td width='74' style='width:74px;'></td>
+					<td>
+						<div style='text-align: center;'>
+							<a href='https://iscp2023.org/main/login.php'><img src='https://iscp2023.org/main/img/mail_button.png' alt=''></a>
+						</div>
+						<p>Best regards,</p>
+					</td>
+					<td width='74' style='width:74px;'></td>
+				</tr>
+				<tr>
+					<td colspan='3' style='padding-top:50px;'>
+						<img src='https://iscp2023.org/main/img/mail_footer.png' width='750' style='width:100%; max-width:100%;'>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 						";
 		}
 	} else {
 		if ($mail_type == "find_password") {
-			$rawMessageString .= "<div style='width:670px;background-color:#fff;border:1px solid #000;'><img src='https://iscp2023.org/main/img/mail_header.png' style='width:100%;'><img src='https://iscp2023.org/main/img/mail_header_bom.png' style='width:100%; margin-bottom:60px;'><div style='padding:0 40px'><div style='margin-bottom:25px; background-color:#F8F8F8;border-top:2px solid #707070; padding:17px 34px; box-sizing:border-box;'><div style='margin-bottom:40px;'><p style='font-size:15px; font-weight:bold; color:#000; margin:0;'>member of {$fname}, <br>You requested a temporary password at {$time}</p><p style='font-size:14px;color:#AAAAAA;margin-top:14px;'>(If you have never requested a temporary password, please delete the email.)</p><p style='font-size:14px;color:#170F00;margin-top:30px;'>Since our site does not have your password even if you are an administrator,<br>Instead of giving you your password, we're creating a new one and guiding you.<br>Check the password below to change.</p><p style='font-size:14px;color:#FF0000;margin-top:14px;'>Click the Change to temporary password button.</p><p style='font-size:14px;color:#170F00;margin-top:30px;'>When an authentication message is printed stating that the password has been changed,<br>Please enter your member ID and changed password on the homepage and log in.</p><p style='font-size:14px;color:#AAAAAA;margin-top:14px;'>After logging in, please change to a new password from the Modify Information menu.</p><p style='font-size:13px;color:#170F00;margin-top:20px;margin-bottom:5px;'>Member ID<span style='font-size:14px;color:#170F00;margin-left:5px;'>{$to}</span></p><p style='font-size:13px;color:#170F00;margin-top:0px;'>Temporary password<span style='font-size:14px;color:#170F00;margin-left:5px;'>{$tmp_password}</span></p><p style='font-size:14px;color:#170F00;margin-top:40px;'>Regards, <br> ISCP</p></div></div>
-			<div style='text-align: center;'>
-			<a href='{$callback_url}' type='button' style='display: inline-block; width: 300px; height: 35px; line-height: 35px; border-radius: 25px;border: 2px solid #174A77;outline: 2px solid #DFDFDF;background: linear-gradient(to top, #293380, #8CC5D1);font-size: 18px;font-weight: 500;color: #FFFFFF;cursor: pointer; text-decoration: none;'>Change to temporary password</a></div></div><img src='https://iscp2023.org/main/img/mail_footer.png' style='width:100%; margin-top:40px;'>";
+			$rawMessageString .= "<table width='750' style='border:1px solid #000; border-radius:27px 27px 0 0; padding: 0;'>
+			<tbody>
+				<tr>
+					<td colspan='3'>
+						<img src='https://iscp2023.org/main/img/mail_header.png' width='750' style='width:100%; max-width:100%;'><img src='https://iscp2023.org/main/img/mail_header_bom.png' width='750' style='width:100%; max-width:100%;'>
+					</td>
+				</tr>
+				<tr>
+					<td colspan='3'>
+						<div style='font-weight:bold; text-align:center;font-size: 21px; color: #00666B;padding: 20px 0;'>[ISCP 2023] Temporary Password</div>
+					</td>
+				</tr>
+				<tr>
+					<td width='74' style='width:74px;'></td>
+					<td>
+						<div>
+							<div style='margin-bottom:20px'>
+								<p style='font-size:15px; font-weight:bold; color:#000; margin:0;'>Member of : {$fname}<br><span style='font-size:14px;color:#170F00;font-weight:normal;'>You requested a temporary password at : {$time}</span></p>
+							</div>
+							<p style='font-size:15px; font-weight:bold; color:#000; margin:0;'>Dear {$fname},</p>
+							<p style='font-size:14px;color:#170F00;margin-top:14px;'>You can log in to the ISCP 2023 website using the ID & Temporary Password below and modify your password on the personal information on my page.</p>
+							<table width='586' style='width:586px; border-collapse:collapse; border-top:2px solid #000; width:100%; margin:17px 0;'>
+								<tbody>
+									<tr>
+										<th style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>ID(Email Address)</th>
+										<td style='font-size:14px; padding:10px; border-left:1px solid #000; border-bottom:1px solid #000;'><a href='mailto:{$to}' class='link font_inherit'>{$to}</a></td>
+									</tr>
+									<tr>
+										<th style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>Temporary Password</th>
+										<td style='font-size:14px; padding:10px; border-left:1px solid #000; border-bottom:1px solid #000;'>{$tmp_password}</td>
+									</tr>
+								</tbody>	
+							</table>
+							<p style='color:#f00;'>Click the 'Change to temporary password' button to check your changed log-in information.</p>
+						</div>
+					</td>
+					<td width='74' style='width:74px;'></td>
+				</tr>
+				<tr>
+					<td width='74' style='width:74px;'></td>
+					<td>
+						<div style='text-align: center;'>
+							<a href='https://iscp2023.org/main/login.php'><img src='https://iscp2023.org/main/img/mail_button.png' alt='' style='width:250px'></a>
+						</div>
+						<p>Best regards,ISCP</p>
+					</td>
+					<td width='74' style='width:74px;'></td>
+				</tr>
+				<tr>
+					<td colspan='3' style='padding-top:50px;'>
+						<img src='https://iscp2023.org/main/img/mail_footer.png' width='750' style='width:100%; max-width:100%;'>
+					</td>
+				</tr>
+			</tbody>
+		</table>";
 		}
 	}
 
