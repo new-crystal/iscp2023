@@ -265,7 +265,7 @@
 
 
 	// KG INICIS 결제모듈 정보로드
-	include_once(D9_PATH."/plugin/KG_INICIS/inicis_loader.php");
+	include_once(D9_PATH."/plugin/KG_INICIS/inicis_loader_test.php");
 ?>
 
 <?php
@@ -620,7 +620,7 @@
 		<input type="hidden" name="buyeremail" value="test@test.com">
 		<input type="hidden" name="timestamp" value="<?= $timestamp ?>">
 		<input type="hidden" name="signature" value="<?= $sign ?>">
-		<input type="hidden" name="returnUrl" value="https://iscp2023.org/main/registration2_test.php">
+		<input type="hidden" name="returnUrl" value="https://iscp2023.org/main/plugin/KG_INICIS/result_test.php">
 		<input type="hidden" name="closeUrl" value="https://iscp2023.org/main/plugin/KG_INICIS/close.php">
 		<input type="hidden" name="mKey" value="<?= $mKey ?>">
 
@@ -643,7 +643,7 @@
 		<input type="hidden" name="P_EMAIL" value="test@test.com">
 		<input type="hidden" name="P_CHARSET" value="utf8">
 		<input type="hidden" name="P_RESERVED" value="below1000=Y&vbank_receipt=Y&centerCd=Y">
-		<!-- <input type="hidden" name="P_NEXT_URL" value="https://iscp2023.org/main/registration3_test.php"> -->
+		<input type="hidden" name="P_NEXT_URL" value="https://iscp2023.org/main/plugin/KG_INICIS/result_test.php">
     </form>
 </section>
 <script src="./js/script/client/registration.js"></script>

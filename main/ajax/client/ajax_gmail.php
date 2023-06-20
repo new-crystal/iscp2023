@@ -202,7 +202,7 @@ function createMessage($language, $mail_type, $fname, $to, $subject, $time, $tmp
 	if ($language == "ko") {
 		if ($mail_type == "find_password") {
 			$rawMessageString .= "
-			<table width='750' style='border:1px solid #000; border-radius:27px 27px 0 0; padding: 0;'>
+			<table width='750' style='border:1px solid #000; padding: 0;'>
 			<tbody>
 				<tr>
 					<td colspan='3'>
@@ -261,7 +261,7 @@ function createMessage($language, $mail_type, $fname, $to, $subject, $time, $tmp
 		}
 	} else {
 		if ($mail_type == "find_password") {
-			$rawMessageString .= "<table width='750' style='border:1px solid #000; border-radius:27px 27px 0 0; padding: 0;'>
+			$rawMessageString .= "<table width='750' style='border:1px solid #000; padding: 0;'>
 			<tbody>
 				<tr>
 					<td colspan='3'>
