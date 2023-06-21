@@ -65,14 +65,14 @@ $d_days = $intvl->days + 1;
         <?php
         if ($_SESSION["USER"]["idx"] == "") {
         ?>
-            <li><a href="/main/login.php">Login</a></li>
-            <!-- <li><a href="/main/signup.php">Sign up</a></li> -->
-            <!-- <li><a class="pre-sign-up">Sign up</a></li> -->
+        <li><a href="/main/login.php">Login</a></li>
+        <!-- <li><a href="/main/signup.php">Sign up</a></li> -->
+        <!-- <li><a class="pre-sign-up">Sign up</a></li> -->
         <?php
         } else {
         ?>
-            <li><a href="/main/mypage.php">My page</a></li>
-            <li><a class="logout_btn" href="javascript:;">Logout</a></li>
+        <li><a href="/main/mypage.php">My page</a></li>
+        <li><a class="logout_btn" href="javascript:;">Logout</a></li>
         <?php
         }
         ?>
@@ -93,7 +93,9 @@ $d_days = $intvl->days + 1;
                 </ul>
             </li>
             <li class="m_nav_li">
-                <a href="javascript:;" class="<?= (in_array($_page, $_page_config["m2"]) ? "show" : "") ?>"><span>Program</span> <img src="/main/img/icons/nav_arrow.png"></a>
+                <a href="javascript:;"
+                    class="<?= (in_array($_page, $_page_config["m2"]) ? "show" : "") ?>"><span>Program</span> <img
+                        src="/main/img/icons/nav_arrow.png"></a>
                 <ul class="m_sub_nav" style="display:<?= (in_array($_page, $_page_config["m2"]) ? "block" : "none") ?>">
                     <li><a href="/main/program_glance.php" class="page_complete">Program at a glance</a></li>
                     <li><a href="/main/scientific_program1.php" class="page_complete">Scientific Program</a></li>
@@ -102,7 +104,9 @@ $d_days = $intvl->days + 1;
                 </ul>
             </li>
             <li class="m_nav_li">
-                <a href="javascript:;" class="<?= (in_array($_page, $_page_config["m3"]) ? "show" : "") ?>"><span>Abstracts</span> <img src="/main/img/icons/nav_arrow.png"></a>
+                <a href="javascript:;"
+                    class="<?= (in_array($_page, $_page_config["m3"]) ? "show" : "") ?>"><span>Abstracts</span> <img
+                        src="/main/img/icons/nav_arrow.png"></a>
                 <ul class="m_sub_nav" style="display:<?= (in_array($_page, $_page_config["m3"]) ? "block" : "none") ?>">
                     <li><a href="/main/submission_guideline.php" class="page_complete">Abstract Submission</a></li>
                     <!-- <li><a href="/main/lecture_note_submission.php" class="page_complete">Lecture Note Submission<br/>(Invited Speakers)</a></li> -->
@@ -129,9 +133,9 @@ $d_days = $intvl->days + 1;
             <li class="m_nav_li" class="<?= (in_array($_page, $_page_config["m6"]) ? "show" : "") ?>">
                 <a href="javascript:;"><span>Information</span> <img src="/main/img/icons/nav_arrow.png"></a>
                 <ul class="m_sub_nav" style="display:<?= (in_array($_page, $_page_config["m6"]) ? "block" : "none") ?>">
-                    <li><a href="/main/covid_faq.php" class="page_complete">COVID-19</a></li>
+                    <!-- <li><a href="/main/covid_faq.php" class="page_complete">COVID-19</a></li>
                     <li><a href="/main/about_korea.php" class="page_complete">About Korea</a></li>
-                    <li><a href="/main/attraction_seoul.php" class="page_complete">Attractions in Seoul</a></li>
+                    <li><a href="/main/attraction_seoul.php" class="page_complete">Attractions in Seoul</a></li> -->
                     <li><a href="/main/transportation.php" class="page_complete">Transportation</a></li>
                     <li><a href="/main/useful_information.php" class="page_complete">Useful Information</a></li>
                     <li><a href="/main/visa.php" class="page_complete">Visa</a></li>
@@ -158,14 +162,14 @@ $d_days = $intvl->days + 1;
                 <?php
                 if ($_SESSION["USER"]["idx"] == "") {
                 ?>
-                    <li><a href="/main/login.php">Login</a></li>
-                    <li><a href="/main/signup.php">Sign up</a></li>
-                    <!-- <li class="pre"><a>Sign up</a></li> -->
+                <li><a href="/main/login.php">Login</a></li>
+                <li><a href="/main/signup.php">Sign up</a></li>
+                <!-- <li class="pre"><a>Sign up</a></li> -->
                 <?php
                 } else {
                 ?>
-                    <li><a href="/main/mypage.php">My page</a></li>
-                    <li><a class="logout_btn" href="javascript:;">Logout</a></li>
+                <li><a href="/main/mypage.php">My page</a></li>
+                <li><a class="logout_btn" href="javascript:;">Logout</a></li>
                 <?php
                 }
                 ?>
@@ -182,7 +186,8 @@ $d_days = $intvl->days + 1;
                 <ul class="depth01 clearfix">
                     <li class="<?= (in_array($_page, $_page_config["m1"]) ? "active" : "") ?>">
                         <div class="text_center g_h_logo">
-                            <img src="/main/img/TopLogo1.png" alt="" class="pointer" onClick="javascript:location.href='/main/index.php'">
+                            <img src="/main/img/TopLogo1.png" alt="" class="pointer"
+                                onClick="javascript:location.href='/main/index.php'">
                             <!-- <img src="/main/img/TopLogo2.png" alt="" class="pointer"
                                 onClick="javascript:location.href='/main/index.php'">
                             <img src="/main/img/TopLogo3.png" alt="" class="pointer"
@@ -245,15 +250,15 @@ $d_days = $intvl->days + 1;
                         <a href="javascript:;" id="information"><span>Information</span></a>
                         <ul class="sub_nav">
                             <!-- <li><a href="/main/covid_faq.php" class="page_complete">COVID-19</a></li> -->
-                            <li><a href="/main/about_korea.php" class="page_complete">About Korea</a></li>
-                            <li><a href="/main/attraction_seoul.php" class="page_complete">Attractions in Seoul</a>
-                            </li>
-                            <li><a href="/main/transportation.php" class="page_complete">Transportation</a></li>
-                            <li><a href="/main/useful_information.php" class="page_complete">Useful Information</a>
-                            </li>
-                            <li><a href="/main/visa.php" class="page_complete">Visa</a></li>
-                        </ul>
+                            <!-- <li><a href="/main/about_korea.php" class="page_complete">About Korea</a></li>
+                            <li><a href="/main/attraction_seoul.php" class="page_complete">Attractions in Seoul</a> -->
                     </li>
+                    <li><a href="/main/transportation.php" class="page_complete">Transportation</a></li>
+                    <li><a href="/main/useful_information.php" class="page_complete">Useful Information</a>
+                    </li>
+                    <li><a href="/main/visa.php" class="page_complete">Visa</a></li>
+                </ul>
+                </li>
 
                 </ul>
             </div>
@@ -268,41 +273,41 @@ $d_days = $intvl->days + 1;
 <!-- Top btn 추가 : 끝 -->
 
 <script>
-    $(document).ready(function() {
-        $("header .depth01 li ul li a, .m_sub_nav li a").click(function() {
-            if (!$(this).hasClass("page_complete")) {
-                alert("Coming Soon.")
+$(document).ready(function() {
+    $("header .depth01 li ul li a, .m_sub_nav li a").click(function() {
+        if (!$(this).hasClass("page_complete")) {
+            alert("Coming Soon.")
+        }
+    });
+    $(".logout_btn").on("click", function() {
+        $.ajax({
+            url: PATH + "ajax/client/ajax_member.php",
+            type: "GET",
+            data: {
+                flag: "logout"
+            },
+            dataType: "JSON",
+            success: function() {
+                //window.location.replace(PATH);
+                window.location.href = "login.php";
+            },
+            error: function() {
+                alert("일시적으로 로그아웃 요청이 거절되었습니다.");
             }
         });
-        $(".logout_btn").on("click", function() {
-            $.ajax({
-                url: PATH + "ajax/client/ajax_member.php",
-                type: "GET",
-                data: {
-                    flag: "logout"
-                },
-                dataType: "JSON",
-                success: function() {
-                    //window.location.replace(PATH);
-                    window.location.href = "login.php";
-                },
-                error: function() {
-                    alert("일시적으로 로그아웃 요청이 거절되었습니다.");
-                }
-            });
-        });
     });
-    const program = document.querySelector("#program")
-    const abstract = document.querySelector("#abstracts")
-    const registration = document.querySelector("#registration")
-    const sponship = document.querySelector("#sponsorship")
-    const info = document.querySelector("#information")
-    const pre = document.querySelector(".pre")
+});
+const program = document.querySelector("#program")
+const abstract = document.querySelector("#abstracts")
+const registration = document.querySelector("#registration")
+const sponship = document.querySelector("#sponsorship")
+const info = document.querySelector("#information")
+const pre = document.querySelector(".pre")
 
-   // program.addEventListener("click", () => alert("준비 중입니다."))
-   // abstract.addEventListener("click", () => alert("준비 중입니다."))
-   // registration.addEventListener("click", () => alert("준비 중입니다."))
-   // sponship.addEventListener("click", () => alert("준비 중입니다."))
-   // info.addEventListener("click", () => alert("준비 중입니다."))
-    // pre.addEventListener("click", () => alert("준비 중입니다."))
+// program.addEventListener("click", () => alert("준비 중입니다."))
+// abstract.addEventListener("click", () => alert("준비 중입니다."))
+// registration.addEventListener("click", () => alert("준비 중입니다."))
+// sponship.addEventListener("click", () => alert("준비 중입니다."))
+// info.addEventListener("click", () => alert("준비 중입니다."))
+// pre.addEventListener("click", () => alert("준비 중입니다."))
 </script>

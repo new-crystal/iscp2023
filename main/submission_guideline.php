@@ -95,7 +95,7 @@ if ($during_yn === "Y") {
             <div class="details submission_keydate">
                 <ul>
                     <!-- <li>Abstract submission system open: <span>2 MAY, 2022</span></li> -->
-                    <li>Abstract submission system open: <span>TBD</span></li>
+                    <!-- <li>Abstract submission system open: <span>TBD</span></li> -->
                     <li>Abstract submission deadline: <span><span class="red_txt"></span> September 5 (TUE)</span></li>
                     <li>Notification of acceptance: <span>October 6 (FRI)</span></li>
                     <li>Registration deadlines for presenters of accepted abstracts: <span>November 3 (FRI)</span></li>
@@ -108,7 +108,7 @@ if ($during_yn === "Y") {
                 <ul>
                     <li>
                         <div class="step_circle"><span>STEP 01</span></div>
-                        <p class="step_text">Click the Abstract Submission Button (bottom right corner of the page)</p>
+                        <p class="step_text">Click the Abstract Submission Button (Bottom right corner of the page)</p>
                     </li>
                     <li>
                         <div class="step_circle"><span>STEP 02</span></div>

@@ -135,11 +135,11 @@
 		$insert_payment_query = "INSERT payment
 								SET
 									`type` = 0,
-									payment_no = '{$cash_no}',
+									payment_no = '{$moid}',
 									access_no = '{$tid}',
 									payment_type = 0,
 									payment_type_name = '', 
-									deposit_price = {$pnt_amount},
+									deposit_price = {$price},
 									balance_price = 0,
 									payment_status = 2,
 									payment_price_kr = ".($price - ($price*0.1))." ,
@@ -170,9 +170,45 @@
 				sql_query($update_request);
 			}
 
+			$user_idx = $_SESSION["USER"]["idx"];
+			$check_user_query =	"
+										SELECT
+											idx, email, first_name, last_name, title
+										FROM member
+										WHERE idx = {$user_idx}
+										AND is_deleted = 'N'
+									";
+		
+			$check_user = sql_fetch($check_user_query);
+
+			$name = $check_user["last_name"]." ".$check_user["first_name"];
+			$email = $check_user["email"];
+
+			$regustration_query = "SELECT
+										idx, attendance_type, is_score, nation_no, phone,
+										member_type, IF(ksso_member_status > 0, 1, 0) AS member_status, registration_type, affiliation, department,
+										licence_number, specialty_number, nutritionist_number, academy_number, register_path,
+										welcome_reception_yn, day2_breakfast_yn, day2_luncheon_yn, day3_breakfast_yn, day3_luncheon_yn, 
+										conference_info, price,
+										DATE_FORMAT(register_date, '%m-%d-%Y %h:%i:%s') AS register_date
+									FROM request_registration
+									WHERE idx= {$registration_no}";
+
+			$data = sql_fetch($regustration_query);
+
+			$data["name_title"] = $check_user["title"] ?? "";
+			$data["pay_type"] = "card";
+			$data["payment_date"] = date("Y-m-d H:i:s");
+
+			//mailer("en", "payment", $name , $email, "[ICOMES] Payment Confirmation", date("Y-m-d H:i:s"), "", "", 1, "", "", "", "", "", "", "", $data);
+
 			echo json_encode(array(
 					"code"=>200,
-					"msg"=>"success"
+					"msg"=>"success",
+					"name"=>$name,
+					"email"=>$email,
+					"data"=>$data,
+					"flag"=>"payment_inicis"
 			));
 			exit;
 		} else {

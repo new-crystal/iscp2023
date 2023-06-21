@@ -390,14 +390,14 @@ $en = [
 	"payment_address" => "Seoul, Mapo Gu, manrijaero 14 Renaissance Tower 1010",
 
 	"cancellation_tit" => "Cancellation and Refund Policy",
-	"cancellation_txt" => "• Cancellation must be notified to the secretariat in writing by e-mail(secretariat@icola2022.org).<br>• All refunds will be made after the conference.<br>• All bank services charges and all administration fees will be deducted from all congress registration refunds.<br>• Please refer to the following cutoff dates for cancellation.",
+	"cancellation_txt" => "• Cancellation must be notified to the secretariat in writing by e-mail(iscp@into-on.com).<br>• All refunds will be made after the conference.<br>• All bank services charges and all administration fees will be deducted from all congress registration refunds.<br>• Please refer to the following cutoff dates for cancellation.",
 	// "Cancellation_table_category1" => "Date", -> 공통에 있음(date)
 	"cancellation_table_category2" => "Amount to be refunded",
-	"cancellation_table_data1" => "Cancellations received until and including August 6(Sat), 2022",
-	"cancellation_table_data1_1" => "75% refund",
-	"cancellation_table_data2" => "Cancellations received between August 7(Sun) and August 26(Fri), 2022",
-	"cancellation_table_data2_1" => "50% refund",
-	"cancellation_table_data3" => "As of August 27(Sat), 2022",
+	"cancellation_table_data1" => "Cancellations received until and including September 30(Sat), 2023",
+	"cancellation_table_data1_1" => "100% refund",
+	"cancellation_table_data2" => "As of October 1(Sun), 2023",
+	"cancellation_table_data2_1" => "No refund",
+	"cancellation_table_data3" => "As of October 1(Sun), 2023",
 	"cancellation_table_data3_1" => "No refund",
 	"registration_contact_tit" => "Contact for Registration",
 

@@ -33,10 +33,10 @@ $signKey 		= "SU5JTElURV9UUklQTEVERVNfS0VZU1RS"; 			// 웹 결제 signkey(test�
 $timestamp 		= $SignatureUtil->getTimestamp();   			// util에 의해서 자동생성
 
 $use_chkfake	= "Y";											// PC결제 보안강화 사용 ["Y" 고정]
-$orderNumber 	= $mid . "_" . $timestamp; 						// 가맹점 주문번호(가맹점에서 직접 설정)
+//$orderNumber 	= $mid . "_" . $timestamp; 						// 가맹점 주문번호(가맹점에서 직접 설정)
 $orderNumber = $order_code;
-// $price 		= "1000";   
-$price 		= $price;       									// 상품가격(특수기호 제외, 가맹점에서 직접 설정)
+$price 		= 1000;
+//$price 		= $price;       									// 상품가격(특수기호 제외, 가맹점에서 직접 설정)
 
 if ($order_code == "") {
 	die("정보가 유효하지 않은 건입니다. 관리자에게 문의해주세요.");
@@ -66,3 +66,6 @@ $params = array(
 );
 
 $sign2   = $SignatureUtil->makeSignature($params);
+
+/* 기타 */
+$siteDomain = D9_URL;

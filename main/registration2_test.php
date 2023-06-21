@@ -607,22 +607,23 @@
 	</form>
 
     <!-- 23.06.07 HUBDNC_LSH 변경 후 PG사 파라미터 전송 form (PC)-->
-	<form id="SendPayForm_id" method="post" class="mt-5">
+	<form id="SendPayForm_id" method="post" class="mt-5" accept-charset="UTF-8">
 		<!-- 필수 -->
 		<input type="hidden" name="version" value="1.0">
 		<input type="hidden" name="mid" value="<?= $mid ?>">
 		<input type="hidden" name="goodname" value="테스트상품">
-		<input type="hidden" name="oid" value="<?= $orderNumber ?>">
-		<input type="hidden" name="price" value="<?= $price ?>">
+		<input type="hidden" name="oid" value="<?= $order_code ?>">
+		<input type="hidden" name="price" value=1000>
 		<input type="hidden" name="currency" value="WON">
 		<input type="hidden" name="buyername" value="테스터">
 		<input type="hidden" name="buyertel" value="01012345678">
 		<input type="hidden" name="buyeremail" value="test@test.com">
 		<input type="hidden" name="timestamp" value="<?= $timestamp ?>">
 		<input type="hidden" name="signature" value="<?= $sign ?>">
-		<input type="hidden" name="returnUrl" value="https://iscp2023.org/main/plugin/KG_INICIS/result_test.php">
-		<input type="hidden" name="closeUrl" value="https://iscp2023.org/main/plugin/KG_INICIS/close.php">
+		<input type="hidden" name="returnUrl" value="<?=$siteDomain?>/plugin/KG_INICIS/result_test.php">
+		<input type="hidden" name="closeUrl" value="<?=$siteDomain?>/plugin/KG_INICIS/close.php">
 		<input type="hidden" name="mKey" value="<?= $mKey ?>">
+        <input type="hidden" name="charset" value="UTF-8">
 
 		<!-- 기본옵션 -->
 		<input type="hidden" name="gopaymethod" value="Card:Directbank">
@@ -635,15 +636,15 @@
 	<form name="mobileweb" id="" method="post" class="mt-5" accept-charset="euc-kr">
 		<input type="hidden" name="P_INI_PAYMENT" value="">
 		<input type="hidden" name="P_MID" value="<?= $mid ?>">
-		<input type="hidden" name="P_OID" value="mobile_test1234">
-		<input type="hidden" name="P_AMT" value="<?= $price ?>">
+		<input type="hidden" name="P_OID" value="<?= $order_code ?>">
+		<input type="hidden" name="P_AMT" value="1000">
 		<input type="hidden" name="P_GOODS" value="테스트상품">
 		<input type="hidden" name="P_UNAME" value="테스터">
 		<input type="hidden" name="P_MOBILE" value="01012345678">
 		<input type="hidden" name="P_EMAIL" value="test@test.com">
 		<input type="hidden" name="P_CHARSET" value="utf8">
 		<input type="hidden" name="P_RESERVED" value="below1000=Y&vbank_receipt=Y&centerCd=Y">
-		<input type="hidden" name="P_NEXT_URL" value="https://iscp2023.org/main/plugin/KG_INICIS/result_test.php">
+		<input type="hidden" name="P_NEXT_URL" value="<?=$siteDomain?>/plugin/KG_INICIS/mo_result_test.php">
     </form>
 </section>
 <script src="./js/script/client/registration.js"></script>
