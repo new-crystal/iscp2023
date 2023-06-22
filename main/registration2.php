@@ -582,7 +582,7 @@ include_once(D9_PATH . "/plugin/KG_INICIS/inicis_loader.php");
                         } else {
                         ?>
                             <!-- 기존 : jsf__pay(document.order_info) / 테스트 변경 : paybtn() )  -->
-                            <button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="alert('prepare...')">
+                            <button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="alert('prepare to payment...')">
                                 Payment
                             </button>
                         <?php
@@ -620,7 +620,7 @@ include_once(D9_PATH . "/plugin/KG_INICIS/inicis_loader.php");
                         } else {
                         ?>
                             <!-- 기존 : mb_click() / 테스트 변경 : paybtn() )  -->
-                            <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="alert('prepare...')">
+                            <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="alert('prepare to payment...')">
                                 Payment
                             </button>
                         <?php
@@ -650,12 +650,12 @@ include_once(D9_PATH . "/plugin/KG_INICIS/inicis_loader.php");
     </form>
 
     <!-- 23.06.07 HUBDNC_LSH 변경 후 PG사 파라미터 전송 form (PC)-->
-    <form id="SendPayForm_id" name="" method="POST" accept-charset="EUC-KR" class="mt-5">
+    <form id="SendPayForm_id" method="post" class="mt-5" accept-charset="UTF-8">
         <!-- 필수 -->
         <input type="hidden" name="version" value="1.0">
         <input type="hidden" name="mid" value="<?= $mid ?>">
         <input type="hidden" name="goodname" value="ISCP 2023">
-        <input type="hidden" name="oid" value="<?= $orderNumber ?>">
+        <input type="hidden" name="oid" value="<?= $order_code ?>">
         <input type="hidden" name="price" value="<?= $price ?>">
         <input type="hidden" name="currency" value="WON">
         <input type="hidden" name="buyername" value="<?= $name_kor ?>">
@@ -666,23 +666,22 @@ include_once(D9_PATH . "/plugin/KG_INICIS/inicis_loader.php");
         <input type="hidden" name="returnUrl" value="https://iscp2023.org/main/plugin/KG_INICIS/result.php">
         <input type="hidden" name="closeUrl" value="https://iscp2023.org/main/plugin/KG_INICIS/close.php">
         <input type="hidden" name="mKey" value="<?= $mKey ?>">
-
+        <input type="hidden" name="charset" value="UTF-8">
         <!-- 기본옵션 -->
         <input type="hidden" name="gopaymethod" value="Card">
         <!--결제수단-->
-        <input type="hidden" name="offerPeriod" value="">
+
         <input type="hidden" name="acceptmethod" value="HPP(1):below1000:centerCd(Y)">
         <input type="hidden" name="use_chkfake" value="<?= $use_chkfake ?>">
         <input type="hidden" name="verification" value="<?= $sign2 ?>">
-        <!-- 결제 수단별 옵션[카드] -->
-        <input type="hidden" name="nointerest" value="<?= $cardNoInterestQuota ?>">
+
     </form>
 
     <!-- 23.06.07 HUBDNC_LSH 변경 후 PG사 파라미터 전송 form (MOBILE)-->
     <form name="mobileweb" id="" method="post" class="mt-5" accept-charset="euc-kr">
-        <input type="hidden" name="P_INI_PAYMENT" value="CARD">
+        <input type="hidden" name="P_INI_PAYMENT" value="">
         <input type="hidden" name="P_MID" value="<?= $mid ?>">
-        <input type="hidden" name="P_OID" value="<?= $orderNumber ?>">
+        <input type="hidden" name="P_OID" value="<?= $order_code ?>">
         <input type="hidden" name="P_AMT" value="<?= $price ?>">
         <input type="hidden" name="P_GOODS" value="ISCP 2023">
         <input type="hidden" name="P_UNAME" value="<?= $name; ?>">
@@ -690,7 +689,7 @@ include_once(D9_PATH . "/plugin/KG_INICIS/inicis_loader.php");
         <input type="hidden" name="P_EMAIL" value="<?= $email ?>">
         <input type="hidden" name="P_CHARSET" value="utf8">
         <input type="hidden" name="P_RESERVED" value="below1000=Y&vbank_receipt=Y&centerCd=Y">
-        <input type="hidden" name="P_NEXT_URL" value="https://iscp2023.org/main/plugin/KG_INICIS/result.php">
+        <input type="hidden" name="P_NEXT_URL" value="https://iscp2023.org/main/plugin/KG_INICIS/mo_result_test.php">
     </form>
 
     <div class="popup cancel_pop">

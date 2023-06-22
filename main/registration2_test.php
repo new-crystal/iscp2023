@@ -299,588 +299,612 @@
 <!--결제 관련 css ldh 추가 2022-04-20-->
 <!-- <link href="./plugin/php_kcp_api_pay_sample/static/css/style.css" rel="stylesheet" type="text/css" id="cssLink"/> -->
 <style>
-	/*2022-05-12 ldh 추가*/
-	/*.double_btn {*/
-	/*	margin-right:10px;*/
-	/*}*/
-	/*.mb_double_btn {*/
-	/*	margin-bottom:10px;*/
-	/*}*/
-	.promote_code2 {
-		margin-top:10px;
-	}
-	.table_wrap {
-		overflow-y: hidden;
-	}
-	.detail_table td:after {
-		width: calc(102% - 24px);
-	}
+/*2022-05-12 ldh 추가*/
+/*.double_btn {*/
+/*	margin-right:10px;*/
+/*}*/
+/*.mb_double_btn {*/
+/*	margin-bottom:10px;*/
+/*}*/
+.promote_code2 {
+    margin-top: 10px;
+}
+
+.table_wrap {
+    overflow-y: hidden;
+}
+
+.detail_table td:after {
+    width: calc(102% - 24px);
+}
 </style>
 <!-- 23.06.07 HUBDNC_LSH 변경 PG사 정보 -->
 <!--테스트 JS-->
-<script language="javascript" type="text/javascript" src="https://stgstdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script>
+<script language="javascript" type="text/javascript" src="https://stgstdpay.inicis.com/stdjs/INIStdPay.js"
+    charset="UTF-8"></script>
 <!--운영 JS>-->
 <!-- <script language="javascript" type="text/javascript" src="https://stdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script> -->
 <script type="text/javascript">
-	// 23.06.07 HUBDNC_LSH 변경 PG사 결제버튼 스크립트 (PC)
-	function paybtn() {
-		INIStdPay.pay('SendPayForm_id');
-	}
+// 23.06.07 HUBDNC_LSH 변경 PG사 결제버튼 스크립트 (PC)
+function paybtn() {
+    INIStdPay.pay('SendPayForm_id');
+}
 
-	// 23.06.07 HUBDNC_LSH 변경 PG사 결제버튼 스크립트 (MOBILE)
-	function on_pay() {
-        let payment_methods = parseInt($("input[name=payment_methods]:checked").val());
+// 23.06.07 HUBDNC_LSH 변경 PG사 결제버튼 스크립트 (MOBILE)
+function on_pay() {
+    let payment_methods = parseInt($("input[name=payment_methods]:checked").val());
 
-        // payment methods 선택에 따라 모바일 P_INI_PAYMENT(지불방식) 변경
-        if(payment_methods == 0){
-            $('input[name="P_INI_PAYMENT"]').val("CARD");
-        } else if(payment_methods == 1){
-            $('input[name="P_INI_PAYMENT"]').val("BANK");
-        }
-
-        myform = document.mobileweb;
-        myform.action = "https://mobile.inicis.com/smart/payment/";
-        myform.target = "_self";
-        myform.submit();
+    // payment methods 선택에 따라 모바일 P_INI_PAYMENT(지불방식) 변경
+    if (payment_methods == 0) {
+        $('input[name="P_INI_PAYMENT"]').val("CARD");
+    } else if (payment_methods == 1) {
+        $('input[name="P_INI_PAYMENT"]').val("BANK");
     }
+
+    myform = document.mobileweb;
+    myform.action = "https://mobile.inicis.com/smart/payment/";
+    myform.target = "_self";
+    myform.submit();
+}
 </script>
 <section class="container submit_application payment">
-	<div class="sub_background_box">
-		<div class="sub_inner">
-			<div>
-				<h2>Registration</h2>
-				<ul class="clearfix">
-					<li>Home</li>
-					<li>Registration</li>
-					<li>Payment</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<form name="order_info" method="post" action="./plugin/NHNKCP/sample/pp_cli_hub.php">
-		<div class="inner bottom_short">
-			<div class="input_area">
-				<!-- content 1 -->
-				<div class="circle_title"><?=$locale("registration_info_tit")?></div>
-				<div class="details">
-					<p><?=$locale("registration_info_txt")?></p>
-				</div>
-				<div class="table_wrap">
-					<table class="table detail_table">
-						<colgroup>
-							<col class="col_th">
-							<col width="*">
-						</colgroup>
-						<tbody>
-						<tr>
-							<th><?=$locale("id")?></th>
-							<td><?=$email?></td>
-							<input type="hidden" name="buyr_mail" value="<?=$email?>" />
-						</tr>
-						<tr>
-							<th>Name(Eng)</th>
-							<td><?=$first_name?> <?=$last_name?></td>
-						<?php
+    <div class="sub_background_box">
+        <div class="sub_inner">
+            <div>
+                <h2>Registration</h2>
+                <ul class="clearfix">
+                    <li>Home</li>
+                    <li>Registration</li>
+                    <li>Payment</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <form name="order_info" method="post" action="./plugin/NHNKCP/sample/pp_cli_hub.php">
+        <div class="inner bottom_short">
+            <div class="input_area">
+                <!-- content 1 -->
+                <div class="circle_title"><?=$locale("registration_info_tit")?></div>
+                <div class="details">
+                    <p><?=$locale("registration_info_txt")?></p>
+                </div>
+                <div class="table_wrap">
+                    <table class="table detail_table">
+                        <colgroup>
+                            <col class="col_th">
+                            <col width="*">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th><?=$locale("id")?></th>
+                                <td><?=$email?></td>
+                                <input type="hidden" name="buyr_mail" value="<?=$email?>" />
+                            </tr>
+                            <tr>
+                                <th>Name(Eng)</th>
+                                <td><?=$first_name?> <?=$last_name?></td>
+                                <?php
 							if($nation_no == 25) {
 						?>
-								<!--여기 혹시 모르니 주의-->
-								<input type="hidden" name="buyr_name" value="<?=$name_kor; ?>" />
-						<?php
+                                <!--여기 혹시 모르니 주의-->
+                                <input type="hidden" name="buyr_name" value="<?=$name_kor; ?>" />
+                                <?php
 							} else {
 						?>
-								<input type="hidden" name="buyr_name" value="<?=$first_name?> <?=$last_name?>" />
-						<?php
+                                <input type="hidden" name="buyr_name" value="<?=$first_name?> <?=$last_name?>" />
+                                <?php
 							}
 						?>
 
-						</tr>
-					<?php
+                            </tr>
+                            <?php
 						if($nation_no == 25) {
 					?>
-							<tr>
-								<th>Name(Kor)</th>
-								<td><?=$name_kor; ?></td>
-							</tr>
-					<?php
+                            <tr>
+                                <th>Name(Kor)</th>
+                                <td><?=$name_kor; ?></td>
+                            </tr>
+                            <?php
 						}
 					?>
-						<tr>
-							<th><?=$locale("country")?></th>
-							<td><?=$nation?></td>
-						</tr>
-						<tr>
-							<th>Category</th>
-							<td><?= $member_type; ?></td>
-						</tr>
-						<tr>
-							<th>Others</th>
-							<td>
-								Welcome Reception (17:10-20:00, 15 Sep (Thu), 2022): <?= $welcome_reception_yn?> </br>
-								Day 1 – Luncheon Symposium (12:00-12:50, 15 Sep (Thu), 2022): <?= $day1_luncheon_yn?> </br>
-								Day 2 – Breakfast Symposium (08:00-09:00, 16 Sep (Fri), 2022): <?= $day2_breakfast_yn?> </br>
-								Day 2 - Luncheon Symposium (12:00-12:50, 16 Sep (Fri), 2022): <?= $day2_luncheon_yn?> </br>
-								Day 3 – Breakfast Symposium (08:00-09:00, 17 Sep (Sat), 2022): <?= $day3_breakfast_yn?> </br>
-								Day 3 - Luncheon Symposium (12:05-12:55, 17 Sep (Sat), 2022): <?= $day3_luncheon_yn?> </br>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="2">
-							<?php
+                            <tr>
+                                <th><?=$locale("country")?></th>
+                                <td><?=$nation?></td>
+                            </tr>
+                            <tr>
+                                <th>Category</th>
+                                <td><?= $member_type; ?></td>
+                            </tr>
+                            <tr>
+                                <th>Others</th>
+                                <td>
+                                    Welcome Reception (17:10-20:00, 15 Sep (Thu), 2022): <?= $welcome_reception_yn?>
+                                    </br>
+                                    Day 1 – Luncheon Symposium (12:00-12:50, 15 Sep (Thu), 2022):
+                                    <?= $day1_luncheon_yn?> </br>
+                                    Day 2 – Breakfast Symposium (08:00-09:00, 16 Sep (Fri), 2022):
+                                    <?= $day2_breakfast_yn?> </br>
+                                    Day 2 - Luncheon Symposium (12:00-12:50, 16 Sep (Fri), 2022):
+                                    <?= $day2_luncheon_yn?> </br>
+                                    Day 3 – Breakfast Symposium (08:00-09:00, 17 Sep (Sat), 2022):
+                                    <?= $day3_breakfast_yn?> </br>
+                                    Day 3 - Luncheon Symposium (12:05-12:55, 17 Sep (Sat), 2022):
+                                    <?= $day3_luncheon_yn?> </br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <?php
 								if($nation_no == 25) {
 							?>
-									<p class="bold">ISCP 2023 개최 정보를 어떻게 알게 되셨나요?</p>
-									</br>
-							<?php
+                                    <p class="bold">ISCP 2023 개최 정보를 어떻게 알게 되셨나요?</p>
+                                    </br>
+                                    <?php
 								} else {
 							?>
-									<p class="bold">How did you hear about the ISCP 2023?</p>
-									</br>
+                                    <p class="bold">How did you hear about the ISCP 2023?</p>
+                                    </br>
 
-							<?php
+                                    <?php
 								}
 								echo $register_path_value;
 							?>
-							</td>
+                                </td>
 
-						</tr>
-						</tbody>
-					</table>
-				</div>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-				<div class="table_wrap form_types">
-					<div class="circle_title">Payment</div>
-					<table class="table detail_table">
-						<colgroup>
-							<col class="col_th">
-							<col width="*">
-						</colgroup>
-						<tbody>
-						<tr>
-							<th>Registration fee</th>
-							<td><?=(($nation_no != 25) ? $price_name." ".number_format($price_eyes) : number_format($price_eyes)."".$price_name)?></td>
-							<!-- <input type="hidden" name="good_mny" value="100" maxlength="9" /> -->
-							<input type="hidden" name="good_mny" value="<?= $price_payment ?>" maxlength="9" />
-						</tr>
-						<tr>
-							<th>Promotion code</th>
-							<td>
-								<div class="file_submission input_2btn promote_code">
-									<input class="en_num_keyup" type="text" name="promotion_code" placeholder="Promotion code" maxlength="11" value="<?= $promotion_code_value; ?>">
-									<button type="button" class="btn dark_gray_btn" onclick="apply()">Apply</button>
-								</div>
-								<div class="code_result"></div>
-								<div class="file_submission input_2btn promote_code promote_code2">
-									<input class="ko_en_keyup" type="text" name="recommended_by" placeholder="Recommended by" maxlength="50" value="<?= $recommended_by; ?>">
-									<input type="hidden" name="hidden_code">
-									<button type="button" class="btn dark_gray_btn" onclick="complete()">Complete</button>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<th class="red_txt bold">Total registration fee</th>
-							<td class="red_txt bold"><?=(($nation_no != 25) ? $price_name." ".number_format($price) : number_format($price)."".$price_name)?></td>
-						</tr>
-					<?php
+                <div class="table_wrap form_types">
+                    <div class="circle_title">Payment</div>
+                    <table class="table detail_table">
+                        <colgroup>
+                            <col class="col_th">
+                            <col width="*">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th>Registration fee</th>
+                                <td><?=(($nation_no != 25) ? $price_name." ".number_format($price_eyes) : number_format($price_eyes)."".$price_name)?>
+                                </td>
+                                <!-- <input type="hidden" name="good_mny" value="100" maxlength="9" /> -->
+                                <input type="hidden" name="good_mny" value="<?= $price_payment ?>" maxlength="9" />
+                            </tr>
+                            <tr>
+                                <th>Promotion code</th>
+                                <td>
+                                    <div class="file_submission input_2btn promote_code">
+                                        <input class="en_num_keyup" type="text" name="promotion_code"
+                                            placeholder="Promotion code" maxlength="11"
+                                            value="<?= $promotion_code_value; ?>">
+                                        <button type="button" class="btn dark_gray_btn" onclick="apply()">Apply</button>
+                                    </div>
+                                    <div class="code_result"></div>
+                                    <div class="file_submission input_2btn promote_code promote_code2">
+                                        <input class="ko_en_keyup" type="text" name="recommended_by"
+                                            placeholder="Recommended by" maxlength="50" value="<?= $recommended_by; ?>">
+                                        <input type="hidden" name="hidden_code">
+                                        <button type="button" class="btn dark_gray_btn"
+                                            onclick="complete()">Complete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="red_txt bold">Total registration fee</th>
+                                <td class="red_txt bold">
+                                    <?=(($nation_no != 25) ? $price_name." ".number_format($price) : number_format($price)."".$price_name)?>
+                                </td>
+                            </tr>
+                            <?php
 						if($promotion_code != 0) {
 					?>
-							<tr>
-								<th>Payment methods</th>
-								<td>
-									<div class="radio_wrap">
-										<ul class="flex">
-											<li>
-												<input <?= $payment_methods_select == 0 ? "checked" : "";?> type="radio" class="radio required" id="pay_type1" name="payment_methods" value="0">
-												<label for="pay_type1"><?= ($nation_no != 25) ? "Credit Card" : "카드 결제";?></label>
-											</li>
-											<li>
-												<input <?= $payment_methods_select == 1 ? "checked" : "";?> type="radio" class="radio required" id="pay_type2" name="payment_methods" value="1">
-												<label for="pay_type2"><?= ($nation_no != 25) ? "Bank Transfer" : "계좌 이체";?></label>
-											</li>
-										</ul>
-									</div>
-								</td>
-							</tr>
-					<?php
+                            <tr>
+                                <th>Payment methods</th>
+                                <td>
+                                    <div class="radio_wrap">
+                                        <ul class="flex">
+                                            <li>
+                                                <input <?= $payment_methods_select == 0 ? "checked" : "";?> type="radio"
+                                                    class="radio required" id="pay_type1" name="payment_methods"
+                                                    value="0">
+                                                <label
+                                                    for="pay_type1"><?= ($nation_no != 25) ? "Credit Card" : "카드 결제";?></label>
+                                            </li>
+                                            <li>
+                                                <input <?= $payment_methods_select == 1 ? "checked" : "";?> type="radio"
+                                                    class="radio required" id="pay_type2" name="payment_methods"
+                                                    value="1">
+                                                <label
+                                                    for="pay_type2"><?= ($nation_no != 25) ? "Bank Transfer" : "계좌 이체";?></label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <?php
 						}
 					?>
 
-						</tbody>
-					</table>
-				</div>
-				<!-- content 2 -->
-				<!-- <div class="details"> -->
-				<!-- 	<p><?=$locale("total_price")?> <span class="point_txt s_bold"><?=(($nation_no != 25) ? $price_name." ".number_format($price) : number_format($price)."".$price_name)?></span></p> -->
-				<!-- </div> -->
-				<div class="details">
-					<p><?=$locale("cancellation_tit")?> <a href="javascript:;" class="red_txt cancel_btn">Details &gt;</a></p>
-				</div>
-				<!-- btn_wrap -->
-				<!-- 기존 버튼 마크업
+                        </tbody>
+                    </table>
+                </div>
+                <!-- content 2 -->
+                <!-- <div class="details"> -->
+                <!-- 	<p><?=$locale("total_price")?> <span class="point_txt s_bold"><?=(($nation_no != 25) ? $price_name." ".number_format($price) : number_format($price)."".$price_name)?></span></p> -->
+                <!-- </div> -->
+                <div class="details">
+                    <p><?=$locale("cancellation_tit")?> <a href="javascript:;" class="red_txt cancel_btn">Details
+                            &gt;</a></p>
+                </div>
+                <!-- btn_wrap -->
+                <!-- 기존 버튼 마크업
 				<div class="btn_wrap">
 					<button type="button" class="btn submit" onclick="kgpay();"><?=$locale("d_payment_btn")?></button>
 					<?php if($_SESSION["language"] != "ko"){?>
 						<button type="button" class="btn submit" onclick="payment();"><?=$locale("payment_btn")?></button>
 					<?php }?>
 				</div>-->
-				<!-- 220324 기존에는 결제방식이 '국내/해외'로 분리되었으나, 현재는 1개의 버튼으로 통일됨 (HUBDNC LJH2)-->
+                <!-- 220324 기존에는 결제방식이 '국내/해외'로 분리되었으나, 현재는 1개의 버튼으로 통일됨 (HUBDNC LJH2)-->
 
                 <!--  23.06.0 HUBDNC_LSH PC 결제버튼 기능   -->
-				<div class="pager_btn_wrap pc_only centerT pager_btn_wrap half">
-					<button type="button" class="btn green_btn pc-wd-3" onclick="prev(<?=$registration_idx;?>)">Prev</button>
+                <div class="pager_btn_wrap pc_only centerT pager_btn_wrap half">
+                    <button type="button" class="btn green_btn pc-wd-3"
+                        onclick="prev(<?=$registration_idx;?>)">Prev</button>
 
-				<?php
+                    <?php
 					if($payment_methods_select == 0) {
 						if($promotion_code == 0) {
 							//100% 할인
 				?>
-							<button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="paybtn()">
-								Payment
-							</button>
-				<?php
+                    <button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="paybtn()">
+                        Payment
+                    </button>
+                    <?php
 						} else {
 				?>
-							<!-- 기존 : jsf__pay(document.order_info) / 테스트 변경 : paybtn() )  -->
-							<button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="paybtn()">
-								Payment
-							</button>
-				<?php
+                    <!-- 기존 : jsf__pay(document.order_info) / 테스트 변경 : paybtn() )  -->
+                    <button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="paybtn()">
+                        Payment
+                    </button>
+                    <?php
 						}
 					} else {
 						if($promotion_code == 0) {
 				?>
-							<!-- 기존 : code_100() / 테스트 변경 : paybtn() )  -->
-							<button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="paybtn()">
-								Payment
-							</button>
-				<?php
+                    <!-- 기존 : code_100() / 테스트 변경 : paybtn() )  -->
+                    <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="paybtn()">
+                        Payment
+                    </button>
+                    <?php
 						} else {
 				?>
-							<!-- 기존 : transfer() / 테스트 변경 : paybtn() )  -->
-							<button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="paybtn()">
-								Payment
-							</button>
-				<?php
+                    <!-- 기존 : transfer() / 테스트 변경 : paybtn() )  -->
+                    <button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="paybtn()">
+                        Payment
+                    </button>
+                    <?php
 						}
 					}
 				?>
-				</div>
+                </div>
                 <!--  23.06.0 HUBDNC_LSH 모바일 결제버튼 기능          -->
-				<div class=" pager_btn_wrap mb_only centerT pager_btn_wrap half">
-					<button type="button" class="btn green_btn pc-wd-3" onclick="prev(<?=$registration_idx;?>)">Prev</button>
-				<?php
+                <div class=" pager_btn_wrap mb_only centerT pager_btn_wrap half">
+                    <button type="button" class="btn green_btn pc-wd-3"
+                        onclick="prev(<?=$registration_idx;?>)">Prev</button>
+                    <?php
 					if($payment_methods_select == 0) {
 						if($promotion_code == 0) {
 				?>
-							<button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="on_pay()">
-								Payment
-							</button>
-				<?php
+                    <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="on_pay()">
+                        Payment
+                    </button>
+                    <?php
 						} else {
 				?>
-                            <!-- 기존 : mb_click() / 테스트 변경 : paybtn() )  -->
-							<button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="on_pay()">
-								Payment
-							</button>
-				<?php
+                    <!-- 기존 : mb_click() / 테스트 변경 : paybtn() )  -->
+                    <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="on_pay()">
+                        Payment
+                    </button>
+                    <?php
 						}
 					} else {
 						if($promotion_code == 0) {
 				?>
-                            <!-- 기존 : code_100() / 테스트 변경 : paybtn() )  -->
-							<button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="on_pay()">
-								Payment
-							</button>
-				<?php
+                    <!-- 기존 : code_100() / 테스트 변경 : paybtn() )  -->
+                    <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="on_pay()">
+                        Payment
+                    </button>
+                    <?php
 						} else {
 				?>
-                            <!-- 기존 : transfer() / 테스트 변경 : paybtn() )  -->
-							<button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="on_pay()">
-								Payment
-							</button>
-				<?php
+                    <!-- 기존 : transfer() / 테스트 변경 : paybtn() )  -->
+                    <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="on_pay()">
+                        Payment
+                    </button>
+                    <?php
 						}
 					}
 				?>
-				</div>
-			</div>
-		</div>
-	</form>
+                </div>
+            </div>
+        </div>
+    </form>
 
     <!-- 23.06.07 HUBDNC_LSH 변경 후 PG사 파라미터 전송 form (PC)-->
-	<form id="SendPayForm_id" method="post" class="mt-5" accept-charset="UTF-8">
-		<!-- 필수 -->
-		<input type="hidden" name="version" value="1.0">
-		<input type="hidden" name="mid" value="<?= $mid ?>">
-		<input type="hidden" name="goodname" value="테스트상품">
-		<input type="hidden" name="oid" value="<?= $order_code ?>">
-		<input type="hidden" name="price" value=1000>
-		<input type="hidden" name="currency" value="WON">
-		<input type="hidden" name="buyername" value="테스터">
-		<input type="hidden" name="buyertel" value="01012345678">
-		<input type="hidden" name="buyeremail" value="test@test.com">
-		<input type="hidden" name="timestamp" value="<?= $timestamp ?>">
-		<input type="hidden" name="signature" value="<?= $sign ?>">
-		<input type="hidden" name="returnUrl" value="<?=$siteDomain?>/plugin/KG_INICIS/result_test.php">
-		<input type="hidden" name="closeUrl" value="<?=$siteDomain?>/plugin/KG_INICIS/close.php">
-		<input type="hidden" name="mKey" value="<?= $mKey ?>">
-        <input type="hidden" name="charset" value="UTF-8">
+    <form id="SendPayForm_id" method="post" class="mt-5">
+        <!-- 필수 -->
+        <input type="hidden" name="version" value="1.0">
+        <input type="hidden" name="mid" value="<?= $mid ?>">
+        <input type="hidden" name="goodname" value="테스트상품">
+        <input type="hidden" name="oid" value="<?= $orderNumber ?>">
+        <input type="hidden" name="price" value="<?= $price ?>">
+        <input type="hidden" name="currency" value="WON">
+        <input type="hidden" name="buyername" value="테스터">
+        <input type="hidden" name="buyertel" value="01012345678">
+        <input type="hidden" name="buyeremail" value="test@test.com">
+        <input type="hidden" name="timestamp" value="<?= $timestamp ?>">
+        <input type="hidden" name="signature" value="<?= $sign ?>">
+        <input type="hidden" name="returnUrl" value="https://iscp2023.org/main/plugin/KG_INICIS/result_test.php">
+        <input type="hidden" name="closeUrl" value="https://iscp2023.org/main/plugin/KG_INICIS/close.php">
+        <input type="hidden" name="mKey" value="<?= $mKey ?>">
 
-		<!-- 기본옵션 -->
-		<input type="hidden" name="gopaymethod" value="Card:Directbank">
-		<input type="hidden" name="acceptmethod" value="HPP(1):below1000:centerCd(Y)">
-		<input type="hidden" name="use_chkfake" value="<?= $use_chkfake ?>">
-		<input type="hidden" name="verification" value="<?= $sign2 ?>">
-	</form>
+        <!-- 기본옵션 -->
+        <input type="hidden" name="gopaymethod" value="Card">
+        <input type="hidden" name="acceptmethod" value="HPP(1):below1000:centerCd(Y)">
+        <input type="hidden" name="use_chkfake" value="<?= $use_chkfake ?>">
+        <input type="hidden" name="verification" value="<?= $sign2 ?>">
+    </form>
 
     <!-- 23.06.07 HUBDNC_LSH 변경 후 PG사 파라미터 전송 form (MOBILE)-->
-	<form name="mobileweb" id="" method="post" class="mt-5" accept-charset="euc-kr">
-		<input type="hidden" name="P_INI_PAYMENT" value="">
-		<input type="hidden" name="P_MID" value="<?= $mid ?>">
-		<input type="hidden" name="P_OID" value="<?= $order_code ?>">
-		<input type="hidden" name="P_AMT" value="1000">
-		<input type="hidden" name="P_GOODS" value="테스트상품">
-		<input type="hidden" name="P_UNAME" value="테스터">
-		<input type="hidden" name="P_MOBILE" value="01012345678">
-		<input type="hidden" name="P_EMAIL" value="test@test.com">
-		<input type="hidden" name="P_CHARSET" value="utf8">
-		<input type="hidden" name="P_RESERVED" value="below1000=Y&vbank_receipt=Y&centerCd=Y">
-		<input type="hidden" name="P_NEXT_URL" value="<?=$siteDomain?>/plugin/KG_INICIS/mo_result_test.php">
+    <form name="mobileweb" id="" method="post" class="mt-5" accept-charset="euc-kr">
+        <input type="hidden" name="P_INI_PAYMENT" value="">
+        <input type="hidden" name="P_MID" value="<?= $mid ?>">
+        <input type="hidden" name="P_OID" value="mobile_test1234">
+        <input type="hidden" name="P_AMT" value="<?= $price ?>">
+        <input type="hidden" name="P_GOODS" value="테스트상품">
+        <input type="hidden" name="P_UNAME" value="테스터">
+        <input type="hidden" name="P_MOBILE" value="01012345678">
+        <input type="hidden" name="P_EMAIL" value="test@test.com">
+        <input type="hidden" name="P_CHARSET" value="utf8">
+        <input type="hidden" name="P_RESERVED" value="below1000=Y&vbank_receipt=Y&centerCd=Y">
+        <input type="hidden" name="P_NEXT_URL" value="https://iscp2023.org/main/plugin/KG_INICIS/result_test.php">
     </form>
 </section>
 <script src="./js/script/client/registration.js"></script>
 <script>
-	function prev(idx){
-	   window.location.replace("registration_test.php?idx="+idx);
-	}
-	/* 23.06.07 HUBDNC_LSH 기존 작성된 부분 주석 처리 */
-	/*
-	function code_100() {
-	    var registration_idx = "<?php //= $registration_idx; ?>//";
-	    var nation_no = "<?php //= $nation_no ?>//";
-	
-	    var data = {
-	        "flag"				: "code_100_payment",
-	        "registration_idx"	: registration_idx,
-	        "nation_no"			: nation_no
-	    };
-	
-	    $.ajax({
-	        url : PATH+"ajax/client/ajax_payment.php",
-	        type : "POST",
-	        data : data,
-	        dataType : "JSON",
-	        success : function(res){
-	            if(res.code == 200) {
-	                window.location.replace("mypage_registration.php");
-	            } else if(res.code == 400){
-	                alert(res.msg);
-	                return;
-	            }
-	        }
-	    });
-	}
-	
-	function apply() {
-	
-	    var promotion_code = $("input[name=promotion_code]").val();
-	    var registration_idx = "<?php //= $registration_idx; ?>//";
-	
-	    var data = {
-	        "flag"				:	"promotion_code_update",
-	        "promotion_code"	:	promotion_code,
-	        "registration_idx"	:	registration_idx
-	    };
-	
-	    $.ajax({
-	        url : PATH+"ajax/client/ajax_registration.php",
-	        type : "POST",
-	        data : data,
-	        dataType : "JSON",
-	        success : function(res){
-	            if(res.code == 200) {
-	                if(res.promotion_code_value == 0) {
-	                    $(".code_result").html(res.promotion_code+" [100% Discount]");
-	                } else if(res.promotion_code_value == 1 || res.promotion_code_value == 2 || res.promotion_code_value == 4) {
-	                    $(".code_result").html(res.promotion_code+" [50% Discount]");
-	                } else if(res.promotion_code_value == 3) {
-	                    //$(".code_result").html("Promotion code used");
-	                    alert("Promotion code used");
-	                    $("input[name=hidden_code]").val("");
-	                }
-	                $("input[name=hidden_code]").val(res.promotion_code_value);
-	                //window.location.replace("registration2.php?idx="+registration_idx);
-	            } else if(res.code == 401){
-	                $(".code_result").html("Invalid promotion code");
-	                $("input[name=hidden_code]").val("");
-	                return false;
-	            }
-	        }
-	    });
-	}
-	
-	function complete() {
-	
-	    var registration_idx = "<?php //= $registration_idx; ?>//";
-	    var hidden_code = $("input[name=hidden_code]").val();
-	
-	    if(!hidden_code || hidden_code == 3) {
-	        alert("Please check the promotion code");
-	        return;
-	    }
-	
-	    var recommended_by = $("input[name=recommended_by]").val().trim();
-	    var recommended_by_trim = "";
-	
-	    //추천인 유효성
-	    if(!recommended_by) {
-	        alert("Invalid Recommended by");
-	        return;
-	    }
-	
-	    recommended_by_trim = recommended_by.toLowerCase();
-	    recommended_by_trim = recommended_by_trim.replace(/ /g,"")
-	
-	    var data = {
-	        "flag"					: "promotion_code_complate",
-	        "recommended_by"		: recommended_by,
-	        "recommended_by_trim"	: recommended_by_trim,
-	        "hidden_code"			: hidden_code,
-	        "registration_idx"		: registration_idx
-	    };
-	
-	    $.ajax({
-	        url : PATH+"ajax/client/ajax_registration.php",
-	        type : "POST",
-	        data : data,
-	        dataType : "JSON",
-	        success : function(res){
-	            if(res.code == 200) {
-	                window.location.replace("registration2.php?idx="+registration_idx);
-	            } else if(res.code == 400){
-	                alert(res.msg);
-	                return;
-	            } else if(res.code == 401) {
-	                alert("Invalid promotion code");
-	                return;
-	            } else if(res.code == 402) {
-	                alert("Promotion code used");
-	                return;
-	            }
-	        }
-	    });
-	}
-	
-	$('.cancel_btn').on('click',function(){
-	    $('.cancel_pop').show();
-	});
-	
-	function move() {
-	    location.replace('/main/registration3.php')
-	}
-	
-	function error() {
-	    setTimeout(function() {
-	        var error_msg = $("input[name=resmsg]").val();
-	        alert(locale(language.value)("payment_fail_msg")+" "+locale(language.value)("retry_msg")+"\n"+error_msg);
-	    },50)
-	}
-	
-	function mb_click() {
-	
-	    ajax_save();
-	
-	    document.getElementById("mb_submit").click();
-	    //kcp_AJAX();
-	}
-	*/
+function prev(idx) {
+    window.location.replace("registration_test.php?idx=" + idx);
+}
+/* 23.06.07 HUBDNC_LSH 기존 작성된 부분 주석 처리 */
+/*
+function code_100() {
+    var registration_idx = "<?php //= $registration_idx; ?>//";
+    var nation_no = "<?php //= $nation_no ?>//";
 
-	/* 23.06.07 HUBDNC_LSH 기존 작성된 부분 주석 처리 */
-	/*
-	$(document).on("change", "input[name=payment_methods]", function(){
-	    var promotion_code = "<?php //= $promotion_code; ?>//";
-	    if($(this).val() == 0) {
-	        $("#pc_payment_btn").removeAttr("onclick");
-	        $("#mb_payment_btn").removeAttr("onclick");
-	
-	        if(promotion_code == 0) {
-	            $("#pc_payment_btn").attr("onclick", "code_100()");
-	            $("#mb_payment_btn").attr("onclick", "code_100()");
-	        } else {
-	            $("#pc_payment_btn").attr("onclick", "jsf__pay(document.order_info);");
-	            $("#mb_payment_btn").attr("onclick", "mb_click()");
-	        }
-	    } else {
-	        $("#pc_payment_btn").removeAttr("onclick");
-	        $("#mb_payment_btn").removeAttr("onclick");
-	
-	        if(promotion_code == 0) {
-	            $("#pc_payment_btn").attr("onclick", "code_100()");
-	            $("#mb_payment_btn").attr("onclick", "code_100()");
-	        } else {
-	            $("#pc_payment_btn").attr("onclick", "transfer();");
-	            $("#mb_payment_btn").attr("onclick", "transfer();");
-	        }
-	    }
-	});
-	
-	function transfer() {
-	    var nation_no = "<?php //= $nation_no; ?>//";
-	
-	    var registration_idx = "<?php //= $registration_idx; ?>//";
-	    var payment_methods = $("input[name=payment_methods]:checked").val();
-	
-	    ajax_save();
-	    window.location.replace(PATH+"registration_account.php?idx="+registration_idx+"&nation_no="+nation_no);
-	}
-	
-	function ajax_save() {
-	    var registration_idx = "<?php //= $registration_idx; ?>//";
-	    var payment_methods = $("input[name=payment_methods]:checked").val();
-	    var data = new FormData();
-	    data.append("flag", "method_update");
-	    data.append("idx", registration_idx);
-	    data.append("payment_methods", payment_methods)
-	
-	    $.ajax({
-	        url : PATH+"ajax/client/ajax_registration.php",
-	        type : "POST",
-	        data : data,
-	        dataType : "JSON",
-	        contentType:false,
-	        processData:false,
-	        success : function(res){
-	            if(res.code == 200) {
-	
-	            } else if(res.code == 400){
-	                alert(locale(language.value)("error_registration"));
-	                return false;
-	            } else if(res.code == 401){
-	                alert(locale(language.value)("already_registration"));
-	                return false;
-	            } else {
-	                alert(locale(language.value)("reject_msg")+locale(language.value)("retry_msg"));
-	                return false;
-	            }
-	        }
-	    });
-	}
-	$(document).on("keyup", ".en_num_keyup", function(key){
-	    var pattern_eng = /[^0-9||a-zA-Z\s||-]/gi;
-	    var _this = $(this);
-	    if(key.keyCode != 8) {
-	        var first_name = _this.val().replace(pattern_eng, '');
-	        _this.val(first_name);
-	    }
-	});
-	$(document).on("keyup", ".ko_en_keyup", function(key){
-	    var pattern_eng = /[^a-zA-Z\s||ㄱ-ㅎ가-힣]/gi;
-	    var _this = $(this);
-	    if(key.keyCode != 8) {
-	        var first_name = _this.val().replace(pattern_eng, '');
-	        _this.val(first_name);
-	    }
-	});
-	*/
+    var data = {
+        "flag"				: "code_100_payment",
+        "registration_idx"	: registration_idx,
+        "nation_no"			: nation_no
+    };
+
+    $.ajax({
+        url : PATH+"ajax/client/ajax_payment.php",
+        type : "POST",
+        data : data,
+        dataType : "JSON",
+        success : function(res){
+            if(res.code == 200) {
+                window.location.replace("mypage_registration.php");
+            } else if(res.code == 400){
+                alert(res.msg);
+                return;
+            }
+        }
+    });
+}
+
+function apply() {
+
+    var promotion_code = $("input[name=promotion_code]").val();
+    var registration_idx = "<?php //= $registration_idx; ?>//";
+
+    var data = {
+        "flag"				:	"promotion_code_update",
+        "promotion_code"	:	promotion_code,
+        "registration_idx"	:	registration_idx
+    };
+
+    $.ajax({
+        url : PATH+"ajax/client/ajax_registration.php",
+        type : "POST",
+        data : data,
+        dataType : "JSON",
+        success : function(res){
+            if(res.code == 200) {
+                if(res.promotion_code_value == 0) {
+                    $(".code_result").html(res.promotion_code+" [100% Discount]");
+                } else if(res.promotion_code_value == 1 || res.promotion_code_value == 2 || res.promotion_code_value == 4) {
+                    $(".code_result").html(res.promotion_code+" [50% Discount]");
+                } else if(res.promotion_code_value == 3) {
+                    //$(".code_result").html("Promotion code used");
+                    alert("Promotion code used");
+                    $("input[name=hidden_code]").val("");
+                }
+                $("input[name=hidden_code]").val(res.promotion_code_value);
+                //window.location.replace("registration2.php?idx="+registration_idx);
+            } else if(res.code == 401){
+                $(".code_result").html("Invalid promotion code");
+                $("input[name=hidden_code]").val("");
+                return false;
+            }
+        }
+    });
+}
+
+function complete() {
+
+    var registration_idx = "<?php //= $registration_idx; ?>//";
+    var hidden_code = $("input[name=hidden_code]").val();
+
+    if(!hidden_code || hidden_code == 3) {
+        alert("Please check the promotion code");
+        return;
+    }
+
+    var recommended_by = $("input[name=recommended_by]").val().trim();
+    var recommended_by_trim = "";
+
+    //추천인 유효성
+    if(!recommended_by) {
+        alert("Invalid Recommended by");
+        return;
+    }
+
+    recommended_by_trim = recommended_by.toLowerCase();
+    recommended_by_trim = recommended_by_trim.replace(/ /g,"")
+
+    var data = {
+        "flag"					: "promotion_code_complate",
+        "recommended_by"		: recommended_by,
+        "recommended_by_trim"	: recommended_by_trim,
+        "hidden_code"			: hidden_code,
+        "registration_idx"		: registration_idx
+    };
+
+    $.ajax({
+        url : PATH+"ajax/client/ajax_registration.php",
+        type : "POST",
+        data : data,
+        dataType : "JSON",
+        success : function(res){
+            if(res.code == 200) {
+                window.location.replace("registration2.php?idx="+registration_idx);
+            } else if(res.code == 400){
+                alert(res.msg);
+                return;
+            } else if(res.code == 401) {
+                alert("Invalid promotion code");
+                return;
+            } else if(res.code == 402) {
+                alert("Promotion code used");
+                return;
+            }
+        }
+    });
+}
+
+$('.cancel_btn').on('click',function(){
+    $('.cancel_pop').show();
+});
+
+function move() {
+    location.replace('/main/registration3.php')
+}
+
+function error() {
+    setTimeout(function() {
+        var error_msg = $("input[name=resmsg]").val();
+        alert(locale(language.value)("payment_fail_msg")+" "+locale(language.value)("retry_msg")+"\n"+error_msg);
+    },50)
+}
+
+function mb_click() {
+
+    ajax_save();
+
+    document.getElementById("mb_submit").click();
+    //kcp_AJAX();
+}
+*/
+
+/* 23.06.07 HUBDNC_LSH 기존 작성된 부분 주석 처리 */
+/*
+$(document).on("change", "input[name=payment_methods]", function(){
+    var promotion_code = "<?php //= $promotion_code; ?>//";
+    if($(this).val() == 0) {
+        $("#pc_payment_btn").removeAttr("onclick");
+        $("#mb_payment_btn").removeAttr("onclick");
+
+        if(promotion_code == 0) {
+            $("#pc_payment_btn").attr("onclick", "code_100()");
+            $("#mb_payment_btn").attr("onclick", "code_100()");
+        } else {
+            $("#pc_payment_btn").attr("onclick", "jsf__pay(document.order_info);");
+            $("#mb_payment_btn").attr("onclick", "mb_click()");
+        }
+    } else {
+        $("#pc_payment_btn").removeAttr("onclick");
+        $("#mb_payment_btn").removeAttr("onclick");
+
+        if(promotion_code == 0) {
+            $("#pc_payment_btn").attr("onclick", "code_100()");
+            $("#mb_payment_btn").attr("onclick", "code_100()");
+        } else {
+            $("#pc_payment_btn").attr("onclick", "transfer();");
+            $("#mb_payment_btn").attr("onclick", "transfer();");
+        }
+    }
+});
+
+function transfer() {
+    var nation_no = "<?php //= $nation_no; ?>//";
+
+    var registration_idx = "<?php //= $registration_idx; ?>//";
+    var payment_methods = $("input[name=payment_methods]:checked").val();
+
+    ajax_save();
+    window.location.replace(PATH+"registration_account.php?idx="+registration_idx+"&nation_no="+nation_no);
+}
+
+function ajax_save() {
+    var registration_idx = "<?php //= $registration_idx; ?>//";
+    var payment_methods = $("input[name=payment_methods]:checked").val();
+    var data = new FormData();
+    data.append("flag", "method_update");
+    data.append("idx", registration_idx);
+    data.append("payment_methods", payment_methods)
+
+    $.ajax({
+        url : PATH+"ajax/client/ajax_registration.php",
+        type : "POST",
+        data : data,
+        dataType : "JSON",
+        contentType:false,
+        processData:false,
+        success : function(res){
+            if(res.code == 200) {
+
+            } else if(res.code == 400){
+                alert(locale(language.value)("error_registration"));
+                return false;
+            } else if(res.code == 401){
+                alert(locale(language.value)("already_registration"));
+                return false;
+            } else {
+                alert(locale(language.value)("reject_msg")+locale(language.value)("retry_msg"));
+                return false;
+            }
+        }
+    });
+}
+$(document).on("keyup", ".en_num_keyup", function(key){
+    var pattern_eng = /[^0-9||a-zA-Z\s||-]/gi;
+    var _this = $(this);
+    if(key.keyCode != 8) {
+        var first_name = _this.val().replace(pattern_eng, '');
+        _this.val(first_name);
+    }
+});
+$(document).on("keyup", ".ko_en_keyup", function(key){
+    var pattern_eng = /[^a-zA-Z\s||ㄱ-ㅎ가-힣]/gi;
+    var _this = $(this);
+    if(key.keyCode != 8) {
+        var first_name = _this.val().replace(pattern_eng, '');
+        _this.val(first_name);
+    }
+});
+*/
 </script>
 
 <?php include_once('./include/footer.php');?>
