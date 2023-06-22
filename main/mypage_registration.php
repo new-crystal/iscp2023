@@ -32,7 +32,8 @@ $select_user_registration_query = "
 				WHEN reg.attendance_type = 2
 				THEN 'Online + Offline'
 				ELSE '-'
-			END) AS attendance_type
+			END) AS attendance_type,
+            p.etc2
 		FROM request_registration reg
 		LEFT JOIN payment p
 		ON reg.payment_no = p.idx
@@ -70,10 +71,10 @@ if (!empty($_SESSION["USER"])) {
 
 ?>
 <style>
-    /*165번 줄에 인라인 css 있음 2022-04-21*/
-    .non_click {
-        cursor: default;
-    }
+/*165번 줄에 인라인 css 있음 2022-04-21*/
+.non_click {
+    cursor: default;
+}
 </style>
 <section class="container mypage sub_page">
     <div class="sub_background_box">
@@ -229,15 +230,16 @@ if (!empty($_SESSION["USER"])) {
                             } else if ($list["status"] == "0") {
                                 echo     '<td>Canceled</td>';
                             } else if ($list["status"] == "2") {
-                                echo     '<td>';
+                                echo     '<td style="display: flex;">';
                                 if ($list["payment_methods"] == 0 && $promotion_code != 0) {
+                                    $list['payment_obj'] = json_decode($list['etc2'], 1);
                                     if ($r_during_yn == 'Y') {
-                                        echo '<button style="height:50px;" type="button" class="btn deposit_btn" onclick="registration_btn(' . $list["idx"] . ')">Certificate</button><br><br>';
+                                        // echo '<button style="height:50px; margin-right: 20px;" type="button" class="btn deposit_btn" onclick="registration_btn(' . $list["idx"] . ')">Certificate</button><br><br>';
                                     }
-                                    echo '<button style="height:50px;" type="button" class="btn deposit_btn review_btn" data-payment_no="' . $payment_no . '" data-order_no="' . $order_no . '" data-deposit_price="' . $deposit_price . '" onclick="receiptView()">Payment <br>Receipt</button>';
+                                    echo '<button id="receipt"  style="height:50px;" type="button" class="btn deposit_btn review_btn" data-payment_no="' . $payment_no . '" data-order_no="' . $order_no . '" data-deposit_price="' . $deposit_price . '" onclick="receiptView()"data-tid="' . $list['payment_obj']['tid'] . '">Payment <br>Receipt</button>';
                                 } else {
                                     if ($r_during_yn == 'Y') {
-                                        echo '<button style="height:50px;" type="button" class="btn deposit_btn" onclick="registration_btn(' . $list["idx"] . ')">Certificate</button>';
+                                        // echo '<button style="height:50px; margin-right: 20px;" type="button" class="btn deposit_btn" onclick="registration_btn(' . $list["idx"] . ')">Certificate</button>';
                                     } else {
                                         echo 'Payment Received';
                                     }
@@ -289,7 +291,8 @@ if (!empty($_SESSION["USER"])) {
                         <tr>
                             <th><span class="red_txt">*</span><?= $locale("country") ?></th>
                             <td>
-                                <select class="update" name="nation_no" id="nation_no" onchange="nation_change(this.value)">
+                                <select class="update" name="nation_no" id="nation_no"
+                                    onchange="nation_change(this.value)">
                                     <option selected>Choose </option>
                                     <?php
                                     foreach ($nation_list as $list) {
@@ -360,7 +363,8 @@ if (!empty($_SESSION["USER"])) {
                 <li>
                     <p class="label"><span class="red_txt">*</span><?= $locale("country") ?></p>
                     <div>
-                        <select class="update" name="mo_nation_no" id="mo_nation_no" onchange="nation_change(this.value)">
+                        <select class="update" name="mo_nation_no" id="mo_nation_no"
+                            onchange="nation_change(this.value)">
                             <option selected>Choose </option>
                             <?php
                             foreach ($nation_list as $list) {
@@ -435,290 +439,299 @@ if (!empty($_SESSION["USER"])) {
 </section>
 <script src="./js/script/client/registration.js?v=0.2"></script>
 <script>
-    $(document).ready(function() {
-        $(window).off("beforeunload");
+$(document).ready(function() {
+    $(window).off("beforeunload");
+});
+
+//등록증 띄우기
+function registration_btn(idx) {
+    //$(".receipt_pop").show();
+    // var url =
+    //     "https://iscp2023.org/main/pre_registration_confirm.php?key=<?= explode('@', $_SESSION['USER']['email'])[0] ?>&idx=" +
+    //     idx;
+    // window.open(url, "Certificate", "width=1145, height=900, top=30, left=30");
+    alert("준비 중입니다")
+};
+
+$('.revise_pop_btn').on('click', function() {
+    var idx = $(this).data("idx");
+    $.ajax({
+        url: PATH + "ajax/client/ajax_registration.php",
+        type: "POST",
+        data: {
+            flag: "registration_information",
+            idx: idx
+        },
+        dataType: "JSON",
+        success: function(res) {
+            //console.log(res);
+            if (res.code == 200 && res.data) {
+                var mo = "";
+
+                if (Mobile() == true) {
+                    mo = "mo_";
+                }
+
+                //var nation_tel = res.data.phone.split("-")[0];
+                //var _phone = res.data.phone.split("-");
+                //var _remove = _phone.splice(0,1);
+                //	var phone = _phone.join("-");
+                if (res.data.payment_status == 0 || res.data.payment_status == 3 || res.data
+                    .payment_status == 4) {
+                    $(".revise_pop input").attr("readonly", true);
+                    $(".revise_pop select").attr("disabled", true);
+                    $(".update_btn").attr("disabled", true);
+                } else {
+                    $(".update").attr("readonly", false);
+                    $(".revise_pop select").attr("disabled", false);
+                    $(".update_btn").attr("disabled", false);
+                }
+                $("input[name=registration_idx]").val(res.data.idx);
+                $("input[name=" + mo + "email]").val(res.data.email);
+                $("option[value=" + res.data.nation_no + "]").attr("selected", true);
+                $("input[name=" + mo + "first_name]").val(res.data.first_name);
+                $("input[name=" + mo + "last_name]").val(res.data.last_name);
+
+                //$("select[name="+mo+"nation_tel] option").text(res.data.nation_tel);
+
+                //$("input[name="+mo+"phone]").val(phone);
+                $("input[name=" + mo + "affiliation]").val(res.data.affiliation);
+                $("input[name=" + mo + "department]").val(res.data.department);
+                //$("input[name=licence_number]").val(res.data.licence_number);
+                //$("input[name=academy_number]").val(res.data.academy_number);
+                $('.revise_pop').show();
+            } else if (res.code == 400) {
+                return false;
+            }
+        }
     });
 
-    //등록증 띄우기
-    function registration_btn(idx) {
-        //$(".receipt_pop").show();
-        // var url =
-        //     "https://iscp2023.org/main/pre_registration_confirm.php?key=<?= explode('@', $_SESSION['USER']['email'])[0] ?>&idx=" +
-        //     idx;
-        // window.open(url, "Certificate", "width=1145, height=900, top=30, left=30");
-        alert("준비 중입니다")
-    };
+});
 
-    $('.revise_pop_btn').on('click', function() {
-        var idx = $(this).data("idx");
+//모바일 여부
+$(".update_btn").on("click", function() {
+    var mo = "";
+    if (Mobile() == true) {
+        mo = "mo_";
+    }
+
+    var idx = $("input[name=registration_idx]").val();
+    var nation_no = $("#" + mo + "nation_no option:selected").val();
+    var first_name = $("input[name=" + mo + "first_name]").val();
+    var last_name = $("input[name=" + mo + "last_name]").val();
+    var affiliation = $("input[name=" + mo + "affiliation]").val();
+    var nation_tel = $("select[name=" + mo + "nation_tel] option").text();
+
+    var phone = $("input[name=" + mo + "phone]").val();
+    var department = $("input[name=" + mo + "department]").val();
+
+    if (nation_no == "" || nation_no == null) {
+        alert("check_Country");
+        return;
+    }
+    if (first_name == "" || first_name == null) {
+        alert("check_Country");
+        return;
+    }
+    if (last_name == "" || last_name == null) {
+        alert("check_Country");
+        return;
+    }
+
+    if (confirm(locale(language.value)("registration_modify_msg"))) {
         $.ajax({
             url: PATH + "ajax/client/ajax_registration.php",
             type: "POST",
             data: {
-                flag: "registration_information",
-                idx: idx
-            },
-            dataType: "JSON",
-            success: function(res) {
-                //console.log(res);
-                if (res.code == 200 && res.data) {
-                    var mo = "";
-
-                    if (Mobile() == true) {
-                        mo = "mo_";
-                    }
-
-                    //var nation_tel = res.data.phone.split("-")[0];
-                    //var _phone = res.data.phone.split("-");
-                    //var _remove = _phone.splice(0,1);
-                    //	var phone = _phone.join("-");
-                    if (res.data.payment_status == 0 || res.data.payment_status == 3 || res.data
-                        .payment_status == 4) {
-                        $(".revise_pop input").attr("readonly", true);
-                        $(".revise_pop select").attr("disabled", true);
-                        $(".update_btn").attr("disabled", true);
-                    } else {
-                        $(".update").attr("readonly", false);
-                        $(".revise_pop select").attr("disabled", false);
-                        $(".update_btn").attr("disabled", false);
-                    }
-                    $("input[name=registration_idx]").val(res.data.idx);
-                    $("input[name=" + mo + "email]").val(res.data.email);
-                    $("option[value=" + res.data.nation_no + "]").attr("selected", true);
-                    $("input[name=" + mo + "first_name]").val(res.data.first_name);
-                    $("input[name=" + mo + "last_name]").val(res.data.last_name);
-
-                    //$("select[name="+mo+"nation_tel] option").text(res.data.nation_tel);
-
-                    //$("input[name="+mo+"phone]").val(phone);
-                    $("input[name=" + mo + "affiliation]").val(res.data.affiliation);
-                    $("input[name=" + mo + "department]").val(res.data.department);
-                    //$("input[name=licence_number]").val(res.data.licence_number);
-                    //$("input[name=academy_number]").val(res.data.academy_number);
-                    $('.revise_pop').show();
-                } else if (res.code == 400) {
-                    return false;
-                }
-            }
-        });
-
-    });
-
-    //모바일 여부
-    $(".update_btn").on("click", function() {
-        var mo = "";
-        if (Mobile() == true) {
-            mo = "mo_";
-        }
-
-        var idx = $("input[name=registration_idx]").val();
-        var nation_no = $("#" + mo + "nation_no option:selected").val();
-        var first_name = $("input[name=" + mo + "first_name]").val();
-        var last_name = $("input[name=" + mo + "last_name]").val();
-        var affiliation = $("input[name=" + mo + "affiliation]").val();
-        var nation_tel = $("select[name=" + mo + "nation_tel] option").text();
-
-        var phone = $("input[name=" + mo + "phone]").val();
-        var department = $("input[name=" + mo + "department]").val();
-
-        if (nation_no == "" || nation_no == null) {
-            alert("check_Country");
-            return;
-        }
-        if (first_name == "" || first_name == null) {
-            alert("check_Country");
-            return;
-        }
-        if (last_name == "" || last_name == null) {
-            alert("check_Country");
-            return;
-        }
-
-        if (confirm(locale(language.value)("registration_modify_msg"))) {
-            $.ajax({
-                url: PATH + "ajax/client/ajax_registration.php",
-                type: "POST",
-                data: {
-                    flag: "update_registration",
-                    idx: idx,
-                    nation_no: nation_no,
-                    first_name: first_name,
-                    last_name: last_name,
-                    affiliation: affiliation,
-                    nation_tel: nation_tel,
-                    phone: phone,
-                    department: department
-                },
-                dataType: "JSON",
-                success: function(res) {
-                    if (res.code == 200) {
-                        alert(locale(language.value)("complet_registration_cancel"));
-                        location.reload();
-                    } else if (res.code == 400) {
-                        alert(locale(language.value)("error_registration_cancel"));
-                        return false;
-                    } else if (res.code == 401) {
-                        alert(locale(language.value)("invalid_auth"));
-                        return false;
-                    } else if (res.code == 402) {
-                        alert(locale(language.value)("invalid_registration_status"));
-                        return false;
-                    } else {
-                        alert(locale(language.value)("reject_msg"));
-                        return false;
-                    }
-                }
-            });
-        }
-
-    });
-
-    $(".payment_btn").on("click", function() {
-        var paymentUrl = $(this).data("url");
-        window.location.href = paymentUrl;
-    });
-
-    $(".cancel_btn").on("click", function() {
-        var idx = $(this).data("idx");
-        if (confirm(locale(language.value)("registration_cancel_msg"))) {
-            $.ajax({
-                url: PATH + "ajax/client/ajax_registration.php",
-                type: "POST",
-                data: {
-                    flag: "cancel",
-                    idx: idx
-                },
-                dataType: "JSON",
-                success: function(res) {
-                    if (res.code == 200) {
-                        alert(locale(language.value)("complet_registration_cancel"));
-                        location.reload();
-                    } else if (res.code == 400) {
-                        alert(locale(language.value)("error_registration_cancel"));
-                        return false;
-                    } else if (res.code == 401) {
-                        alert(locale(language.value)("invalid_auth"));
-                        return false;
-                    } else if (res.code == 402) {
-                        alert(locale(language.value)("invalid_registration_status"));
-                        return false;
-                    } else {
-                        alert(locale(language.value)("reject_msg"));
-                        return false;
-                    }
-                }
-            });
-        }
-    });
-
-    $(".refund_btn").on("click", function() {
-        var payment_status = $(this).data("status");
-        var idx = $(this).data("idx");
-        if (confirm(locale(language.value)("registration_refund_msg"))) {
-            $.ajax({
-                url: PATH + "ajax/client/ajax_registration.php",
-                type: "POST",
-                data: {
-                    flag: "refund",
-                    payment_status: payment_status,
-                    idx: idx
-                },
-                dataType: "JSON",
-                success: function(res) {
-                    if (res.code == 200) {
-                        alert(locale(language.value)("complet_registration_refund"));
-                        location.reload();
-                    } else if (res.code == 400) {
-                        alert(locale(language.value)("error_registration_refund"));
-                        return false;
-                    } else if (res.code == 401) {
-                        return false;
-                    } else if (res.code == 402) {
-                        return false;
-                    } else {
-                        alert(locale(language.value)("reject_msg"));
-                        return false;
-                    }
-                }
-            });
-        }
-    });
-
-    //국가 선택시 자동 국가번호 삽입
-    //국가 선택 시 국가번호 append
-    $("select[name=nation_no]").on("change", function() {
-        var nation = $(this).find("option:selected").val();
-        var nation_tel_length = $("select[name=nation_tel] option").length;
-        $.ajax({
-            url: PATH + "ajax/ajax_nation.php",
-            type: "POST",
-            data: {
-                flag: "nation_tel",
-                nation: nation
+                flag: "update_registration",
+                idx: idx,
+                nation_no: nation_no,
+                first_name: first_name,
+                last_name: last_name,
+                affiliation: affiliation,
+                nation_tel: nation_tel,
+                phone: phone,
+                department: department
             },
             dataType: "JSON",
             success: function(res) {
                 if (res.code == 200) {
-                    if (nation_tel_length => 2) {
-                        $("select[name=nation_tel] option").not(":eq(0)").detach();
-                        $("select[name=nation_tel]").append("<option selected>" + res.tel +
-                            "</option>");
-                    } else {
-                        $("select[name=nation_tel]").append("<option selected>" + res.tel +
-                            "</option>");
-                    }
+                    alert(locale(language.value)("complet_registration_cancel"));
+                    location.reload();
+                } else if (res.code == 400) {
+                    alert(locale(language.value)("error_registration_cancel"));
+                    return false;
+                } else if (res.code == 401) {
+                    alert(locale(language.value)("invalid_auth"));
+                    return false;
+                } else if (res.code == 402) {
+                    alert(locale(language.value)("invalid_registration_status"));
+                    return false;
+                } else {
+                    alert(locale(language.value)("reject_msg"));
+                    return false;
                 }
             }
         });
-    });
-
-    function Mobile() {
-        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }
+
+});
+
+$(".payment_btn").on("click", function() {
+    var paymentUrl = $(this).data("url");
+    window.location.href = paymentUrl;
+});
+
+$(".cancel_btn").on("click", function() {
+    var idx = $(this).data("idx");
+    if (confirm(locale(language.value)("registration_cancel_msg"))) {
+        $.ajax({
+            url: PATH + "ajax/client/ajax_registration.php",
+            type: "POST",
+            data: {
+                flag: "cancel",
+                idx: idx
+            },
+            dataType: "JSON",
+            success: function(res) {
+                if (res.code == 200) {
+                    alert(locale(language.value)("complet_registration_cancel"));
+                    location.reload();
+                } else if (res.code == 400) {
+                    alert(locale(language.value)("error_registration_cancel"));
+                    return false;
+                } else if (res.code == 401) {
+                    alert(locale(language.value)("invalid_auth"));
+                    return false;
+                } else if (res.code == 402) {
+                    alert(locale(language.value)("invalid_registration_status"));
+                    return false;
+                } else {
+                    alert(locale(language.value)("reject_msg"));
+                    return false;
+                }
+            }
+        });
+    }
+});
+
+$(".refund_btn").on("click", function() {
+    var payment_status = $(this).data("status");
+    var idx = $(this).data("idx");
+    if (confirm(locale(language.value)("registration_refund_msg"))) {
+        $.ajax({
+            url: PATH + "ajax/client/ajax_registration.php",
+            type: "POST",
+            data: {
+                flag: "refund",
+                payment_status: payment_status,
+                idx: idx
+            },
+            dataType: "JSON",
+            success: function(res) {
+                if (res.code == 200) {
+                    alert(locale(language.value)("complet_registration_refund"));
+                    location.reload();
+                } else if (res.code == 400) {
+                    alert(locale(language.value)("error_registration_refund"));
+                    return false;
+                } else if (res.code == 401) {
+                    return false;
+                } else if (res.code == 402) {
+                    return false;
+                } else {
+                    alert(locale(language.value)("reject_msg"));
+                    return false;
+                }
+            }
+        });
+    }
+});
+
+//국가 선택시 자동 국가번호 삽입
+//국가 선택 시 국가번호 append
+$("select[name=nation_no]").on("change", function() {
+    var nation = $(this).find("option:selected").val();
+    var nation_tel_length = $("select[name=nation_tel] option").length;
+    $.ajax({
+        url: PATH + "ajax/ajax_nation.php",
+        type: "POST",
+        data: {
+            flag: "nation_tel",
+            nation: nation
+        },
+        dataType: "JSON",
+        success: function(res) {
+            if (res.code == 200) {
+                if (nation_tel_length => 2) {
+                    $("select[name=nation_tel] option").not(":eq(0)").detach();
+                    $("select[name=nation_tel]").append("<option selected>" + res.tel +
+                        "</option>");
+                } else {
+                    $("select[name=nation_tel]").append("<option selected>" + res.tel +
+                        "</option>");
+                }
+            }
+        }
+    });
+});
+
+function Mobile() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
 </script>
 <script type="text/javascript">
-    /* 신용카드 영수증 */
-    /* 실결제시 : "https://admin8.kcp.co.kr/assist/bill.BillActionNew.do?cmd=card_bill&tno=" */
-    /* 테스트시 : "https://testadmin8.kcp.co.kr/assist/bill.BillActionNew.do?cmd=card_bill&tno=" */
-    function receiptView() {
-        var tno = $(".review_btn").data("payment_no");
-        var ordr_idxx = $(".review_btn").data("order_no");
-        var amount = $(".review_btn").data("deposit_price");
+/* 신용카드 영수증 */
+/* 실결제시 : "https://admin8.kcp.co.kr/assist/bill.BillActionNew.do?cmd=card_bill&tno=" */
+/* 테스트시 : "https://testadmin8.kcp.co.kr/assist/bill.BillActionNew.do?cmd=card_bill&tno=" */
+function receiptView() {
+    //     var tno = $(".review_btn").data("payment_no");
+    //     var ordr_idxx = $(".review_btn").data("order_no");
+    //     var amount = $(".review_btn").data("deposit_price");
 
-        /*
-        var tno2 = "22361973505609";
-        var ordr_idxx2 = "TEST1234567890";
-        var amount2 = "80000";
-        */
+    /*
+    var tno2 = "22361973505609";
+    var ordr_idxx2 = "TEST1234567890";
+    var amount2 = "80000";
+    */
 
-        receiptWin = "https://admin8.kcp.co.kr/assist/bill.BillActionNew.do?cmd=card_bill&tno=";
-        receiptWin += tno + "&";
-        receiptWin += "order_no=" + ordr_idxx + "&";
-        receiptWin += "trade_mony=" + amount;
+    // receiptWin = "https://admin8.kcp.co.kr/assist/bill.BillActionNew.do?cmd=card_bill&tno=";
+    // receiptWin += tno + "&";
+    // receiptWin += "order_no=" + ordr_idxx + "&";
+    // receiptWin += "trade_mony=" + amount;
 
 
-        window.open(receiptWin, "", "width=455, height=815");
-    }
+    // window.open(receiptWin, "", "width=455, height=815");
+    // window.open(url, "Registration Receipt", "width=793, height=1097, top=30, left=30");
 
-    /* 현금 영수증 */
-    /* 실결제시 : "https://admin8.kcp.co.kr/assist/bill.BillActionNew.do" */
-    /* 테스트시 : "https://testadmin8.kcp.co.kr/assist/bill.BillActionNew.do" */
-    function receiptView2(cash_no, ordr_idxx, amount) {
-        receiptWin2 = "https://admin8.kcp.co.kr/assist/bill.BillActionNew.do";
-        receiptWin2 += cash_no + "&";
-        receiptWin2 += "order_id=" + ordr_idxx + "&";
-        receiptWin2 += "trade_mony=" + amount;
+}
+$("#receipt").on("click", function() {
+    var tid = $(this).data("tid");
+    var url = "https://iniweb.inicis.com/DefaultWebApp/mall/cr/cm/mCmReceipt_head.jsp?noTid=" + tid +
+        "&noMethod=1";
+    window.open(url);
+});
 
-        window.open(receiptWin2, "", "width=370, height=625");
-    }
 
-    /* 가상 계좌 모의입금 페이지 호출 */
-    /* 테스트시에만 사용가능 */
-    /* 실결제시 해당 스크립트 주석처리 */
-    //function receiptView3() 
-    //{
-    //	receiptWin3 = "http://devadmin.kcp.co.kr/Modules/Noti/TEST_Vcnt_Noti.jsp"; 
-    //	window.open(receiptWin3, "", "width=520, height=300"); 
-    //}
+/* 현금 영수증 */
+/* 실결제시 : "https://admin8.kcp.co.kr/assist/bill.BillActionNew.do" */
+/* 테스트시 : "https://testadmin8.kcp.co.kr/assist/bill.BillActionNew.do" */
+function receiptView2(cash_no, ordr_idxx, amount) {
+    receiptWin2 = "https://admin8.kcp.co.kr/assist/bill.BillActionNew.do";
+    receiptWin2 += cash_no + "&";
+    receiptWin2 += "order_id=" + ordr_idxx + "&";
+    receiptWin2 += "trade_mony=" + amount;
+
+    window.open(receiptWin2, "", "width=370, height=625");
+}
+
+/* 가상 계좌 모의입금 페이지 호출 */
+/* 테스트시에만 사용가능 */
+/* 실결제시 해당 스크립트 주석처리 */
+//function receiptView3() 
+//{
+//	receiptWin3 = "http://devadmin.kcp.co.kr/Modules/Noti/TEST_Vcnt_Noti.jsp"; 
+//	window.open(receiptWin3, "", "width=520, height=300"); 
+//}
 </script>
 <?php include_once('./include/footer.php'); ?>

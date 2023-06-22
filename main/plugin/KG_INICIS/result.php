@@ -185,23 +185,35 @@ gmail 메일 발송되는 부분이여서 주석 하였습니다
 		dataType: "JSON",
 		success: function(res) {
 			if (res.code == 200) {
-				/*
-					$.ajax({
-						url : "../../ajax/client/ajax_gmail.php",
-						type : "POST",
-						data : {
-							flag : "payment",
-							name : res.name,
-							email : res.email,
-							data : res.data
-						},
-						dataType:"JSON"
-					});
-				*/
+				payment_ajax(res.name, res.email, res.data);
 			}
 		},
 		complete: function() {
-			window.location.replace("../../registration3.php");
+			// window.location.replace("../../registration3.php");
 		}
 	});
+
+	function payment_ajax(name, eamil, data) {
+
+		$.ajax({
+			url: "../../ajax/client/ajax_gmail.php",
+			type: "POST",
+			data: {
+				flag: "payment_mail",
+				name: name,
+				email: eamil,
+				data: {
+					...data,
+					flag: "payment_mail"
+				}
+			},
+			dataType: "JSON",
+			success: function(res) {
+
+			},
+			complete: function() {
+				window.location.replace("../../registration3.php");
+			}
+		});
+	}
 </script>
