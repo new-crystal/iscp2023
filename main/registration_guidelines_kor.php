@@ -2,14 +2,14 @@
 include_once('./include/head.php');
 include_once('./include/header.php');
 
-$sql_event =	"SELECT
+$sql_event =    "SELECT
 						period_event_start,
 						period_event_end,
 						period_event_pre_end
 					FROM info_event AS ie";
 $event = sql_fetch($sql_event);
 
-$sql_registration =	"SELECT
+$sql_registration =    "SELECT
 							bank_name_" . $language . " AS bank_name,
 							account_number_" . $language . " AS account_number,
 							account_holder_" . $language . " AS account_holder,
@@ -20,7 +20,7 @@ $sql_registration =	"SELECT
 							ON fi_pop.idx = ir.score_pop_" . $language . "_img";
 $registration = sql_fetch($sql_registration);
 
-$sql_price =	"SELECT
+$sql_price =    "SELECT
 						type_en, 
 						off_member_usd, off_guest_usd, on_member_usd, on_guest_usd, 
 						off_member_krw, off_guest_krw, on_member_krw, on_guest_krw
@@ -62,21 +62,21 @@ $price = get_data($sql_price);
                         <span>
                           
 							<?php
-							$date_start = date_create($event['period_event_start']);
-							$date_end = date_create($event['period_event_end']);
+                            $date_start = date_create($event['period_event_start']);
+                            $date_end = date_create($event['period_event_end']);
 
-							$format_start = "F d";
-							$format_end = "d, Y";
+                            $format_start = "F d";
+                            $format_end = "d, Y";
 
-							if (date_format($date_start, 'Y') != date_format($date_end, 'Y')) {
-								$format_start = "F d, Y";
-								$format_end = "F d, Y";
-							} else if (date_format($date_start, 'F') != date_format($date_end, 'F')) {
-								$format_end = "F d, Y";
-							}
+                            if (date_format($date_start, 'Y') != date_format($date_end, 'Y')) {
+                                $format_start = "F d, Y";
+                                $format_end = "F d, Y";
+                            } else if (date_format($date_start, 'F') != date_format($date_end, 'F')) {
+                                $format_end = "F d, Y";
+                            }
 
-							echo date_format($date_start, $format_start) . "~" . date_format($date_end, $format_end);
-							?>
+                            echo date_format($date_start, $format_start) . "~" . date_format($date_end, $format_end);
+                            ?>
 						
                             2023년 10월 27일(금)
                         </span>
@@ -90,7 +90,7 @@ $price = get_data($sql_price);
                     </li>
                 </ul>
                 <div class="pager_btn_wrap half mb50">
-                    <button type="button" class="btn gray_btn show_pop">평점안내</button>
+                    <!-- <button type="button" class="btn gray_btn show_pop">평점안내</button> -->
                     <button type="button" class="btn green_btn" onClick="location.href='http://kscvp.org'">KSCVP 가입
                     </button>
                     <button type="button" class="btn green_btn"
@@ -105,43 +105,43 @@ $price = get_data($sql_price);
 
             <!-- 2. 등록비 / Registration start -->
             <?php
-			if (count($price) > 0) {
-				$tb_arr = array();
-				$i = -1;
-				$off_mb = 0;
-				$off_gt = 0;
-				$on_mb = 0;
-				$on_gt = 0;
+            if (count($price) > 0) {
+                $tb_arr = array();
+                $i = -1;
+                $off_mb = 0;
+                $off_gt = 0;
+                $on_mb = 0;
+                $on_gt = 0;
 
-				$unit = $language == "en" ? "usd" : "krw";
-				$unit_upper = strtoupper($unit);
+                $unit = $language == "en" ? "usd" : "krw";
+                $unit_upper = strtoupper($unit);
 
-				$off_mb_col = 'off_member_' . $unit;
-				$off_gu_col = 'off_guest_' . $unit;
-				$on_mb_col = 'on_member_' . $unit;
-				$on_gu_col = 'on_guest_' . $unit;
+                $off_mb_col = 'off_member_' . $unit;
+                $off_gu_col = 'off_guest_' . $unit;
+                $on_mb_col = 'on_member_' . $unit;
+                $on_gu_col = 'on_guest_' . $unit;
 
-				foreach ($price as $pr) {
-					if (
-						$off_mb != $pr[$off_mb_col]
-						|| $off_gt != $pr[$off_gu_col]
-						|| $on_mb != $pr[$on_mb_col]
-						|| $on_gt != $pr[$on_gu_col]
-					) {
-						$i++;
-						$off_mb = $pr[$off_mb_col];
-						$off_gt = $pr[$off_gu_col];
-						$on_mb = $pr[$on_mb_col];
-						$on_gt = $pr[$on_gu_col];
+                foreach ($price as $pr) {
+                    if (
+                        $off_mb != $pr[$off_mb_col]
+                        || $off_gt != $pr[$off_gu_col]
+                        || $on_mb != $pr[$on_mb_col]
+                        || $on_gt != $pr[$on_gu_col]
+                    ) {
+                        $i++;
+                        $off_mb = $pr[$off_mb_col];
+                        $off_gt = $pr[$off_gu_col];
+                        $on_mb = $pr[$on_mb_col];
+                        $on_gt = $pr[$on_gu_col];
 
-						$tb_arr[$i] = $pr;
-						unset($tb_arr[$i]['type_en']);
-						$tb_arr[$i]['type_arr'] = array();
-					}
+                        $tb_arr[$i] = $pr;
+                        unset($tb_arr[$i]['type_en']);
+                        $tb_arr[$i]['type_arr'] = array();
+                    }
 
-					array_push($tb_arr[$i]['type_arr'], $pr['type_en']);
-				}
-			?>
+                    array_push($tb_arr[$i]['type_arr'], $pr['type_en']);
+                }
+            ?>
             <div class="circle_title">
                 <!--<?= $locale("air_registration_tit") ?>-->등록비
             </div>
@@ -169,26 +169,26 @@ $price = get_data($sql_price);
 					</thead>
 					<tbody>
 						<?php
-						foreach ($tb_arr as $tb) {
-						?>
+                        foreach ($tb_arr as $tb) {
+                        ?>
 						<tr>
 							<td><?= implode(', ', $tb['type_arr']) ?></td>
 						<?php
-							if ($tb[$off_mb_col] + $tb[$off_gu_col] + $tb[$on_mb_col] + $tb[$on_gu_col] <= 0) {
-						?>
+                            if ($tb[$off_mb_col] + $tb[$off_gu_col] + $tb[$on_mb_col] + $tb[$on_gu_col] <= 0) {
+                        ?>
 							<td colspan="2">free</td>
 						<?php
-							} else {
-						?>
+                            } else {
+                        ?>
 							<td><?= $unit_upper . " " . number_format($tb[$off_mb_col]) . " / " . $unit_upper . " " . number_format($tb[$off_gu_col]) ?></td>
 							<td><?= $unit_upper . " " . number_format($tb[$on_mb_col]) . " / " . $unit_upper . " " . number_format($tb[$on_gu_col]) ?></td>
 						<?php
-							}
-						?>
+                            }
+                        ?>
 						</tr>
 						<?php
-						}
-						?>
+                        }
+                        ?>
 					</tbody>
 				</table>-->
                 <table class="table left_border_table table_responsive">
@@ -223,7 +223,7 @@ $price = get_data($sql_price);
                         <tr>
                             <td>
                                 전임의, 전공의, 군의관/공보의, <br>
-                                연구원, 학생, 간호사, 영양사, 약사, 기업회원, 기타
+                                연구원, 학생, 간호사, 영양사, 약사, 기업회원
                                 <!-- 의사 외 의료 분야 종사자*,연구원, 학생, 기업회원, 기타 -->
                             </td>
                             <!-- <td colspan="2">50,000원</td> -->
@@ -236,8 +236,8 @@ $price = get_data($sql_price);
                 <!-- 				<p>*의사 외 의료분야종사자: 간호사, 영양사, 약사, 기타</p> -->
             </div>
             <?php
-			}
-			?>
+            }
+            ?>
             <!-- 2. 등록비 / Registration end -->
 
             <!-- 3. 결제방법 / Payment Method start -->

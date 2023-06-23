@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html; charset=UTF-8');
 include_once('./include/head.php');
 include_once('./include/header.php');
 
@@ -9,7 +10,7 @@ $registration_idx = $_GET["idx"] ?? null;
 					FROM info_event";*/
 
 $sql_during = "SELECT
-						IF(NOW() BETWEEN '2022-08-18 17:00:00' AND '2022-09-06 18:00:00', 'Y', 'N') AS yn
+						IF(NOW() BETWEEN '2022-08-18 17:00:00' AND '2023-11-25 18:00:00', 'Y', 'N') AS yn
 					FROM info_event";
 $during_yn = sql_fetch($sql_during)['yn'];
 
@@ -45,7 +46,9 @@ if ($during_yn !== "Y") {
     </div>
     <div class="inner coming">
         <div class="sub_banner">
-            <h5>coming soon...</h5>
+            <h5>Pre-Registration
+                has been closed
+            </h5>
         </div>
     </div>
 </section>
@@ -110,13 +113,13 @@ if ($during_yn !== "Y") {
     } else {
         if ($user_info["category"] == "Specialist" || $user_info["category"] == "Professor") {
 
-            if ($user_info["ksola_member_status"] == 1) {
-                //회원
-                $krw_8_check = "checked";
-            } else {
-                //비회원
-                $krw_10_check = "checked";
-            }
+            // if ($user_info["ksola_member_status"] == 1) {
+            //회원
+            $krw_8_check = "checked";
+            // } else {
+            //     //비회원
+            //     $krw_10_check = "checked";
+            // }
         } else {
             $krw_4_check = "checked";
         }
@@ -151,7 +154,7 @@ if ($during_yn !== "Y") {
             $krw_10_check = "";
         } else if ($price == 100000) {
             $krw_4_check = "";
-            $krw_8_check = "";
+            $krw_8_check = "checked";
             $krw_10_check = "checked";
         }
         if ($price == 250) {
@@ -215,10 +218,10 @@ input.others {
         <div class="sub_inner">
             <div>
                 <h2>Registration</h2>
-                <ul class="clearfix">
+                <!-- <ul class="clearfix">
                     <li>Home</li>
                     <li>Registration</li>
-                </ul>
+                </ul> -->
             </div>
         </div>
     </div>
@@ -359,7 +362,7 @@ input.others {
             <div class="circle_title">Registration Fee</div>
             <div class="table_wrap">
                 <table class="table table_responsive left_border_table">
-                    <thead>
+                    <thead class="centerT">
                         <tr>
                             <th>Category</th>
                             <th>Early Registration Fees</th>
@@ -372,19 +375,19 @@ input.others {
                                 <input type="radio" class="radio" id="c_type2-1" name="c_type1"
                                     value="<?= $r_during_yn == 'N' ? "250" : "300"; ?>" onclick="return(false);"
                                     <?= $usd_80_check; ?>>
-                                <label for="c_type2-1">USD <?= $r_during_yn == 'N' ? "250" : "300"; ?></label>
+                                <label for="c_type2-1">USD <?= $r_during_yn == 'N' ? "250" : "200"; ?></label>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 Fellow, Resident, Researcher, Nurse, Military medical officer,<br />
-                                Nutritionist, Student, Pharmacist, Corporate member, Others
+                                Nutritionist, Student, Pharmacist, Corporate member
                             </td>
                             <td>
                                 <input type="radio" class="radio" id="c_type2-2" name="c_type1"
                                     value="<?= $r_during_yn == 'N' ? "100" : "150"; ?>" onclick="return(false);"
                                     <?= $usd_40_check; ?>>
-                                <label for="c_type2-2">USD <?= $r_during_yn == 'N' ? "100" : "150"; ?></label>
+                                <label for="c_type2-2">USD <?= $r_during_yn == 'N' ? "100" : "100"; ?></label>
                             </td>
                         </tr>
                         <!--
@@ -414,11 +417,11 @@ input.others {
             <div class="circle_title">등록비</div>
             <div class="table_wrap">
                 <table class="table table_responsive">
-                    <thead>
+                    <thead class="centerT">
                         <tr>
                             <th>Category</th>
-                            <th>KSoLA 회원</th>
-                            <th>비회원</th>
+                            <th>사전 등록</th>
+                            <!-- <th>비회원</th> -->
                         </tr>
                     </thead>
                     <tbody class="centerT">
@@ -428,26 +431,24 @@ input.others {
                                 <input type="radio" class="radio" id="c_type1-1" name="c_type1"
                                     value="<?= $r_during_yn == 'N' ? "80000" : "100000"; ?>" onclick="return(false);"
                                     <?= $krw_8_check; ?>>
-                                <label for="c_type1-1"><?= $r_during_yn == 'N' ? "80,000원" : "100,000원"; ?></label>
+                                <label for="c_type1-1"><?= $r_during_yn == 'N' ? "80,000원" : "50,000원"; ?></label>
                             </td>
-                            <td>
-                                <input type="radio" class="radio" id="c_type1-2" name="c_type1"
-                                    value="<?= $r_during_yn == 'N' ? "100000" : "120000"; ?>" onclick="return(false);"
-                                    <?= $krw_10_check; ?>>
-                                <label for="c_type1-2"><?= $r_during_yn == 'N' ? "100,000원" : "120,000원"; ?></label>
-                            </td>
+                            <!-- <td>
+                                        <input type="radio" class="radio" id="c_type1-2" name="c_type1" value="<?= $r_during_yn == 'N' ? "100000" : "120000"; ?>" onclick="return(false);" <?= $krw_10_check; ?>>
+                                        <label for="c_type1-2"><?= $r_during_yn == 'N' ? "100,000원" : "120,000원"; ?></label>
+                                    </td> -->
                         </tr>
                         <tr>
                             <td>
                                 전임의, 전공의, 군의관/공보의,<br />
                                 연구원, 학생, 간호사,<br />
-                                영양사, 약사, 기업회원, 기타
+                                영양사, 약사, 기업회원
                             </td>
-                            <td colspan="2">
+                            <td>
                                 <input type="radio" class="radio" id="c_type2" name="c_type1"
                                     value="<?= $r_during_yn == 'N' ? "50000" : "60000"; ?>" onclick="return(false);"
                                     <?= $krw_4_check; ?>>
-                                <label for="c_type2"><?= $r_during_yn == 'N' ? "50,000원" : "60,000원"; ?></label>
+                                <label for="c_type2"><?= $r_during_yn == 'N' ? "50,000원" : "10,000원"; ?></label>
                             </td>
                         </tr>
                         <!-- <tr> -->
@@ -521,7 +522,8 @@ input.others {
                         <tbody class="centerT">
                             <tr>
                                 <th>Welcome Reception</th>
-                                <th>17:10 ~, 15 Sep (Thu), 2022</th>
+                                <!-- <th>17:10 ~, 23 Nov (Thu), 2023</th> -->
+                                <th>23 Nov (Thu), 2023</th>
                                 <td>
                                     <input type="radio" class="radio required" id="others_type11"
                                         name="welcome_reception" value="Y"
@@ -546,7 +548,8 @@ input.others {
                             </tr>
                             <tr>
                                 <th>Day 1- Luncheon Symposium</th>
-                                <th>12:00-12:50, 15 Sep (Thu), 2022</th>
+                                <!-- <th>12:00-12:50, 23 Nov (Thu), 2023</th> -->
+                                <th>23 Nov (Thu), 2023</th>
                                 <td>
                                     <input type="radio" class="radio required" id="others_type1" name="day1_luncheon"
                                         value="Y" <?= $day1_luncheon_yn != "N" ? "checked" : ""; ?>>
@@ -569,7 +572,8 @@ input.others {
                             </tr>
                             <tr>
                                 <th>Day 2- Breakfast Symposium</th>
-                                <th>08:00-09:00, 16 Sep (Fri), 2022</th>
+                                <!-- <th>08:00-09:00, 24 Nov (Fri), 2023</th> -->
+                                <th>24 Nov (Fri), 2023</th>
                                 <td>
                                     <input type="radio" class="radio required" id="others_type3" name="day2_breakfast"
                                         value="Y" <?= $day2_breakfast_yn != "N" ? "checked" : ""; ?>>
@@ -592,7 +596,8 @@ input.others {
                             </tr>
                             <tr>
                                 <th>Day 2- Luncheon Symposium</th>
-                                <th>12:00-12:50, 16 Sep (Fri), 2022</th>
+                                <!-- <th>12:00-12:50, 24 Nov (Fri), 2023</th> -->
+                                <th>24 Nov (Fri), 2023</th>
                                 <td>
                                     <input type="radio" class="radio required" id="others_type5" name="day2_luncheon"
                                         value="Y" <?= $day2_luncheon_yn != "N" ? "checked" : ""; ?>>
@@ -615,7 +620,8 @@ input.others {
                             </tr>
                             <tr>
                                 <th>Day 3- Breakfast Symposium</th>
-                                <th>08:00-09:00, 17 Sep (Sat), 2022</th>
+                                <!-- <th>08:00-09:00, 25 Nov (Sat), 2023</th> -->
+                                <th>25 Nov (Sat), 2023</th>
                                 <td>
                                     <input type="radio" class="radio required" id="others_type7" name="day3_breakfast"
                                         value="Y" <?= $day3_breakfast_yn != "N" ? "checked" : ""; ?>>
@@ -638,7 +644,8 @@ input.others {
                             </tr>
                             <tr>
                                 <th>Day 3- Luncheon Symposium</th>
-                                <th>12:05-12:55, 17 Sep (Sat), 2022</th>
+                                <!-- <th>12:05-12:55, 25 Nov (Sat), 2023</th> -->
+                                <th>25 Nov (Sat), 2023</th>
                                 <td>
                                     <input type="radio" class="radio required" id="others_type9" name="day3_luncheon"
                                         value="Y" <?= $day3_luncheon_yn != "N" ? "checked" : ""; ?>>
@@ -679,14 +686,14 @@ input.others {
                                 <td colspan="2">
                                     <input value="0" type="checkbox" class="checkbox check_age" id="register_path1"
                                         name="register_path" <?= in_array(0, $register_path_arr) ? "checked" : ""; ?>>
-                                    <label for="register_path1">한국지질동맥경화학회 홈페이지 또는 홍보메일</label>
+                                    <label for="register_path1"> KSCVP 혹은 KSCP 홈페이지 또는 홍보메일</label>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
                                     <input value="1" type="checkbox" class="checkbox check_age" id="register_path2"
                                         name="register_path" <?= in_array(1, $register_path_arr) ? "checked" : ""; ?>>
-                                    <label for="register_path2">유관학회 홍보메일 또는 게시판 광고</label>
+                                    <label for="register_path2"> 홍보메일 또는 게시판 광고</label>
                                 </td>
                             </tr>
                             <tr>
@@ -700,7 +707,7 @@ input.others {
                                 <td colspan="2">
                                     <input value="3" type="checkbox" class="checkbox check_age" id="register_path4"
                                         name="register_path" <?= in_array(3, $register_path_arr) ? "checked" : ""; ?>>
-                                    <label for="register_path4">이전 ICoLA에 참석한 경험이 있음</label>
+                                    <label for="register_path4">이전 ISCP에 참석한 경험이 있음</label>
                                 </td>
                             </tr>
                             <tr>
@@ -755,7 +762,7 @@ input.others {
                                 <td colspan="2">
                                     <input value="0" type="checkbox" class="checkbox check_age" id="register_path1"
                                         name="register_path" <?= in_array(0, $register_path_arr) ? "checked" : ""; ?>>
-                                    <label for="register_path1">Website or newletter of KSoLA</label>
+                                    <label for="register_path1">Website or newletter of KSCP or KSCVP</label>
                                 </td>
                             </tr>
                             <tr>
@@ -769,7 +776,7 @@ input.others {
                                 <td colspan="2">
                                     <input value="2" type="checkbox" class="checkbox check_age" id="register_path3"
                                         name="register_path" <?= in_array(2, $register_path_arr) ? "checked" : ""; ?>>
-                                    <label for="register_path3">Went to the last ICoLA</label>
+                                    <label for="register_path3">Went to the last ISCP</label>
                                 </td>
                             </tr>
                             <tr>

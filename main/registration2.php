@@ -466,7 +466,7 @@ include_once(D9_PATH . "/plugin/KG_INICIS/inicis_loader.php");
                             </tr>
                             <tr>
                                 <th>Others</th>
-                                <td>
+                                <!-- <td>
                                     Welcome Reception (17:10-20:00, 23 Nov (Thu), 2023): <?= $welcome_reception_yn ?>
                                     </br>
                                     Day 1 - Luncheon Symposium (12:00-12:50, 23 Nov (Thu), 2023):
@@ -478,6 +478,20 @@ include_once(D9_PATH . "/plugin/KG_INICIS/inicis_loader.php");
                                     Day 3 - Breakfast Symposium (08:00-09:00, 25 Nov (Sat), 2023):
                                     <?= $day3_breakfast_yn ?> </br>
                                     Day 3 - Luncheon Symposium (12:05-12:55, 25 Nov (Sat), 2023):
+                                    <?= $day3_luncheon_yn ?> </br>
+                                </td> -->
+                                <td>
+                                    Welcome Reception (23 Nov (Thu), 2023): <?= $welcome_reception_yn ?>
+                                    </br>
+                                    Day 1 - Luncheon Symposium (23 Nov (Thu), 2023):
+                                    <?= $day1_luncheon_yn ?> </br>
+                                    Day 2 - Breakfast Symposium (24 Nov (Fri), 2023):
+                                    <?= $day2_breakfast_yn ?> </br>
+                                    Day 2 - Luncheon Symposium (24 Nov (Fri), 2023):
+                                    <?= $day2_luncheon_yn ?> </br>
+                                    Day 3 - Breakfast Symposium (25 Nov (Sat), 2023):
+                                    <?= $day3_breakfast_yn ?> </br>
+                                    Day 3 - Luncheon Symposium (25 Nov (Sat), 2023):
                                     <?= $day3_luncheon_yn ?> </br>
                                 </td>
                             </tr>
