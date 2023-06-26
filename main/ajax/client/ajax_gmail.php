@@ -4,12 +4,17 @@
 <?php
 include_once('../../../../icomes.or.kr/main/plugin/google-api-php-client-main/vendor/autoload.php');
 
+
+
 $language = isset($_SESSION["language"]) ? $_SESSION["language"] : "en";
 $locale = locale($language);
 
 if (php_sapi_name() != 'cli') {
 	//throw new Exception('This application must be run on the command line.');
 }
+
+$input_post = json_decode(file_get_contents("php://input"), true);
+$_POST = empty($_POST) ? $input_post : $_POST;
 
 /**
  * Returns an authorized API client.
@@ -102,8 +107,8 @@ function createMessage($language, $mail_type, $fname, $to, $subject, $time, $tmp
 	$rawMessageString .= "Content-Type: text/html; charset=utf-8\r\n";
 	$rawMessageString .= 'Content-Transfer-Encoding: base64' . "\r\n\r\n";
 
-
 	if ($mail_type == "signup_join") {
+
 		$rawMessageString .= "
 		<table width='750' style='border:1px solid #000; padding: 0;'>
 			<tbody>
@@ -146,7 +151,7 @@ function createMessage($language, $mail_type, $fname, $to, $subject, $time, $tmp
 					<td width='74' style='width:74px;'></td>
 					<td style='padding-top:16px;'>
 						<p>Warmest regards, ISCP</p>
-						<div style='text-align: center;'>
+						<div style='text-align: center; width:250px;'>
 						<a href='https://iscp2023.org/main/login.php' style='cursor: pointer;' target='_blank'><img src='https://iscp2023.org/main/img/mail_button.png' style='display:block; margin:0 auto; width:250px;'></a>
 						</div>
 					</td>
@@ -159,9 +164,9 @@ function createMessage($language, $mail_type, $fname, $to, $subject, $time, $tmp
 				</tr>
 			</tbody>
 		</table>
-
 ";
 	} else if ($mail_type == "payment") {
+		$data = isset($_POST["data"]) ? $_POST["data"] : "";
 
 		$name_title = $data["name_title"] ?? "";
 
@@ -173,21 +178,16 @@ function createMessage($language, $mail_type, $fname, $to, $subject, $time, $tmp
 		$nutritionist_number = $data["nutritionist_number"] ? $data["nutritionist_number"] : "Not applicable";
 
 		$attendance_type = $data["attendance_type"] ?? "-";
+		$attendance_type = $data["registration_type"] ?? "-";
 		switch ($attendance_type) {
 			case 0:
+				$attendance_type = "General Participants";
+				break;
+			case 2:
 				$attendance_type = "Committee";
 				break;
 			case 1:
 				$attendance_type = "Invited Speaker";
-				break;
-			case 2:
-				$attendance_type = "Chairperson";
-				break;
-			case 3:
-				$attendance_type = "Panel";
-				break;
-			case 4:
-				$attendance_type = "General Participants";
 				break;
 		}
 
@@ -199,9 +199,9 @@ function createMessage($language, $mail_type, $fname, $to, $subject, $time, $tmp
 
 		$nation_no = $data["nation_no"] ?? "";
 		$nation_sql = "SELECT
-								idx, nation_en, nation_tel
-							FROM nation
-							WHERE idx = {$nation_no}";
+							idx, nation_en, nation_tel
+						FROM nation
+						WHERE idx = {$nation_no}";
 
 		$nation = sql_fetch($nation_sql);
 		$nation_tel = $nation["nation_tel"] ?? "";
@@ -216,119 +216,177 @@ function createMessage($language, $mail_type, $fname, $to, $subject, $time, $tmp
 		$department = $data["department"] ?? "-";
 		$academy_number = $data["academy_number"] ?? "-";
 
-		$rawMessageString .= "  <div style='width: 549px !important; max-width:549px !important; margin: 0px auto; padding:0;'>
-		<table width='549' cellspacing='0' cellpadding='0' style='width: 549px !important; max-width:549px !important; margin: 0px; padding:0; border:1px solid;' >
-			<tr>
-				<td width='549' valign='top' style='width:549px; vertical-align:top; font-size:0; line-height:0;'>
-					<img src='https://iscp2023.org/main/img/mail_header.png' alt='2022 mailer' width='549' style='width: 549px; vertical-align: top; border: 0; display:block;'>
-				</td>
-			</tr>
-			<tr>
-				<td width='549' valign='top' style='width:549px;'>
-					<h1 style='font-size:16px; font-weight:bold; text-align:center; margin-top:50px;'>Personal Information</h1>
-				</td>
-			</tr>
-			<tr>
-				<td width='549' style='text-align:center;'>
-					<br/><br/>
-					<table width='480' style='display:inline-block; width:calc(100% - 80px); box-sizing:border-box; margin: 0 auto;'>
-						<tbody>
-							<tr>
-								<td style='text-align:center;'>
-									<table width='420' style='display:inline-block; width:calc(95% - 30px); border-top:2px solid #707070; background-color:#f8f8f8; '>
-										<tbody>
-											<tr>
-												<td style='padding:0 30px 50px;'>
-													<br/>
-													<table style='border-collapse: collapse;' cellspacing='0' cellpadding='0'>
-														<tbody>
-															<tr>
-																<p style='margin-top:24px; font-size:12px; font-weight:bold; color:#000; text-align:left;'>Dear {$fname},</p>
-																<br/>
-																<p style='font-size:10px; line-height:14px; color:#000; text-align:left;'>
-																	Thank you for signing up for the 2023 International Society<br/>of Cardiovascular Pharmacotherapy.(ISCP 2023)
-																</p>
-																<p style='font-size:10px; line-height:14px; color:#000; text-align:left;'>
-																	Your account has been successfully created.<br/>Please review the information that you have entered and inform the info of any<br/>errors. 
-																</p>
-															</tr>
-														</tbody>
-													</table>
-													<br/>
-													<table width='420' style='width:100% !important; border-collapse: collapse;' cellspacing='0' cellpadding='0'>
-			<colgroup> 
-				 <col width='160px'>
-				 <col width='*'>
-			 </colgroup>	
-			 <tbody>
-				 <tr>
-					 <th style='border-top:1px solid #707070; border-bottom:1px solid #707070; font-size: 8px; font-weight: bold; color: #000000;  text-align: left; padding: 8px 17px; border-right: 1px solid #707070'>Attendance Type</th>
-					<td style='text-align:left; border-top:1px solid #707070; border-bottom:1px solid #707070; font-size: 8px; font-weight: 400; color: #000000; padding: 8px 24px; box-sizing:border-box;'>{$attendance_type}</td>
-				 </tr>
-				 
-				<tr>
-					 <th style='border-bottom:1px solid #707070; font-size: 8px; line-height:12px; font-weight: bold; color: #000000;  text-align: left; padding: 8px 17px; border-right: 1px solid #707070'>ID</th>
-					 <td style='text-align:left; border-bottom:1px solid #707070; font-size: 8px; line-height:12px; font-weight: 400; color: #000000; padding: 8px 24px; box-sizing:border-box;'>{$to}</td>
-				 </tr>
-				 <tr>
-					 <th style='border-bottom:1px solid #707070; font-size: 8px; line-height:12px; font-weight: bold; color: #000000;  text-align: left; padding: 8px 17px; border-right: 1px solid #707070'>Name</th>
-					<td style='text-align:left; border-bottom:1px solid #707070; font-size: 8px; line-height:12px; font-weight: 400; color: #000000; padding: 8px 24px; box-sizing:border-box;'>{$fname}</td>
-				 </tr>
-				 <tr>
-					 <th style='border-bottom:1px solid #707070; font-size: 8px; line-height:12px; font-weight: bold; color: #000000;  text-align: left; padding: 8px 17px; border-right: 1px solid #707070'>Phone number</th>
-					<td style='text-align:left; border-bottom:1px solid #707070; font-size: 8px; line-height:12px; font-weight: 400; color: #000000; padding: 8px 24px; box-sizing:border-box;'>{$phone}</td>
-				 </tr>
-				 <tr>
-					 <th style='border-bottom:1px solid #707070; font-size: 8px; line-height:12px; font-weight: bold; color: #000000;  text-align: left; padding: 8px 17px; border-right: 1px solid #707070'>Attendant type</th>
-					<td style='text-align:left; border-bottom:1px solid #707070; font-size: 8px; line-height:12px; font-weight: 400; color: #000000; padding: 8px 24px; box-sizing:border-box;'>{$member_type}</td>
-				</tr>
-				<tr>
-					<th style='border-bottom:1px solid #707070; font-size: 8px; line-height:12px; font-weight: bold; color: #000000;  text-align: left; padding: 8px 17px; border-right: 1px solid #707070'>Affiliation</th>
-					<td style='text-align:left; border-bottom:1px solid #707070; font-size: 8px; line-height:12px; font-weight: 400; color: #000000; padding: 8px 24px; box-sizing:border-box;'>{$affiliation}</td>
-				</tr>
-				 <tr>
-					 <th style='border-bottom:1px solid #707070; font-size: 8px; line-height:12px; font-weight: bold; color: #000000;  text-align: left; padding: 8px 17px; border-right: 1px solid #707070'>Department</th>
-					<td style='text-align:left; border-bottom:1px solid #707070; font-size: 8px; line-height:12px; font-weight: 400; color: #000000; padding: 8px 24px; box-sizing:border-box;'>{$department}</td>
-				</tr>
-			 </tbody>
-		 </table>
-													<br/>
-													<table style='border-collapse: collapse;' cellspacing='0' cellpadding='0'>
-														<tbody>
-															<tr>
-																<p style='font-size:10px; line-height:14px; color:#000; text-align:left;'>
-																	We express our gratitude to you for your interest in the ISCP 2023 and look<br/>forward to seeing you in November in Seoul, Korea.
-																	<br/><br/>
-																	Please visit our website(https://iscp2023.org) with your account to submit the abstract and register.<br/>
-																	<br/><br/>
-																	Warmest regards,
-																	<br/><br/>
-																	ISCP 2023 
-																	<br/><br/><br/>
-																</p>
-															</tr>
-														</tbody>
-													</table>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-									<br/><br/><br/>
-								</td>
+		// Others
+		$welcome_reception_yn = $data["welcome_reception_yn"] ?? "N";
+		$day2_breakfast_yn = $data["day2_breakfast_yn"] ?? "N";
+		$day2_luncheon_yn = $data["day2_luncheon_yn"] ?? "N";
+		$day3_breakfast_yn = $data["day3_breakfast_yn"] ?? "N";
+		$day3_luncheon_yn = $data["day3_luncheon_yn"] ?? "N";
+
+		$other_html = "";
+
+		if ($welcome_reception_yn == "Y") {
+			$other_html .= "
+							<input type='checkbox' class='checkbox' id='other1'>
+							<label for='other1'><i></i>Welcome Reception – September 7(Thu)</label>
+						   ";
+		}
+		if ($day2_breakfast_yn == "Y") {
+			$other_html .= $other_html != "" ? "<br/>" : "";
+			$other_html .= "
+							<input type='checkbox' class='checkbox' id='other2'>
+							<label for='other2'><i></i>Day 2 Breakfast Symposium – September 8(Fri)</label>
+						   ";
+		}
+		if ($day2_luncheon_yn == "Y") {
+			$other_html .= $other_html != "" ? "<br/>" : "";
+			$other_html .= "
+							<input type='checkbox' class='checkbox' id='other3'>
+							<label for='other3'><i></i>Day 2 Luncheon Symposium – September 8(Fri)</label>
+						   ";
+		}
+		if ($day3_breakfast_yn == "Y") {
+			$other_html .= $other_html != "" ? "<br/>" : "";
+			$other_html .= "
+							<input type='checkbox' class='checkbox' id='other4'>
+							<label for='other4'><i></i>Day 3 Breakfast Symposium – September 9(Sat)</label>
+						   ";
+		}
+		if ($day3_luncheon_yn == "Y") {
+			$other_html .= $other_html != "" ? "<br/>" : "";
+			$other_html .= "
+							<input type='checkbox' class='checkbox' id='other5'>
+							<label for='other5'><i></i>Day 3 Luncheon Symposium – September 9(Sat)</label>
+						   ";
+		}
+
+		if ($other_html == "") $other_html = "-";
+
+		// Conference Info
+		$info_html = "";
+		$info = explode("*", $data["conference_info"] ?? "");
+
+		for ($a = 0; $a < count($info); $a++) {
+			if ($info[$a]) {
+				$info_html .= $info_html != "" ? "<br/>" : "";
+				$info_html .= "
+								<input type='checkbox' class='checkbox' id='conference" . $a . "'>
+								<label for='conference" . $a . "'><i></i>" . $info[$a] . "</label>
+							  ";
+			}
+		}
+
+		if ($info_html == "") $info_html = "-";
+
+		// Price
+		$pay_type = $data["pay_type"] ?? "";
+		$pay_name = "-";
+
+		if ($pay_type == "card") $pay_name = "Credit Card";
+		else if ($pay_type == "bank") $pay_name = "Bank Transfer";
+		else if ($pay_type == "free") $pay_name = "Free";
+		else $pay_name = "ETC";
+
+		$pay_date = $data["payment_date"] ?? "-";
+
+		$pay_price = $data["price"] ? number_format($data["price"]) : "-";
+		$pay_current = $nation_tel == "82" ? "KRW" : "USD";
+
+
+		if ($pay_type == "card" || $pay_type == "free") {
+			$pay_html = "
+							<tr style='border-bottom:1px solid #000;'>
+								<th style='width:150px; text-align:left; font-size:14px; padding:10px; background-color:#DBF5F0; '>Payment Status</th>
+								<td style='font-size:14px; padding:10px; color:#00666B; font-weight:bold' >Complete</td>
 							</tr>
-							
-						</tbody>
-					</table>
-					<tr>
-								<td width='549' valign='top' style='width:549px; vertical-align:top; font-size:0; line-height:0;'>
-								<img src='https://iscp2023.org/main/img/mail_footer.png' alt='mail_footer' width='549' style='width: 549px; vertical-align: top; border: 0; display:block;'>
-								</td>
+							<tr style='border-bottom:1px solid #000;'>
+								<th style='width:150px; text-align:left; font-size:14px; padding:10px; background-color:#DBF5F0; '>Payment Date</th>
+								<td style='font-size:14px; padding:10px;'>{$pay_date}</td>
 							</tr>
-					
-				</td>	
-			</tr>
-		</table>
-	</div>";
+						";
+		}
+		// else {
+		// 	$pay_html = "
+		// 					<tr style='border-bottom:1px solid #000;'>
+		// 						<th style='width:150px; text-align:left; font-size:14px; padding:10px; background-color:#DBF5F0; '>Payment Status</th>
+		// 						<td style='font-size:14px; padding:10px; color:#00666B; font-weight:bold'>Needed</td>
+		// 					</tr>
+		// 					<tr style='border-bottom:1px solid #000;'>
+		// 						<th style='width:150px; text-align:left; font-size:14px; padding:10px; background-color:#DBF5F0; '>Bank Information</th>
+		// 						<td style='font-size:14px; padding:10px;'>584-910003-16504, Hana Bank (하나은행)</td>
+		// 					</tr> 
+		// 				";
+		// }
+
+		$rawMessageString .= "  <table width='750' style='border:1px solid #000; padding: 0;'>
+        <tbody>
+            <tr>
+                <td colspan='3'>
+                    <img src='https://iscp2023.org/main/img/mail_header.png' width='750' style='width:100%; max-width:100%;'>
+                </td>
+            </tr>
+            <tr>
+                <td width='74' style='width:74px;'></td>
+                <td>
+                    <div style='font-weight:bold; text-align:center; font-size: 21px; color: #00666B; padding: 20px 0;'>[ISCP 2023] Completed Registration</div>
+                </td>
+                <td width='74' style='width:74px;'></td>
+            </tr>
+            <tr>
+                <td width='74' style='width:74px;'></td>
+                <td>
+                    <div>
+                        <p style='font-size:15px; font-weight:bold; color:#000; margin:0;'>Dear {$name_title} {$fname},</p>
+                        <p style='font-size:14px;color:#170F00;margin-top:14px;'>We express our gratitude for your registration for the  International Society
+                            of Cardiovascular Pharmacotherapy (ISCP) 2023. The registration details are presented below.
+                            Should you have any inquiries regarding your registration, kindly reach out to the ISCP 2023 Secretariat for assistance.(iscp@into-on.com) </a>)</p>
+                        <table width='586' style='width:586px; border-collapse:collapse; border-top:2px solid #000; width:100%; margin:17px 0;'>
+                            <tbody>
+                               
+                                <tr style='border-bottom:1px solid #000;'>
+                                    <th style='width:150px; text-align:left; font-size:14px; padding:10px;'>Name</th>
+                                    <td style='font-size:14px; padding:10px;border-left:1px solid #000; width:165px;'>{$fname}</td>
+                                </tr>
+                                
+                                <tr style='border-bottom:1px solid #000;'>
+                                    
+                                <tr style='border-bottom:1px solid #000;'>
+                                    <th style='width:150px; text-align:left; font-size:14px; padding:10px;'>Type of Participation</th>
+                                    <td style='font-size:14px; padding:10px;border-left:1px solid #000;'>{$attendance_type}</td>
+                                </tr>
+                             
+                                <tr style='border-bottom:1px solid #000;'>
+                                    <th style='width:150px; text-align:left; font-size:14px; padding:10px; background-color:#DBF5F0; '>Payment Method</th>
+                                    <td style='font-size:14px; padding:10px;'>{$pay_name}</td>
+                                </tr>
+                                {$pay_html}
+                               
+                            </tbody>	
+                        </table>
+                        <p>We eagerly anticipate your presence in Seoul, Korea this coming November.</p>
+                    </div>
+                </td>
+                <td width='74' style='width:74px;'></td>
+            </tr>
+            <tr>
+                <td width='74' style='width:74px;'></td>
+                <td>
+                    <p>Warmest regards,</p>
+                    <p>Secretariat of ISCP 2023</p>
+                    <br/>
+                    <div style='text-align: center;'>
+                        <a href='https://iscp2023.org/main/login.php' style='cursor: pointer;' target='_blank'><img src='https://iscp2023.org/main/img/mail_button.png' style='display:block; margin:0 auto;  width:250px;'></a>
+                    </div>
+                </td>
+                <td width='74' style='width:74px;'></td>
+            </tr>
+            <tr>
+                <td colspan='3' style='padding-top:50px;'>
+                    <img src='https://iscp2023.org/main/img/mail_footer.png' width='750' style='width:100%; max-width:100%;'>
+                </td>
+            </tr>
+        </tbody>
+    </table>";
 	} else if ($mail_type == "abstract") {
 		$rawMessageString .= "
 					<div style='width:670px;background-color:#fff;border:1px solid #000; font-size:0;'>
@@ -339,9 +397,9 @@ function createMessage($language, $mail_type, $fname, $to, $subject, $time, $tmp
 								<div style='margin-bottom:40px;'>
 									<p style='font-size:15px; font-weight:bold; color:#000; margin:0;'>Dear {$fname}</p>
 									<p style='font-size:14px;color:#170F00;margin-top:14px;'>
-										Attention Potential Presenting Author: Upon successful submission of your abstract, you will immediately see the following confirmation notice on your screen, followed by the same message via e&#45;mail. If you did not receive the following message, your abstract was not successfully submitted. Please try again, or contact (iscp@into-on.com) for assistance if you are having difficulty. 
+									Attention Potential Presenting Author: Upon successful submission of your abstract, you will immediately see the following confirmation notice on your screen, followed by the same message via e-mail. If you did not receive the following message, your abstract was not successfully submitted. Please try again, or contact (iscp@into-on.com) for assistance if you are having difficulty.
 										<br>
-										The deadline for abstract submissions is September 5 (submissions close at 11:59pm Korea Standard Time). It is your responsibility to address questions about submissions before September 5, so that if there is a problem, we can still help you make the submission on time. Be sure to print and/or save the confirmation of submission notices for reference in case of a problem or question.
+										The deadline for abstract submissions is  October 27 (Fri) (submissions close at 11:59pm Korea Standard Time). It is your responsibility to address questions about submissions before  October 27 (Fri), so that if there is a problem, we can still help you make the submission on time. Be sure to print and/or save the confirmation of submission notices for reference in case of a problem or question.
 										</p>
 
 									<p style='font-size:15px; font-weight:bold; color:#000; margin-top:30px;'>Abstract Successfully Submitted</p>
@@ -365,126 +423,62 @@ function createMessage($language, $mail_type, $fname, $to, $subject, $time, $tmp
 						<img src='https://iscp2023.org/main/img/mail_footer.png' style='width:100%;margin-top:40px;'>
 					</div>
 					";
-	}
-
-	if ($language == "ko") {
-		if ($mail_type == "find_password") {
-			$rawMessageString .= "
-			<table width='750' style='border:1px solid #000; padding: 0;'>
-			<tbody>
-				<tr>
-					<td colspan='3'>
-						<img src='https://iscp2023.org/main/img/mail_header.png' width='750' style='width:100%; max-width:100%;'><img src='https://iscp2023.org/main/img/mail_header_bom.png' width='750' style='width:100%; max-width:100%;'>
-					</td>
-				</tr>
-				<tr>
-					<td colspan='3'>
-						<div style='font-weight:bold; text-align:center;font-size: 21px; color: #00666B;padding: 20px 0;'>[ICOMES 2023] Temporary Password</div>
-					</td>
-				</tr>
-				<tr>
-					<td width='74' style='width:74px;'></td>
-					<td>
-						<div>
-							<div style='margin-bottom:20px'>
-								<p style='font-size:15px; font-weight:bold; color:#000; margin:0;'>Member of : {$fname}<br><span style='font-size:14px;color:#170F00;font-weight:normal;'>You requested a temporary password at : {$time}</span></p>
-							</div>
-							<p style='font-size:15px; font-weight:bold; color:#000; margin:0;'>Dear {$fname},</p>
-							<p style='font-size:14px;color:#170F00;margin-top:14px;'>You can log in to the ICOMES 2023 website using the ID & Temporary Password below and modify your password on the personal information on my page.</p>
-							<table width='586' style='width:586px; border-collapse:collapse; border-top:2px solid #000; width:100%; margin:17px 0;'>
-								<tbody>
-									<tr>
-										<th style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>ID(Email Address)</th>
-										<td style='font-size:14px; padding:10px; border-left:1px solid #000; border-bottom:1px solid #000;'><a href='mailto:{$to}' class='link font_inherit'>{$to}</a></td>
-									</tr>
-									<tr>
-										<th style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>Temporary Password</th>
-										<td style='font-size:14px; padding:10px; border-left:1px solid #000; border-bottom:1px solid #000;'>{$tmp_password}</td>
-									</tr>
-								</tbody>	
-							</table>
-							<p style='color:#f00;'>Click the 'Change to temporary password' button to check your changed log-in information.</p>
+	} else if ($mail_type == "find_password") {
+		$rawMessageString .= "<table width='750' style='border:1px solid #000; padding: 0;'>
+		<tbody>
+			<tr>
+				<td colspan='3'>
+					<img src='https://iscp2023.org/main/img/mail_header.png' width='750' style='width:100%; max-width:100%;'><img src='https://iscp2023.org/main/img/mail_header_bom.png' width='750' style='width:100%; max-width:100%;'>
+				</td>
+			</tr>
+			<tr>
+				<td colspan='3'>
+					<div style='font-weight:bold; text-align:center;font-size: 21px; color: #00666B;padding: 20px 0;'>[ISCP 2023] Temporary Password</div>
+				</td>
+			</tr>
+			<tr>
+				<td width='74' style='width:74px;'></td>
+				<td>
+					<div>
+						<div style='margin-bottom:20px'>
+							<p style='font-size:15px; font-weight:bold; color:#000; margin:0;'>Member of : {$fname}<br><span style='font-size:14px;color:#170F00;font-weight:normal;'>You requested a temporary password at : {$time}</span></p>
 						</div>
-					</td>
-					<td width='74' style='width:74px;'></td>
-				</tr>
-				<tr>
-					<td width='74' style='width:74px;'></td>
-					<td>
-						<div style='text-align: center;'>
-							<a href='https://iscp2023.org/main/login.php'><img src='https://iscp2023.org/main/img/mail_button.png' alt=''></a>
-						</div>
-						<p>Best regards,</p>
-					</td>
-					<td width='74' style='width:74px;'></td>
-				</tr>
-				<tr>
-					<td colspan='3' style='padding-top:50px;'>
-						<img src='https://iscp2023.org/main/img/mail_footer.png' width='750' style='width:100%; max-width:100%;'>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-						";
-		}
-	} else {
-		if ($mail_type == "find_password") {
-			$rawMessageString .= "<table width='750' style='border:1px solid #000; padding: 0;'>
-			<tbody>
-				<tr>
-					<td colspan='3'>
-						<img src='https://iscp2023.org/main/img/mail_header.png' width='750' style='width:100%; max-width:100%;'><img src='https://iscp2023.org/main/img/mail_header_bom.png' width='750' style='width:100%; max-width:100%;'>
-					</td>
-				</tr>
-				<tr>
-					<td colspan='3'>
-						<div style='font-weight:bold; text-align:center;font-size: 21px; color: #00666B;padding: 20px 0;'>[ISCP 2023] Temporary Password</div>
-					</td>
-				</tr>
-				<tr>
-					<td width='74' style='width:74px;'></td>
-					<td>
-						<div>
-							<div style='margin-bottom:20px'>
-								<p style='font-size:15px; font-weight:bold; color:#000; margin:0;'>Member of : {$fname}<br><span style='font-size:14px;color:#170F00;font-weight:normal;'>You requested a temporary password at : {$time}</span></p>
-							</div>
-							<p style='font-size:15px; font-weight:bold; color:#000; margin:0;'>Dear {$fname},</p>
-							<p style='font-size:14px;color:#170F00;margin-top:14px;'>You can log in to the ISCP 2023 website using the ID & Temporary Password below and modify your password on the personal information on my page.</p>
-							<table width='586' style='width:586px; border-collapse:collapse; border-top:2px solid #000; width:100%; margin:17px 0;'>
-								<tbody>
-									<tr>
-										<th style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>ID(Email Address)</th>
-										<td style='font-size:14px; padding:10px; border-left:1px solid #000; border-bottom:1px solid #000;'><a href='mailto:{$to}' class='link font_inherit'>{$to}</a></td>
-									</tr>
-									<tr>
-										<th style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>Temporary Password</th>
-										<td style='font-size:14px; padding:10px; border-left:1px solid #000; border-bottom:1px solid #000;'>{$tmp_password}</td>
-									</tr>
-								</tbody>	
-							</table>
-							<p style='color:#f00;'>Click the 'Change to temporary password' button to check your changed log-in information.</p>
-						</div>
-					</td>
-					<td width='74' style='width:74px;'></td>
-				</tr>
-				<tr>
-					<td width='74' style='width:74px;'></td>
-					<td>
-						<div style='text-align: center;'>
-							<a href='https://iscp2023.org/main/login.php'><img src='https://iscp2023.org/main/img/mail_button.png' alt='' style='width:250px'></a>
-						</div>
-						<p>Best regards,ISCP</p>
-					</td>
-					<td width='74' style='width:74px;'></td>
-				</tr>
-				<tr>
-					<td colspan='3' style='padding-top:50px;'>
-						<img src='https://iscp2023.org/main/img/mail_footer.png' width='750' style='width:100%; max-width:100%;'>
-					</td>
-				</tr>
-			</tbody>
-		</table>";
-		}
+						<p style='font-size:15px; font-weight:bold; color:#000; margin:0;'>Dear {$fname},</p>
+						<p style='font-size:14px;color:#170F00;margin-top:14px;'>You can log in to the ISCP 2023 website using the ID & Temporary Password below and modify your password on the personal information on my page.</p>
+						<table width='586' style='width:586px; border-collapse:collapse; border-top:2px solid #000; width:100%; margin:17px 0;'>
+							<tbody>
+								<tr>
+									<th style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>ID(Email Address)</th>
+									<td style='font-size:14px; padding:10px; border-left:1px solid #000; border-bottom:1px solid #000;'><a href='mailto:{$to}' class='link font_inherit'>{$to}</a></td>
+								</tr>
+								<tr>
+									<th style='width:150px; text-align:left; font-size:14px; padding:10px; border-bottom:1px solid #000;'>Temporary Password</th>
+									<td style='font-size:14px; padding:10px; border-left:1px solid #000; border-bottom:1px solid #000;'>{$tmp_password}</td>
+								</tr>
+							</tbody>	
+						</table>
+						<p style='color:#f00;'>Click the 'Change to temporary password' button to check your changed log-in information.</p>
+					</div>
+				</td>
+				<td width='74' style='width:74px;'></td>
+			</tr>
+			<tr>
+				<td width='74' style='width:74px;'></td>
+				<td>
+					<div style='text-align: center;'>
+						<a href='https://iscp2023.org/main/login.php'><img src='https://iscp2023.org/main/img/mail_button.png' alt='' style='width:250px'></a>
+					</div>
+					<p>Best regards,ISCP</p>
+				</td>
+				<td width='74' style='width:74px;'></td>
+			</tr>
+			<tr>
+				<td colspan='3' style='padding-top:50px;'>
+					<img src='https://iscp2023.org/main/img/mail_footer.png' width='750' style='width:100%; max-width:100%;'>
+				</td>
+			</tr>
+		</tbody>
+	</table>";
 	}
 
 	$rawMessage = strtr(base64_encode($rawMessageString), array('+' => '-', '/' => '_'));
@@ -669,12 +663,15 @@ if ($_POST["flag"] == "abstract") {
 }
 
 if ($_POST["flag"] == "signup_join") {
+	echo '<script>';
+	echo 'console.log("hello")';
+	echo '</script>';
 	$data = isset($_POST["data"]) ? $_POST["data"] : "";
 	$name = $data["last_name"] . " " . $data["first_name"];
 	$email = $data["email"];
 	$time = date("Y-m-d H:i:s");
 	$subject = $locale("mail_sign_up_subject");
-	$message = createMessage("ko", "signup_join", $name, $email, $subject, $time, "", "", 1, "", "", "", $email, $time, "", "");
+	$message = createMessage("en", "signup_join", $name, $email, $subject, $time, "", "", 1, "", "", "", $email, $time, "", "", "");
 	createDraft($service, "secretariat@iscp2023.org", $message);
 	sendMessage($service, "secretariat@iscp2023.org", $message);
 

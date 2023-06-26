@@ -10,7 +10,7 @@ $registration_idx = $_GET["idx"] ?? null;
 					FROM info_event";*/
 
 $sql_during = "SELECT
-						IF(NOW() BETWEEN '2022-08-18 17:00:00' AND '2023-11-25 18:00:00', 'Y', 'N') AS yn
+						IF(NOW() BETWEEN '2022-08-18 17:00:00' AND '2023-10-27 18:00:00', 'Y', 'N') AS yn
 					FROM info_event";
 $during_yn = sql_fetch($sql_during)['yn'];
 

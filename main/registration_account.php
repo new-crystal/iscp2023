@@ -12,28 +12,28 @@ $during_yn = sql_fetch($sql_during)['yn'];
 if ($during_yn !== "Y") {
 ?>
 
-    <section class="container submit_application registration_closed">
-        <div class="sub_background_box">
-            <div class="sub_inner">
-                <div>
-                    <h2>Registration</h2>
-                    <ul class="clearfix">
-                        <li>Home</li>
-                        <li>Registration</li>
-                        <li>Payment</li>
-                    </ul>
-                </div>
+<section class="container submit_application registration_closed">
+    <div class="sub_background_box">
+        <div class="sub_inner">
+            <div>
+                <h2>Registration</h2>
+                <ul class="clearfix">
+                    <li>Home</li>
+                    <li>Registration</li>
+                    <li>Payment</li>
+                </ul>
             </div>
         </div>
-        <div class="inner coming">
-            <div class="sub_banner">
-                <h5>Pre-Registration<br>has been closed</h5>
-            </div>
+    </div>
+    <div class="inner coming">
+        <div class="sub_banner">
+            <h5>Pre-Registration<br>has been closed</h5>
         </div>
-    </section>
+    </div>
+</section>
 
 
-    <?php
+<?php
 } else {
     $member_idx = $_SESSION['USER']['idx'];
 
@@ -209,247 +209,249 @@ if ($during_yn !== "Y") {
 
     if ($nation_no == 25) {
     ?>
-        <!-- 변경 한국 마크업 -->
-        <section class="container submit_application register">
-            <div class="sub_background_box">
-                <div class="sub_inner">
-                    <div>
-                        <h2>Registration</h2>
-                        <ul class="clearfix">
-                            <li>Home</li>
-                            <li>Registration</li>
-                            <li>Payment</li>
-                        </ul>
-                    </div>
-                </div>
+<!-- 변경 한국 마크업 -->
+<section class="container submit_application register">
+    <div class="sub_background_box">
+        <div class="sub_inner">
+            <div>
+                <h2>Registration</h2>
+                <ul class="clearfix">
+                    <li>Home</li>
+                    <li>Registration</li>
+                    <li>Payment</li>
+                </ul>
             </div>
-            <div class="inner bottom_short">
-                <div class="account_div">
-                    <div class="circle_title">계좌이체</div>
-                    <ul class="text_indent">
-                        <li>등록비 입금 시 등록자 명으로 입금해주시기 바랍니다.<br />다른 이름 혹은 소속기관명으로 입금하실 경우 반드시 사무국 이메일(iscp@into-on.com)로 연락 바랍니다
-                        </li>
-                    </ul>
-                    <div class="table_wrap form_types">
-                        <table class="table">
-                            <!--detail_table-->
-                            <colgroup>
-                                <col class="col_th">
-                                <col width="*">
-                            </colgroup>
-                            <tbody>
-                                <tr>
-                                    <th class="leftT">은행명</th>
-                                    <td>우리은행</td>
-                                </tr>
-                                <tr>
-                                    <th class="leftT">계좌번호</th>
-                                    <td>1005-803-441694</td>
-                                </tr>
-                                <tr>
-                                    <th class="leftT">예금주</th>
-                                    <td>대한심혈관약물치료학회(Korean Society of Cardiovascular Pharmacotherapy)</td>
-                                </tr>
-                                <tr>
-                                    <th class="leftT red_txt bold">총 등록비</th>
-                                    <td class="red_txt bold">
-                                        <?= (($nation_no == 25) ? number_format($price_eyes) . " " . $price_name : $price_name . " " . number_format($price_eyes)) ?>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <!-- content 2 -->
-                <!-- <div class="circle_title">결제 정보</div> -->
-                <!-- <div class="details"> -->
-                <!-- 	<p>총 금액 <span class="point_txt s_bold"><?= ($nation_no != 25) ? $price_name . " " . number_format($price_eyes) : number_format($price_eyes) . "" . $price_name ?></span></p> -->
-                <!-- </div> -->
-                <div class="details">
-                    <p>취소 규정 <a href="javascript:;" class="red_txt cancel_btn">상세 &gt;</a></p>
-                </div>
-                <div class="centerT pager_btn_wrap half">
-                    <button type="button" class="btn green_btn" onclick="prev()">Prev</button>
-                    <button type="button" class="btn green_btn" onclick="move()">Complete</button>
-                </div>
+        </div>
+    </div>
+    <div class="inner bottom_short">
+        <div class="account_div">
+            <div class="circle_title">계좌이체</div>
+            <ul class="text_indent">
+                <li>등록비 입금 시 등록자 명으로 입금해주시기 바랍니다.<br />다른 이름 혹은 소속기관명으로 입금하실 경우 반드시 사무국 이메일(iscp@into-on.com)로 연락 바랍니다
+                </li>
+            </ul>
+            <div class="table_wrap form_types">
+                <table class="table">
+                    <!--detail_table-->
+                    <colgroup>
+                        <col class="col_th">
+                        <col width="*">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th class="leftT">은행명</th>
+                            <td>우리은행</td>
+                        </tr>
+                        <tr>
+                            <th class="leftT">계좌번호</th>
+                            <td>1005-803-441694</td>
+                        </tr>
+                        <tr>
+                            <th class="leftT">예금주</th>
+                            <td>대한심혈관약물치료학회(Korean Society of Cardiovascular Pharmacotherapy)</td>
+                        </tr>
+                        <tr>
+                            <th class="leftT red_txt bold">총 등록비</th>
+                            <td class="red_txt bold">
+                                <?= (($nation_no == 25) ? number_format($price_eyes) . " " . $price_name : $price_name . " " . number_format($price_eyes)) ?>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </section>
+        </div>
+        <!-- content 2 -->
+        <!-- <div class="circle_title">결제 정보</div> -->
+        <!-- <div class="details"> -->
+        <!-- 	<p>총 금액 <span class="point_txt s_bold"><?= ($nation_no != 25) ? $price_name . " " . number_format($price_eyes) : number_format($price_eyes) . "" . $price_name ?></span></p> -->
+        <!-- </div> -->
+        <div class="details">
+            <p>취소 규정 <a href="javascript:;" class="red_txt cancel_btn">상세 &gt;</a></p>
+        </div>
+        <div class="centerT pager_btn_wrap half">
+            <button type="button" class="btn green_btn" onclick="prev()">Prev</button>
+            <button type="button" class="btn green_btn" onclick="move()">Complete</button>
+        </div>
+    </div>
+</section>
 
-        <div class="popup cancel_pop">
-            <div class="pop_bg"></div>
-            <div class="pop_contents">
-                <button type="button" class="pop_close"><img src="./img/icons/pop_close.png"></button>
-                <h3 class="pop_title">등록취소 및 환불정책</h3>
-                <p class="pre">등록비 환불은 대회 종료 후 이루어지며, 등록 취소 시 반드시 이메일(iscp@into-on.com)을 통하여 취소 내용을 사무국에 접수해주시기 바랍니다.
-                </p>
-                <div class="table_wrap c_table_wrap2">
-                    <table class="c_table2">
-                        <colgroup>
-                            <col width="50%">
-                            <col width="50%">
-                        </colgroup>
-                        <thead>
-                            <tr class="tr_center">
-                                <th>날짜</th>
-                                <th>환불 금액</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="tr_center">
-                                <td>2023년 9월 30일까지 등록 취소 시</td>
-                                <td>100% 환불</td>
-                            </tr>
-                            <tr class="tr_center">
-                                <td>2023년 10월 1일부터 등록 취소 시 시</td>
-                                <td>환불 없음</td>
-                            </tr>
-                            <!-- <tr class="tr_center">
+<div class="popup cancel_pop">
+    <div class="pop_bg"></div>
+    <div class="pop_contents">
+        <button type="button" class="pop_close"><img src="./img/icons/pop_close.png"></button>
+        <h3 class="pop_title">등록취소 및 환불정책</h3>
+        <p class="pre">등록비 환불은 대회 종료 후 이루어지며, 등록 취소 시 반드시 이메일(iscp@into-on.com)을 통하여 취소 내용을 사무국에 접수해주시기 바랍니다.
+        </p>
+        <div class="table_wrap c_table_wrap2">
+            <table class="c_table2">
+                <colgroup>
+                    <col width="50%">
+                    <col width="50%">
+                </colgroup>
+                <thead>
+                    <tr class="tr_center">
+                        <th>날짜</th>
+                        <th>환불 금액</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="tr_center">
+                        <td>2023년 9월 30일까지 등록 취소 시</td>
+                        <td>100% 환불</td>
+                    </tr>
+                    <tr class="tr_center">
+                        <td>2023년 10월 1일부터 등록 취소 시 시</td>
+                        <td>환불 없음</td>
+                    </tr>
+                    <!-- <tr class="tr_center">
 								<td>2022년 8월 27일부터 등록 취소 시</td>
 								<td>환불 없음</td>
 							</tr> -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                </tbody>
+            </table>
         </div>
-    <?php
+    </div>
+</div>
+<?php
     } else {
     ?>
-        <!-- 변경 영어 마크업 -->
-        <section class="container submit_application register">
-            <div class="sub_background_box">
-                <div class="sub_inner">
-                    <div>
-                        <h2>Registration</h2>
-                        <ul class="clearfix">
-                            <li>Home</li>
-                            <li>Registration</li>
-                            <li>Payment</li>
-                        </ul>
-                    </div>
-                </div>
+<!-- 변경 영어 마크업 -->
+<section class="container submit_application register">
+    <div class="sub_background_box">
+        <div class="sub_inner">
+            <div>
+                <h2>Registration</h2>
+                <ul class="clearfix">
+                    <li>Home</li>
+                    <li>Registration</li>
+                    <li>Payment</li>
+                </ul>
             </div>
-            <div class="inner bottom_short">
-                <div class="account_div details">
-                    <div class="circle_title"><?= $locale("payment_bank_tit") ?></div>
-                    <ul class="text_indent">
-                        <li>• All bank remittance charges are to be paid by the registrant.</li>
-                        <li>• The sender’s name should be the registrant’s name.</li>
-                        <li>• Please send a copy of the wire transfer slip to the secretariat by
-                            e-mail(secretariat@icola2022.org) after writing the registrant’s name on the bank remittance
-                            receipt.</li>
-                        <li>• Appropriate payment should be completed within the right period of registration.<br>If you pay
-                            after the registration period, you will need to pay the corresponding additional fees.</li>
-                    </ul>
-                    <div class="table_wrap form_types">
-                        <table class="table">
-                            <!--detail_table-->
-                            <colgroup>
-                                <col class="col_th">
-                                <col width="*">
-                            </colgroup>
-                            <tbody>
-                                <tr>
-                                    <th><?= $locale("payment_bank_name_tit") ?></th>
-                                    <td>WOORI BANK</td>
-                                </tr>
-                                <tr>
-                                    <th><?= $locale("payment_account_number_tit") ?></th>
-                                    <td>1005-803-441694</td>
-                                </tr>
-                                <tr>
-                                    <th><?= $locale("payment_account_holder_tit") ?></th>
-                                    <td>Korean Society of Cardiovascular Pharmacotherapy</td>
-                                </tr>
-                                <tr>
-                                    <th>Swift Code</th>
-                                    <td>HVBKKRSEXXX</td>
-                                </tr>
-                                <!-- <tr>
+        </div>
+    </div>
+    <div class="inner bottom_short">
+        <div class="account_div details">
+            <div class="circle_title"><?= $locale("payment_bank_tit") ?></div>
+            <ul class="text_indent">
+                <li>• All bank remittance charges are to be paid by the registrant.</li>
+                <li>• The sender’s name should be the registrant’s name.</li>
+                <li>• Please send a copy of the wire transfer slip to the secretariat by
+                    e-mail(iscp@into-on.com) after writing the registrant’s name on the bank remittance
+                    receipt.</li>
+                <li>• Appropriate payment should be completed within the right period of registration.<br>If you pay
+                    after the registration period, you will need to pay the corresponding additional fees.</li>
+            </ul>
+            <div class="table_wrap form_types">
+                <table class="table">
+                    <!--detail_table-->
+                    <colgroup>
+                        <col class="col_th">
+                        <col width="*">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th><?= $locale("payment_bank_name_tit") ?></th>
+                            <td>WOORI BANK</td>
+                        </tr>
+                        <tr>
+                            <th><?= $locale("payment_account_number_tit") ?></th>
+                            <td>1005-803-441694</td>
+                        </tr>
+                        <tr>
+                            <th><?= $locale("payment_account_holder_tit") ?></th>
+                            <td>Korean Society of Cardiovascular Pharmacotherapy</td>
+                        </tr>
+                        <tr>
+                            <th>Swift Code</th>
+                            <td>HVBKKRSEXXX</td>
+                        </tr>
+                        <!-- <tr>
                             <th>Branch</th>
                             <td>Mapo Jungang</td>
                         </tr> -->
-                                <tr>
-                                    <th>Bank Address</th>
-                                    <td>1585, Sangam-dong, Mapo-gu, Seoul, Korea</td>
-                                </tr>
-                                <tr>
-                                    <th class="red_txt bold">Total registration fee</th>
-                                    <td class="red_txt bold">
-                                        <?= (($nation_no == 25) ? $price_name . " " . number_format($price_eyes) : $price_name . " " . number_format($price_eyes)) ?>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <!-- content 2 -->
-                <!-- <div class="circle_title"><?= $locale("payment_info_tit") ?></div> -->
-                <!-- <div class="details"> -->
-                <!-- 	<p><?= $locale("total_price") ?> <span class="point_txt s_bold"><?= (($nation_no == 25) ? $price_name . " " . number_format($price_eyes) : $price_name . " " . number_format($price_eyes)) ?></span></p> -->
-                <!-- </div> -->
-                <div class="details">
-                    <p><?= $locale("cancellation_tit") ?> <a href="javascript:;" class="red_txt cancel_btn">Details &gt;</a></p>
-                </div>
-                <div class="centerT pager_btn_wrap half">
-                    <button type="button" class="btn green_btn " onclick="prev()"><?= (($nation_no == 25) ? "이전" : "Prev") ?></button>
-                    <button type="button" class="btn green_btn " onclick="move()"><?= (($nation_no == 25) ? "완료" : "Complete") ?></button>
-                </div>
-            </div>
-        </section>
-
-        <div class="popup cancel_pop">
-            <div class="pop_bg"></div>
-            <div class="pop_contents">
-                <button type="button" class="pop_close"><img src="./img/icons/pop_close.png"></button>
-                <h3 class="pop_title"><?= $locale("cancellation_tit") ?></h3>
-                <p class="pre"><?= $locale("cancellation_txt") ?></p>
-                <div class="table_wrap c_table_wrap2">
-                    <table class="c_table2">
-                        <thead>
-                            <tr>
-                                <th><?= $locale("date") ?></th>
-                                <th><?= $locale("cancellation_table_category2") ?></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><?= $locale("cancellation_table_data1") ?></td>
-                                <td><?= $locale("cancellation_table_data1_1") ?></td>
-                            </tr>
-                            <tr>
-                                <td><?= $locale("cancellation_table_data2") ?></td>
-                                <td><?= $locale("cancellation_table_data2_1") ?></td>
-                            </tr>
-                            <tr>
-                                <td><?= $locale("cancellation_table_data3") ?></td>
-                                <td><?= $locale("cancellation_table_data3_1") ?></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                        <tr>
+                            <th>Bank Address</th>
+                            <td>1585, Sangam-dong, Mapo-gu, Seoul, Korea</td>
+                        </tr>
+                        <tr>
+                            <th class="red_txt bold">Total registration fee</th>
+                            <td class="red_txt bold">
+                                <?= (($nation_no == 25) ? $price_name . " " . number_format($price_eyes) : $price_name . " " . number_format($price_eyes)) ?>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-    <?php
+        <!-- content 2 -->
+        <!-- <div class="circle_title"><?= $locale("payment_info_tit") ?></div> -->
+        <!-- <div class="details"> -->
+        <!-- 	<p><?= $locale("total_price") ?> <span class="point_txt s_bold"><?= (($nation_no == 25) ? $price_name . " " . number_format($price_eyes) : $price_name . " " . number_format($price_eyes)) ?></span></p> -->
+        <!-- </div> -->
+        <div class="details">
+            <p><?= $locale("cancellation_tit") ?> <a href="javascript:;" class="red_txt cancel_btn">Details &gt;</a></p>
+        </div>
+        <div class="centerT pager_btn_wrap half">
+            <button type="button" class="btn green_btn "
+                onclick="prev()"><?= (($nation_no == 25) ? "이전" : "Prev") ?></button>
+            <button type="button" class="btn green_btn "
+                onclick="move()"><?= (($nation_no == 25) ? "완료" : "Complete") ?></button>
+        </div>
+    </div>
+</section>
+
+<div class="popup cancel_pop">
+    <div class="pop_bg"></div>
+    <div class="pop_contents">
+        <button type="button" class="pop_close"><img src="./img/icons/pop_close.png"></button>
+        <h3 class="pop_title"><?= $locale("cancellation_tit") ?></h3>
+        <p class="pre"><?= $locale("cancellation_txt") ?></p>
+        <div class="table_wrap c_table_wrap2">
+            <table class="c_table2">
+                <thead>
+                    <tr>
+                        <th><?= $locale("date") ?></th>
+                        <th><?= $locale("cancellation_table_category2") ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><?= $locale("cancellation_table_data1") ?></td>
+                        <td><?= $locale("cancellation_table_data1_1") ?></td>
+                    </tr>
+                    <tr>
+                        <td><?= $locale("cancellation_table_data2") ?></td>
+                        <td><?= $locale("cancellation_table_data2_1") ?></td>
+                    </tr>
+                    <tr>
+                        <td><?= $locale("cancellation_table_data3") ?></td>
+                        <td><?= $locale("cancellation_table_data3_1") ?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<?php
     }
     ?>
-    <!-- 변경 마크업 : end -->
+<!-- 변경 마크업 : end -->
 
-    <!-- <script src="./js/script/client/registration.js?v=0.1"></script> -->
-    <script>
-        $('.cancel_btn').on('click', function() {
-            $('.cancel_pop').show();
-        });
+<!-- <script src="./js/script/client/registration.js?v=0.1"></script> -->
+<script>
+$('.cancel_btn').on('click', function() {
+    $('.cancel_pop').show();
+});
 
-        function move() {
-            window.location.replace(PATH + "mypage_registration.php");
-        }
+function move() {
+    window.location.replace(PATH + "mypage_registration.php");
+}
 
-        function prev() {
-            var idx = "<?= $registration_idx; ?>";
-            window.location.replace(PATH + "registration2.php?idx=" + idx);
-        }
-    </script>
+function prev() {
+    var idx = "<?= $registration_idx; ?>";
+    window.location.replace(PATH + "registration2.php?idx=" + idx);
+}
+</script>
 <?php
 }
 
