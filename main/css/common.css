@@ -804,14 +804,14 @@ div.phone input:last-child {width:calc(100% - 102px); margin-left:6px;}
 /*Transportation*/
 .circle_title p {font-size:18px; font-weight:normal; margin-top:16px;}
 .transportation .inner > div:not(:first-child) {margin-top:84px;}
-.transportation thead th {background-color:#003366; color:#fff;}
+.transportation thead th {background-color:#EEF2F5; color:#003366;}
 .transportation .leftT thead th {font-size:18px;}
 .transportation td, .transportation th {padding:17px 20px;}
 .transportation table.leftT {min-width: 435px;}
 .transportation .left_border_table {min-width: 990px;}
 .transportation .title_td {width:205px;}
 .trans_td {width:195px;}
-.transportation .table thead tr th:not(:first-child) {border-color: #FFFFFF;}
+.transportation .table thead tr th:not(:first-child) {border-color: #003366;}
 
 
 /*Attractions in Seoul, About Korea*/
