@@ -3367,6 +3367,7 @@ width:920px;
 }
 .venue-tr {
   background-color: #EEF2F5;
+  color: #003366;
 }
 .venue-table-border-right{
   font-weight: 700 !important;
@@ -4565,7 +4566,7 @@ width:920px;
       font-size: 24px;
       font-weight: 900;
       position: absolute;
-      transform: translate(-5px,-30px);
+      transform: translate(-7px,-30px);
       text-align: right;
       display: flex;
       align-items: center;

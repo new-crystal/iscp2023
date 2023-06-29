@@ -2895,11 +2895,11 @@ span.eligibility_open {
   .title:after {
     display: none;
   }
-  .title {
-    font-size: 18px;
+  .info > .title {
+    font-size: 19px;
     display: inline;
-    border-bottom: 1px solid #c9f7ff;
-    box-shadow: inset 0 -7px 0 #c9f7ff;
+    border-bottom: 1px solid #FF9900;
+    box-shadow: inset 0 -7px 0 #FF9900;
   }
   header .btn:first-of-type {
     margin-right: 2px;
@@ -3249,3 +3249,4 @@ span.eligibility_open {
 .rating_guide {
   width: 100%;
 }
+

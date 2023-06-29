@@ -170,7 +170,7 @@ $notice_list = get_data($notice_list_query);
 
                         <img src="/main/img/home_05_02.png" />
                     </a>
-                    <a href="/main/welcome.php">
+                    <a href="/main/presentation_guidelines.php">
 
                         <img src="/main/img/home_05_03.png" />
                     </a>
