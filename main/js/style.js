@@ -162,40 +162,40 @@ $(document).ready(function(){
 	$(".datepicker_input").datepicker();
 
 	if(!$("section").hasClass("icola_main")){
-		btnTop();
+		//btnTop();
 		btnTopClick();
 	}
 
-	function btnTop(){
-		var footer_height = $("footer.footer").outerHeight();
+	// function btnTop(){
+	// 	var footer_height = $("footer.footer").outerHeight();
 
-		$(window).scroll(function(){
-			var scroll_top = $(window).scrollTop();
-			if(scroll_top > 50){
-				$(".fixed_top").fadeIn(300);
-			}else{
-				$(".fixed_top").fadeOut(300);
-			}
-			var footer_top = $("footer.footer").offset().top;
-			var fixed_bottom = $(".fixed_top_clone").offset().top + $(".fixed_top_clone").outerHeight();
-			if(32 >= footer_top - fixed_bottom){
-				$(".fixed_top").addClass("on");
-				if($("section").hasClass("top_btn_move")){ // 우측하단에 register btn이 있는 경우
-					$(".fixed_top").css("bottom", footer_height+110+"px");
-				}else{
-					$(".fixed_top").css("bottom", footer_height+30+"px");
-				}
-			}else{
-				$(".fixed_top").removeClass("on");
-				if($("section").hasClass("top_btn_move")){
-					$(".fixed_top").css("bottom", "110px");;
-				}else{
-					$(".fixed_top").css("bottom", "30px");
-				}
-			}
-		});
+	// 	$(window).scroll(function(){
+	// 		var scroll_top = $(window).scrollTop();
+	// 		if(scroll_top > 50){
+	// 			$(".fixed_top").fadeIn(300);
+	// 		}else{
+	// 			$(".fixed_top").fadeOut(300);
+	// 		}
+	// 		var footer_top = $("footer.footer").offset().top;
+	// 		var fixed_bottom = $(".fixed_top_clone").offset().top + $(".fixed_top_clone").outerHeight();
+	// 		if(32 >= footer_top - fixed_bottom){
+	// 			$(".fixed_top").addClass("on");
+	// 			if($("section").hasClass("top_btn_move")){ // 우측하단에 register btn이 있는 경우
+	// 				$(".fixed_top").css("bottom", footer_height+110+"px");
+	// 			}else{
+	// 				$(".fixed_top").css("bottom", footer_height+30+"px");
+	// 			}
+	// 		}else{
+	// 			$(".fixed_top").removeClass("on");
+	// 			if($("section").hasClass("top_btn_move")){
+	// 				$(".fixed_top").css("bottom", "110px");;
+	// 			}else{
+	// 				$(".fixed_top").css("bottom", "30px");
+	// 			}
+	// 		}
+	// 	});
 
-	};
+	// };
 
 	/*$(".favorite_btn").click(function(){
 		$(this).toggleClass("on");
@@ -249,7 +249,9 @@ $(document).ready(function(){
 
 function container_top() {
 	var container_pt = $(".green_header").height();
-	$("section.container").css("padding-top",container_pt)
+	if(window.innerWidth >= 1025){
+		$("section.container").css("padding-top",container_pt)
+	}
 }
 
 // 리스트 반응형 처리

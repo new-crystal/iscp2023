@@ -656,9 +656,9 @@ table .ab_topic th {
 }
 .details p,
 .details li {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1.6;
   word-break: keep-all;
 }
 .dowload_btn_wrap {

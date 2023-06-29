@@ -162,11 +162,11 @@ $notice_list = get_data($notice_list_query);
                 <h1 class="noti_wrap_title">ISCP 2023</h1>
                 <!-- <img class="iscp-main-img" src="./img/home_05.png"> -->
                 <div class="main-home-img">
-                    <a href="/main/welcome.php">
+                    <a href="/main/registration_guidelines.php">
                         <img src="/main/img/home_05_01.png" />
 
                     </a>
-                    <a href="/main/welcome.php">
+                    <a href="/main/submission_guideline.php">
 
                         <img src="/main/img/home_05_02.png" />
                     </a>
@@ -174,7 +174,7 @@ $notice_list = get_data($notice_list_query);
 
                         <img src="/main/img/home_05_03.png" />
                     </a>
-                    <a href="/main/welcome.php">
+                    <a href="/main/program_glance.php">
 
                         <img src="/main/img/home_05_04.png" />
                     </a>

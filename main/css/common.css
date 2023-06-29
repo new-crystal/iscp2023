@@ -140,7 +140,7 @@ p.sub_section_title.main_theme{color: #000;font-weight: 600;letter-spacing: -0.5
 /*hansol_addEnd*/
 
 .title{font-size:22px;position:relative;display:inline-block;}
-.title:after{content:'';display:block;width:100%;height:12px;background:#C9F7FF;position:absolute;left:0;bottom:0;z-index:-1;}
+.title:after{content:'';display:block;width:100%;height:12px;background:#FF9900;position:absolute;left:0;bottom:0;z-index:-1;}
 .title_point{text-align: center;}
 /*.steps_area li{width:33.3333%;text-align:center;}*/
 /*.steps_area li p:first-of-type:after{content:'';display:block;width:150px;background:#707070;height:2px;position:absolute;top:50%;right:-150px;z-index:-1;}*/
@@ -165,7 +165,7 @@ body {position: relative;}
 /*.fixed_btn:hover{background:#ADF000;}*/
 /*.fixed_btn:after{content:'';display:block;z-index:-1;position:absolute;top:-5px;right:5px;width:110px;height:110px;border:1px solid #000;color:#000;border-radius:50%;}*/
 /* 220318 HUBDNC LJH2 추가*/
-.green_btn {background-color: #00666B; border-color: #00666B; color:#fff !important;}
+.green_btn {background-color: #990000; border-color: #990000; color:#fff !important;}
 .wine_btn {background-color: #bd1848; border-color: #bd1848; color:#fff !important;}
 .gray_btn {background-color: rgba(60,60,59,0.5); border-color: transparent; color:#fff !important;}
 .dark_gray_btn {background-color: #888888; border-color: #888888; color:#fff !important;}
@@ -299,9 +299,9 @@ footer .btn_wrap li:last-of-type{margin-right:0;}
 
 /*table*/
 .table{width:100%; /*border-top:1px solid #3C3C3B;*/border-top: 2px solid #22485f; text-align: left; vertical-align: text-top;}
-.table th, .table td {font-size:16px; padding:5px 5px 5px 25px;}
-.table tr {border-bottom:1px solid #707070;}
-.table th {background-color:#f6f6f6; font-size:16px; font-weight:600;}
+.table th, .table td {font-size:16px; padding:15px 5px 15px 5px;}
+.table tr {border-bottom:1px solid #9C9B9B;}
+.table th {background-color:#EEF2F5; font-size:16px; font-weight:600;}
 .table_title{font-weight: 800;vertical-align: text-top;}
 .detail_table.table tr {border-bottom:none;}
 .detail_table th, .detail_table td {text-align:left;}
@@ -503,7 +503,7 @@ section.container {max-width:100%; width:100%; margin:0;padding: 0;}
 .login_btn_bar{width: 1px; height: 15px; background-color: #585858;margin-top: 38px;}
 .sign_up_btn {position: relative; top: 0em; left: -23px;}
 /*welcome*/
-.circle_title { position:relative; font-size:26px; font-weight:700; color:#000; text-align:left; margin-bottom:24px;}
+.circle_title { position:relative; font-size:26px; font-weight:700; color: #003366; text-align:left; margin-bottom:24px;}
 /* .circle_title:after {content:''; display:block; width:18px; height:18px; border:3px solid #921004; box-sizing:border-box; border-radius:50%; background:url("../img/icons/icon_circle_title.png") no-repeat center /cover; position:absolute; left:0; top:10px; */
 	 /* top:50%; transform:translateY(-50%);} */
 .welcome .text_box p {font-size:16px; line-height:28px; text-align: justify;}
@@ -601,23 +601,26 @@ div.phone input:last-child {width:calc(100% - 102px); margin-left:6px;}
 .tab_pager li:first-child a {border-left:1px solid #707070;}
 .tab_pager li.on a {background-color:#00666B; color:#fff;}*/
 /* 220329 HUBDNC LJH2 수정*/
-.tab_pager li, .scientific_tab_pager li {display:table-cell; height:80px; border:1px solid #707070; border-left:none; text-align:center; vertical-align: middle;}
+.tab_pager li, .scientific_tab_pager li {display:table-cell; height:80px; border:1px solid #989898; border-left:none; text-align:center; vertical-align: middle;background-color: #EDEDED;}
 .tab_pager li:first-child, .scientific_tab_pager li:first-child {border-left:1px solid #707070;}
-.tab_pager li a, .scientific_tab_pager li a {/*display:block;*/ font-size:26px; font-weight:700; color:#000; height: 100%; display:flex; align-items:center; justify-content:center;}
+.tab_pager li a, .scientific_tab_pager li a {/*display:block;*/ font-size:20px; font-weight:400; color:#000; height: 100%; display:flex; align-items:center; justify-content:center;}
 .scientific_tab_pager li a {display:block; line-height:80px;}
-.tab_pager li.on, .scientific_tab_pager li.on {background-color:#00666B;border-color:#00666B;}
+.tab_pager li.on, .scientific_tab_pager li.on {background-color:#921004;border-color:#921004;}
 .tab_pager li.on a, .scientific_tab_pager li.on a {color:#fff;}
 /* // */
 .grogram_time {width:120px;}
-.program_glance_table {table-layout:fixed; text-align:center; border-top:none; min-width:1168px; /*table-layout:fixed;*/}
-.program_glance_table thead tr:first-child {border-color:#707070;}
+.program_glance_table {table-layout:auto; text-align:center; border-top:none; min-width:1168px;/*table-layout:fixed;*/}
+.program_glance_table thead tr:first-child {border-color:#9C9B9B;}
 .program_glance_table thead tr:first-child th {background-color:rgba(0,102,107,0.15);}
-.program_glance_table th:not(:first-child) {border-left:1px solid #707070;}
+.program_glance_table th:not(:first-child) {border-left:1px solid #9C9B9B;}
 .program_glance_table tr:first-child th:not(:first-child) {border-color: #FFFFFF;}
-.program_glance_table td:not(:first-child) {padding:11px 9px; border-left:1px solid #000; font-weight:bold;}
+.program_glance_table td:first-child{width: 134px;}
+.program_glance_table td:not(:first-child) {width: 540px; padding:11px 9px; border-left:1px solid #9C9B9B; font-weight:bold;}
 .program_glance_table td p {font-weight:400; margin-top:8px;}
-.program_glance .tab_pager {margin-bottom:0;}
+.program_glance .tab_pager {margin-bottom:50px;}
 .lecture_alert {font-size:17px; margin-bottom:6px;}
+.program_glance_table .table_header{color:#003366; font-size: 16px; font-weight: bold;}
+.program_glance_table > tr, .program_glance_table > tr > td{ border-color: #9C9B9B!important; color: #3C3C3B;}
 
 /*scientific program*/
 .scientific_program .tab_cont > div:not(:first-child) {margin-top:50px;}
@@ -653,7 +656,7 @@ div.phone input:last-child {width:calc(100% - 102px); margin-left:6px;}
 .scientific_program .detail_table2 tr {border-color:#707070;}
 .scientific_program .detail_table2 th, .scientific_program .detail_table2 td {background-color:transparent; padding: 7.5px 24px;}
 .scientific_program .detail_table2 tr.discussion th, .scientific_program .detail_table2.discussion td {padding: 4.5px 24px;}
-.scientific_program .scientific_tab_pager li, .program_glance .tab_pager li {height:60px;}
+.scientific_program .scientific_tab_pager li, .program_glance .tab_pager li {height:75px;}
 /*.scientific_program .tab_pager li a {line-height:60px;}*/
 .scientific_program .room_tab li a {line-height:30px;}
 .scientific_program > .inner {margin-top:30px;}
@@ -795,13 +798,13 @@ div.phone input:last-child {width:calc(100% - 102px); margin-left:6px;}
 .useful_list li:nth-child(7) .imgs {background-image:url("../img/img_useful07.jpg");}
 .useful_list li:nth-child(8) .imgs {background-image:url("../img/img_useful08.jpg");}
 .useful_list li:nth-child(9) .imgs {background-image:url("../img/img_useful09.jpg");}
-.useful_list p {font-size:18px; font-weight:bold; margin-bottom:12px; color:#00666B;}
+.useful_list p {font-size :18px!important; font-weight:bold; margin-bottom:12px; color:#003366;}
 .useful_list a {font:inherit; text-decoration:underline;}
 
 /*Transportation*/
 .circle_title p {font-size:18px; font-weight:normal; margin-top:16px;}
 .transportation .inner > div:not(:first-child) {margin-top:84px;}
-.transportation thead th {background-color:#00666B; color:#fff;}
+.transportation thead th {background-color:#003366; color:#fff;}
 .transportation .leftT thead th {font-size:18px;}
 .transportation td, .transportation th {padding:17px 20px;}
 .transportation table.leftT {min-width: 435px;}
@@ -1172,3 +1175,4 @@ div.phone input:last-child {width:calc(100% - 102px); margin-left:6px;}
 	}
 	
 }
+

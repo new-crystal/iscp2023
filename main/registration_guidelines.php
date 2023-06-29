@@ -35,8 +35,8 @@ $price = get_data($sql_price);
 ?>
 
 <style>
-    /*th {border-width:1px !important;}*/
-    /*.detail_table td:after {display:none;}*/
+/*th {border-width:1px !important;}*/
+/*.detail_table td:after {display:none;}*/
 </style>
 
 
@@ -47,7 +47,7 @@ $price = get_data($sql_price);
         <div class="sub_inner">
             <div>
                 <h2>Guidelines</h2>
-
+                <div class="color-bar"></div>
             </div>
         </div>
     </div>
@@ -148,11 +148,11 @@ $price = get_data($sql_price);
                     array_push($tb_arr[$i]['type_arr'], $pr['type_en']);
                 }
             ?>
-                <div class="circle_title">
-                    <!--<?= $locale("air_registration_tit") ?>-->Registration Fees
-                </div>
-                <div class="details table_wrap icomes_air">
-                    <!-- 기존 개발소스
+            <div class="circle_title">
+                <!--<?= $locale("air_registration_tit") ?>-->Registration Fees
+            </div>
+            <div class="details table_wrap icomes_air">
+                <!-- 기존 개발소스
 				<table class="table detail_table">
 					<colgroup>
 						<col width="40%">
@@ -197,32 +197,32 @@ $price = get_data($sql_price);
                         ?>
 					</tbody>
 				</table>-->
-                    <table class="table left_border_table table_responsive">
-                        <thead>
-                            <tr>
-                                <th>Category</th>
-                                <!-- <th>Early Registration</th> -->
-                                <th>Pre-registration</th>
-                                <th>On-site Registration</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Specialist, Professor</td>
-                                <td>USD 200</td>
-                                <td>USD 300</td>
-                                <!-- <td>USD 400</td> -->
-                            </tr>
-                            <tr>
-                                <td>Fellow, Resident, Researcher,<br>Student, Nurses, Nutritionists,
-                                    Pharmacists,<br />Corporate member</td>
-                                <td>USD 100</td>
-                                <td>USD 150</td>
-                                <!-- <td>USD 200</td> -->
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <table class="table left_border_table table_responsive">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <!-- <th>Early Registration</th> -->
+                            <th>Pre-registration</th>
+                            <th>On-site Registration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Specialist, Professor</td>
+                            <td>USD 200</td>
+                            <td>USD 300</td>
+                            <!-- <td>USD 400</td> -->
+                        </tr>
+                        <tr>
+                            <td>Fellow, Resident, Researcher,<br>Student, Nurses, Nutritionists,
+                                Pharmacists,<br />Corporate member</td>
+                            <td>USD 100</td>
+                            <td>USD 150</td>
+                            <!-- <td>USD 200</td> -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <?php
             }
             ?>
@@ -375,6 +375,6 @@ $price = get_data($sql_price);
 <!-- 22.04.11 기존버튼 
 <button type="button" class="fixed_btn" onclick="window.location.href='./registration.php';"><?= $locale("registration") ?></button>-->
 <!-- 22.04.11 변경버튼 / 22.04.14 등록 오픈 전까지 주석처리 -->
-<button type="button" class="btn_fixed_triangle fixed_btn_pc" onClick="location.href='./registration.php'"><span><?= $locale("registration") ?></span></button>
+<!-- <button type="button" class="btn_fixed_triangle fixed_btn_pc" onClick="location.href='./registration.php'"><span><?= $locale("registration") ?></span></button> -->
 
 <?php include_once('./include/footer.php'); ?>

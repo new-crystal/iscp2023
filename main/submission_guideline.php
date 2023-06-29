@@ -31,6 +31,7 @@ if ($during_yn === "Y") {
         <div class="sub_inner">
             <div>
                 <h2>Abstract Submission Guideline</h2>
+                <div class="color-bar"></div>
                 <!-- <ul class="clearfix">
 					<li>Home</li>
 					<li>Registration</li>
@@ -55,6 +56,7 @@ if ($during_yn === "Y") {
         <div class="sub_inner">
             <div>
                 <h2>Abstract Submission Guideline</h2>
+                <div class="color-bar"></div>
                 <!-- <ul>
 						<li>Home</li>
 						<li>Call for Abstracts</li>
@@ -65,71 +67,90 @@ if ($during_yn === "Y") {
         </div>
     </div>
     <div class="inner">
-        <ul class="tab_pager location tab_pager_small">
-            <li class="on"><a href="./submission_guideline.php">
-                    <!--<?= $locale("abstract_menu1") ?><-->Abstract Submission<br>Guideline
-                </a></li>
-            <li><a href="./abstract_submission.php">
-                    <!--<?= $locale("abstract_menu2") ?>-->Online Submission
-                </a></li>
-            <!--<li><a href="./award.php"><!--<?= $locale("abstract_menu3") ?>Awards & Grants</a></li>-->
-        </ul>
+
         <div class="section section1">
             <!-- contents1 -->
             <!-- <div class="circle_title">For Oral / Poster</div> -->
             <div class="details">
                 <div class="mb50">
+
+                    <h1 class="abstract_title">Abstract Submission Guideline</h1>
                     <!-- <p>We welcome the submission of abstracts from worldwide experts in Lipid and Atherosclerosis.</p> -->
                     <p>All congress abstracts must be submitted online via the "Online Submission System."</p>
                     <p>Submitted abstracts will be reviewed by the Scientific Program Committee.</p>
                     <p>All presenters are required to register and pay the registration fee.</p>
-                    <p>Please read the guidelines carefully before submitting your abstract.</p>
+                    <p style="font-weight: 700;color: #990000;">Please read the guidelines carefully before submitting
+                        your abstract.</p>
 
                 </div>
                 <div class="centerT">
                     <!-- <a href="javascript:;" class="btn_oval_line" target="_blank">Abstract Submission Form Download</a> -->
                 </div>
             </div>
+
+            <div class="guide_red_box" style="cursor: pointer;"><a href="./abstract_submission.php">Abstract
+                    Submission </a>
+            </div>
+
             <!-- contents2 -->
-            <div class="circle_title">Key dates</div>
+            <div class="circle_title" id="scroll">Key dates</div>
             <div class="details submission_keydate">
-                <ul>
-                    <!-- <li>Abstract submission system open: <span>2 MAY, 2022</span></li> -->
-                    <!-- <li>Abstract submission system open: <span>TBD</span></li> -->
-                    <li>Abstract submission deadline: <span><span class="red_txt"></span> September 5 (TUE)</span></li>
-                    <li>Notification of acceptance: <span>October 6 (FRI)</span></li>
-                    <li>Registration deadlines for presenters of accepted abstracts: <span>November 3 (FRI)</span></li>
-                    <!-- <li>ISCP 2023 with APSAVD: <span>15-17 Sep, 2022</span></li> -->
-                </ul>
+                <div class="abstract_yellow">
+                    <p>Abstract submission deadline</p>
+                    <h1>September 5 (Tue)</h1>
+                </div>
+                <div class="abstract_sky">
+                    <p>Notification of acceptance</p>
+                    <h1>October 6 (FRI)</h1>
+                </div>
+                <div class="abstract_blue">
+                    <p>Registration deadlines for presenters<br />
+                        of accepted abstracts</p>
+                    <h1>November 3 (Fri)</h1>
+                </div>
             </div>
             <!-- contents3 -->
             <div class="circle_title">Steps for Abstract Submission</div>
             <div class="details step_gradation">
-                <ul>
-                    <li>
-                        <div class="step_circle"><span>STEP 01</span></div>
-                        <p class="step_text">Click the Abstract Submission Button (Bottom right corner of the page)</p>
-                    </li>
-                    <li>
-                        <div class="step_circle"><span>STEP 02</span></div>
-                        <p class="step_text">Log-in (If you don’t have an account, please sign up first)</p>
-                    </li>
-                    <li>
-                        <div class="step_circle"><span>STEP 03</span></div>
-                        <p class="step_text">Fill out personal information and author information. Then click the Next
-                            button</p>
-                    </li>
-                    <li>
-                        <div class="step_circle"><span>STEP 04</span></div>
-                        <p class="step_text">Fill out the abstract section.</p>
-                    </li>
-                    <li>
-
-
-                        <div class="step_circle"><span>STEP 05</span></div>
-                        <p class="step_text">Completed</p>
-                    </li>
-                </ul>
+                <div class="step_container">
+                    <div class="step_1">
+                        <div class="circle_step">
+                            <p>STEP</p>
+                            <span>01</span>
+                        </div>
+                        <p>Click the Abstract <br>Submission Button <br>(Bottom right corner<br> of the page)</p>
+                    </div>
+                    <div class="step_2">
+                        <div class="circle_step">
+                            <p>STEP</p>
+                            <span>02</span>
+                        </div>
+                        <p>Log-in (If you don’t<br> have an account,<br>please sign up first)</p>
+                    </div>
+                    <div class="step_3">
+                        <div class="circle_step">
+                            <p>STEP</p>
+                            <span>03</span>
+                        </div>
+                        <p>Fill out personal<br> information and <br>author information. <br>Then click the Next
+                            <br>button
+                        </p>
+                    </div>
+                    <div class="step_4">
+                        <div class="circle_step">
+                            <p>STEP</p>
+                            <span>04</span>
+                        </div>
+                        <p>Fill out the abstract <br>section.</p>
+                    </div>
+                    <div class="step_5">
+                        <div class="circle_step">
+                            <p>STEP</p>
+                            <span>05</span>
+                        </div>
+                        <p>Completed</p>
+                    </div>
+                </div>
             </div>
             <!-- contents4 -->
             <div class="circle_title">Topic Categories</div>
@@ -141,70 +162,104 @@ if ($during_yn === "Y") {
                     </colgroup>
                     <tbody>
                         <tr>
-                            <th>1. Ischemic heart disease/ coronary artery disease</th>
+                            <td>
+                                <div class="table_num" style="transform: translate(-5px, -18px);">01</div>
+                                <p>Ischemic heart disease/ <br>coronary artery disease</p>
+                            </td>
+                            <td>
+                                <div class="table_num">02</div>
+                                <p>Anti-platelets and anticoagulation</p>
+                            </td>
                         </tr>
                         <tr>
-                            <th>2. Anti-platelets and anticoagulation</th>
+                            <td colspan="2">
+                                <div class="table_num">03</div>
+                                <p>Heart failure with reduced ejection fraction and
+                                    preserved
+                                    ejection fraction</p>
+                            </td>
                         </tr>
                         <tr>
-                            <th>3. Heart failure with reduced ejection fraction and preserved ejection fraction</th>
+                            <td>
+                                <div class="table_num">04</div>
+                                <p>Cardiomyopathies</p>
+                            </td>
+                            <td>
+                                <div class="table_num">05</div>
+                                <p>Cardio-renal syndromes</p>
+                        </tr>
                         </tr>
                         <tr>
-                            <th>4. Cardiomyopathies</th>
-                        </tr>
-                        <tr>
-                            <th>5. Cardio-renal syndromes
-                            </th>
+                            <td>
+                                <div class="table_num">06</div>
+                                <p>Preventive Cardiology</p>
+                            </td>
+                            <td>
+                                <div class="table_num">07</div>
+                                <p>Cardiac arrhythmias</p>
+                            </td>
                             <!-- <td></td> -->
                         </tr>
                         <tr>
-                            <th>6. Preventive Cardiology </th>
+                            <td>
+                                <div class="table_num">08</div>
+                                <p>Peripheral arterial disease</p>
+                            </td>
+                            <td>
+                                <div class="table_num">09</div>
+                                <p>Pulmonary hypertension</p>
+                            </td>
                             <!-- <td></td> -->
                         </tr>
+
                         <tr>
-                            <th>7. Cardiac arrhythmias </th>
+                            <td>
+                                <div class="table_num">10</div>
+                                <p>Geriatric pharmacology</p>
+                            </td>
+                            <td>
+                                <div class="table_num">11</div>
+                                <p>Women’s Heart Health</p>
+                            </td>
                             <!-- <td></td> -->
                         </tr>
+
                         <tr>
-                            <th>8. Peripheral arterial disease </th>
+                            <td>
+                                <div class="table_num">12</div>
+                                <p>Basic science and genetics</p>
+                            </td>
+                            <td>
+                                <div style="transform: translate(-5px, -18px);" class="table_num">13</div>
+                                <p>COVID-19 related <br>cardio-pharmacotherapy</p>
+                            </td>
                             <!-- <td></td> -->
                         </tr>
+
                         <tr>
-                            <th>9. Pulmonary hypertension </th>
+                            <td>
+                                <div class="table_num">14</div>
+                                <p>Diabetes & Obesity</p>
+                            </td>
+                            <td>
+                                <div class="table_num">15</div>
+                                <p>Hyperlipidemia and CVD</p>
+                            </td>
                             <!-- <td></td> -->
                         </tr>
+
                         <tr>
-                            <th>10. Geriatric pharmacology </th>
+                            <td>
+                                <div class="table_num">16</div>
+                                <p>Epidemiology</p>
+                            </td>
+                            <td>
+                                <div class="table_num">17</div>
+                                <p>Precision medicine/ Digital healthcare</p>
+                            </td>
                             <!-- <td></td> -->
                         </tr>
-                        <tr>
-                            <th>11. Women’s Heart Health</th>
-                            <!-- <td></td> -->
-                        </tr>
-                        <tr>
-                            <th>12. Basic science and genetics </th>
-                            <!-- <td></td> -->
-                        </tr>
-                        <tr>
-                            <th>13. COVID-19 related cardio-pharmacotherapy</th>
-                            <!-- <td></td> -->
-                        </tr>
-                        <tr>
-                            <th>14. Diabetes & Obesity </th>
-                            <!-- <td></td> -->
-                        </tr>
-                        <tr>
-                            <th>15. Hyperlipidemia and CVD</th>
-                            <!-- <td></td> -->
-                        </tr>
-                        <tr>
-                            <th>16. Epidemiology</th>
-                            <!-- <td></td> -->
-                        </tr>
-                        <tr>
-                            <th>17. Precision medicine/ Digital healthcare </th>
-                            <!-- <td></td> -->
-                        </tr>
+
 
                     </tbody>
                 </table>
@@ -240,35 +295,45 @@ if ($during_yn === "Y") {
             <div class="circle_title">Awards & Grants</div>
             <div class="details">
                 <!-- 6-2 -->
-                <p class="mb20">There are several categories of awards and travel grants for a certain number of
+                <p class="mb20" style="font-size: 20px; font-weight: 700;">There are several categories of awards and
+                    travel grants for a certain
+                    number of
                     investigators. </p>
-                <ul>
-                    <li><b>◆ ISCP Awards</b></li>
-                    <li>The “ISCP” will award to the selected presenters for the original top rated work during the
-                        poster sessions.
-                    </li>
-                </ul>
+                <div class="awards_box">
+                    <img src="./img/awards.png" alt="" style="height: 50px;" />
+                    <ul>
+                        <li><b>ISCP Awards</b></li>
+                        <li>The “ISCP” will award to the selected presenters for the original top rated work during the
+                            poster sessions.
+                        </li>
+                    </ul>
+                </div>
                 <br>
                 <!-- 6-3 -->
-                <ul>
-                    <li><b>◆ Travel grants (for international participants only)
-                        </b></li>
-                    <li>ISCP 2023 offers travel grants to international participants who have submitted an abstract.
-                        The scientific committee will nominate the travel grant recipients.
-                        Recipients of travel grants must attend the congress on-site.
-                    </li>
-                </ul>
+                <div class="awards_box">
+                    <img src="./img/travel.png" alt="" />
+                    <ul>
+                        <li><b> Travel grants (for international participants only)
+                            </b></li>
+                        <li>ISCP 2023 offers travel grants to international participants who have submitted an abstract.
+                            The scientific committee will nominate the travel grant recipients.
+                            Recipients of travel grants must attend the congress on-site.
+                        </li>
+                    </ul>
+                </div>
                 <br>
                 <div class="table_wrap">
-                    <table class="table wide_table centerT left_border_table">
+                    <table class="table wide_table centerT left_border_table travel_table">
                         <thead>
                             <tr>
-                                <th colspan="3" class="centerT">Travel grant benefits</th>
+                                <th colspan="3" class="centerT" style="color: #003366; background-color:#EEF2F5;">
+                                    Travel grant
+                                    benefits</th>
                             </tr>
                             <tr>
                                 <!-- <th class="centerT">Region</th> -->
-                                <th class="centerT">Amount</th>
-                                <th class="centerT">Additional benefits</th>
+                                <td class="centerT semi_title">Amount</td>
+                                <td class="centerT semi_title">Additional benefits</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -276,7 +341,7 @@ if ($during_yn === "Y") {
                                 <!-- <td>Americas / Europe</td> -->
                                 <td>USD 500</td>
                                 <td rowspan="4">
-                                    To be notified individually <br>before the congress
+                                    To be notified individually before the congress
                                 </td>
                             </tr>
                             <!-- <tr>
@@ -398,7 +463,7 @@ if ($during_yn === "Y") {
 <!-- 		<p> 2. Applications will only be accepted from outside Korea.</p> -->
 <!-- 	</div> -->
 <!-- </div> -->
-<button type="button" class="btn_fixed_triangle fixed_btn_pc"
-    onClick="location.href='./abstract_submission.php'"><span>Abstract<br>Submission</span></button>
+<!-- <button type="button" class="btn_fixed_triangle fixed_btn_pc"
+    onClick="location.href='./abstract_submission.php'"><span>Abstract<br>Submission</span></button> -->
 
 <?php include_once('./include/footer.php'); ?>

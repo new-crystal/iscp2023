@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="373" height="73" viewBox="0 0 373 73">
+  <g id="그룹_514" data-name="그룹 514" transform="translate(-379 -1290)">
+    <line id="선_165" data-name="선 165" x2="150" transform="translate(409.5 1302.5)" fill="none" stroke="#4fc3f7" stroke-width="1"/>
+    <line id="선_166" data-name="선 166" x2="150" transform="translate(567 1302.5)" fill="none" stroke="#cea339" stroke-width="1"/>
+    <text id="Incheon_airport" data-name="Incheon
+airport" transform="translate(410 1336)" font-size="16" font-family="OpenSans, Open Sans"><tspan x="-30.09" y="0">Incheon</tspan><tspan x="-25.563" y="22">airport</tspan></text>
+    <text id="Gimpo_Airport" data-name="Gimpo
+Airport" transform="translate(561 1336)" font-size="16" font-family="OpenSans, Open Sans"><tspan x="-25.023" y="0">Gimpo</tspan><tspan x="-26.176" y="22">Airport</tspan></text>
+    <text id="Conrad_Hotel" data-name="Conrad
+Hotel" transform="translate(724 1336)" font-size="16" font-family="OpenSans, Open Sans"><tspan x="-27.406" y="0">Conrad</tspan><tspan x="-20.07" y="22">Hotel</tspan></text>
+    <circle id="타원_105" data-name="타원 105" cx="12.5" cy="12.5" r="12.5" transform="translate(397 1290)" fill="#4fc3f7"/>
+    <circle id="타원_106" data-name="타원 106" cx="12.5" cy="12.5" r="12.5" transform="translate(547 1290)" fill="#4fc3f7"/>
+    <circle id="타원_107" data-name="타원 107" cx="12.5" cy="12.5" r="12.5" transform="translate(711 1290)" fill="#cea339"/>
+    <circle id="타원_108" data-name="타원 108" cx="8.5" cy="8.5" r="8.5" transform="translate(551 1294)" fill="#fff"/>
+    <circle id="타원_111" data-name="타원 111" cx="8.5" cy="8.5" r="8.5" transform="translate(715 1294)" fill="#fff"/>
+    <circle id="타원_110" data-name="타원 110" cx="8.5" cy="8.5" r="8.5" transform="translate(401 1294)" fill="#fff"/>
+    <circle id="타원_109" data-name="타원 109" cx="5.5" cy="5.5" r="5.5" transform="translate(554 1297)" fill="#cea339"/>
+  </g>
+</svg>

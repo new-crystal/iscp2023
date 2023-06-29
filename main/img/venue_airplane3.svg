@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="246.976" height="75" viewBox="0 0 246.976 75">
+  <g id="venue_airplane3" transform="translate(-20.34 -6)">
+    <text id="Gimpo" transform="translate(21.228 56)" font-size="16" font-family="NanumGothic"><tspan x="0" y="0">Gimpo</tspan></text>
+    <text id="Airport" transform="translate(20.34 78)" font-size="16" font-family="NanumGothic"><tspan x="0" y="0">Airport</tspan></text>
+    <text id="Conrad" transform="translate(239.316 56)" font-size="16" font-family="NanumGothic"><tspan x="-27.184" y="0">Conrad</tspan></text>
+    <text id="Hotel" transform="translate(239.636 78)" font-size="16" font-family="NanumGothic"><tspan x="-19.864" y="0">Hotel</tspan></text>
+    <path id="사각형_667" d="M42,13H142a6.018,6.018,0,0,1,6,6h0a6.018,6.018,0,0,1-6,6H42a6.018,6.018,0,0,1-6-6h0A6.018,6.018,0,0,1,42,13Z" fill="#8c58b3"/>
+    <path id="사각형_668" d="M141,13H243a6.018,6.018,0,0,1,6,6h0a6.018,6.018,0,0,1-6,6H141a6.018,6.018,0,0,1-6-6h0A6.018,6.018,0,0,1,141,13Z" fill="#d0aa2d"/>
+    <g id="그룹_4" data-name="그룹 4" transform="translate(571 3814)">
+      <g id="타원_31-2" transform="translate(30 12)">
+        <circle id="타원_13" data-name="타원 13" cx="6.5" cy="6.5" r="6.5" transform="translate(-571 -3814)" fill="#d0aa2d"/>
+        <circle id="타원_14" data-name="타원 14" cx="9.5" cy="9.5" r="9.5" transform="translate(-574 -3817)" fill="none" stroke="#8c58b3" stroke-width="6"/>
+      </g>
+    </g>
+    <g id="그룹_5" data-name="그룹 5" transform="translate(571 3814)">
+      <g id="타원_29-2" transform="translate(236 12)">
+        <circle id="타원_15" data-name="타원 15" cx="6.5" cy="6.5" r="6.5" transform="translate(-571 -3814)" fill="#d0aa2d"/>
+        <circle id="타원_16" data-name="타원 16" cx="9.5" cy="9.5" r="9.5" transform="translate(-574 -3817)" fill="none" stroke="#8c58b3" stroke-width="6"/>
+      </g>
+    </g>
+  </g>
+</svg>

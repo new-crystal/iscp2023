@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="249.876" height="75" viewBox="0 0 249.876 75">
+  <g id="venue_airplane2" transform="translate(-3.44 -6)">
+    <path id="사각형_665" d="M136,13h90a6.018,6.018,0,0,1,6,6h0a6.018,6.018,0,0,1-6,6H136a6.018,6.018,0,0,1-6-6h0A6.018,6.018,0,0,1,136,13Z" fill="#d0aa2d"/>
+    <text id="Incheon" transform="translate(3.44 56)" font-size="16" font-family="NanumGothic"><tspan x="0" y="0">Incheon</tspan></text>
+    <text id="airport" transform="translate(8.296 78)" font-size="16" font-family="NanumGothic"><tspan x="0" y="0">airport</tspan></text>
+    <text id="Gimpo" transform="translate(104.228 56)" font-size="16" font-family="NanumGothic"><tspan x="0" y="0">Gimpo</tspan></text>
+    <text id="Airport-2" data-name="Airport" transform="translate(103.34 78)" font-size="16" font-family="NanumGothic"><tspan x="0" y="0">Airport</tspan></text>
+    <text id="Conrad" transform="translate(225.316 56)" font-size="16" font-family="NanumGothic"><tspan x="-27.184" y="0">Conrad</tspan></text>
+    <text id="Hotel" transform="translate(225.636 78)" font-size="16" font-family="NanumGothic"><tspan x="-19.864" y="0">Hotel</tspan></text>
+    <path id="사각형_664" d="M29,13h94a6.018,6.018,0,0,1,6,6h0a6.018,6.018,0,0,1-6,6H29a6.018,6.018,0,0,1-6-6h0A6.018,6.018,0,0,1,29,13Z" fill="#70edfd"/>
+    <g id="그룹_1" data-name="그룹 1" transform="translate(584 3637)">
+      <g id="타원_26-2" transform="translate(17 12)">
+        <circle id="타원_7" data-name="타원 7" cx="6.5" cy="6.5" r="6.5" transform="translate(-584 -3637)" fill="#f4f4f4"/>
+        <circle id="타원_8" data-name="타원 8" cx="9.5" cy="9.5" r="9.5" transform="translate(-587 -3640)" fill="none" stroke="#39d7eb" stroke-width="6"/>
+      </g>
+    </g>
+    <g id="그룹_2" data-name="그룹 2" transform="translate(584 3637)">
+      <g id="타원_27-2" transform="translate(122 12)">
+        <circle id="타원_9" data-name="타원 9" cx="6.5" cy="6.5" r="6.5" transform="translate(-584 -3637)" fill="#d0aa2d"/>
+        <circle id="타원_10" data-name="타원 10" cx="9.5" cy="9.5" r="9.5" transform="translate(-587 -3640)" fill="none" stroke="#39d7eb" stroke-width="6"/>
+      </g>
+    </g>
+    <g id="그룹_3" data-name="그룹 3" transform="translate(584 3637)">
+      <g id="타원_28-2" transform="translate(223 12)">
+        <circle id="타원_11" data-name="타원 11" cx="6.5" cy="6.5" r="6.5" transform="translate(-584 -3637)" fill="#fff"/>
+        <circle id="타원_12" data-name="타원 12" cx="9.5" cy="9.5" r="9.5" transform="translate(-587 -3640)" fill="none" stroke="#d0aa2d" stroke-width="6"/>
+      </g>
+    </g>
+  </g>
+</svg>

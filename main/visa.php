@@ -6,7 +6,7 @@ include_once('./include/header.php');
 <?php
 
 $sql_during = "SELECT
-						IF(NOW() BETWEEN '2022-08-18 17:00:00' AND '2022-09-06 18:00:00', 'Y', 'N') AS yn
+						IF(NOW() BETWEEN '2022-08-18 17:00:00' AND '2023-11-25 18:00:00', 'Y', 'N') AS yn
 					FROM info_event";
 $during_yn = sql_fetch($sql_during)['yn'];
 
@@ -57,11 +57,7 @@ if ($during_yn !== "Y") {
             <div class="sub_inner">
                 <div>
                     <h2>Visa</h2>
-                    <ul>
-                        <li>Home</li>
-                        <li>General Information</li>
-                        <li>Visa</li>
-                    </ul>
+                    <div class="color-bar"></div>
                 </div>
             </div>
         </div>

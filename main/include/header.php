@@ -65,14 +65,14 @@ $d_days = $intvl->days + 1;
         <?php
         if ($_SESSION["USER"]["idx"] == "") {
         ?>
-            <li><a href="/main/login.php">Login</a></li>
-            <!-- <li><a href="/main/signup.php">Sign up</a></li> -->
-            <!-- <li><a class="pre-sign-up">Sign up</a></li> -->
+        <li><a href="/main/login.php">Login</a></li>
+        <!-- <li><a href="/main/signup.php">Sign up</a></li> -->
+        <!-- <li><a class="pre-sign-up">Sign up</a></li> -->
         <?php
         } else {
         ?>
-            <li><a href="/main/mypage.php">My page</a></li>
-            <li><a class="logout_btn" href="javascript:;">Logout</a></li>
+        <li><a href="/main/mypage.php">My page</a></li>
+        <li><a class="logout_btn" href="javascript:;">Logout</a></li>
         <?php
         }
         ?>
@@ -87,13 +87,15 @@ $d_days = $intvl->days + 1;
                     <li><a href="/main/welcome.php" class="page_complete">Welcome Message</a></li>
                     <li><a href="/main/organizing_committee.php" class="page_complete">Organization</a></li>
                     <li><a href="/main/venue.php" class="page_complete">Venue</a></li>
-                    <li><a href="/main/accommodation.php" class="page_complete">Accommodation</a></li>
+                    <!-- <li><a href="/main/accommodation.php" class="page_complete">Accommodation</a></li> -->
                     <!-- <li><a href="/main/board_news.php" class="page_complete">News & Notice</a></li> -->
                     <li><a href="/main/board_notice.php" class="page_complete">News & Notice</a></li>
                 </ul>
             </li>
             <li class="m_nav_li">
-                <a href="javascript:;" class="<?= (in_array($_page, $_page_config["m2"]) ? "show" : "") ?>"><span>Program</span> <img src="/main/img/icons/nav_arrow.png"></a>
+                <a href="javascript:;"
+                    class="<?= (in_array($_page, $_page_config["m2"]) ? "show" : "") ?>"><span>Program</span> <img
+                        src="/main/img/icons/nav_arrow.png"></a>
                 <ul class="m_sub_nav" style="display:<?= (in_array($_page, $_page_config["m2"]) ? "block" : "none") ?>">
                     <li><a href="/main/program_glance.php" class="page_complete">Program at a glance</a></li>
                     <li><a href="/main/scientific_program1.php" class="page_complete">Scientific Program</a></li>
@@ -102,7 +104,9 @@ $d_days = $intvl->days + 1;
                 </ul>
             </li>
             <li class="m_nav_li">
-                <a href="javascript:;" class="<?= (in_array($_page, $_page_config["m3"]) ? "show" : "") ?>"><span>Abstracts</span> <img src="/main/img/icons/nav_arrow.png"></a>
+                <a href="javascript:;"
+                    class="<?= (in_array($_page, $_page_config["m3"]) ? "show" : "") ?>"><span>Abstracts</span> <img
+                        src="/main/img/icons/nav_arrow.png"></a>
                 <ul class="m_sub_nav" style="display:<?= (in_array($_page, $_page_config["m3"]) ? "block" : "none") ?>">
                     <li><a href="/main/submission_guideline.php" class="page_complete">Abstract Submission</a></li>
                     <!-- <li><a href="/main/lecture_note_submission.php" class="page_complete">Lecture Note Submission<br/>(Invited Speakers)</a></li> -->
@@ -158,14 +162,14 @@ $d_days = $intvl->days + 1;
                 <?php
                 if ($_SESSION["USER"]["idx"] == "") {
                 ?>
-                    <li><a href="/main/login.php">Login</a></li>
-                    <li><a href="/main/signup.php">Sign up</a></li>
-                    <!-- <li class="pre"><a>Sign up</a></li> -->
+                <li><a href="/main/login.php">Login</a></li>
+                <li><a href="/main/signup.php">Sign up</a></li>
+                <!-- <li class="pre"><a>Sign up</a></li> -->
                 <?php
                 } else {
                 ?>
-                    <li><a href="/main/mypage.php">My page</a></li>
-                    <li><a class="logout_btn" href="javascript:;">Logout</a></li>
+                <li><a href="/main/mypage.php">My page</a></li>
+                <li><a class="logout_btn" href="javascript:;">Logout</a></li>
                 <?php
                 }
                 ?>
@@ -182,7 +186,8 @@ $d_days = $intvl->days + 1;
                 <ul class="depth01 clearfix">
                     <li class="<?= (in_array($_page, $_page_config["m1"]) ? "active" : "") ?>">
                         <div class="text_center g_h_logo">
-                            <img src="/main/img/TopLogo1.png" alt="" class="pointer" onClick="javascript:location.href='/main/index.php'">
+                            <img src="/main/img/TopLogo1.png" alt="" class="pointer"
+                                onClick="javascript:location.href='/main/index.php'">
                             <!-- <img src="/main/img/TopLogo2.png" alt="" class="pointer"
                                 onClick="javascript:location.href='/main/index.php'">
                             <img src="/main/img/TopLogo3.png" alt="" class="pointer"
@@ -196,7 +201,7 @@ $d_days = $intvl->days + 1;
                             <li><a href="/main/welcome.php" class="page_complete">Welcome Message</a></li>
                             <li><a href="/main/organizing_committee.php" class="page_complete">Organization</a></li>
                             <li><a href="/main/venue.php" class="page_complete">Venue</a></li>
-                            <li><a href="/main/accommodation.php" class="page_complete">Accommodation</a></li>
+                            <!-- <li><a href="/main/accommodation.php" class="page_complete">Accommodation</a></li> -->
                             <!--/main/accommodation.php-->
                             <!-- <li><a href="/main/board_news.php" class="page_complete">News & Notice</a></li> -->
                             <li><a href="/main/board_notice.php" class="page_complete">News & Notice</a></li>
@@ -263,47 +268,47 @@ $d_days = $intvl->days + 1;
 <!-- 변경된 header : 끝 -->
 
 <!-- Top btn 추가 (22.03.31 HUBDNC LJH2) -->
-<button type="button" class="fixed_top_clone"></button>
-<button type="button" class="fixed_top"></button>
+<button type="button" class="fixed_top_clone" style="display: none;"></button>
+<button type="button" class="fixed_top" style="display: none;"></button>
 <!-- Top btn 추가 : 끝 -->
 
 <script>
-    $(document).ready(function() {
-        $("header .depth01 li ul li a, .m_sub_nav li a").click(function() {
-            if (!$(this).hasClass("page_complete")) {
-                alert("Coming Soon.")
+$(document).ready(function() {
+    $("header .depth01 li ul li a, .m_sub_nav li a").click(function() {
+        if (!$(this).hasClass("page_complete")) {
+            alert("Coming Soon.")
+        }
+    });
+    $(".logout_btn").on("click", function() {
+        $.ajax({
+            url: PATH + "ajax/client/ajax_member.php",
+            type: "GET",
+            data: {
+                flag: "logout"
+            },
+            dataType: "JSON",
+            success: function() {
+                //window.location.replace(PATH);
+                window.location.href = "login.php";
+            },
+            error: function() {
+                alert("일시적으로 로그아웃 요청이 거절되었습니다.");
             }
         });
-        $(".logout_btn").on("click", function() {
-            $.ajax({
-                url: PATH + "ajax/client/ajax_member.php",
-                type: "GET",
-                data: {
-                    flag: "logout"
-                },
-                dataType: "JSON",
-                success: function() {
-                    //window.location.replace(PATH);
-                    window.location.href = "login.php";
-                },
-                error: function() {
-                    alert("일시적으로 로그아웃 요청이 거절되었습니다.");
-                }
-            });
-        });
     });
-    const program = document.querySelector("#program")
-    const abstract = document.querySelector("#abstracts")
-    const registration = document.querySelector("#registration")
-    const sponship = document.querySelector("#sponsorship")
-    const info = document.querySelector("#information")
-    const welcome = document.querySelector("#welcome")
-    const pre = document.querySelector(".pre")
+});
+const program = document.querySelector("#program")
+const abstract = document.querySelector("#abstracts")
+const registration = document.querySelector("#registration")
+const sponship = document.querySelector("#sponsorship")
+const info = document.querySelector("#information")
+const welcome = document.querySelector("#welcome")
+const pre = document.querySelector(".pre")
 
-    program.addEventListener("click", () => window.location.href = "program_glance.php")
-    abstract.addEventListener("click", () => window.location.href = "submission_guideline.php")
-    registration.addEventListener("click", () => window.location.href = "registration_guidelines.php")
-    sponship.addEventListener("click", () => window.location.href = "sponsor_information.php")
-    info.addEventListener("click", () => window.location.href = "transportation.php")
-    welcome.addEventListener("click", () => window.location.href = "welcome.php")
+program.addEventListener("click", () => window.location.href = "program_glance.php")
+abstract.addEventListener("click", () => window.location.href = "submission_guideline.php")
+registration.addEventListener("click", () => window.location.href = "registration_guidelines.php")
+sponship.addEventListener("click", () => window.location.href = "sponsor_information.php")
+info.addEventListener("click", () => window.location.href = "transportation.php")
+welcome.addEventListener("click", () => window.location.href = "welcome.php")
 </script>

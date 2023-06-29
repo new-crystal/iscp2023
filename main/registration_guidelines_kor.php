@@ -35,11 +35,7 @@ $price = get_data($sql_price);
         <div class="sub_inner">
             <div>
                 <h2>Guidelines</h2>
-                <ul>
-                    <li>Home</li>
-                    <li>Registration</li>
-                    <li>Guidelines</li>
-                </ul>
+                <div class="color-bar"></div>
             </div>
         </div>
     </div>
@@ -470,8 +466,8 @@ $price = get_data($sql_price);
 <!-- 22.04.11 기존버튼 
 <button type="button" class="fixed_btn" onclick="window.location.href='./registration.php';"><?= $locale("registration") ?></button>-->
 <!-- 22.04.11 변경버튼 / 22.04.14 등록 오픈 전까지 주석처리 -->
-<button type="button" class="btn_fixed_triangle fixed_btn_pc" onClick="location.href='./registration.php'"><span>등록
-        바로가기</span></button>
+<!-- <button type="button" class="btn_fixed_triangle fixed_btn_pc" onClick="location.href='./registration.php'"><span>등록
+        바로가기</span></button> -->
 
 <script>
 $('.show_pop').on('click', function() {
