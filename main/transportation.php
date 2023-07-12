@@ -66,8 +66,8 @@ if ($during_yn !== "Y") {
                             <div class="img_wrap">
                                 <img src="./img/contact_05.svg" alt="비행기">
                             </div> -->
-                <div class="info">
-                    <h3 class="title">Airport ▶ CONRAD Seoul Hotel, Korea</h3>
+                <div class="info" style="float: none;">
+                    <div class="circle_title">Airport ▶ CONRAD Seoul Hotel, Korea</div>
                     <!--(1)-->
                     <div class="airplane_cont">
                         <h5 class="sub_title">By Bus <span>(No. 6019 / Airport Bus)</span></h5>
@@ -130,8 +130,7 @@ if ($during_yn !== "Y") {
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><img class="venue_airplane" src="./img/venue_airplane1.svg" alt=""
-                                                style="width: 90%;"></td>
+                                        <td><img class="venue_airplane" src="./img/venue_airplane1.svg" alt=""></td>
                                         <td>Approx. T2: 78 min <br>Approx. T1: 70 min</td>
                                         <td>T2: KRW 4,750 <br>T1: KRW 4,150</td>
                                         <td>
@@ -142,8 +141,7 @@ if ($during_yn !== "Y") {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><img class="venue_airplane" src="./img/venue_airplane2.svg" alt=""
-                                                style="width: 90%;"></td>
+                                        <td><img class="venue_airplane" src="./img/venue_airplane2.svg" alt=""></td>
                                         <td>Approx. T2: 78 min <br>Approx. T1: 70 min</td>
                                         <td>T2: KRW 4,550 <br>T1: KRW 4,050</td>
                                         <td>
@@ -154,8 +152,7 @@ if ($during_yn !== "Y") {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><img class="venue_airplane" src="./img/venue_airplane3.svg" alt=""
-                                                style="width: 90%;"></td>
+                                        <td><img class="venue_airplane" src="./img/venue_airplane3.svg" alt=""></td>
                                         <td>19 min (6 line Express) <br>T1: 26 min(5 line)</td>
                                         <td>KRW 1,350</td>
                                         <td>Yeouido Stn. (exit #3) is 10 min <br>walking distance away from

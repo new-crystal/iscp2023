@@ -96,17 +96,17 @@ if ($during_yn === "Y") {
             <div class="circle_title" id="scroll">Key dates</div>
             <div class="details submission_keydate">
                 <div class="abstract_yellow">
-                    <p>Abstract submission deadline</p>
                     <h1>September 5 (Tue)</h1>
+                    <p>Abstract submission deadline</p>
                 </div>
-                <div class="abstract_sky">
+                <div class="abstract_yellow">
+                    <h1>October 6 (Fri)</h1>
                     <p>Notification of acceptance</p>
-                    <h1>October 6 (FRI)</h1>
                 </div>
-                <div class="abstract_blue">
+                <div class="abstract_yellow">
+                    <h1>November 3 (Fri)</h1>
                     <p>Registration deadlines for presenters<br />
                         of accepted abstracts</p>
-                    <h1>November 3 (Fri)</h1>
                 </div>
             </div>
             <!-- contents3 -->
@@ -155,7 +155,7 @@ if ($during_yn === "Y") {
             <!-- contents4 -->
             <div class="circle_title">Topic Categories</div>
             <div class="details table_wrap">
-                <table class="table wide_table">
+                <table class="table wide_table table_border">
                     <colgroup>
                         <col class="col_th">
                         <col width="*">
@@ -163,7 +163,7 @@ if ($during_yn === "Y") {
                     <tbody>
                         <tr>
                             <td>
-                                <div class="table_num" style="transform: translate(-5px, -18px);">01</div>
+                                <div class="table_num" style="transform: translate(-5px, -15px);">01</div>
                                 <p>Ischemic heart disease/ <br>coronary artery disease</p>
                             </td>
                             <td>
@@ -230,7 +230,7 @@ if ($during_yn === "Y") {
                                 <p>Basic science and genetics</p>
                             </td>
                             <td>
-                                <div style="transform: translate(-5px, -18px);" class="table_num">13</div>
+                                <div style="transform: translate(-5px, -15px);" class="table_num">13</div>
                                 <p>COVID-19 related <br>cardio-pharmacotherapy</p>
                             </td>
                             <!-- <td></td> -->

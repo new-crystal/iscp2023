@@ -1,9 +1,10 @@
 <?php
-	/** 
-		¾Æ·¡ ¼³Á¤ µÈ °ªÀº Å×½ºÆ®¿ë secretKeyÀÔ´Ï´Ù.
-		Å×½ºÆ®·Î¸¸ ÁøÇàÇÏ½Ã°í ¹ß±Ş ¹ŞÀ¸½Å °ªÀ¸·Î º¯°æÇÏ¼Å¾ß µË´Ï´Ù.
-	*/
-	$secretKey = "289F40E6640124B2628640168C3C5464";//°¡¸ÍÁ¡ secretkey
+    /**
+    ì•„ë˜ ì„¤ì • ëœ ê°’ì€ í…ŒìŠ¤íŠ¸ìš© secretKeyì…ë‹ˆë‹¤.
+    í…ŒìŠ¤íŠ¸ë¡œë§Œ ì§„í–‰í•˜ì‹œê³  ë°œê¸‰ ë°›ìœ¼ì‹  ê°’ìœ¼ë¡œ ë³€ê²½í•˜ì…”ì•¼ ë©ë‹ˆë‹¤.
+     */
+	$secretKey = "289F40E6640124B2628640168C3C5464"; // í…ŒìŠ¤íŠ¸ secretkey
+	//$secretKey = "304FD62FE40340F5593E40397840F1E4"; //ê°€ë§¹ì  secretkey
 	
 	foreach($_POST as $Key=>$value) {
 
@@ -13,13 +14,13 @@
 		$hashMap[$Key]  = $value;
 	}
 
-	$rescode = $_POST['rescode'];//0000 : Á¤»ó 
-	$resmsg = $_POST['resmsg'];//°áÁ¦ °á°ú ¸Ş¼¼Áö
-	$fgkey = $_POST['fgkey'];//°ËÁõ fgkey
+	$rescode = $_POST['rescode'];//0000 : ì •ìƒ
+	$resmsg = $_POST['resmsg'];//ê²°ì œ ê²°ê³¼ ë©”ì„¸ì§€
+	$fgkey = $_POST['fgkey'];//ê²€ì¦ fgkey
 
-	//rescode=0000 ÀÏ¶§ fgkey È®ÀÎ
+    //rescode=0000 ì¼ë•Œ fgkey í™•ì¸
 	if($rescode == "0000"){
-		//fgkey °ËÁõÅ° »ı¼º
+        //fgkey ê²€ì¦í‚¤ ìƒì„±
 
 		$size = count($hashMap);
 		ksort($hashMap);
@@ -36,8 +37,8 @@
 		
 		$linkBuf = $secretKey. "?".$sortingParams;
 		$newFgkey = hash("sha256", $linkBuf);
-		
-		//fgkey °ËÁõ ½ÇÆĞ ½Ã ¿¡·¯ Ã³¸®
+
+        //fgkey ê²€ì¦ ì‹¤íŒ¨ ì‹œ ì—ëŸ¬ ì²˜ë¦¬
 		if(strtolower($fgkey) != $newFgkey){
 			$rescode = "ERROR";
 			$resmsg = "Invalid transaction";
@@ -72,7 +73,7 @@ body {
 <body onload="javascript:loadForm();">
 <div id="spinner"></div>
 <?php
-	//ÀüÃ¼ ÆÄ¶ó¹ÌÅÍ Ãâ·Â
+    //ì „ì²´ íŒŒë¼ë¯¸í„° ì¶œë ¥
 	/*echo "--------all return parameter-------------<br/>";
 	foreach($_POST as $Key=>$value) {
 		echo $Key." : ".$value."<br/>" ; 
@@ -83,8 +84,7 @@ body {
 </html>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script type ="text/javascript">
-<!--
-	//openerÃ¢¿¡ °áÁ¦ ÀÀ´ä °ª ¼¼ÆÃ ÈÄ finish.php·Î submit, ÇöÀç ÆË¾÷ Ã¢ close 
+    //openerì°½ì— ê²°ì œ ì‘ë‹µ ê°’ ì„¸íŒ… í›„ finish.phpë¡œ submit, í˜„ì¬ íŒì—… ì°½ close
 	function loadForm(){
 		/*
 		if(opener && opener.document.regForm){
@@ -103,21 +103,22 @@ body {
 			type : "POST",
 			data : {
 				flag : "payment_eximbay",
-				fgkey : "<?=$_POST['fgkey']?>", //°áÁ¦°íÀ¯ÄÚµå
-				ref : "<?=$_POST['ref']?>", //°áÁ¦¹øÈ£
-				paymethod : "<?=$_POST['paymethod']?>", //°áÁ¦Á¾·ù(eximbay pdf ÂüÁ¶)
-				cur : "<?=$_POST['cur']?>", //ÅëÈ­
-				amt : "<?=$_POST['amt']?>", //°áÁ¦±İ¾×
-				authcode : "<?=$_POST['authcode']?>", //½ÂÀÎ¹øÈ£
-				resdt : "<?=$_POST['resdt']?>", //°áÁ¦ÀÏÀÚ
-				rescode : "<?=$_POST['rescode']?>", //ÀÀ´äÄÚµå
-				resmsg : "<?=$_POST['resmsg']?>" //ÀÀ´ä¸Ş¼¼Áö
-			}, 
-			dataType : "JSON",	
+				fgkey : "<?=$_POST['fgkey']?>",					//ê²°ì œê³ ìœ ì½”ë“œ
+				ref : "<?=$_POST['ref']?>",						//ê²°ì œë²ˆí˜¸
+				paymethod : "<?=$_POST['paymethod']?>",			//ê²°ì œì¢…ë¥˜(eximbay pdf ì°¸ì¡°)
+				cur : "<?=$_POST['cur']?>",						//í†µí™”
+				amt : "<?=$_POST['amt']?>",						//ê²°ì œê¸ˆì•¡
+				authcode : "<?=$_POST['authcode']?>",			//ìŠ¹ì¸ë²ˆí˜¸
+				resdt : "<?=$_POST['resdt']?>",					//ê²°ì œì¼ì
+				rescode : "<?=$_POST['rescode']?>",				//ì‘ë‹µì½”ë“œ
+				resmsg : "<?=$_POST['resmsg']?>"				//ì‘ë‹µë©”ì„¸ì§€
+			},
+			dataType : "JSON",
 			success : function(res) {
 				if(res.code == 200) {
-					// ºÎ¸ğÃ¢ °áÁ¦ ¿Ï·á ÀÌº¥Æ®
-					opener.move();
+					payment_ajax(res.name, res.email, res.data, res.flag);
+
+					// ë¶€ëª¨ì°½ ê²°ì œ ì™„ë£Œ ì´ë²¤íŠ¸
 					self.close();
 				} else if(res.code == 400) {
 					self.close();
@@ -131,8 +132,34 @@ body {
 			}
 		});
 
-		// ºÎ¸ğÃ¢ °áÁ¦ ¿Ï·á ÀÌº¥Æ®
+		// ë¶€ëª¨ì°½ ê²°ì œ ì™„ë£Œ ì´ë²¤íŠ¸
 		
 	}
-//-->
+	
+	/*
+	* 230711 HUBDNC ë©”ì¼ ë°œì†¡í•˜ëŠ” ë¶€ë¶„ ì¶”ê°€
+	* í•„ìš”ì‹œ í•´ë‹¹ ë¶€ë¶„ ì£¼ì„ í•´ì œ
+	*/
+	function payment_ajax(name, eamil, data, flag) {
+		window.opener.location.href="../../registration3.php";
+		/*
+		$.ajax({
+			url : "../../ajax/client/ajax_gmail.php",
+			type : "POST",
+			data : {
+				flag : "payment",
+				name : name,
+				email : eamil,
+				data : data
+			},
+			dataType : "JSON",
+			success : function(res){
+				
+			},
+			complete:function(){
+				window.opener.location.href="../../registration3.php";
+			}
+		});
+		*/
+	}
 </script>

@@ -1,6 +1,15 @@
 <?php include_once("../../common/common.php")?>
 <?php
 	if($_POST["flag"] == "payment_eximbay") {
+
+		$insert_payment_query2 =	"
+									INSERT payment_test
+									SET
+										value = '".json_encode($_POST)."'
+									";
+		$insert2 = sql_query($insert_payment_query2);
+
+
 		$user_idx = $_SESSION["USER"]["idx"];
 
 		$rescode = $_POST["rescode"];
@@ -105,10 +114,53 @@
 				sql_query($update_request);
 			}
 
+			// 230711 HUBDNC 추가 건
+			$user_idx = $_SESSION["USER"]["idx"];
+			$check_user_query =	"
+										SELECT
+											idx, email, first_name, last_name, title
+										FROM member
+										WHERE idx = {$user_idx}
+										AND is_deleted = 'N'
+									";
+		
+			$check_user = sql_fetch($check_user_query);
+
+			$name = $check_user["last_name"]." ".$check_user["first_name"];
+			$email = $check_user["email"];
+
+			$regustration_query = "SELECT
+										idx, attendance_type, is_score, nation_no, phone,
+										member_type, IF(ksso_member_status > 0, 1, 0) AS member_status, registration_type, affiliation, department,
+										licence_number, specialty_number, nutritionist_number, academy_number, register_path,
+										welcome_reception_yn, day2_breakfast_yn, day2_luncheon_yn, day3_breakfast_yn, day3_luncheon_yn, 
+										conference_info, price,
+										DATE_FORMAT(register_date, '%m-%d-%Y %h:%i:%s') AS register_date
+									FROM request_registration
+									WHERE idx= {$registration_no}";
+
+			$data = sql_fetch($regustration_query);
+
+			$data["name_title"] = $check_user["title"] ?? "";
+			$data["pay_type"] = "card";
+			$data["payment_date"] = date("Y-m-d H:i:s");
+
+			echo json_encode(array(
+					"code"=>200,
+					"msg"=>"success",
+					"name"=>$name,
+					"email"=>$email,
+					"data"=>$data,
+					"flag"=>"payment_inicis" // 메일 발송폼이 똑같으므로 해당 플래그로 전송
+			));
+
+			/* 기존 부분 주석 처리 */
+			/*
 			echo json_encode(array(
 					"code"=>200,
 					"msg"=>"success"
 			));
+			*/
 			exit;
 		} else {
 			echo json_encode(array(

@@ -71,17 +71,17 @@ if ($during_yn !== "Y") {
             <li><a href="javascript:;">Day3<Br>Saturday, November 25 </a>
             </li>
         </ul>
-        <ul class="program_color_txt">
-            <li>
-                <p>All Days - November 23-25</p>
-            </li>
-            <!-- <div>
-					<li><i></i>&nbsp;:&nbsp;Korean</li>
-					<li><i></i>&nbsp;:&nbsp;English</li>
-				</div> -->
-        </ul>
         <div class="tab_wrap">
             <div class="tab_cont on">
+                <ul class="program_color_txt">
+                    <li>
+                        <p>All Days - November 23-25</p>
+                    </li>
+                    <!-- <div>
+                            <li><i></i>&nbsp;:&nbsp;Korean</li>
+                            <li><i></i>&nbsp;:&nbsp;English</li>
+                        </div> -->
+                </ul>
 
                 <table class="table program_glance_table" name="1">
 
@@ -288,6 +288,15 @@ if ($during_yn !== "Y") {
                 </table>
             </div>
             <div class="tab_cont">
+                <ul class="program_color_txt">
+                    <li>
+                        <p>Day 1 - Thursday, November 23</p>
+                    </li>
+                    <!-- <div>
+                            <li><i></i>&nbsp;:&nbsp;Korean</li>
+                            <li><i></i>&nbsp;:&nbsp;English</li>
+                        </div> -->
+                </ul>
                 <table class="table program_glance_table" name="2">
                     <tr style="border: none;">
                         <td colspan="3" style="padding: 0;">
@@ -324,6 +333,15 @@ if ($during_yn !== "Y") {
                 </table>
             </div>
             <div class="tab_cont">
+                <ul class="program_color_txt">
+                    <li>
+                        <p>Day 2 - Friday, November 24</p>
+                    </li>
+                    <!-- <div>
+                            <li><i></i>&nbsp;:&nbsp;Korean</li>
+                            <li><i></i>&nbsp;:&nbsp;English</li>
+                        </div> -->
+                </ul>
                 <table class="table program_glance_table" name="3">
                     <tr style="border: none;">
                         <td style="padding: 0;" colspan="3">
@@ -418,6 +436,15 @@ if ($during_yn !== "Y") {
             </div>
 
             <div class="tab_cont">
+                <ul class="program_color_txt">
+                    <li>
+                        <p>Day 3 - Saturday, November 25 </p>
+                    </li>
+                    <!-- <div>
+                            <li><i></i>&nbsp;:&nbsp;Korean</li>
+                            <li><i></i>&nbsp;:&nbsp;English</li>
+                        </div> -->
+                </ul>
                 <table class="table program_glance_table" name="4">
                     <tr style="border: none;">
                         <td style="padding: 0;" colspan="3">

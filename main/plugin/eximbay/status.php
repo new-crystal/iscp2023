@@ -1,10 +1,10 @@
 <?php
 	include_once("../../common/common.php");
-	/** 
-		¾Æ·¡ ¼³Á¤ µÈ °ªÀº Å×½ºÆ®¿ë secretKeyÀÔ´Ï´Ù.
-		Å×½ºÆ®·Î¸¸ ÁøÇàÇÏ½Ã°í ¹ß±Þ ¹ÞÀ¸½Å °ªÀ¸·Î º¯°æÇÏ¼Å¾ß µË´Ï´Ù.
-	*/
-	$secretKey = "289F40E6640124B2628640168C3C5464";//°¡¸ÍÁ¡ secretkey
+	/**
+	ì•„ëž˜ ì„¤ì • ëœ ê°’ì€ í…ŒìŠ¤íŠ¸ìš© secretKeyìž…ë‹ˆë‹¤.
+	í…ŒìŠ¤íŠ¸ë¡œë§Œ ì§„í–‰í•˜ì‹œê³  ë°œê¸‰ ë°›ìœ¼ì‹  ê°’ìœ¼ë¡œ ë³€ê²½í•˜ì…”ì•¼ ë©ë‹ˆë‹¤.
+	 */
+	$secretKey = "289F40E6640124B2628640168C3C5464";//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ secretkey
 
 	foreach($_POST as $Key=>$value) {
 
@@ -14,13 +14,13 @@
 		$hashMap[$Key]  = $value;
 	}
 
-	$rescode = $_POST['rescode'];//0000 : Á¤»ó 
-	$resmsg = $_POST['resmsg'];//°áÁ¦ °á°ú ¸Þ¼¼Áö
-	$fgkey = $_POST['fgkey'];//°ËÁõ fgkey
+	$rescode = $_POST['rescode'];//0000 : ì •ìƒ
+	$resmsg = $_POST['resmsg'];//ê²°ì œ ê²°ê³¼ ë©”ì„¸ì§€
+	$fgkey = $_POST['fgkey'];//ê²€ì¦ fgkey
 
-	//rescode=0000 ÀÏ¶§ fgkey È®ÀÎ
+	//rescode=0000 ì¼ë•Œ fgkey í™•ì¸
 	if($rescode == "0000"){
-		//fgkey °ËÁõÅ° »ý¼º
+		//fgkey ê²€ì¦í‚¤ ìƒì„±
 
 		$size = count($hashMap);
 		ksort($hashMap);
@@ -37,8 +37,8 @@
 		
 		$linkBuf = $secretKey. "?".$sortingParams;
 		$newFgkey = hash("sha256", $linkBuf);
-		
-		//fgkey °ËÁõ ½ÇÆÐ ½Ã ¿¡·¯ Ã³¸®
+
+		//fgkey ê²€ì¦ ì‹¤íŒ¨ ì‹œ ì—ëŸ¬ ì²˜ë¦¬
 		if(strtolower($fgkey) != $newFgkey){
 			$rescode = "ERROR";
 			$resmsg = "Invalid transaction";
@@ -47,8 +47,8 @@
 	}
 
 	if($rescode == "0000"){
-		//°¡¸ÍÁ¡ Ãø DB Ã³¸®ÇÏ´Â ºÎºÐ
-		//ÇØ´ç ÆäÀÌÁö´Â Back-End·Î Ã³¸®µÇ±â ¶§¹®¿¡ ½ºÅ©¸³Æ®, ¼¼¼Ç, ÄíÅ° »ç¿ëÀÌ ºÒ°¡´É ÇÕ´Ï´Ù.
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ DB Ã³ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Îºï¿½
+		//ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Back-Endï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ç±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ®, ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½Å° ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò°ï¿½ï¿½ï¿½ ï¿½Õ´Ï´ï¿½.
 		
 	}
 ?>

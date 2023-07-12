@@ -52,9 +52,9 @@ $notice_list = get_data($notice_list_query);
 ?>
 
 <style>
-.index_sponsor_wrap {
-    display: block;
-}
+    .index_sponsor_wrap {
+        display: block;
+    }
 </style>
 
 <section class="main_section icola_main">
@@ -97,8 +97,7 @@ $notice_list = get_data($notice_list_query);
             <div class="txt_wrap">
                 <div class="title_wrap">
                     <h1>
-                        <!--<?= $info['event_title'] ?>-->ISCP 2023<br /><span class="green_t"><span
-                                class="light">with</span> KSCVP <span class="light">&</span> KSCP
+                        <!--<?= $info['event_title'] ?>-->ISCP 2023<br /><span class="green_t"><span class="light">with</span> KSCVP <span class="light">&</span> KSCP
                     </h1></span>
                 </div>
                 <p class="event_name">
@@ -129,8 +128,7 @@ $notice_list = get_data($notice_list_query);
                     ?>
                     <!-- <?= $date_text ?>&nbsp;/&nbsp;<?= $venue_text ?> -->
                     <span class="event_date">CONRAD Seoul, Korea <br />
-                        <span class="event_place">23-25<sup class="event_name_sup"
-                                style="color:#003250;font-weight:500">th</sup> November
+                        <span class="event_place">23-25<sup class="event_name_sup" style="color:#003250;font-weight:500">th</sup> November
                             2023</span>
 
                 </p>
@@ -256,7 +254,7 @@ $notice_list = get_data($notice_list_query);
                         <li class="noti_li">
                             <a href="/main/registration_guidelines.php">
                                 <p>Notification<br />of acceptance</p>
-                                <h2>Oct 06<sup style="color:#fff;font-weight: bold;">Fri</sup></h2>
+                                <h2>OCT 06<sup style="color:#fff;font-weight: bold;">Fri</sup></h2>
                                 <!-- <i><img src="/main/img/icons/icon_calendar.svg" alt=""></i> -->
                             </a>
                         </li>
@@ -492,163 +490,163 @@ $notice_list = get_data($notice_list_query);
 </div>
 
 <script>
-// 오늘 하루만 보기
+    // 오늘 하루만 보기
 
-// 쿠키 가져오기
-function getCookie(name) {
-    var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-    return value ? value[2] : null;
-}
+    // 쿠키 가져오기
+    function getCookie(name) {
+        var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+        return value ? value[2] : null;
+    }
 
-console.log(getCookie("pop"))
+    console.log(getCookie("pop"))
 
-//쿠키가 존재하지 않으면 팝업창을 연다.
-if (getCookie("pop") == null) {
-    //		$('.pop_2023').show();
-    $('.travel_grant_pop').show();
-    $('.deadline_pop').show();
-    $('.notification_pop').show();
-} else {
-    //		$('.pop_2023').hide();
-    $('.travel_grant_pop').hide();
-    $('.deadline_pop').hide();
-    $('.notification_pop').hide();
-}
+    //쿠키가 존재하지 않으면 팝업창을 연다.
+    if (getCookie("pop") == null) {
+        //		$('.pop_2023').show();
+        $('.travel_grant_pop').show();
+        $('.deadline_pop').show();
+        $('.notification_pop').show();
+    } else {
+        //		$('.pop_2023').hide();
+        $('.travel_grant_pop').hide();
+        $('.deadline_pop').hide();
+        $('.notification_pop').hide();
+    }
 
-$('.pop_2023 .close_area a, .travel_grant_pop .pop_close, .deadline_pop .pop_close, .notification_pop .pop_close')
-    .click(function() {
-        if ($("#today_check, #today_check1").is(":checked")) {
-            var toDate = new Date();
-            setHeaderCookie("pop", "done", 1);
+    $('.pop_2023 .close_area a, .travel_grant_pop .pop_close, .deadline_pop .pop_close, .notification_pop .pop_close')
+        .click(function() {
+            if ($("#today_check, #today_check1").is(":checked")) {
+                var toDate = new Date();
+                setHeaderCookie("pop", "done", 1);
 
-            console.log($("#today_check, #today_check1").is(":checked"))
-        }
-        $(this).parents(".popup").hide();
-        //$('.travel_grant_pop, .deadline_pop, .notification_pop').hide();
-    });
+                console.log($("#today_check, #today_check1").is(":checked"))
+            }
+            $(this).parents(".popup").hide();
+            //$('.travel_grant_pop, .deadline_pop, .notification_pop').hide();
+        });
 </script>
 
 <script>
-$('document').ready(function() {
-    $('.close_area a').click(function() {
-        $(this).parents('.popup').hide();
-    });
-    $('body').addClass('main');
+    $('document').ready(function() {
+        $('.close_area a').click(function() {
+            $(this).parents('.popup').hide();
+        });
+        $('body').addClass('main');
 
-    $('.main_speaker2').slick({
-        dots: false,
-        navigation: true,
-        infinite: true,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 6000,
-        responsive: [{
-                breakpoint: 1200,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
+        $('.main_speaker2').slick({
+            dots: false,
+            navigation: true,
+            infinite: true,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 6000,
+            responsive: [{
+                    breakpoint: 1200,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                    }
+                },
+                {
+                    breakpoint: 850,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 0,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
                 }
-            },
-            {
-                breakpoint: 850,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1
-                }
-            },
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            },
-            {
-                breakpoint: 0,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            }
-        ]
+            ]
+
+        });
+
+        //bg slider
+        var bg_slider = $('.main_bg_slider').slick({
+            dots: false,
+            infinite: true,
+            slidesToShow: 1,
+            arrows: false,
+            autoplay: true,
+            autoplaySpeed: 10000
+        });
+
+
+        var vid = document.getElementById("main_video_bg");
+        //vid.onended = function() {
+        //	bg_slider.slick('slickNext');
+        //};
+        //on-air 버튼 깜빡이기
+        //setInterval(function () {
+        //$('.onair_btn').toggleClass('changed');
+        //}, 700);
+
+        // circle_arrow click이벤트
+        var header_top = $("header.green_header").outerHeight();
+        var speakers_top = $(".speakers_wrap").offset().top;
+        var want_position = speakers_top - header_top;
+        $(".btn_circle_arrow").click(function() {
+            $("html, body").animate({
+                scrollTop: want_position + "px"
+            }, 500);
+        });
 
     });
 
-    //bg slider
-    var bg_slider = $('.main_bg_slider').slick({
-        dots: false,
-        infinite: true,
-        slidesToShow: 1,
-        arrows: false,
-        autoplay: true,
-        autoplaySpeed: 10000
-    });
-
-
-    var vid = document.getElementById("main_video_bg");
-    //vid.onended = function() {
-    //	bg_slider.slick('slickNext');
-    //};
-    //on-air 버튼 깜빡이기
-    //setInterval(function () {
-    //$('.onair_btn').toggleClass('changed');
-    //}, 700);
-
-    // circle_arrow click이벤트
-    var header_top = $("header.green_header").outerHeight();
-    var speakers_top = $(".speakers_wrap").offset().top;
-    var want_position = speakers_top - header_top;
-    $(".btn_circle_arrow").click(function() {
-        $("html, body").animate({
-            scrollTop: want_position + "px"
-        }, 500);
-    });
-
-});
-
-$(function() {
-    function load() {
-        console.log('x')
-    }
-})
-
-// 쿠키 헤더 생성
-function setHeaderCookie(name, value, hours, minute) {
-    var todayDate = new Date();
-    //var set_date = 24 - today.getHours();
-    todayDate.setHours(todayDate.getHours() + (hours + 9));
-    todayDate.setMinutes(todayDate.getMinutes() + minute);
-    todayDate.setSeconds(0);
-
-    document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";";
-}
-
-// 쿠키 가져오기
-function getCookie(name) {
-    var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-    return value ? value[2] : null;
-}
-
-
-//page loading bar 주석
-$('.live_btn, .live_btn2').click(function() {
-    $('#vid_auto').html(
-        '<source src="https://player.vimeo.com/external/595045789.hd.mp4?s=53cc26f55fa424c019f24192b49b06a165528174&profile_id=174">'
-    );
-    $('.page_loading').addClass('active');
-})
-
-function myFunction() {
-    $('.page_loading').removeClass('active');
-    window.location.href = '/main/live';
-}
-
-$(document).ready(function() {
-    $(window).resize(function() {
-        $(".main_bg_slider").slick("resize");
-        $(".main_bg_slider").slick("refresh");
+    $(function() {
+        function load() {
+            console.log('x')
+        }
     })
-    $(window).trigger("resize")
-});
+
+    // 쿠키 헤더 생성
+    function setHeaderCookie(name, value, hours, minute) {
+        var todayDate = new Date();
+        //var set_date = 24 - today.getHours();
+        todayDate.setHours(todayDate.getHours() + (hours + 9));
+        todayDate.setMinutes(todayDate.getMinutes() + minute);
+        todayDate.setSeconds(0);
+
+        document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";";
+    }
+
+    // 쿠키 가져오기
+    function getCookie(name) {
+        var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+        return value ? value[2] : null;
+    }
+
+
+    //page loading bar 주석
+    $('.live_btn, .live_btn2').click(function() {
+        $('#vid_auto').html(
+            '<source src="https://player.vimeo.com/external/595045789.hd.mp4?s=53cc26f55fa424c019f24192b49b06a165528174&profile_id=174">'
+        );
+        $('.page_loading').addClass('active');
+    })
+
+    function myFunction() {
+        $('.page_loading').removeClass('active');
+        window.location.href = '/main/live';
+    }
+
+    $(document).ready(function() {
+        $(window).resize(function() {
+            $(".main_bg_slider").slick("resize");
+            $(".main_bg_slider").slick("refresh");
+        })
+        $(window).trigger("resize")
+    });
 </script>

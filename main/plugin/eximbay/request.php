@@ -1,14 +1,16 @@
 <?php
-	/** 
-		¾Æ·¡ ¼³Á¤ µÈ °ªÀº Å×½ºÆ®¿ë mid: 1849705C64 ¿¡ ´ëÇÑ secretKey ÀÔ´Ï´Ù.
-		Å×½ºÆ®·Î¸¸ ÁøÇà ÇÏ½Ã°í ¹ß±Þ ¹ÞÀ¸½Å °ªÀ¸·Î º¯°æ ÇÏ¼Å¾ß µË´Ï´Ù.
-	*/
-	//$secretKey = "289F40E6640124B2628640168C3C5464";//°¡¸ÍÁ¡ secretkey //Å×½ºÆ®¿ë secretkey
-	$secretKey = "1B9D194290012D5B62A9002CE69DFC90";
-	//$reqURL = "https://secureapi.test.eximbay.com/Gateway/BasicProcessor.krp";//EXIMBAY ½ÇÁ¦ ¼­¹ö ¿äÃ» URLÀÔ´Ï´Ù.
-	$reqURL = "https://secureapi.eximbay.com/Gateway/BasicProcessor.krp";
-	$fgkey = "";//fgkey°ËÁõÅ° °ü·Ã
-	$sortingParams = "";//ÆÄ¶ó¹ÌÅÍ Á¤·Ä °ü·Ã
+    /**
+    ì•„ëž˜ ì„¤ì • ëœ ê°’ì€ í…ŒìŠ¤íŠ¸ìš© mid: 1849705C64 ì— ëŒ€í•œ secretKey ìž…ë‹ˆë‹¤.
+    í…ŒìŠ¤íŠ¸ë¡œë§Œ ì§„í–‰ í•˜ì‹œê³  ë°œê¸‰ ë°›ìœ¼ì‹  ê°’ìœ¼ë¡œ ë³€ê²½ í•˜ì…”ì•¼ ë©ë‹ˆë‹¤.
+     */
+    $mid = "1849705C64"; // í…ŒìŠ¤íŠ¸ mid
+	//$mid = "189A6E05E4"; // ê°€ë§¹ì  mid
+	$secretKey = "289F40E6640124B2628640168C3C5464"; //í…ŒìŠ¤íŠ¸ secretkey
+	//$secretKey = "304FD62FE40340F5593E40397840F1E4"; //ê°€ë§¹ì  secretkey
+	$reqURL = "https://secureapi.test.eximbay.com/Gateway/BasicProcessor.krp";//EXIMBAY TEST ì„œë²„ ìš”ì²­ URLìž…ë‹ˆë‹¤.
+	//$reqURL = "https://secureapi.eximbay.com/Gateway/BasicProcessor.krp";//EXIMBAY ì‹¤ ì„œë²„ ìš”ì²­ URLìž…ë‹ˆë‹¤.
+	$fgkey = "";//fgkeyê²€ì¦í‚¤ ê´€ë ¨
+	$sortingParams = "";//íŒŒë¼ë¯¸í„° ì •ë ¬ ê´€ë ¨
 
 	foreach($_POST as $Key=>$value) {
 		$hashMap[$Key]  = $value;
@@ -36,7 +38,7 @@
 </head>
 <body leftmargin="0" topmargin="0" align="center" onload="javascript:document.regForm.submit();">
 <form name="regForm" method="post" action="<?php echo $reqURL; ?>">
-<input type="hidden" name="fgkey" value="<?php echo $fgkey; ?>" />	<!--ÇÊ¼ö °ª-->
+<input type="hidden" name="fgkey" value="<?php echo $fgkey; ?>" />	<!--í•„ìˆ˜ ê°’-->
 
 <?php
 foreach($_POST as $Key=>$value) {

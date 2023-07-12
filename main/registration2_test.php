@@ -64,17 +64,6 @@
 	$price_col_name .= ($registration_data["member_status"] == 0) ? "guest_" : "member_";
 	//$price_col_name .= "usd";
 
-
-	//if ($nation_no == 25) {
-	//	$price_col_name .= "usd";
-	//	$cur = "USD";
-	//	$name = $first_name." ".$last_name;
-	//} else {
-	//	$price_col_name .= "krw";
-	//	$cur = "KRW";
-	//	$name = $last_name." ".$first_name;
-	//}
-
 	$nation_no			= isset($registration_data["nation_no"]) ? $registration_data["nation_no"] : "-";
 
 	//2022-05-16 추가
@@ -191,10 +180,20 @@
 		sql_query("UPDATE request_registration SET `status` = 2, payment_no = '{$payment_new_no}' WHERE idx = '{$registration_idx}'");
 	}*/
 
+	if ($nation_no == 25) {
+	//	$price_col_name .= "usd";
+	//	$cur = "USD";
+		$name = $name_kor;
+	} else {
+	//	$price_col_name .= "krw";
+	//	$cur = "KRW";
+		$name = $last_name." ".$first_name;
+	}
+
 	//금액 변환
 	//$us_price = "1";
 	//$ko_price = "1000";
-	$us_price = $registration_data["price"];
+	//$us_price = $registration_data["price"];
 
 	$sql_during =	"SELECT
 							IF(NOW() >= '2022-07-28 09:00:00', 'Y', 'N') AS yn
@@ -552,38 +551,73 @@ function on_pay() {
                     <button type="button" class="btn green_btn pc-wd-3"
                         onclick="prev(<?=$registration_idx;?>)">Prev</button>
 
-                    <?php
+                <?php
 					if($payment_methods_select == 0) {
 						if($promotion_code == 0) {
 							//100% 할인
+							if ($nation_no == 25) {
 				?>
-                    <button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="paybtn()">
-                        Payment
-                    </button>
-                    <?php
+								<button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="paybtn()">
+									Payment
+								</button>
+                <?php
+							} else {
+				?>
+								<button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="payment()">
+									Payment
+								</button>
+				<?php
+							}
 						} else {
+							if ($nation_no == 25) {
 				?>
-                    <!-- 기존 : jsf__pay(document.order_info) / 테스트 변경 : paybtn() )  -->
-                    <button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="paybtn()">
-                        Payment
-                    </button>
-                    <?php
+								<!-- 기존 : jsf__pay(document.order_info) / 테스트 변경 : paybtn() )  -->
+								<button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="paybtn()">
+									Payment
+								</button>
+                <?php
+							} else {
+				?>
+								<!-- 기존 : jsf__pay(document.order_info) / 테스트 변경 : paybtn() )  -->
+								<button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="payment()">
+									Payment
+								</button>
+				<?php
+							}
 						}
 					} else {
 						if($promotion_code == 0) {
+							if ($nation_no == 25) {
 				?>
-                    <!-- 기존 : code_100() / 테스트 변경 : paybtn() )  -->
-                    <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="paybtn()">
-                        Payment
-                    </button>
-                    <?php
+							<!-- 기존 : code_100() / 테스트 변경 : paybtn() )  -->
+							<button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="paybtn()">
+								Payment
+							</button>
+                <?php
+							} else {
+				?>
+								<!-- 기존 : code_100() / 테스트 변경 : paybtn() )  -->
+								<button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="payment()">
+									Payment
+								</button>
+				<?php
+							}
 						} else {
+							if ($nation_no == 25) {
 				?>
-                    <!-- 기존 : transfer() / 테스트 변경 : paybtn() )  -->
-                    <button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="paybtn()">
-                        Payment
-                    </button>
-                    <?php
+								<!-- 기존 : transfer() / 테스트 변경 : paybtn() )  -->
+								<button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="paybtn()">
+									Payment
+								</button>
+                <?php
+							} else {
+				?>
+								<!-- 기존 : transfer() / 테스트 변경 : paybtn() )  -->
+								<button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="payment()">
+									Payment
+								</button>
+				<?php
+							}
 						}
 					}
 				?>
@@ -592,37 +626,72 @@ function on_pay() {
                 <div class=" pager_btn_wrap mb_only centerT pager_btn_wrap half">
                     <button type="button" class="btn green_btn pc-wd-3"
                         onclick="prev(<?=$registration_idx;?>)">Prev</button>
-                    <?php
+                <?php
 					if($payment_methods_select == 0) {
 						if($promotion_code == 0) {
+							if ($nation_no == 25) {
 				?>
-                    <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="on_pay()">
-                        Payment
-                    </button>
-                    <?php
+								<button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="on_pay()">
+									Payment
+								</button>
+                <?php
+							} else {
+				?>
+								<button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="payment()">
+									Payment
+								</button>
+				<?php
+							}
 						} else {
+							if ($nation_no == 25) {
 				?>
-                    <!-- 기존 : mb_click() / 테스트 변경 : paybtn() )  -->
-                    <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="on_pay()">
-                        Payment
-                    </button>
-                    <?php
+								<!-- 기존 : mb_click() / 테스트 변경 : paybtn() )  -->
+								<button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="on_pay()">
+									Payment
+								</button>
+                <?php
+							} else {
+				?>
+								<!-- 기존 : mb_click() / 테스트 변경 : paybtn() )  -->
+								<button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="payment()">
+									Payment
+								</button>
+				<?php
+							}
 						}
 					} else {
 						if($promotion_code == 0) {
+							if ($nation_no == 25) {
 				?>
-                    <!-- 기존 : code_100() / 테스트 변경 : paybtn() )  -->
-                    <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="on_pay()">
-                        Payment
-                    </button>
-                    <?php
+								<!-- 기존 : code_100() / 테스트 변경 : paybtn() )  -->
+								<button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="on_pay()">
+									Payment
+								</button>
+				<?php
+							} else {
+				?>
+								<!-- 기존 : code_100() / 테스트 변경 : paybtn() )  -->
+								<button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="payment()">
+									Payment
+								</button>
+				<?php
+							}
 						} else {
+							if ($nation_no == 25) {
 				?>
-                    <!-- 기존 : transfer() / 테스트 변경 : paybtn() )  -->
-                    <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="on_pay()">
-                        Payment
-                    </button>
-                    <?php
+								<!-- 기존 : transfer() / 테스트 변경 : paybtn() )  -->
+								<button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="on_pay()">
+									Payment
+								</button>
+                <?php
+							} else {
+				?>
+								<!-- 기존 : transfer() / 테스트 변경 : paybtn() )  -->
+								<button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="payment()">
+									Payment
+								</button>
+				<?php
+							}
 						}
 					}
 				?>
@@ -669,6 +738,50 @@ function on_pay() {
         <input type="hidden" name="P_CHARSET" value="utf8">
         <input type="hidden" name="P_RESERVED" value="below1000=Y&vbank_receipt=Y&centerCd=Y">
         <input type="hidden" name="P_NEXT_URL" value="https://iscp2023.org/main/plugin/KG_INICIS/result_test.php">
+    </form>
+
+    <!-- 엑심베이 결제 -->
+    <form class="form-horizontal" name="regForm" method="post" action="<?=$siteDomain?>/plugin/eximbay/request.php">
+        <!-- 결제에 필요 한 필수 파라미터 -->
+        <input type="hidden" name="ver" value="230" /><!-- 연동 버전 -->
+        <input type="hidden" name="txntype" value="PAYMENT" /><!-- 거래 타입 -->
+        <input type="hidden" name="charset" value="UTF-8" /><!-- 고정 : UTF-8 -->
+
+        <!-- statusurl(필수 값) : 결제 완료 시 Back-end 방식으로 Eximbay 서버에서 statusurl에 지정된 가맹점 페이지를 Back-end로 호출하여 파라미터를 전송 -->
+        <!-- 스크립트, 쿠키, 세션 사용 불가 -->
+        <input type="hidden" name="statusurl" value="<?=$siteDomain?>/plugin/eximbay/status.php" />
+        <input type="hidden" name="returnurl" value="<?=$siteDomain?>/plugin/eximbay/return.php" />
+
+        <!--결제 완료 시 Front-end 방식으로 사용자 브라우저 상에 호출되어 보여질 가맹점 페이지 -->
+
+        <!-- 결제 응답 값 처리 파라미터 -->
+        <input type="hidden" name="rescode" />
+        <input type="hidden" name="resmsg" />
+
+        <!-- 테스트용 -->
+        <input type="hidden" name="mid" value="1849705C64">
+        <!-- 실서버 -->
+        <!--<input type="hidden" name="mid" value="189A6E05E4">-->
+        <input type="hidden" name="ref" value="<?=$order_code?>">
+        <input type="hidden" name="ostype" value="P">
+        <input type="hidden" name="displaytype" value="P">
+        <input type="hidden" name="email" value="<?=$email?>">
+        <input type="hidden" name="buyer" value="<?=$name?>">
+        <input type="hidden" name="tel" value="<?=$phone?>">
+        <input type="hidden" name="item_0_product" value="ISCP 2023">
+        <input type="hidden" name="item_0_quantity" value="1">
+		<!-- 실서버 -->
+		<!-- <input type="hidden" name="item_0_unitPrice" value="<?=$us_price?>"> -->
+		<!-- 테스트용 -->
+		<input type="hidden" name="item_0_unitPrice" value="1">
+
+        <input type="hidden" name="lang" value="<?=$language == "ko" ? "KR" : "EN"?>">
+        <input type="hidden" name="cur" value="USD">
+		<!-- 실서버 -->
+        <!-- <input type="hidden" name="amt" value="<?=$us_price?>"> -->
+		<!-- 테스트용 -->
+        <input type="hidden" name="amt" value="1">
+        <input type="hidden" name="paymethod" value="P000">
     </form>
 </section>
 <script src="./js/script/client/registration.js"></script>

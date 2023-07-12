@@ -209,7 +209,7 @@ if (!empty($_SESSION["USER"])) {
                                 $payment_url = "./registration_account.php?idx=" . $list["idx"] . "&nation_no=" . $nation_no;
                             }
 
-                            echo '<tr class="centerT">';
+                            echo '<tr >';
                             echo     '<td>' . $status_type . '</td>';
                             echo     '<td><a href="' . $payment_url . '" class="' . $popup_class . '" data-idx="' . $list["idx"] . '">ISCP 2023</a></td>';
                             echo     '<td>' . $list["member_type"] . '</td>';

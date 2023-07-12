@@ -87,10 +87,9 @@ $price = get_data($sql_price);
                 </ul>
                 <div class="pager_btn_wrap half mb50">
                     <!-- <button type="button" class="btn gray_btn show_pop">평점안내</button> -->
-                    <button type="button" class="btn green_btn" onClick="location.href='http://kscvp.org'">KSCVP 가입
+                    <button type="button" class="btn kor_btn" onClick="location.href='http://kscvp.org'">KSCVP 가입
                     </button>
-                    <button type="button" class="btn green_btn"
-                        onClick="location.href='https://koreascp.or.kr:459/index.htm'">KSCP 가입
+                    <button type="button" class="btn kor_btn" onClick="location.href='https://koreascp.or.kr:459/index.htm'">KSCP 가입
 
                     </button>
                 </div>
@@ -138,11 +137,11 @@ $price = get_data($sql_price);
                     array_push($tb_arr[$i]['type_arr'], $pr['type_en']);
                 }
             ?>
-            <div class="circle_title">
-                <!--<?= $locale("air_registration_tit") ?>-->등록비
-            </div>
-            <div class="details table_wrap icomes_air">
-                <!-- 기존 개발소스
+                <div class="circle_title">
+                    <!--<?= $locale("air_registration_tit") ?>-->등록비
+                </div>
+                <div class="details table_wrap icomes_air">
+                    <!-- 기존 개발소스
 				<table class="table detail_table">
 					<colgroup>
 						<col width="40%">
@@ -187,15 +186,15 @@ $price = get_data($sql_price);
                         ?>
 					</tbody>
 				</table>-->
-                <table class="table left_border_table table_responsive">
-                    <thead>
-                        <tr>
-                            <th rowspan="2">구분</th>
-                            <!-- <th colspan="2">조기 등록</th> -->
-                            <th colspan="2">사전 등록</th>
-                            <th colspan="2">현장 등록</th>
-                        </tr>
-                        <!-- <tr>
+                    <table class="table left_border_table table_responsive">
+                        <thead>
+                            <tr>
+                                <th rowspan="2">구분</th>
+                                <!-- <th colspan="2">조기 등록</th> -->
+                                <th colspan="2">사전 등록</th>
+                                <th colspan="2">현장 등록</th>
+                            </tr>
+                            <!-- <tr>
 								<th>KSoLA 회원</th>
 								<th>비회원</th>
 								<th>KSoLA 회원</th>
@@ -203,34 +202,34 @@ $price = get_data($sql_price);
 								<th>KSoLA 회원</th>
 								<th>비회원</th>
 							</tr> -->
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>전문의, 교수</td>
-                            <!-- <td>80,000원</td> -->
-                            <!-- <td>100,000원</td> -->
-                            <!-- <td>100,000원</td>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>전문의, 교수</td>
+                                <!-- <td>80,000원</td> -->
+                                <!-- <td>100,000원</td> -->
+                                <!-- <td>100,000원</td>
                             <td>120,000원</td>
                             <td>120,000원</td>
                             <td>140,000원</td> -->
-                            <td colspan="2">50,000원</td>
-                            <td colspan="2">70,000원</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                전임의, 전공의, 군의관/공보의, <br>
-                                연구원, 학생, 간호사, 영양사, 약사, 기업회원
-                                <!-- 의사 외 의료 분야 종사자*,연구원, 학생, 기업회원, 기타 -->
-                            </td>
-                            <!-- <td colspan="2">50,000원</td> -->
-                            <td colspan="2">10,000원</td>
-                            <td colspan="2">30,000원</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br>
-                <!-- 				<p>*의사 외 의료분야종사자: 간호사, 영양사, 약사, 기타</p> -->
-            </div>
+                                <td colspan="2">50,000원</td>
+                                <td colspan="2">70,000원</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    전임의, 전공의, 군의관/공보의, <br>
+                                    연구원, 학생, 간호사, 영양사, 약사, 기업회원
+                                    <!-- 의사 외 의료 분야 종사자*,연구원, 학생, 기업회원, 기타 -->
+                                </td>
+                                <!-- <td colspan="2">50,000원</td> -->
+                                <td colspan="2">10,000원</td>
+                                <td colspan="2">30,000원</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <!-- 				<p>*의사 외 의료분야종사자: 간호사, 영양사, 약사, 기타</p> -->
+                </div>
             <?php
             }
             ?>
@@ -470,9 +469,9 @@ $price = get_data($sql_price);
         바로가기</span></button> -->
 
 <script>
-$('.show_pop').on('click', function() {
-    $('.pop_info').show();
-});
+    $('.show_pop').on('click', function() {
+        $('.pop_info').show();
+    });
 </script>
 
 <?php include_once('./include/footer.php'); ?>
