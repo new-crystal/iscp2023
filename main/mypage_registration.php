@@ -52,12 +52,12 @@ $member_nation_query = "SELECT
 $member_nation_no = sql_fetch($member_nation_query)["nation_no"];
 
 $sql_during =    "SELECT
-						IF(DATE(NOW()) >= '2022-09-18', 'Y', 'N') AS yn
+						IF(DATE(NOW()) >= '2023-11-23', 'Y', 'N') AS yn
 					FROM info_event";
 $r_during_yn = sql_fetch($sql_during)['yn'];
 
 $sql_during =    "SELECT
-						IF(NOW() > '2022-07-28 09:00:00', 'Y', 'N') AS yn
+						IF(NOW() > '2023-11-23 09:00:00', 'Y', 'N') AS yn
 					FROM info_event";
 $rr_during_yn = sql_fetch($sql_during)['yn'];
 
@@ -81,11 +81,12 @@ if (!empty($_SESSION["USER"])) {
         <div class="sub_inner">
             <div>
                 <h2><?= $locale("mypage") ?></h2>
-                <ul>
+                <div class="color-bar"></div>
+                <!-- <ul>
                     <li>Home</li>
                     <li><?= $locale("mypage") ?></li>
                     <li>Registration</li>
-                </ul>
+                </ul> -->
             </div>
         </div>
     </div>
@@ -121,35 +122,35 @@ if (!empty($_SESSION["USER"])) {
 
                             $before_price = $list["before_price"];
 
-                            //특정 회원 가격 변동 이후 삭제
-                            if ($list['idx'] == 512) {
-                                $rr_during_yn = 'N';
-                            }
+                            // //특정 회원 가격 변동 이후 삭제
+                            // if ($list['idx'] == 512) {
+                            //     $rr_during_yn = 'N';
+                            // }
 
-                            if ($rr_during_yn == 'Y') {
-                                if ($before_price == 300) {
-                                    $before_price = 300;
-                                } else if ($before_price == 150) {
-                                    $before_price = 100;
-                                } else if ($before_price == 120000) {
-                                    $before_price = 50000;
-                                } else if ($before_price == 100000) {
-                                    $before_price = 50000;
-                                } else if ($before_price == 60000) {
-                                    $before_price = 10000;
-                                }
-                            }
+                            // if ($rr_during_yn == 'Y') {
+                            //     if ($before_price == 300) {
+                            //         $before_price = 200;
+                            //     } else if ($before_price == 150) {
+                            //         $before_price = 100;
+                            //     } else if ($before_price == 120000) {
+                            //         $before_price = 50000;
+                            //     } else if ($before_price == 100000) {
+                            //         $before_price = 50000;
+                            //     } else if ($before_price == 60000) {
+                            //         $before_price = 10000;
+                            //     }
+                            // }
 
                             $before_price_text = number_format($before_price);
-                            $promotion_code = $list["promotion_code"] ?? -1;
+                            // $promotion_code = $list["promotion_code"] ?? -1;
 
                             $unit_code = ($before_price > 1000) ? "￦" : "$";
-                            if ($promotion_code == 0 && $promotion_code != "") {
-                                $before_price = 0;
-                            } else if ($promotion_code == 1 || $promotion_code == 2 || $promotion_code == 4) {
-                                $before_price /= 2;
-                            }
-                            $before_price = $unit_code . " " . number_format($before_price);
+                            // if ($promotion_code == 0 && $promotion_code != "") {
+                            //     $before_price = 0;
+                            // } else if ($promotion_code == 1 || $promotion_code == 2 || $promotion_code == 4) {
+                            //     $before_price /= 2;
+                            // }
+                            $price = $unit_code . " " . $before_price_text;
 
                             $payment_no = $list["payment_no"];
                             $order_no = $list["order_no"];
@@ -160,15 +161,15 @@ if (!empty($_SESSION["USER"])) {
                             $popup_class = "non_click";
                             $disabled = "disabled";
 
-                            if ($list["status"] == 2) {
-                                $price = $list["total_price_kr"] != "" ? "￦ " . number_format($list["total_price_kr"]) : ($list["total_price_us"] != "" ? "$ " . number_format($list["total_price_us"]) : $before_price);
-                            } else {
-                                $price = $before_price;
-                            }
+                            // if ($list["status"] == 2 || $list["status"] == 1) {
+                            //     $price = $list["total_price_kr"] != "" ? "￦ " . number_format($list["total_price_kr"]) : ($list["total_price_us"] != "" ? "$ " . number_format($list["total_price_us"]) : $before_price);
+                            // } else {
+                            // }
 
-                            if ($list["idx"] == 608) { // member_idx = 137
-                                $price = "$ 75";
-                            }
+                            // $price = $before_price;
+                            // if ($list["idx"] == 608) { // member_idx = 137
+                            //     $price = "$ 75";
+                            // }
 
 
                             // if($list["status"] != ""){
@@ -209,7 +210,7 @@ if (!empty($_SESSION["USER"])) {
                                 $payment_url = "./registration_account.php?idx=" . $list["idx"] . "&nation_no=" . $nation_no;
                             }
 
-                            echo '<tr >';
+                            echo '<tr">';
                             echo     '<td>' . $status_type . '</td>';
                             echo     '<td><a href="' . $payment_url . '" class="' . $popup_class . '" data-idx="' . $list["idx"] . '">ISCP 2023</a></td>';
                             echo     '<td>' . $list["member_type"] . '</td>';
@@ -233,16 +234,16 @@ if (!empty($_SESSION["USER"])) {
                                 echo     '<td style="display: flex;">';
                                 if ($list["payment_methods"] == 0 && $promotion_code != 0) {
                                     $list['payment_obj'] = json_decode($list['etc2'], 1);
-                                    if ($r_during_yn == 'Y') {
-                                        // echo '<button style="height:50px; margin-right: 20px;" type="button" class="btn deposit_btn" onclick="registration_btn(' . $list["idx"] . ')">Certificate</button><br><br>';
-                                    }
-                                    echo '<button id="receipt"  style="height:50px;" type="button" class="btn deposit_btn review_btn" data-payment_no="' . $payment_no . '" data-order_no="' . $order_no . '" data-deposit_price="' . $deposit_price . '" onclick="receiptView()"data-tid="' . $list['payment_obj']['tid'] . '">Payment <br>Receipt</button>';
+                                    // if ($r_during_yn == 'Y') {
+                                    //     echo '<button style="height:50px; margin-right: 20px;" type="button" class="btn deposit_btn" onclick="registration_btn(' . $list["idx"] . ')">Certificate</button><br><br>';
+                                    // }
+                                    echo '<button id="receipt"  style="height:50px;" type="button" class="btn deposit_btn review_btn" data-payment_no="' . $payment_no . '" data-order_no="' . $order_no . '" data-deposit_price="' . $deposit_price . '" onclick="receiptView()"data-tid="' . $list['payment_obj']['tid'] . '" data-idx="' . $list['idx'] . '">Payment <br>Receipt</button>';
                                 } else {
-                                    if ($r_during_yn == 'Y') {
-                                        // echo '<button style="height:50px; margin-right: 20px;" type="button" class="btn deposit_btn" onclick="registration_btn(' . $list["idx"] . ')">Certificate</button>';
-                                    } else {
-                                        echo 'Payment Received';
-                                    }
+                                    // if ($r_during_yn == 'Y') {
+                                    //     echo '<button style="height:50px; margin-right: 20px;" type="button" class="btn deposit_btn" onclick="registration_btn(' . $list["idx"] . ')">Certificate</button>';
+                                    // } else {
+                                    //     echo 'Payment Received';
+                                    // }
                                 }
                                 //echo		'<button type="button" class="btn refund_btn" data-status="'.$list["payment_status"].'" data-idx="'.$list["idx"].'" '.$disabled.'>cancel</button>';
                                 echo     '</td>';
@@ -445,12 +446,12 @@ $(document).ready(function() {
 
 //등록증 띄우기
 function registration_btn(idx) {
-    //$(".receipt_pop").show();
-    // var url =
-    //     "https://iscp2023.org/main/pre_registration_confirm.php?key=<?= explode('@', $_SESSION['USER']['email'])[0] ?>&idx=" +
-    //     idx;
-    // window.open(url, "Certificate", "width=1145, height=900, top=30, left=30");
-    alert("준비 중입니다")
+    $(".receipt_pop").show();
+    var url =
+        "https://iscp2023.org/main/pre_registration_confirm.php?key=<?= explode('@', $_SESSION['USER']['email'])[0] ?>&idx=" +
+        idx;
+    window.open(url, "Certificate", "width=1145, height=900, top=30, left=30");
+
 };
 
 $('.revise_pop_btn').on('click', function() {
@@ -705,11 +706,19 @@ function receiptView() {
     // window.open(url, "Registration Receipt", "width=793, height=1097, top=30, left=30");
 
 }
+// $("#receipt").on("click", function() {
+//     var tid = $(this).data("tid");
+//     var url = "https://iniweb.inicis.com/DefaultWebApp/mall/cr/cm/mCmReceipt_head.jsp?noTid=" + tid +
+//         "&noMethod=1";
+//     window.open(url);
+// });
+// registration receipt
 $("#receipt").on("click", function() {
-    var tid = $(this).data("tid");
-    var url = "https://iniweb.inicis.com/DefaultWebApp/mall/cr/cm/mCmReceipt_head.jsp?noTid=" + tid +
-        "&noMethod=1";
-    window.open(url);
+    //$(".receipt_pop").show();
+    var idx = $(this).data("idx");
+    //var url = "./pre_registration_confirm.php?idx="+idx;
+    var url = "./mypage_receipt.php?type=" + device + "&idx=" + idx;
+    window.open(url, "Registration Receipt", "width=793, height=1097, top=30, left=30");
 });
 
 

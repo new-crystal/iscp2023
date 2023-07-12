@@ -781,7 +781,7 @@ function on_pay() {
         <!-- <input type="hidden" name="amt" value="<?=$us_price?>"> -->
 		<!-- 테스트용 -->
         <input type="hidden" name="amt" value="5">
-        <input type="hidden" name="paymethod" value="P000">
+<!--         <input type="hidden" name="paymethod" value="P000"> -->
     </form>
 </section>
 <script src="./js/script/client/registration.js"></script>

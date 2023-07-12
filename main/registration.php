@@ -373,9 +373,9 @@ input.others {
                             <td>Specialist, Professor</td>
                             <td>
                                 <input type="radio" class="radio" id="c_type2-1" name="c_type1"
-                                    value="<?= $r_during_yn == 'N' ? "250" : "300"; ?>" onclick="return(false);"
+                                    value="<?= $r_during_yn == 'N' ? "200" : "200"; ?>" onclick="return(false);"
                                     <?= $usd_80_check; ?>>
-                                <label for="c_type2-1">USD <?= $r_during_yn == 'N' ? "250" : "200"; ?></label>
+                                <label for="c_type2-1">USD <?= $r_during_yn == 'N' ? "200" : "200"; ?></label>
                             </td>
                         </tr>
                         <tr>
@@ -385,7 +385,7 @@ input.others {
                             </td>
                             <td>
                                 <input type="radio" class="radio" id="c_type2-2" name="c_type1"
-                                    value="<?= $r_during_yn == 'N' ? "100" : "150"; ?>" onclick="return(false);"
+                                    value="<?= $r_during_yn == 'N' ? "100" : "100"; ?>" onclick="return(false);"
                                     <?= $usd_40_check; ?>>
                                 <label for="c_type2-2">USD <?= $r_during_yn == 'N' ? "100" : "100"; ?></label>
                             </td>
@@ -429,9 +429,9 @@ input.others {
                             <td>전문의, 교수</td>
                             <td>
                                 <input type="radio" class="radio" id="c_type1-1" name="c_type1"
-                                    value="<?= $r_during_yn == 'N' ? "80000" : "100000"; ?>" onclick="return(false);"
+                                    value="<?= $r_during_yn == 'N' ? "50000" : "50000"; ?>" onclick="return(false);"
                                     <?= $krw_8_check; ?>>
-                                <label for="c_type1-1"><?= $r_during_yn == 'N' ? "80,000원" : "50,000원"; ?></label>
+                                <label for="c_type1-1"><?= $r_during_yn == 'N' ? "50,000원" : "50,000원"; ?></label>
                             </td>
                             <!-- <td>
                                         <input type="radio" class="radio" id="c_type1-2" name="c_type1" value="<?= $r_during_yn == 'N' ? "100000" : "120000"; ?>" onclick="return(false);" <?= $krw_10_check; ?>>
@@ -446,9 +446,9 @@ input.others {
                             </td>
                             <td>
                                 <input type="radio" class="radio" id="c_type2" name="c_type1"
-                                    value="<?= $r_during_yn == 'N' ? "50000" : "60000"; ?>" onclick="return(false);"
+                                    value="<?= $r_during_yn == 'N' ? "10000" : "10000"; ?>" onclick="return(false);"
                                     <?= $krw_4_check; ?>>
-                                <label for="c_type2"><?= $r_during_yn == 'N' ? "50,000원" : "10,000원"; ?></label>
+                                <label for="c_type2"><?= $r_during_yn == 'N' ? "10,000원" : "10,000원"; ?></label>
                             </td>
                         </tr>
                         <!-- <tr> -->
