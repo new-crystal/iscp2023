@@ -759,9 +759,9 @@ function on_pay() {
         <input type="hidden" name="resmsg" />
 
         <!-- 테스트용 -->
-        <input type="hidden" name="mid" value="1849705C64">
+        <!--<input type="hidden" name="mid" value="1849705C64">-->
         <!-- 실서버 -->
-        <!--<input type="hidden" name="mid" value="189A6E05E4">-->
+        <input type="hidden" name="mid" value="189A6E05E4">
         <input type="hidden" name="ref" value="<?=$order_code?>">
         <input type="hidden" name="ostype" value="P">
         <input type="hidden" name="displaytype" value="P">
@@ -773,14 +773,14 @@ function on_pay() {
 		<!-- 실서버 -->
 		<!-- <input type="hidden" name="item_0_unitPrice" value="<?=$us_price?>"> -->
 		<!-- 테스트용 -->
-		<input type="hidden" name="item_0_unitPrice" value="1">
+		<input type="hidden" name="item_0_unitPrice" value="5">
 
         <input type="hidden" name="lang" value="<?=$language == "ko" ? "KR" : "EN"?>">
         <input type="hidden" name="cur" value="USD">
 		<!-- 실서버 -->
         <!-- <input type="hidden" name="amt" value="<?=$us_price?>"> -->
 		<!-- 테스트용 -->
-        <input type="hidden" name="amt" value="1">
+        <input type="hidden" name="amt" value="5">
         <input type="hidden" name="paymethod" value="P000">
     </form>
 </section>

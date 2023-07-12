@@ -3,8 +3,8 @@
     아래 설정 된 값은 테스트용 secretKey입니다.
     테스트로만 진행하시고 발급 받으신 값으로 변경하셔야 됩니다.
      */
-	$secretKey = "289F40E6640124B2628640168C3C5464"; // 테스트 secretkey
-	//$secretKey = "304FD62FE40340F5593E40397840F1E4"; //가맹점 secretkey
+	//$secretKey = "289F40E6640124B2628640168C3C5464"; // 테스트 secretkey
+	$secretKey = "304FD62FE40340F5593E40397840F1E4"; //가맹점 secretkey
 	
 	foreach($_POST as $Key=>$value) {
 
@@ -138,18 +138,15 @@ body {
 	
 	/*
 	* 230711 HUBDNC 메일 발송하는 부분 추가
-	* 필요시 해당 부분 주석 해제
 	*/
-	function payment_ajax(name, eamil, data, flag) {
-		window.opener.location.href="../../registration3.php";
-		/*
+	function payment_ajax(name, email, data, flag) {
 		$.ajax({
 			url : "../../ajax/client/ajax_gmail.php",
 			type : "POST",
 			data : {
-				flag : "payment",
+				flag : "payment_mail",
 				name : name,
-				email : eamil,
+				email : email,
 				data : data
 			},
 			dataType : "JSON",
@@ -160,6 +157,5 @@ body {
 				window.opener.location.href="../../registration3.php";
 			}
 		});
-		*/
 	}
 </script>
