@@ -21,39 +21,34 @@ $during_yn = sql_fetch($sql_during)['yn'];
 
 if ($during_yn !== "Y" && (empty($submission_idx))) {
 ?>
-<section class="container submit_application">
-    <div class="sub_background_box">
-        <div class="sub_inner">
-            <div>
-                <h2>Online Submission</h2>
-                <ul>
-                    <li>Home</li>
-                    <li>Call for Abstracts</li>
-                    <li>Abstract Submission</li>
-                    <li>Online Submission</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="inner">
-        <ul class="tab_pager location tab_pager_small">
-            <li><a href="./submission_guideline.php">
-                    <!--<?= $locale("abstract_menu1") ?>-->Abstract Submission<br>Guideline
-                </a></li>
-            <li class="on"><a href="./abstract_submission.php">
-                    <!--<?= $locale("abstract_menu2") ?>-->Online Submission
-                </a></li>
-            <!--<li><a href="./award.php"><!--<?= $locale("abstract_menu3") ?>Awards & Grants</a></li>-->
-        </ul>
-        <section class="coming">
-            <div class="container">
-                <div class="sub_banner">
-                    <h5>Abstract Submission<br>has been closed</h5>
-                </div>
-            </div>
-        </section>
-    </div>
-</section>
+	<section class="container submit_application">
+		<div class="sub_background_box">
+			<div class="sub_inner">
+				<div>
+					<h2>Online Submission</h2>
+					<div class="color-bar"></div>
+				</div>
+			</div>
+		</div>
+		<div class="inner">
+			<ul class="tab_pager location tab_pager_small">
+				<li><a href="./submission_guideline.php">
+						<!--<?= $locale("abstract_menu1") ?>-->Abstract Submission<br>Guideline
+					</a></li>
+				<li class="on"><a href="./abstract_submission.php">
+						<!--<?= $locale("abstract_menu2") ?>-->Online Submission
+					</a></li>
+				<!--<li><a href="./award.php"><!--<?= $locale("abstract_menu3") ?>Awards & Grants</a></li>-->
+			</ul>
+			<section class="coming">
+				<div class="container">
+					<div class="sub_banner">
+						<h5>Abstract Submission<br>has been closed</h5>
+					</div>
+				</div>
+			</section>
+		</div>
+	</section>
 
 <?php
 } else {
@@ -191,58 +186,58 @@ if ($during_yn !== "Y" && (empty($submission_idx))) {
 	}
 ?>
 
-<!----------------------- 퍼블리싱 구분선 ----------------------->
+	<!----------------------- 퍼블리싱 구분선 ----------------------->
 
-<section class="container submit_application">
-    <div class="sub_background_box">
-        <div class="sub_inner">
-            <div>
-                <h2>Online Submission</h2>
-                <ul>
-                    <li>Home</li>
-                    <li>Call for Abstracts</li>
-                    <li>Abstract Submission</li>
-                    <li>Online Submission</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="inner">
-        <ul class="tab_pager location tab_pager_small">
-            <li><a href="./submission_guideline.php">
-                    <!--<?= $locale("abstract_menu1") ?>-->Abstract Submission<br>Guideline
-                </a></li>
-            <li class="on"><a href="./abstract_submission.php">
-                    <!--<?= $locale("abstract_menu2") ?>-->Online Submission
-                </a></li>
-            <!--<li><a href="./award.php"><!--<?= $locale("abstract_menu3") ?>Awards & Grants</a></li>-->
-        </ul>
-        <div class="section section1">
-            <div class="steps_area">
-                <ul class="clearfix">
-                    <li>
-                        <p>STEP 01</p>
-                        <p class="sm_txt"><?= $locale("abstract_submit_tit1") ?></p>
-                    </li>
-                    <li>
-                        <p>STEP 02</p>
-                        <p class="sm_txt"><?= $locale("abstract_submit_tit2") ?></p>
-                    </li>
-                    <li class="past">
-                        <p>STEP 03</p>
-                        <p class="sm_txt"><?= $locale("submit_completed_tit") ?></p>
-                    </li>
-                </ul>
-            </div>
-            <div class="input_area">
-                <form name="abstract_form" class="abstract_form">
-                    <div class="circle_title">Preview</div>
-                    <div class="x_scroll">
-                        <div class="gray_border">
-                            <div class="clearfix2">
-                                <span>[-]</span>
-                                <span>
-                                    <?php
+	<section class="container submit_application">
+		<div class="sub_background_box">
+			<div class="sub_inner">
+				<div>
+					<h2>Online Submission</h2>
+					<ul>
+						<li>Home</li>
+						<li>Call for Abstracts</li>
+						<li>Abstract Submission</li>
+						<li>Online Submission</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="inner">
+			<ul class="tab_pager location tab_pager_small">
+				<li><a href="./submission_guideline.php">
+						<!--<?= $locale("abstract_menu1") ?>-->Abstract Submission<br>Guideline
+					</a></li>
+				<li class="on"><a href="./abstract_submission.php">
+						<!--<?= $locale("abstract_menu2") ?>-->Online Submission
+					</a></li>
+				<!--<li><a href="./award.php"><!--<?= $locale("abstract_menu3") ?>Awards & Grants</a></li>-->
+			</ul>
+			<div class="section section1">
+				<div class="steps_area">
+					<ul class="clearfix">
+						<li>
+							<p>STEP 01</p>
+							<p class="sm_txt"><?= $locale("abstract_submit_tit1") ?></p>
+						</li>
+						<li>
+							<p>STEP 02</p>
+							<p class="sm_txt"><?= $locale("abstract_submit_tit2") ?></p>
+						</li>
+						<li class="past">
+							<p>STEP 03</p>
+							<p class="sm_txt"><?= $locale("submit_completed_tit") ?></p>
+						</li>
+					</ul>
+				</div>
+				<div class="input_area">
+					<form name="abstract_form" class="abstract_form">
+						<div class="circle_title">Preview</div>
+						<div class="x_scroll">
+							<div class="gray_border">
+								<div class="clearfix2">
+									<span>[-]</span>
+									<span>
+										<?php
 										foreach ($topic1_list as $tp) {
 											if ($tp['idx'] == $detail['topic']) {
 												echo $tp['order'] . '. ' . $tp['name_en'];
@@ -257,12 +252,12 @@ if ($during_yn !== "Y" && (empty($submission_idx))) {
 											}
 										}
 										?>
-                                </span>
-                            </div>
-                            <ul class="font_style centerT">
-                                <li><?= htmlspecialchars_decode($detail['title'], ENT_QUOTES) ?></li>
-                                <li>
-                                    <?php
+									</span>
+								</div>
+								<ul class="font_style centerT">
+									<li><?= htmlspecialchars_decode($detail['title'], ENT_QUOTES) ?></li>
+									<li>
+										<?php
 										foreach ($au_list as $k => $au) {
 											$au_orders = "";
 											$affiliation_selected = explode("|", $au['affiliation_selected']);
@@ -290,9 +285,9 @@ if ($during_yn !== "Y" && (empty($submission_idx))) {
 											}
 										}
 										?>
-                                </li>
-                                <li>
-                                    <?php
+									</li>
+									<li>
+										<?php
 										foreach ($af_list as $af) {
 											foreach ($department_list as $dp) {
 												$department_details = "";
@@ -303,55 +298,55 @@ if ($during_yn !== "Y" && (empty($submission_idx))) {
 														$department_details = $dp['name_en'];
 													}
 										?>
-                                    <sup><?= $af['order'] ?></sup><?= $department_details . ", " . $af['affiliation'] . ", " . $af['nation_name_en'] ?>
-                                    <?php
+													<sup><?= $af['order'] ?></sup><?= $department_details . ", " . $af['affiliation'] . ", " . $af['nation_name_en'] ?>
+												<?php
 												}
 											}
 											if ($af['order'] < count($af_list)) {
 												?>
-                                    <br>
-                                    <?php
+												<br>
+										<?php
 											}
 										}
 										?>
-                                </li>
-                                <li><?= $au_corresponding['email'] ?></li>
-                            </ul>
-                            <ul>
-                                <li>
-                                    <p class="bold">I. Objectives</p>
-                                    <?= htmlspecialchars_decode($detail['objectives'], ENT_QUOTES) ?>
-                                </li>
-                                <li>
-                                    <p class="bold">II. Materials and Methods</p>
-                                    <?= htmlspecialchars_decode($detail['methods'], ENT_QUOTES) ?>
-                                </li>
-                                <li>
-                                    <p class="bold">III. Results</p>
-                                    <?= htmlspecialchars_decode($detail['results'], ENT_QUOTES) ?>
-                                </li>
-                                <li>
-                                    <p class="bold">IV. Conclusions</p>
-                                    <?= htmlspecialchars_decode($detail['conclusions'], ENT_QUOTES) ?>
-                                </li>
-                                <?php
+									</li>
+									<li><?= $au_corresponding['email'] ?></li>
+								</ul>
+								<ul>
+									<li>
+										<p class="bold">I. Objectives</p>
+										<?= htmlspecialchars_decode($detail['objectives'], ENT_QUOTES) ?>
+									</li>
+									<li>
+										<p class="bold">II. Materials and Methods</p>
+										<?= htmlspecialchars_decode($detail['methods'], ENT_QUOTES) ?>
+									</li>
+									<li>
+										<p class="bold">III. Results</p>
+										<?= htmlspecialchars_decode($detail['results'], ENT_QUOTES) ?>
+									</li>
+									<li>
+										<p class="bold">IV. Conclusions</p>
+										<?= htmlspecialchars_decode($detail['conclusions'], ENT_QUOTES) ?>
+									</li>
+									<?php
 									if ($detail['keywords']) {
 									?>
-                                <li>
-                                    <p class="bold">V. Keywords</p>
-                                    <?= htmlspecialchars_decode($detail['keywords'], ENT_QUOTES) ?>
-                                </li>
-                                <?php
+										<li>
+											<p class="bold">V. Keywords</p>
+											<?= htmlspecialchars_decode($detail['keywords'], ENT_QUOTES) ?>
+										</li>
+									<?php
 									}
 									?>
-                            </ul>
-                            <div class="last_box clearfix">
-                                <span>Presenting Author :</span><br />
-                                <div>
-                                    <?= $au_presenting['first_name'] . " " . $au_presenting['last_name'] ?><br />
-                                    <!-- <?= $au_presenting['affiliation_kor'] . ", " . $au_presenting['nation_name_en'] ?><br/> -->
-                                    <!-- <?= get_auther_affiliation($au_presenting['idx']) ?><br/>-->
-                                    <?php
+								</ul>
+								<div class="last_box clearfix">
+									<span>Presenting Author :</span><br />
+									<div>
+										<?= $au_presenting['first_name'] . " " . $au_presenting['last_name'] ?><br />
+										<!-- <?= $au_presenting['affiliation_kor'] . ", " . $au_presenting['nation_name_en'] ?><br/> -->
+										<!-- <?= get_auther_affiliation($au_presenting['idx']) ?><br/>-->
+										<?php
 										foreach ($af_list as $af) {
 											foreach ($department_list as $dp) {
 												$department_details = "";
@@ -360,28 +355,28 @@ if ($during_yn !== "Y" && (empty($submission_idx))) {
 														$department_details = "(" . $af['department_detail'] . ")";
 													}
 										?>
-                                    <sup><?= $af['order'] ?></sup><?= $dp['name_en'] . "" . $department_details . ", " . $af['affiliation'] . ", " . $af['nation_name_en'] ?>
-                                    <?php
+													<sup><?= $af['order'] ?></sup><?= $dp['name_en'] . "" . $department_details . ", " . $af['affiliation'] . ", " . $af['nation_name_en'] ?>
+												<?php
 												}
 											}
 
 											if ($af['order'] < count($af_list)) {
 												?>
-                                    <br />
-                                    <?php
+												<br />
+										<?php
 											}
 										}
 										?>
-                                    <br /><a href="<?= $au_presenting['email'] ?>"><?= $au_presenting['email'] ?></a>
-                                </div>
-                            </div>
-                            <div class="last_box clearfix">
-                                <span>Corresponding Author :</span><br />
-                                <div>
-                                    <?= $au_corresponding['first_name'] . " " . $au_corresponding['last_name'] ?><br />
-                                    <!-- <?= $au_corresponding['affiliation_kor'] . ", " . $au_corresponding['nation_name_en'] ?><br/> -->
-                                    <!-- <?= get_auther_affiliation($au_corresponding['idx']) ?><br/>-->
-                                    <?php
+										<br /><a href="<?= $au_presenting['email'] ?>"><?= $au_presenting['email'] ?></a>
+									</div>
+								</div>
+								<div class="last_box clearfix">
+									<span>Corresponding Author :</span><br />
+									<div>
+										<?= $au_corresponding['first_name'] . " " . $au_corresponding['last_name'] ?><br />
+										<!-- <?= $au_corresponding['affiliation_kor'] . ", " . $au_corresponding['nation_name_en'] ?><br/> -->
+										<!-- <?= get_auther_affiliation($au_corresponding['idx']) ?><br/>-->
+										<?php
 										foreach ($af_list as $af) {
 											foreach ($department_list as $dp) {
 												$department_details = "";
@@ -390,29 +385,28 @@ if ($during_yn !== "Y" && (empty($submission_idx))) {
 														$department_details = "(" . $af['department_detail'] . ")";
 													}
 										?>
-                                    <sup><?= $af['order'] ?></sup><?= $dp['name_en'] . "" . $department_details . ", " . $af['affiliation'] . ", " . $af['nation_name_en'] ?>
-                                    <?php
+													<sup><?= $af['order'] ?></sup><?= $dp['name_en'] . "" . $department_details . ", " . $af['affiliation'] . ", " . $af['nation_name_en'] ?>
+												<?php
 												}
 											}
 											if ($af['order'] < count($af_list)) {
 												?>
-                                    <br />
-                                    <?php
+												<br />
+										<?php
 											}
 										}
 										?>
-                                    <br /><a
-                                        href="<?= $au_corresponding['email'] ?>"><?= $au_corresponding['email'] ?></a>
-                                </div>
-                            </div>
-                            <?php
+										<br /><a href="<?= $au_corresponding['email'] ?>"><?= $au_corresponding['email'] ?></a>
+									</div>
+								</div>
+								<?php
 								foreach ($au_co_cuthor as $k => $acc) {
 								?>
-                            <div class="last_box clearfix">
-                                <span>Co-Author<?= ($k + 1); ?> :</span><br />
-                                <div>
-                                    <?= $acc['first_name'] . " " . $acc['last_name'] ?></br>
-                                    <?php
+									<div class="last_box clearfix">
+										<span>Co-Author<?= ($k + 1); ?> :</span><br />
+										<div>
+											<?= $acc['first_name'] . " " . $acc['last_name'] ?></br>
+											<?php
 											foreach ($af_list as $af) {
 												foreach ($department_list as $dp) {
 													$department_details = "";
@@ -421,105 +415,104 @@ if ($during_yn !== "Y" && (empty($submission_idx))) {
 															$department_details = "(" . $af['department_detail'] . ")";
 														}
 											?>
-                                    <sup><?= $af['order'] ?></sup><?= $dp['name_en'] . "" . $department_details . ", " . $af['affiliation'] . ", " . $af['nation_name_en'] ?>
-                                    <?php
+														<sup><?= $af['order'] ?></sup><?= $dp['name_en'] . "" . $department_details . ", " . $af['affiliation'] . ", " . $af['nation_name_en'] ?>
+													<?php
 													}
 												}
 												if ($af['order'] < count($af_list)) {
 													?>
-                                    <br />
-                                    <?php
+													<br />
+											<?php
 												}
 											}
 											?>
-                                    <br /><a href="<?= $acc['email'] ?>"><?= $acc['email'] ?></a>
-                                </div>
-                            </div>
-                            <?php
+											<br /><a href="<?= $acc['email'] ?>"><?= $acc['email'] ?></a>
+										</div>
+									</div>
+								<?php
 								}
 								?>
 
-                        </div>
-                    </div>
-                </form>
-                <div class="pager_btn_wrap">
-                    <!-- <button type="button" class="btn submit is_submit" onclick="javascript:window.location.href='./abstract_submission2.php';"><?= $locale("next_btn") ?></button> -->
-                    <button type="button" class="btn"
-                        onclick="javascript:location.href='./abstract_submission2.php?idx=<?= $submission_idx ?>';">Modify</button>
-                    <?php
+							</div>
+						</div>
+					</form>
+					<div class="pager_btn_wrap">
+						<!-- <button type="button" class="btn submit is_submit" onclick="javascript:window.location.href='./abstract_submission2.php';"><?= $locale("next_btn") ?></button> -->
+						<button type="button" class="btn" onclick="javascript:location.href='./abstract_submission2.php?idx=<?= $submission_idx ?>';">Modify</button>
+						<?php
 						if ($detail['status'] == 0) {
 						?>
-                    <button type="button" class="btn green_btn submit_btn">Submit</button>
-                    <?php
+							<button type="button" class="btn green_btn submit_btn">Submit</button>
+						<?php
 						}
 						?>
-                </div>
-            </div>
-        </div>
-        <!--//section1-->
-    </div>
-</section>
-<!----------------------- 퍼블리싱 구분선 ----------------------->
+					</div>
+				</div>
+			</div>
+			<!--//section1-->
+		</div>
+	</section>
+	<!----------------------- 퍼블리싱 구분선 ----------------------->
 
-<div class="loading"><img src="./img/icons/loading.gif" /></div>
-<script>
-const submission_idx = '<?= $submission_idx ?>';
+	<div class="loading"><img src="./img/icons/loading.gif" /></div>
+	<script>
+		const submission_idx = '<?= $submission_idx ?>';
 
-// save
-$('.submit_btn').click(function() {
-    pending_on();
-    $.ajax({
-        url: PATH + "ajax/client/ajax_submission2022.php",
-        type: "POST",
-        data: {
-            flag: 'step3',
-            submission_idx: submission_idx
-        },
-        dataType: "JSON",
-        success: function(res) {
-            console.log(res);
-            if (res.code == 200) {
-                abstract_gmail(res.email, res.name, res.subject, res.title, res.topic_text);
-                //location.href = './mypage_abstract.php';
-                //alert(locale(language.value)("send_mail_success"));
+		// save
+		$('.submit_btn').click(function() {
+			pending_on();
+			$.ajax({
+				url: PATH + "ajax/client/ajax_submission2022.php",
+				type: "POST",
+				data: {
+					flag: 'step3',
+					submission_idx: submission_idx
+				},
+				dataType: "JSON",
+				success: function(res) {
+					console.log(res);
+					if (res.code == 200) {
+						abstract_gmail(res.email, res.name, res.subject, res.title, res.topic_text);
+						//location.href = './mypage_abstract.php';
+						//alert(locale(language.value)("send_mail_success"));
 
-            }
-        },
-        complete: function() {
-
-
-            pending_off();
-        }
-    });
-    /* //save */
-});
+					}
+				},
+				complete: function() {
 
 
-function abstract_gmail(email, name, subject, title, topic_text) {
-    pending_on();
-    $.ajax({
-        url: PATH + "ajax/client/ajax_gmail.php",
-        type: "POST",
-        data: {
-            flag: "abstract",
-            email: email,
-            name: name,
-            subject: subject,
-            title: title,
-            topic_text: topic_text
-        },
-        dataType: "JSON",
-        success: function(res) {
-            if (res.code == 200) {
-                location.href = './mypage_abstract.php';
-            }
-        },
-        complete: function() {
-            pending_off();
-        }
-    });
-}
-</script>
+					pending_off();
+				}
+			});
+			/* //save */
+		});
+
+
+		function abstract_gmail(email, name, subject, title, topic_text) {
+			pending_on();
+			$.ajax({
+				url: PATH + "ajax/client/ajax_gmail.php",
+				type: "POST",
+				data: {
+					flag: "abstract",
+					email: email,
+					name: name,
+					subject: subject,
+					title: title,
+					topic_text: topic_text
+				},
+				dataType: "JSON",
+				success: function(res) {
+					if (res.code == 200) {
+						location.href = './mypage_abstract.php';
+					}
+				},
+				complete: function() {
+					pending_off();
+				}
+			});
+		}
+	</script>
 <?php
 }
 include_once('./include/footer.php');

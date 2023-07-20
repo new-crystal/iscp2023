@@ -1,3 +1,4 @@
+
 <?php include_once('./include/head.php'); ?>
 <?php include_once('./include/header.php'); ?>
 <?php
@@ -743,4 +744,5 @@ function receiptView2(cash_no, ordr_idxx, amount) {
 //	window.open(receiptWin3, "", "width=520, height=300"); 
 //}
 </script>
+
 <?php include_once('./include/footer.php'); ?>

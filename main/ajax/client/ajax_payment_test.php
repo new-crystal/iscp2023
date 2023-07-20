@@ -421,5 +421,4 @@ else if ($_POST["flag"] == "kcp_payment_kor") {
 	}
 }
 
-
 ?>

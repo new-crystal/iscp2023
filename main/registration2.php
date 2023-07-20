@@ -413,11 +413,7 @@ function on_pay() {
         <div class="sub_inner">
             <div>
                 <h2>Registration</h2>
-                <!-- <ul class="clearfix">
-                    <li>Home</li>
-                    <li>Registration</li>
-                    <li>Payment</li>
-                </ul> -->
+                <div class="color-bar"></div>
             </div>
         </div>
     </div>

@@ -1,3 +1,4 @@
+
 <?php
 
 /**
@@ -51,5 +52,6 @@ $fgkey = hash("sha256", $linkBuf);
 		<?php } ?>
 	</form>
 </body>
+
 
 </html>

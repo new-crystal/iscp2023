@@ -247,6 +247,7 @@
 .main_speaker2 {
   display: flex;
   flex-wrap: wrap;
+  width: 500px;
   height: 171px;
 }
 
