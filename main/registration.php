@@ -520,7 +520,7 @@ input.others {
                         <thead>
                         </thead>
                         <tbody class="centerT">
-                            <tr>
+                            <tr style="display: none;">
                                 <th>Welcome Reception</th>
                                 <!-- <th>17:10 ~, 23 Nov (Thu), 2023</th> -->
                                 <th>23 Nov (Thu), 2023</th>

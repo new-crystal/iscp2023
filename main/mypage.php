@@ -512,7 +512,7 @@ $(document).ready(function() {
                                 <!-- <div> -->
                             </td>
                         </tr>
-                        <!-- <tr>
+                        <tr style="display: none;">
                             <th><span class="red_txt">*</span><?= $locale("category_title") ?></th>
                             <td>
                                 <div class="max_normal">
@@ -548,9 +548,9 @@ $(document).ready(function() {
                                     ?>
                                 </div>
                             </td>
-                        </tr> -->
+                        </tr>
                         <!--2022-05-09 추가사항-->
-                        <!-- <tr>
+                        <tr style="display: none;">
                             <th><span class="red_txt">*</span>Title</th>
                             <td class="clearfix">
                                 <div class="max_normal responsive_float clearfix">
@@ -584,14 +584,14 @@ $(document).ready(function() {
                                         maxlength="60">
                                     <?php
                                     }
-                                    ?> -->
-                        <!-- <span class="mini_alert red_txt red_alert_option"></span> -->
-                </div>
-                <!-- <span class="mini_alert">(Professor, Specialist, Fellow, Resident, Researcher, Military Medical Officer, Nurse,<br/>Nutritionist, Student, Pharmacist, Corporate member, Others)</span> -->
-                <!-- <span class="mini_alert"></span>
+                                    ?>
+                                    <!-- <span class="mini_alert red_txt red_alert_option"></span> -->
+                                </div>
+                                <!-- <span class="mini_alert">(Professor, Specialist, Fellow, Resident, Researcher, Military Medical Officer, Nurse,<br/>Nutritionist, Student, Pharmacist, Corporate member, Others)</span> -->
+                                <!-- <span class="mini_alert"></span>
                             </td>
                         </tr> -->
-                <!-- <tr>
+                        <tr style="display: none;">
                             <th><span class="red_txt">*</span>Degree</th>
                             <td class="clearfix">
                                 <div class="max_normal responsive_float clearfix">
@@ -625,15 +625,15 @@ $(document).ready(function() {
                                         maxlength="60">
                                     <?php
                                     }
-                                    ?> -->
+                                    ?>
 
-                <!-- <span class="mini_alert red_txt red_alert_option"></span> -->
-                <!-- </div> -->
-                <!-- <span class="mini_alert">(Professor, Specialist, Fellow, Resident, Researcher, Military Medical Officer, Nurse,<br/>Nutritionist, Student, Pharmacist, Corporate member, Others)</span> -->
-                <!-- <span class="mini_alert"></span>
+                                    <span class="mini_alert red_txt red_alert_option"></span>
+                                </div>
+                                <!-- <span class="mini_alert">(Professor, Specialist, Fellow, Resident, Researcher, Military Medical Officer, Nurse,<br/>Nutritionist, Student, Pharmacist, Corporate member, Others)</span> -->
+                                <span class="mini_alert"></span>
                             </td>
-                        </tr> -->
-                <?php
+                        </tr>
+                        <?php
                         if ($user_info["nation_no"] == 25) {
                             echo '<tr class="korea_only on">';
                         } else {
@@ -641,67 +641,68 @@ $(document).ready(function() {
                         }
                         ?>
 
-                <th><span class="red_txt">*</span>의사면허번호</th>
-                <td>
-                    <div class="max_normal">
-                        <input <?= $user_info["licence_number"] != "Not applicable" ? "" : "checked"; ?> type="checkbox"
-                            class="checkbox input not_checkbox" id="licence_number" name="licence_number2"
-                            value="Not applicable"><label for="licence_number">Not
-                            applicable</label>
-                        <input <?= $user_info["licence_number"] != "Not applicable" ? "" : "disabled"; ?>
-                            name="licence_number" type="text"
-                            value="<?= $user_info["licence_number"] != "Not applicable" ? $user_info["licence_number"] : ""; ?>"
-                            class="kor_check_number">
-                        <span class="mini_alert red_txt red_alert">good</span>
-                    </div>
-                </td>
-                </tr>
-                <?php
+                        <th><span class="red_txt">*</span>의사면허번호</th>
+                        <td>
+                            <div class="max_normal">
+                                <input <?= $user_info["licence_number"] != "Not applicable" ? "" : "checked"; ?>
+                                    type="checkbox" class="checkbox input not_checkbox" id="licence_number"
+                                    name="licence_number2" value="Not applicable"><label for="licence_number">Not
+                                    applicable</label>
+                                <input <?= $user_info["licence_number"] != "Not applicable" ? "" : "disabled"; ?>
+                                    name="licence_number" type="text"
+                                    value="<?= $user_info["licence_number"] != "Not applicable" ? $user_info["licence_number"] : ""; ?>"
+                                    class="kor_check_number">
+                                <span class="mini_alert red_txt red_alert">good</span>
+                            </div>
+                        </td>
+                        </tr>
+                        <?php
                         if ($user_info["nation_no"] == 25) {
                             echo '<tr class="korea_only on">';
                         } else {
                             echo '<tr class="korea_only">';
                         }
                         ?>
-                <th><span class="red_txt">*</span>전문의 번호</th>
-                <td>
-                    <div class="max_normal">
-                        <input <?= $user_info["specialty_number"] != "Not applicable" ? "" : "checked"; ?>
-                            type="checkbox" class="checkbox input not_checkbox" id="specialty_number"
-                            name="specialty_number2" value="Not applicable"><label for="specialty_number">Not
-                            applicable</label>
-                        <input <?= $user_info["specialty_number"] != "Not applicable" ? "" : "disabled"; ?>
-                            name="specialty_number" type="text"
-                            value="<?= $user_info["specialty_number"] != "Not applicable" ? $user_info["specialty_number"] : ""; ?>"
-                            class="kor_check_number">
-                        <span class="mini_alert red_txt red_alert">good</span>
-                    </div>
-                </td>
+                        <th><span class="red_txt">*</span>전문의 번호</th>
+                        <td>
+                            <div class="max_normal">
+                                <input <?= $user_info["specialty_number"] != "Not applicable" ? "" : "checked"; ?>
+                                    type="checkbox" class="checkbox input not_checkbox" id="specialty_number"
+                                    name="specialty_number2" value="Not applicable"><label for="specialty_number">Not
+                                    applicable</label>
+                                <input <?= $user_info["specialty_number"] != "Not applicable" ? "" : "disabled"; ?>
+                                    name="specialty_number" type="text"
+                                    value="<?= $user_info["specialty_number"] != "Not applicable" ? $user_info["specialty_number"] : ""; ?>"
+                                    class="kor_check_number">
+                                <span class="mini_alert red_txt red_alert">good</span>
+                            </div>
+                        </td>
 
-                </tr>
-                <?php
+                        </tr>
+                        <?php
                         if ($user_info["nation_no"] == 25) {
                             echo '<tr class="korea_only on">';
                         } else {
                             echo '<tr class="korea_only">';
                         }
                         ?>
-                <th><span class="red_txt">*</span>영양사면허번호</th>
-                <td>
-                    <div class="max_normal">
-                        <input <?= $user_info["nutritionist_number"] != "Not applicable" ? "" : "checked"; ?>
-                            type="checkbox" class="checkbox input not_checkbox" id="nutritionist_number"
-                            name="nutritionist_number2" value="Not applicable"><label for="nutritionist_number">Not
-                            applicable</label>
-                        <input <?= $user_info["nutritionist_number"] != "Not applicable" ? "" : "disabled"; ?>
-                            name="nutritionist_number" type="text"
-                            value="<?= $user_info["nutritionist_number"] != "Not applicable" ? $user_info["nutritionist_number"] : ""; ?>"
-                            class="kor_check_number">
-                        <span class="mini_alert red_txt red_alert">good</span>
-                    </div>
-                </td>
-                </tr>
-                <!-- <tr>
+                        <th><span class="red_txt">*</span>영양사면허번호</th>
+                        <td>
+                            <div class="max_normal">
+                                <input <?= $user_info["nutritionist_number"] != "Not applicable" ? "" : "checked"; ?>
+                                    type="checkbox" class="checkbox input not_checkbox" id="nutritionist_number"
+                                    name="nutritionist_number2" value="Not applicable"><label
+                                    for="nutritionist_number">Not
+                                    applicable</label>
+                                <input <?= $user_info["nutritionist_number"] != "Not applicable" ? "" : "disabled"; ?>
+                                    name="nutritionist_number" type="text"
+                                    value="<?= $user_info["nutritionist_number"] != "Not applicable" ? $user_info["nutritionist_number"] : ""; ?>"
+                                    class="kor_check_number">
+                                <span class="mini_alert red_txt red_alert">good</span>
+                            </div>
+                        </td>
+                        </tr>
+                        <!-- <tr>
                             <th><span class="red_txt">*</span>Date of Birth</th>
                             <td>
                                 <div class="max_normal">
@@ -709,11 +710,11 @@ $(document).ready(function() {
                                 </div>
                             </td>
                         </tr> -->
-                <tr>
-                    <th>Special Request for Food</th>
-                    <td>
-                        <div class="label_wrap">
-                            <?php
+                        <tr>
+                            <th>Special Request for Food</th>
+                            <td>
+                                <div class="label_wrap">
+                                    <?php
                                     $food_radio = array("None", "Vegetarian", "Halal", "Others");
                                     $user_info["request_food"];
                                     $food_radio_value = array("", "", "", "checked");
@@ -725,20 +726,20 @@ $(document).ready(function() {
                                         }
                                     }
                                     ?>
-                            <input <?php echo $food_radio_value[0]; ?> value="None" type="radio" id="none" class="radio"
-                                name="food">
-                            <label for="none">None</label>
-                            <input <?php echo $food_radio_value[1]; ?> value="Vegetarian" type="radio" id="vegetarian"
-                                class="radio" name="food">
-                            <label for="vegetarian">Vegetarian</label>
-                            <input <?php echo $food_radio_value[2]; ?> value="Halal" type="radio" id="halal"
-                                class="radio" name="food">
-                            <label for="halal">Halal</label>
-                            <input <?php echo $food_radio_value[3]; ?> value="Others" type="radio" id="Others"
-                                class="radio other_radio" name="food">
-                            <label for="Others">
-                                Others
-                                <?php
+                                    <input <?php echo $food_radio_value[0]; ?> value="None" type="radio" id="none"
+                                        class="radio" name="food">
+                                    <label for="none">None</label>
+                                    <input <?php echo $food_radio_value[1]; ?> value="Vegetarian" type="radio"
+                                        id="vegetarian" class="radio" name="food">
+                                    <label for="vegetarian">Vegetarian</label>
+                                    <input <?php echo $food_radio_value[2]; ?> value="Halal" type="radio" id="halal"
+                                        class="radio" name="food">
+                                    <label for="halal">Halal</label>
+                                    <input <?php echo $food_radio_value[3]; ?> value="Others" type="radio" id="Others"
+                                        class="radio other_radio" name="food">
+                                    <label for="Others">
+                                        Others
+                                        <?php
                                         if ($food_radio_value[3] == "checked") {
                                             echo '<input value="' . $user_info["request_food"] . '" name="short_input" type="text" class="short_input on">';
                                         } else {
@@ -746,43 +747,44 @@ $(document).ready(function() {
                                         }
                                         ?>
 
-                            </label>
-                        </div>
-                    </td>
-                </tr>
-                </table>
-        </div>
-        </form>
-        <form name="mo_modify_form">
-            <div class="mb_only">
-                <ul class="sign_list">
-                    <li>
-                        <p class="label"><span class="red_txt">*</span><?= $locale("id") ?></p>
-                        <div>
-                            <input type="text" name="mo_email" class="required" maxlength="50" readonly
-                                value="<?= $user_info["email"]; ?>">
-                        </div>
-                    </li>
-                    <li>
-                        <p class="label"><span class="red_txt">*</span><?= $locale("password") ?></p>
-                        <div>
-                            <input class="passwords" type="password" name="mo_password" class="required"
-                                placeholder="Password">
-                        </div>
-                    </li>
-                    <li>
-                        <p class="label"><span class="red_txt">*</span><?= $locale("re_type_password") ?></p>
-                        <div>
-                            <input class="passwords" type="password" name="mo_password2" class="required"
-                                placeholder="Re-type Password">
-                        </div>
-                    </li>
-                    <li>
-                        <p class="label"><span class="red_txt">*</span><?= $locale("country") ?></p>
-                        <div>
-                            <select id="mo_nation_no" name="mo_nation_no" class="required" onchange="option_changes()">
-                                <option value="" selected hidden>Choose </option>
-                                <?php
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+            <form name="mo_modify_form">
+                <div class="mb_only">
+                    <ul class="sign_list">
+                        <li>
+                            <p class="label"><span class="red_txt">*</span><?= $locale("id") ?></p>
+                            <div>
+                                <input type="text" name="mo_email" class="required" maxlength="50" readonly
+                                    value="<?= $user_info["email"]; ?>">
+                            </div>
+                        </li>
+                        <li>
+                            <p class="label"><span class="red_txt">*</span><?= $locale("password") ?></p>
+                            <div>
+                                <input class="passwords" type="password" name="mo_password" class="required"
+                                    placeholder="Password">
+                            </div>
+                        </li>
+                        <li>
+                            <p class="label"><span class="red_txt">*</span><?= $locale("re_type_password") ?></p>
+                            <div>
+                                <input class="passwords" type="password" name="mo_password2" class="required"
+                                    placeholder="Re-type Password">
+                            </div>
+                        </li>
+                        <li>
+                            <p class="label"><span class="red_txt">*</span><?= $locale("country") ?></p>
+                            <div>
+                                <select id="mo_nation_no" name="mo_nation_no" class="required"
+                                    onchange="option_changes()">
+                                    <option value="" selected hidden>Choose </option>
+                                    <?php
                                     foreach ($nation_list as $n) {
                                         if ($language == "ko") {
                                             $nation = $n["nation_ko"];
@@ -796,55 +798,56 @@ $(document).ready(function() {
                                         }
                                     }
                                     ?>
-                            </select>
-                        </div>
-                    </li>
-                    <li>
-                        <p class="label"><span class="red_txt">*</span><?= $locale("name") ?></p>
-                        <div class="half_form clearfix">
-                            <input name="mo_first_name" type="text" placeholder="First name"
-                                value="<?= $user_info["first_name"] ?>" class="en_check">
-                            <input name="mo_last_name" type="text" placeholder="Last name"
-                                value="<?= $user_info["last_name"] ?>" class="en_check">
-                        </div>
-                    </li>
-                    <?php
+                                </select>
+                            </div>
+                        </li>
+                        <li>
+                            <p class="label"><span class="red_txt">*</span><?= $locale("name") ?></p>
+                            <div class="half_form clearfix">
+                                <input name="mo_first_name" type="text" placeholder="First name"
+                                    value="<?= $user_info["first_name"] ?>" class="en_check">
+                                <input name="mo_last_name" type="text" placeholder="Last name"
+                                    value="<?= $user_info["last_name"] ?>" class="en_check">
+                            </div>
+                        </li>
+                        <?php
                         if ($user_info["nation_no"] == 25) {
                             echo '<li class="korea_only on">';
                         } else {
                             echo '<li class="korea_only">';
                         }
                         ?>
-                    <p class="label"><span class="red_txt">*</span><?= $locale("name") ?> (KOR)</p>
-                    <div>
-                        <input name="mo_name_kor" type="text" value="<?= $user_info["name_kor"] ?>" class="kor_check">
-                    </div>
-                    </li>
-                    <li>
-                        <p class="label"><span class="red_txt">*</span><?= $locale("affiliation") ?></p>
+                        <p class="label"><span class="red_txt">*</span><?= $locale("name") ?> (KOR)</p>
                         <div>
-                            <input type="text" name="mo_affiliation" value="<?= $user_info["affiliation"] ?>"
-                                class="en_check">
+                            <input name="mo_name_kor" type="text" value="<?= $user_info["name_kor"] ?>"
+                                class="kor_check">
                         </div>
-                    </li>
-                    <?php
+                        </li>
+                        <li>
+                            <p class="label"><span class="red_txt">*</span><?= $locale("affiliation") ?></p>
+                            <div>
+                                <input type="text" name="mo_affiliation" value="<?= $user_info["affiliation"] ?>"
+                                    class="en_check">
+                            </div>
+                        </li>
+                        <?php
                         if ($user_info["nation_no"] == 25) {
                             echo '<li class="korea_only on">';
                         } else {
                             echo '<li class="korea_only">';
                         }
                         ?>
-                    <p class="label"><span class="red_txt">*</span><?= $locale("affiliation") ?> (KOR)</p>
-                    <div>
-                        <input type="text" name="mo_affiliation_kor" value="<?= $user_info["affiliation_kor"] ?>"
-                            class="kor_check">
-                    </div>
-                    </li>
-                    <li>
-                        <p class="label"><span class="red_txt">*</span><?= $locale("department") ?></p>
+                        <p class="label"><span class="red_txt">*</span><?= $locale("affiliation") ?> (KOR)</p>
                         <div>
-                            <select name="mo_department" id="mo_department">
-                                <?php
+                            <input type="text" name="mo_affiliation_kor" value="<?= $user_info["affiliation_kor"] ?>"
+                                class="kor_check">
+                        </div>
+                        </li>
+                        <li>
+                            <p class="label"><span class="red_txt">*</span><?= $locale("department") ?></p>
+                            <div>
+                                <select name="mo_department" id="mo_department">
+                                    <?php
                                     $department_arr = array("Cardiology", "Endocrinology", "Internal Medicine", "Family Medicine", "Nursing", "Basic Science", "Pediatric", "Food & Nutrition", "Neurology", "Nephrology", "Pharmacology", "Pharmacy", "Preventive Medicine", "Exercise Physiology", "Clinical Pathology", "Other Professiona");
 
                                     foreach ($department_arr as $d_arr) {
@@ -855,32 +858,32 @@ $(document).ready(function() {
                                         }
                                     }
                                     ?>
-                            </select>
-                        </div>
-                    </li>
-                    <li>
-                        <p class="label"><span class="red_txt">*</span><?= $locale("phone") ?></p>
-                        <div class="phone_form clearfix">
-                            <input name="mo_nation_tel" type="text" value="<?= $nation_tel; ?>">
-                            <input name="mo_phone" type="text" value="<?= $phone ?>">
-                        </div>
-                    </li>
-                    <li>
-                        <p class="label">Telephone</p>
-                        <div class="phone_form clearfix">
-                            <input value="<?= $tel_nation_tel; ?>" class="tel_number tel_phone" name="mo_tel_nation_tel"
-                                type="text" maxlength="60">
-                            <input value="<?= $tel_nation_tel2; ?>" class="tel_numbers tel_phone" name="mo_telephone1"
-                                type="text" maxlength="60">
-                            <input value="<?= $tel_phone; ?>" class="tel_numbers tel_phone2" name="mo_telephone2"
-                                type="text" maxlength="60">
-                        </div>
-                    </li>
-                    <li>
-                        <p class="label"><span class="red_txt">*</span><?= $locale("category_title") ?></p>
-                        <div>
-                            <select name="mo_category" id="mo_category" class="select_others">
-                                <?php
+                                </select>
+                            </div>
+                        </li>
+                        <li>
+                            <p class="label"><span class="red_txt">*</span><?= $locale("phone") ?></p>
+                            <div class="phone_form clearfix">
+                                <input name="mo_nation_tel" type="text" value="<?= $nation_tel; ?>">
+                                <input name="mo_phone" type="text" value="<?= $phone ?>">
+                            </div>
+                        </li>
+                        <li>
+                            <p class="label">Telephone</p>
+                            <div class="phone_form clearfix">
+                                <input value="<?= $tel_nation_tel; ?>" class="tel_number tel_phone"
+                                    name="mo_tel_nation_tel" type="text" maxlength="60">
+                                <input value="<?= $tel_nation_tel2; ?>" class="tel_numbers tel_phone"
+                                    name="mo_telephone1" type="text" maxlength="60">
+                                <input value="<?= $tel_phone; ?>" class="tel_numbers tel_phone2" name="mo_telephone2"
+                                    type="text" maxlength="60">
+                            </div>
+                        </li>
+                        <li>
+                            <p class="label"><span class="red_txt">*</span><?= $locale("category_title") ?></p>
+                            <div>
+                                <select name="mo_category" id="mo_category" class="select_others">
+                                    <?php
                                     $category_arr = array("Professor", "Specialist", "Fellow", "Resident", "Researcher", "Military Medical Officer", "Nurse", "Nutritionist", "Student", "Pharmacist", "Corporate member", "Others");
                                     $mo_category_count = 0;
                                     foreach ($category_arr as $c_arr) {
@@ -895,28 +898,28 @@ $(document).ready(function() {
                                         }
                                     }
                                     ?>
-                            </select>
-                            <?php
+                                </select>
+                                <?php
                                 if ($mo_category_count == 11) {
                                 ?>
-                            <input value="<?= $user_info["category"] ?>" type="text" name="mo_category_input"
-                                class="input_others en_check" maxlength="60">
-                            <?php
+                                <input value="<?= $user_info["category"] ?>" type="text" name="mo_category_input"
+                                    class="input_others en_check" maxlength="60">
+                                <?php
                                 } else {
                                 ?>
-                            <input type="text" name="mo_category_input" class="input_others en_check input_others_on"
-                                maxlength="60">
-                            <?php
+                                <input type="text" name="mo_category_input"
+                                    class="input_others en_check input_others_on" maxlength="60">
+                                <?php
                                 }
                                 ?>
-                        </div>
-                    </li>
-                    <li>
-                        <p class="label"><span class="red_txt">*</span>Title</p>
-                        <div>
-                            <select name="mo_title" id="mo_title" class="select_others">
-                                <option value="" selected hidden>Choose</option>
-                                <?php
+                            </div>
+                        </li>
+                        <li>
+                            <p class="label"><span class="red_txt">*</span>Title</p>
+                            <div>
+                                <select name="mo_title" id="mo_title" class="select_others">
+                                    <option value="" selected hidden>Choose</option>
+                                    <?php
                                     $title_arr = array("Professor", "Dr.", "Mr.", "Ms.", "Others");
                                     $mo_title_count = 0;
                                     foreach ($title_arr as $t_arr) {
@@ -931,30 +934,30 @@ $(document).ready(function() {
                                         }
                                     }
                                     ?>
-                            </select>
-                            <!-- <span class="mini_alert red_txt mo_red_alert_option"></span> -->
-                            <?php
+                                </select>
+                                <!-- <span class="mini_alert red_txt mo_red_alert_option"></span> -->
+                                <?php
                                 if ($mo_title_count == 4) {
                                 ?>
-                            <input value="<?= $user_info["title"] ?>" type="text" name="mo_title_input"
-                                class="input_others en_check" maxlength="60">
-                            <?php
+                                <input value="<?= $user_info["title"] ?>" type="text" name="mo_title_input"
+                                    class="input_others en_check" maxlength="60">
+                                <?php
                                 } else {
                                 ?>
-                            <input type="text" name="mo_title_input" class="input_others en_check input_others_on"
-                                maxlength="60">
-                            <?php
+                                <input type="text" name="mo_title_input" class="input_others en_check input_others_on"
+                                    maxlength="60">
+                                <?php
                                 }
                                 ?>
-                        </div>
-                        <!-- <p class="mini_alert">(Professor, Specialist, Fellow, Resident, Researcher, Military Medical Officer, Nurse, Nutritionist, Student, Pharmacist, Corporate member, Others)</p> -->
-                    </li>
-                    <li>
-                        <p class="label"><span class="red_txt">*</span>Degree</p>
-                        <div>
-                            <select name="mo_degree" id="mo_degree" class="select_others">
-                                <option value="" selected hidden>Choose</option>
-                                <?php
+                            </div>
+                            <!-- <p class="mini_alert">(Professor, Specialist, Fellow, Resident, Researcher, Military Medical Officer, Nurse, Nutritionist, Student, Pharmacist, Corporate member, Others)</p> -->
+                        </li>
+                        <li>
+                            <p class="label"><span class="red_txt">*</span>Degree</p>
+                            <div>
+                                <select name="mo_degree" id="mo_degree" class="select_others">
+                                    <option value="" selected hidden>Choose</option>
+                                    <?php
                                     $degree_arr = array("M.D", "Ph.D.", "M.D., Ph.D.", "Others");
                                     $mo_degree_count = 0;
                                     foreach ($degree_arr as $d_arr) {
@@ -969,95 +972,95 @@ $(document).ready(function() {
                                         }
                                     }
                                     ?>
-                            </select>
-                            <?php
+                                </select>
+                                <?php
                                 if ($mo_degree_count == 3) {
                                 ?>
-                            <input value="<?= $user_info["degree"] ?>" type="text" name="mo_degree_input"
-                                class="input_others en_check" maxlength="60">
-                            <?php
+                                <input value="<?= $user_info["degree"] ?>" type="text" name="mo_degree_input"
+                                    class="input_others en_check" maxlength="60">
+                                <?php
                                 } else {
                                 ?>
-                            <input type="text" name="mo_degree_input" class="input_others en_check input_others_on"
-                                maxlength="60">
-                            <?php
+                                <input type="text" name="mo_degree_input" class="input_others en_check input_others_on"
+                                    maxlength="60">
+                                <?php
                                 }
                                 ?>
-                            <!-- <span class="mini_alert red_txt mo_red_alert_option"></span> -->
-                        </div>
-                        <!-- <p class="mini_alert">(Professor, Specialist, Fellow, Resident, Researcher, Military Medical Officer, Nurse, Nutritionist, Student, Pharmacist, Corporate member, Others)</p> -->
-                    </li>
-                    <?php
+                                <!-- <span class="mini_alert red_txt mo_red_alert_option"></span> -->
+                            </div>
+                            <!-- <p class="mini_alert">(Professor, Specialist, Fellow, Resident, Researcher, Military Medical Officer, Nurse, Nutritionist, Student, Pharmacist, Corporate member, Others)</p> -->
+                        </li>
+                        <?php
                         if ($user_info["nation_no"] == 25) {
                             echo '<li class="korea_only on">';
                         } else {
                             echo '<li class="korea_only">';
                         }
                         ?>
-                    <p class="label"><span class="red_txt">*</span>의사면허번호</p>
-                    <div>
-                        <input <?= $user_info["licence_number"] != "Not applicable" ? "" : "checked"; ?> type="checkbox"
-                            class="checkbox input not_checkbox" id="mo_licence_number" name="mo_licence_number2"
-                            value="Not applicable"><label for="mo_licence_number">Not
-                            applicable</label>
-                        <input <?= $user_info["licence_number"] != "Not applicable" ? "" : "disabled"; ?>
-                            name="mo_licence_number" type="text"
-                            value="<?= $user_info["licence_number"] != "Not applicable" ? $user_info["licence_number"] : ""; ?>"
-                            class="mo_kor_check">
-                    </div>
-                    </li>
-                    <?php
-                        if ($user_info["nation_no"] == 25) {
-                            echo '<li class="korea_only on">';
-                        } else {
-                            echo '<li class="korea_only">';
-                        }
-                        ?>
-                    <p class="label"><span class="red_txt">*</span>전문의 번호</p>
-                    <div>
-                        <input <?= $user_info["specialty_number"] != "Not applicable" ? "" : "checked"; ?>
-                            type="checkbox" class="checkbox input not_checkbox" id="mo_specialty_number"
-                            name="mo_specialty_number2" value="Not applicable"><label for="mo_specialty_number">Not
-                            applicable</label>
-                        <input <?= $user_info["specialty_number"] != "Not applicable" ? "" : "disabled"; ?>
-                            name="mo_specialty_number" type="text"
-                            value="<?= $user_info["specialty_number"] != "Not applicable" ? $user_info["specialty_number"] : ""; ?>"
-                            class="mo_kor_check">
-                    </div>
-
-                    </li>
-                    <?php
-                        if ($user_info["nation_no"] == 25) {
-                            echo '<li class="korea_only on">';
-                        } else {
-                            echo '<li class="korea_only">';
-                        }
-                        ?>
-                    <p class="label"><span class="red_txt">*</span>영양사면허번호</p>
-                    <div>
-                        <input <?= $user_info["nutritionist_number"] != "Not applicable" ? "" : "checked"; ?>
-                            type="checkbox" class="checkbox input not_checkbox" id="mo_nutritionist_number"
-                            name="mo_nutritionist_number2" value="Not applicable"><label
-                            for="mo_nutritionist_number">Not applicable</label>
-                        <input <?= $user_info["nutritionist_number"] != "Not applicable" ? "" : "disabled"; ?>
-                            name="mo_nutritionist_number" type="text"
-                            value="<?= $user_info["nutritionist_number"] != "Not applicable" ? $user_info["nutritionist_number"] : ""; ?>"
-                            class="mo_kor_check">
-                    </div>
-
-                    </li>
-                    <li>
-                        <p class="label"><span class="red_txt">*</span>Date of Birth</p>
+                        <p class="label"><span class="red_txt">*</span>의사면허번호</p>
                         <div>
-                            <input maxlength="10" name="mo_date_of_birth" type="text" class="datepicker_input"
-                                id="datepicker" value="<?= $user_info["date_of_birth"]; ?>">
+                            <input <?= $user_info["licence_number"] != "Not applicable" ? "" : "checked"; ?>
+                                type="checkbox" class="checkbox input not_checkbox" id="mo_licence_number"
+                                name="mo_licence_number2" value="Not applicable"><label for="mo_licence_number">Not
+                                applicable</label>
+                            <input <?= $user_info["licence_number"] != "Not applicable" ? "" : "disabled"; ?>
+                                name="mo_licence_number" type="text"
+                                value="<?= $user_info["licence_number"] != "Not applicable" ? $user_info["licence_number"] : ""; ?>"
+                                class="mo_kor_check">
                         </div>
-                    </li>
-                    <li>
-                        <p class="label"><span class="red_txt"></span>Special Request for Food</p>
+                        </li>
+                        <?php
+                        if ($user_info["nation_no"] == 25) {
+                            echo '<li class="korea_only on">';
+                        } else {
+                            echo '<li class="korea_only">';
+                        }
+                        ?>
+                        <p class="label"><span class="red_txt">*</span>전문의 번호</p>
                         <div>
-                            <div class="label_wrap">
-                                <?php
+                            <input <?= $user_info["specialty_number"] != "Not applicable" ? "" : "checked"; ?>
+                                type="checkbox" class="checkbox input not_checkbox" id="mo_specialty_number"
+                                name="mo_specialty_number2" value="Not applicable"><label for="mo_specialty_number">Not
+                                applicable</label>
+                            <input <?= $user_info["specialty_number"] != "Not applicable" ? "" : "disabled"; ?>
+                                name="mo_specialty_number" type="text"
+                                value="<?= $user_info["specialty_number"] != "Not applicable" ? $user_info["specialty_number"] : ""; ?>"
+                                class="mo_kor_check">
+                        </div>
+
+                        </li>
+                        <?php
+                        if ($user_info["nation_no"] == 25) {
+                            echo '<li class="korea_only on">';
+                        } else {
+                            echo '<li class="korea_only">';
+                        }
+                        ?>
+                        <p class="label"><span class="red_txt">*</span>영양사면허번호</p>
+                        <div>
+                            <input <?= $user_info["nutritionist_number"] != "Not applicable" ? "" : "checked"; ?>
+                                type="checkbox" class="checkbox input not_checkbox" id="mo_nutritionist_number"
+                                name="mo_nutritionist_number2" value="Not applicable"><label
+                                for="mo_nutritionist_number">Not applicable</label>
+                            <input <?= $user_info["nutritionist_number"] != "Not applicable" ? "" : "disabled"; ?>
+                                name="mo_nutritionist_number" type="text"
+                                value="<?= $user_info["nutritionist_number"] != "Not applicable" ? $user_info["nutritionist_number"] : ""; ?>"
+                                class="mo_kor_check">
+                        </div>
+
+                        </li>
+                        <li>
+                            <p class="label"><span class="red_txt">*</span>Date of Birth</p>
+                            <div>
+                                <input maxlength="10" name="mo_date_of_birth" type="text" class="datepicker_input"
+                                    id="datepicker" value="<?= $user_info["date_of_birth"]; ?>">
+                            </div>
+                        </li>
+                        <li>
+                            <p class="label"><span class="red_txt"></span>Special Request for Food</p>
+                            <div>
+                                <div class="label_wrap">
+                                    <?php
                                     $food_radio = array("None", "Vegetarian", "Halal", "Others");
                                     $user_info["request_food"];
                                     $food_radio_value = array("", "", "", "checked");
@@ -1069,37 +1072,37 @@ $(document).ready(function() {
                                         }
                                     }
                                     ?>
-                                <input <?php echo $food_radio_value[0]; ?> value="None" type="radio" id="mo_none"
-                                    class="radio" name="mo_food">
-                                <label for="mo_none">None</label>
-                                <input <?php echo $food_radio_value[1]; ?> value="Vegetarian" type="radio"
-                                    id="mo_vegetarian" class="radio" name="mo_food">
-                                <label for="mo_vegetarian">Vegetarian</label>
-                                <input <?php echo $food_radio_value[2]; ?> value="Halal" type="radio" id="mo_halal"
-                                    class="radio" name="mo_food">
-                                <label for="mo_halal">Halal</label>
-                                <input <?php echo $food_radio_value[3]; ?> value="Others" type="radio" id="mo_Others"
-                                    class="radio other_radio" name="mo_food">
-                                <label for="mo_Others">
-                                    Others
-                                    <?php
+                                    <input <?php echo $food_radio_value[0]; ?> value="None" type="radio" id="mo_none"
+                                        class="radio" name="mo_food">
+                                    <label for="mo_none">None</label>
+                                    <input <?php echo $food_radio_value[1]; ?> value="Vegetarian" type="radio"
+                                        id="mo_vegetarian" class="radio" name="mo_food">
+                                    <label for="mo_vegetarian">Vegetarian</label>
+                                    <input <?php echo $food_radio_value[2]; ?> value="Halal" type="radio" id="mo_halal"
+                                        class="radio" name="mo_food">
+                                    <label for="mo_halal">Halal</label>
+                                    <input <?php echo $food_radio_value[3]; ?> value="Others" type="radio"
+                                        id="mo_Others" class="radio other_radio" name="mo_food">
+                                    <label for="mo_Others">
+                                        Others
+                                        <?php
                                         if ($food_radio_value[3] == "checked") {
                                             echo '<input value="' . $user_info["request_food"] . '" name="mo_short_input" type="text" class="mo_short_input on">';
                                         } else {
                                             echo '<input name="mo_short_input" type="text" class="mo_short_input">';
                                         }
                                         ?>
-                                </label>
+                                    </label>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="right_btn_wrap">
-                <button type="button" id="submit" class="btn submit submit_btn"><?= $locale("edit_btn") ?></button>
-            </div>
-        </form>
-    </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="right_btn_wrap">
+                    <button type="button" id="submit" class="btn submit submit_btn"><?= $locale("edit_btn") ?></button>
+                </div>
+            </form>
+        </div>
     </div>
 </section>
 <script src="./js/script/client/member.js"></script>
