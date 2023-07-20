@@ -193,6 +193,9 @@ var g5_editor_url = "<?= $editor_url ?>",
                         <p class="red_txt">• Click the 'Submit' button at the final step to complete the submission.</p>
                         <p class="red_txt">• 'Abstract Submission No.' will be issued once you complete your submission.
                         </p>
+                        <p class="red_txt" style="font-weight: 600; font-size:18px">• Please note: You can modify the
+                            submitted abstract until the deadline.
+                        </p>
                     </div>
                     <div class="x_scroll">
                         <table class="table green_table">
@@ -897,6 +900,7 @@ $('.submit_btn').click(function() {
         success: function(res) {
             console.log(res);
             if (res.code == 200) {
+                alert("Please note: You can modify the submitted abstract until the deadline.")
                 //alert(locale(language.value)("send_mail_success"));
                 location.href = './abstract_submission3.php?idx=' + submission_idx
             }

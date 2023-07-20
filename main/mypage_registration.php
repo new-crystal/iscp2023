@@ -232,7 +232,7 @@ if (!empty($_SESSION["USER"])) {
                                 echo     '<td>Canceled</td>';
                             } else if ($list["status"] == "2") {
                                 echo     '<td style="display: flex;">';
-                                if ($list["payment_methods"] == 0 && $promotion_code != 0) {
+                                if ($list["payment_methods"] == 0 && $promotion_code == 0) {
                                     $list['payment_obj'] = json_decode($list['etc2'], 1);
                                     // if ($r_during_yn == 'Y') {
                                     //     echo '<button style="height:50px; margin-right: 20px;" type="button" class="btn deposit_btn" onclick="registration_btn(' . $list["idx"] . ')">Certificate</button><br><br>';

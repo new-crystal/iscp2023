@@ -66,15 +66,6 @@ $price_col_name .= ($registration_data["member_status"] == 0) ? "guest_" : "memb
 //$price_col_name .= "usd";
 
 
-if ($nation_no == 25) {
-    // $price_col_name .= "usd";
-    // $cur = "USD";
-    $name = $first_name . " " . $last_name;
-} else {
-    // $price_col_name .= "krw";
-    // $cur = "KRW";
-    $name = $last_name . " " . $first_name;
-}
 
 $nation_no            = isset($registration_data["nation_no"]) ? $registration_data["nation_no"] : "-";
 
@@ -191,6 +182,27 @@ $identification_file_path = isset($registration_data["file_path"]) ? $registrati
 
 		sql_query("UPDATE request_registration SET `status` = 2, payment_no = '{$payment_new_no}' WHERE idx = '{$registration_idx}'");
 	}*/
+
+
+if ($nation_no == 25) {
+    // $price_col_name .= "usd";
+    // $cur = "USD";
+
+    $name = $first_name . " " . $last_name;
+    // echo '<script>';
+    // echo 'console.log("25")';
+    // echo 'console.log("' . $name . '")';
+    // echo '</scirpt>';
+} else {
+    // $price_col_name .= "krw";
+    // $cur = "KRW";
+    $name = $last_name . " " . $first_name;
+    // echo '<script>';
+    // echo 'console.log("!!25")';
+    // echo 'console.log("' . $name . '")';
+    // echo '</scirpt>';
+}
+
 
 //금액 변환
 //$us_price = "1";
@@ -710,7 +722,7 @@ function on_pay() {
         <input type="hidden" name="P_OID" value="<?= $order_code ?>">
         <input type="hidden" name="P_AMT" value="<?= $price ?>">
         <input type="hidden" name="P_GOODS" value="ISCP 2023">
-        <input type="hidden" name="P_UNAME" value="<?= $name ?>">
+        <input type="hidden" name="P_UNAME" value="<?= $name_kor ?>">
         <input type="hidden" name="P_MOBILE" value="<?= $phone ?>">
         <input type="hidden" name="P_EMAIL" value="<?= $email ?>">
         <input type="hidden" name="P_CHARSET" value="utf8">
@@ -722,7 +734,7 @@ function on_pay() {
 
     <!-- 엑심베이 결제 -->
     <form class="form-horizontal" name="regForm" method="post"
-        action="<?= $siteDomain ?>/main/plugin/eximbay/request.php">
+        action="https://iscp2023.org/main/plugin/eximbay/request.php">
         <!-- 결제에 필요 한 필수 파라미터 -->
         <input type="hidden" name="ver" value="230" /><!-- 연동 버전 -->
         <input type="hidden" name="txntype" value="PAYMENT" /><!-- 거래 타입 -->
@@ -730,8 +742,8 @@ function on_pay() {
 
         <!-- statusurl(필수 값) : 결제 완료 시 Back-end 방식으로 Eximbay 서버에서 statusurl에 지정된 가맹점 페이지를 Back-end로 호출하여 파라미터를 전송 -->
         <!-- 스크립트, 쿠키, 세션 사용 불가 -->
-        <input type="hidden" name="statusurl" value="<?= $siteDomain ?>/main/plugin/eximbay/status.php" />
-        <input type="hidden" name="returnurl" value="<?= $siteDomain ?>/main/plugin/eximbay/return.php" />
+        <input type="hidden" name="statusurl" value="https://iscp2023.org/main/plugin/eximbay/status.php" />
+        <input type="hidden" name="returnurl" value="https://iscp2023.org/main/plugin/eximbay/return.php" />
 
         <!--결제 완료 시 Front-end 방식으로 사용자 브라우저 상에 호출되어 보여질 가맹점 페이지 -->
 

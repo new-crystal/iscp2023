@@ -1,16 +1,16 @@
-<?php include_once('./include/head.php');?>
-<?php include_once('./include/header.php');?>
-<?php include_once('./live/include/set_event_period.php');?>
+<?php include_once('./include/head.php'); ?>
+<?php include_once('./include/header.php'); ?>
+<?php include_once('./live/include/set_event_period.php'); ?>
 <?php
-    $user_idx = $member["idx"] ?? -1;
-	
-	// [22.04.25] 미로그인시 처리
-	if($user_idx <= 0) {
-		echo "<script>alert('Need to login'); location.replace(PATH+'login.php');</script>";
-		exit;
-	}
-    
-    /*쿼리수정 (제출 파일명까지 불러오도록) file table이랑 join
+$user_idx = $member["idx"] ?? -1;
+
+// [22.04.25] 미로그인시 처리
+if ($user_idx <= 0) {
+    echo "<script>alert('Need to login'); location.replace(PATH+'login.php');</script>";
+    exit;
+}
+
+/*쿼리수정 (제출 파일명까지 불러오도록) file table이랑 join
     $my_submission_list_query =   "
                                     SELECT
                                         idx, submission_code, DATE(register_date) AS regist_date, `type`,
@@ -42,7 +42,7 @@
                                     ORDER BY register_date DESC
                                 ";
     */
-    /*$my_submission_list_query = " 
+/*$my_submission_list_query = " 
                                 SELECT
 									ra.idx, ra.submission_code, DATE(ra.register_date) AS regist_date, `type`,
 									(CASE
@@ -81,7 +81,7 @@
     
     ";*/
 
-	$my_submission_list_query = "
+$my_submission_list_query = "
 		SELECT
 			rs.idx, rs.`status`, 
 			IFNULL(rs.title, '-') AS title,
@@ -99,33 +99,29 @@
 	";
 
 
-    $submission_list = get_data($my_submission_list_query);
+$submission_list = get_data($my_submission_list_query);
 
-	$total_count = count($submission_list);
-	$write_page = 10;
-	$write_row = 20;
-	$cur_page = isset($_GET['page']) ? $_GET['page'] : 1;
-	$total_page = ceil($total_count / $write_row);
-	$url = $_SERVER['REQUEST_URI'];
-	
-	$paging_admin = get_paging_arrow($write_row, $write_page, $cur_page, $total_count, $total_page, $url, $add);
+$total_count = count($submission_list);
+$write_page = 10;
+$write_row = 20;
+$cur_page = isset($_GET['page']) ? $_GET['page'] : 1;
+$total_page = ceil($total_count / $write_row);
+$url = $_SERVER['REQUEST_URI'];
 
-	$paging_html = $paging_admin['html'];
+$paging_admin = get_paging_arrow($write_row, $write_page, $cur_page, $total_count, $total_page, $url, $add);
 
-	$start_row = $paging_admin['start_row'];
-	$end_row = $paging_admin['end_row'];
+$paging_html = $paging_admin['html'];
+
+$start_row = $paging_admin['start_row'];
+$end_row = $paging_admin['end_row'];
 ?>
 
 <section class="container mypage sub_page">
     <div class="sub_background_box">
         <div class="sub_inner">
             <div>
-                <h2><?=$locale("mypage")?></h2>
-                <ul>
-                    <li>Home</li>
-                    <li><?=$locale("mypage")?></li>
-                    <li>Abstract</li>
-                </ul>
+                <h2><?= $locale("mypage") ?></h2>
+                <div class="color-bar"></div>
             </div>
         </div>
     </div>
@@ -135,10 +131,10 @@
         <!-- </div> -->
         <div class="x_scroll tab_scroll">
             <ul class="tab_pager location">
-                <li><a href="./mypage.php"><?=$locale("mypage_account")?></a></li>
-                <li><a href="./mypage_registration.php"><?=$locale("mypage_registration")?></a></li>
-                <li class="on"><a href="./mypage_abstract.php"><?=$locale("mypage_abstract")?></a></li>
-                <!-- <li><a href="./mypage_favorite.php"><?=$locale("mypage_favorite")?></a></li> -->
+                <li><a href="./mypage.php"><?= $locale("mypage_account") ?></a></li>
+                <li><a href="./mypage_registration.php"><?= $locale("mypage_registration") ?></a></li>
+                <li class="on"><a href="./mypage_abstract.php"><?= $locale("mypage_abstract") ?></a></li>
+                <!-- <li><a href="./mypage_favorite.php"><?= $locale("mypage_favorite") ?></a></li> -->
             </ul>
         </div>
         <div>
@@ -161,68 +157,69 @@
                     </thead>
                     <tbody>
                         <?php
-                        if(!$submission_list) {
+                        if (!$submission_list) {
                             echo "<tr><td colspan='6' class='centerT'>No Data</td></tr>";
                         } else {
-                            for($i=$start_row; $i<=$end_row; $i++) {
-								$sb = $submission_list[$i];
+                            for ($i = $start_row; $i <= $end_row; $i++) {
+                                $sb = $submission_list[$i];
                                 //$update_url = $list["type"] == 0 ? "./abstract_submission.php?idx=" : "lecture_submission.php?idx=";
-								//$update_url = $submission_list[$i]["type"] == 0 ? "./abstract_submission.php?idx=" : "lecture_submission.php?idx=";
-                    ?>
+                                //$update_url = $submission_list[$i]["type"] == 0 ? "./abstract_submission.php?idx=" : "lecture_submission.php?idx=";
+                        ?>
                         <!--<tr class="centerT">
-                            <td><?=$submission_list[$i]["type_name"]?></td>
+                            <td><?= $submission_list[$i]["type_name"] ?></td>
 							논문번호 미노출
-							<td><?=$list["submission_code"]?></td>
+							<td><?= $list["submission_code"] ?></td>
 							
-							<td class="text_l"><?=$submission_list[$i]["title"]?></td>
-							<td><?=$submission_list[$i]["status"]?></td>
-							<td><?=$submission_list[$i]["regist_date"]?></td>
+							<td class="text_l"><?= $submission_list[$i]["title"] ?></td>
+							<td><?= $submission_list[$i]["status"] ?></td>
+							<td><?= $submission_list[$i]["regist_date"] ?></td>
 							<td>
-								<button type="button" class="btn modify_btn" onclick="javascript:location.href='<?=$update_url.$submission_list[$i]["idx"]?>'"><?=$locale("modify_btn")?></button>
-								<button type="button" class="btn delete_btn" data-idx="<?=$submission_list[$i]["idx"]?>"><?=$locale("delete_btn")?></button>
+								<button type="button" class="btn modify_btn" onclick="javascript:location.href='<?= $update_url . $submission_list[$i]["idx"] ?>'"><?= $locale("modify_btn") ?></button>
+								<button type="button" class="btn delete_btn" data-idx="<?= $submission_list[$i]["idx"] ?>"><?= $locale("delete_btn") ?></button>
 							</td>
 						</tr>-->
-                        <tr class="centerT">
+                        <tr>
                             <td class="text_l white_normal">
-                                <?=strip_tags(htmlspecialchars_decode($sb["title"], ENT_QUOTES))?></td>
-                            <td><?=$sb["status_text"]?></td>
-                            <td><?=$sb["register_ymd"]?></td>
+                                <?= strip_tags(htmlspecialchars_decode($sb["title"], ENT_QUOTES)) ?></td>
+                            <td><?= $sb["status_text"] ?></td>
+                            <td><?= $sb["register_ymd"] ?></td>
                             <td>
-                                <!--<button type="button" class="btn modify_btn" onclick="javascript:location.href='<?=$update_url.$submission_list[$i]["idx"]?>'"><?=$locale("modify_btn")?></button>
-								<button type="button" class="btn delete_btn" data-idx="<?=$submission_list[$i]["idx"]?>"><?=$locale("delete_btn")?></button>-->
+                                <!--<button type="button" class="btn modify_btn" onclick="javascript:location.href='<?= $update_url . $submission_list[$i]["idx"] ?>'"><?= $locale("modify_btn") ?></button>
+								<button type="button" class="btn delete_btn" data-idx="<?= $submission_list[$i]["idx"] ?>"><?= $locale("delete_btn") ?></button>-->
                                 <?php
-									if ($sb['status'] == 0) {
-								?>
+                                        if ($sb['status'] == 0) {
+                                        ?>
                                 <button type="button" class="btn modify_btn"
-                                    onclick="javascript:location.href='./abstract_submission.php?idx=<?=$sb["idx"]?>'">Modify</button>
+                                    onclick="javascript:location.href='./abstract_submission.php?idx=<?= $sb["idx"] ?>'">Modify</button>
                                 <?php
-									} else {
-								?>
+                                        } else {
+                                        ?>
                                 <button type="button" class="btn modify_btn"
-                                    onclick="javascript:location.href='./abstract_submission3.php?idx=<?=$sb["idx"]?>'">Detail</button>
+                                    onclick="javascript:location.href='./abstract_submission3.php?idx=<?= $sb["idx"] ?>'">Detail</button>
                                 <?php
-									}
-								?>
-                                <button type="button" class="btn delete_btn" data-idx="<?=$sb['idx']?>">Delete</button>
+                                        }
+                                        ?>
+                                <button type="button" class="btn delete_btn"
+                                    data-idx="<?= $sb['idx'] ?>">Delete</button>
                             </td>
                         </tr>
                         <!-- <tr class="centerT"> -->
-                        <!--     <td><?=$list["type_name"]?></td> -->
+                        <!--     <td><?= $list["type_name"] ?></td> -->
                         <!-- 	<!--논문번호 미노출 -->
-                        <!-- 	<td><?=$list["submission_code"]?></td> -->
+                        <!-- 	<td><?= $list["submission_code"] ?></td> -->
                         <!-- 	-->
-                        <!-- 	<td class="text_l"><?=$list["title"]?></td> -->
-                        <!-- 	<td><?=$list["status"]?></td> -->
-                        <!-- 	<td><?=$list["regist_date"]?></td> -->
+                        <!-- 	<td class="text_l"><?= $list["title"] ?></td> -->
+                        <!-- 	<td><?= $list["status"] ?></td> -->
+                        <!-- 	<td><?= $list["regist_date"] ?></td> -->
                         <!-- 	<td> -->
-                        <!-- 		<button type="button" class="btn modify_btn" onclick="javascript:location.href='<?=$update_url.$list["idx"]?>'"><?=$locale("modify_btn")?></button> -->
-                        <!-- 		<button type="button" class="btn delete_btn" data-idx="<?=$list["idx"]?>"><?=$locale("delete_btn")?></button> -->
+                        <!-- 		<button type="button" class="btn modify_btn" onclick="javascript:location.href='<?= $update_url . $list["idx"] ?>'"><?= $locale("modify_btn") ?></button> -->
+                        <!-- 		<button type="button" class="btn delete_btn" data-idx="<?= $list["idx"] ?>"><?= $locale("delete_btn") ?></button> -->
                         <!-- 	</td> -->
                         <!-- </tr> -->
                         <?php
                             }
                         }
-                    ?>
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -241,10 +238,10 @@
 </section>
 
 <script>
-const _PERIOD = JSON.parse('<?=json_encode($_PERIOD)?>');
+const _PERIOD = JSON.parse('<?= json_encode($_PERIOD) ?>');
 $(".table_open").click(function() {
-    var member_idx = "<?=$_SESSION['USER']['idx']?>";
-    var admin_idx = "<?=$_SESSION['ADMIN']['idx']?>";
+    var member_idx = "<?= $_SESSION['USER']['idx'] ?>";
+    var admin_idx = "<?= $_SESSION['ADMIN']['idx'] ?>";
 
     if (!member_idx && admin_idx) {
         alert('사용자 로그인 후 이용해주세요.');
@@ -369,9 +366,9 @@ $(document).ready(function() {
     $(".modfy_btn").on("click", function() {
         <?php
             $_SESSION["abstract"] = "";
-        ?>
+            ?>
     })
 });
 </script>
 
-<?php include_once('./include/footer.php');?>
+<?php include_once('./include/footer.php'); ?>
