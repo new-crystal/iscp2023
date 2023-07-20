@@ -1,3 +1,4 @@
+
 <?php
 include_once('./include/head.php');
 
@@ -117,4 +118,5 @@ if (empty($detail)) {
                 doc.save('registration.pdf');
             });
         }
+
     </script>

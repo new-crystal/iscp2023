@@ -1,3 +1,4 @@
+
 <?php
 
     require_once('./libs/moProperties.php');
@@ -11,9 +12,9 @@
 		$P_NOTI      = $_REQUEST["P_NOTI"];
 		$P_AMT       = $_REQUEST["P_AMT"];
 
-		if ($_REQUEST["P_STATUS"] === "00") {             // ÀÎÁõÀÌ P_STATUS===00 ÀÏ °æ¿ì¸¸ ½ÂÀÎ ¿äÃ»
+		if ($_REQUEST["P_STATUS"] === "00") {             // ì¸ì¦ì´ P_STATUS===00 ì¼ ê²½ìš°ë§Œ ìŠ¹ì¸ ìš”ì²­
 
-			$id_merchant = substr($P_TID,'10','10');     // P_TID ³» MID ±¸ºĞ
+			$id_merchant = substr($P_TID,'10','10');     // P_TID ë‚´ MID êµ¬ë¶„
 			$data = array(
 
 				'P_MID' => $id_merchant,         // P_MID
@@ -22,23 +23,23 @@
 			);
 
 			//##########################################################################
-			// ½ÂÀÎ¿äÃ» API url (authUrl) ¸®½ºÆ® ´Â properties ¿¡ ¼¼ÆÃÇÏ¿© »ç¿ëÇÕ´Ï´Ù.
-			// idc_name À¸·Î ¼ö½Å ¹ŞÀº ¼¾ÅÍ ³×ÀÓÀ» properties ¿¡¼­ include ÇÏ¿© ½ÂÀÎ¿äÃ»ÇÏ½Ã¸é µË´Ï´Ù.
+			// ìŠ¹ì¸ìš”ì²­ API url (authUrl) ë¦¬ìŠ¤íŠ¸ ëŠ” properties ì— ì„¸íŒ…í•˜ì—¬ ì‚¬ìš©í•©ë‹ˆë‹¤.
+			// idc_name ìœ¼ë¡œ ìˆ˜ì‹  ë°›ì€ ì„¼í„° ë„¤ì„ì„ properties ì—ì„œ include í•˜ì—¬ ìŠ¹ì¸ìš”ì²­í•˜ì‹œë©´ ë©ë‹ˆë‹¤.
 			//##########################################################################
 			$idc_name 	= $_REQUEST["idc_name"];
 			$P_REQ_URL  = $prop->getAuthUrl($idc_name);
 
 			if (strcmp($P_REQ_URL, $_REQUEST["P_REQ_URL"]) == 0) {
 
-				// curl Åë½Å ½ÃÀÛ
+				// curl í†µì‹  ì‹œì‘
 
-				$ch = curl_init();                                                //curl ÃÊ±âÈ­
-				curl_setopt($ch, CURLOPT_URL, $_REQUEST["P_REQ_URL"]);            //URL ÁöÁ¤ÇÏ±â
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                   //¿äÃ» °á°ú¸¦ ¹®ÀÚ¿­·Î ¹İÈ¯
-				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);                     //connection timeout 10ÃÊ
-				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);                      //¿ø°İ ¼­¹öÀÇ ÀÎÁõ¼­°¡ À¯È¿ÇÑÁö °Ë»ç ¾ÈÇÔ
-				curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));    //POST ·Î $data ¸¦ º¸³¿
-				curl_setopt($ch, CURLOPT_POST, 1);                                //true½Ã post Àü¼Û
+				$ch = curl_init();                                                //curl ì´ˆê¸°í™”
+				curl_setopt($ch, CURLOPT_URL, $_REQUEST["P_REQ_URL"]);            //URL ì§€ì •í•˜ê¸°
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                   //ìš”ì²­ ê²°ê³¼ë¥¼ ë¬¸ìì—´ë¡œ ë°˜í™˜
+				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);                     //connection timeout 10ì´ˆ
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);                      //ì›ê²© ì„œë²„ì˜ ì¸ì¦ì„œê°€ ìœ íš¨í•œì§€ ê²€ì‚¬ ì•ˆí•¨
+				curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));    //POST ë¡œ $data ë¥¼ ë³´ëƒ„
+				curl_setopt($ch, CURLOPT_POST, 1);                                //trueì‹œ post ì „ì†¡
 
 
 				$response = curl_exec($ch);
@@ -47,22 +48,22 @@
 				parse_str($response, $out);
 				//print_r($out);
 
-				//°øÅë ºÎºĞ¸¸
-				$tid				= @(in_array($out["P_TID"] , $out) ? $out["P_TID"] : "null" );						// °Å·¡¹øÈ£
-				$pay_method			= @(in_array($out["P_TYPE"] , $out) ? $out["P_TYPE"] : "null");						// °áÁ¦¹æ¹ı(ÁöºÒ¼ö´Ü)
-				$result_code		= @(in_array($out["P_STATUS"] , $out) ? $out["P_STATUS"] : "null");					// °á°úÄÚµå
-				$result_msg			= @(in_array($out["P_RMESG1"] , $out) ? $out["P_RMESG1"] : "null");					// °á°ú³»¿ë
-				$total_price		= @(in_array($out["P_AMT"] , $out) ? $out["P_AMT"] : "null");						// °áÁ¦¿Ï·á±İ¾×
-				$moid				= @(in_array($out["P_OID"] , $out) ? $out["P_OID"] : "null");						// ÁÖ¹®¹øÈ£
-				$payment_date			= @(in_array($out["P_AUTH_DT"] , $out) ? $out["P_AUTH_DT"] : "null");			// ½ÂÀÎ³¯Â¥
+				//ê³µí†µ ë¶€ë¶„ë§Œ
+				$tid				= @(in_array($out["P_TID"] , $out) ? $out["P_TID"] : "null" );						// ê±°ë˜ë²ˆí˜¸
+				$pay_method			= @(in_array($out["P_TYPE"] , $out) ? $out["P_TYPE"] : "null");						// ê²°ì œë°©ë²•(ì§€ë¶ˆìˆ˜ë‹¨)
+				$result_code		= @(in_array($out["P_STATUS"] , $out) ? $out["P_STATUS"] : "null");					// ê²°ê³¼ì½”ë“œ
+				$result_msg			= @(in_array($out["P_RMESG1"] , $out) ? $out["P_RMESG1"] : "null");					// ê²°ê³¼ë‚´ìš©
+				$total_price		= @(in_array($out["P_AMT"] , $out) ? $out["P_AMT"] : "null");						// ê²°ì œì™„ë£Œê¸ˆì•¡
+				$moid				= @(in_array($out["P_OID"] , $out) ? $out["P_OID"] : "null");						// ì£¼ë¬¸ë²ˆí˜¸
+				$payment_date			= @(in_array($out["P_AUTH_DT"] , $out) ? $out["P_AUTH_DT"] : "null");			// ìŠ¹ì¸ë‚ ì§œ
 			}
 
 			
 		}
 
 	} catch (Exception $e) {
-		$s = $e->getMessage() . ' (¿À·ùÄÚµå:' . $e->getCode() . ')';
-		echo "<script>alert('¸ğ¹ÙÀÏ ¿À·ù'); return;</script>";
+		$s = $e->getMessage() . ' (ì˜¤ë¥˜ì½”ë“œ:' . $e->getCode() . ')';
+		echo "<script>alert('ëª¨ë°”ì¼ ì˜¤ë¥˜'); return;</script>";
 		exit;
 	}
 ?>
@@ -73,9 +74,9 @@
 <input type="hidden" name="payment_date"	value="<?=$payment_date?>"/>
 
 <script src="../../js/jquery-3.6.0.min.js"></script>
-<!-- 230620 ±âÁ¸ icomes ¼Ò½ºÀÎ ºÎºĞÀÌ¿©¼­
-gmail ¸ŞÀÏ ¹ß¼ÛµÇ´Â ºÎºĞÀÌ¿©¼­ ÁÖ¼® ÇÏ¿´½À´Ï´Ù
-ÇÊ¿äÇÏ½Å °æ¿ì ¾Æ·¡ ÁÖ¼® ÇØÁ¦ ÈÄ µ¥ÀÌÅÍ °¡°øÇÏ¿© »ç¿ëÇÏ½Ã¸é µË´Ï´Ù -->
+<!-- 230620 ê¸°ì¡´ icomes ì†ŒìŠ¤ì¸ ë¶€ë¶„ì´ì—¬ì„œ
+gmail ë©”ì¼ ë°œì†¡ë˜ëŠ” ë¶€ë¶„ì´ì—¬ì„œ ì£¼ì„ í•˜ì˜€ìŠµë‹ˆë‹¤
+í•„ìš”í•˜ì‹  ê²½ìš° ì•„ë˜ ì£¼ì„ í•´ì œ í›„ ë°ì´í„° ê°€ê³µí•˜ì—¬ ì‚¬ìš©í•˜ì‹œë©´ ë©ë‹ˆë‹¤ -->
 <script>
 	var tid		= $("input[name=tid]").val();
 	var moid	= $("input[name=moid]").val();
@@ -117,4 +118,5 @@ gmail ¸ŞÀÏ ¹ß¼ÛµÇ´Â ºÎºĞÀÌ¿©¼­ ÁÖ¼® ÇÏ¿´½À´Ï´Ù
 			window.location.replace("../../registration3.php");
 		}
 	});
+
 </script>

@@ -1,3 +1,4 @@
+
 <?php include_once("../../common/common.php"); ?>
 <?php include_once("../../common/locale.php"); ?>
 

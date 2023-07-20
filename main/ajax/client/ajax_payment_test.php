@@ -22,6 +22,9 @@ if ($_POST["flag"] == "payment_eximbay") {
 	$resdt = $_POST["resdt"];
 	$resmsg = $_POST["resmsg"];
 
+	echo $rescode.'<br/>';
+	echo $resmsg; exit;
+
 	switch ($payment_type) {
 		case "P101":
 			$payment_type_name = "VISA";
@@ -417,6 +420,5 @@ else if ($_POST["flag"] == "kcp_payment_kor") {
 		exit;
 	}
 }
-
 
 ?>

@@ -1,3 +1,4 @@
+
 <?php
 
 /**
@@ -164,4 +165,5 @@ function payment_ajax(name, email, data, flag) {
         }
     });
 }
+
 </script>

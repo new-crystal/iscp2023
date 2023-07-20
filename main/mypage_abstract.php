@@ -1,3 +1,4 @@
+
 <?php include_once('./include/head.php'); ?>
 <?php include_once('./include/header.php'); ?>
 <?php include_once('./live/include/set_event_period.php'); ?>
@@ -370,5 +371,4 @@ $(document).ready(function() {
     })
 });
 </script>
-
 <?php include_once('./include/footer.php'); ?>

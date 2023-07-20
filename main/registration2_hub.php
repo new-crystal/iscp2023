@@ -745,7 +745,9 @@ function on_pay() {
     </form>
 
     <!-- 엑심베이 결제 -->
-    <form class="form-horizontal" name="regForm" method="post" action="<?= $siteDomain ?>/plugin/eximbay/request.php">
+
+    <form class="form-horizontal" name="regForm" method="post" action="<?= $siteDomain ?>/plugin/eximbay/request_test.php">
+
         <!-- 결제에 필요 한 필수 파라미터 -->
         <input type="hidden" name="ver" value="230" /><!-- 연동 버전 -->
         <input type="hidden" name="txntype" value="PAYMENT" /><!-- 거래 타입 -->
@@ -754,7 +756,9 @@ function on_pay() {
         <!-- statusurl(필수 값) : 결제 완료 시 Back-end 방식으로 Eximbay 서버에서 statusurl에 지정된 가맹점 페이지를 Back-end로 호출하여 파라미터를 전송 -->
         <!-- 스크립트, 쿠키, 세션 사용 불가 -->
         <input type="hidden" name="statusurl" value="<?= $siteDomain ?>/plugin/eximbay/status.php" />
-        <input type="hidden" name="returnurl" value="<?= $siteDomain ?>/plugin/eximbay/return.php" />
+
+        <input type="hidden" name="returnurl" value="<?= $siteDomain ?>/plugin/eximbay/return_hub.php" />
+
 
         <!--결제 완료 시 Front-end 방식으로 사용자 브라우저 상에 호출되어 보여질 가맹점 페이지 -->
 
@@ -763,9 +767,11 @@ function on_pay() {
         <input type="hidden" name="resmsg" />
 
         <!-- 테스트용 -->
-        <!--<input type="hidden" name="mid" value="1849705C64">-->
+        <input type="hidden" name="mid" value="1849705C64">
         <!-- 실서버 -->
-        <input type="hidden" name="mid" value="189A6E05E4">
+
+        <!--<input type="hidden" name="mid" value="189A6E05E4">-->
+
         <input type="hidden" name="ref" value="<?= $order_code ?>">
         <input type="hidden" name="ostype" value="P">
         <input type="hidden" name="displaytype" value="P">
@@ -777,14 +783,17 @@ function on_pay() {
         <!-- 실서버 -->
         <!-- <input type="hidden" name="item_0_unitPrice" value="<?= $us_price ?>"> -->
         <!-- 테스트용 -->
-        <input type="hidden" name="item_0_unitPrice" value="5">
+
+        <input type="hidden" name="item_0_unitPrice" value="1">
 
         <input type="hidden" name="lang" value="<?= $language == "ko" ? "KR" : "EN" ?>">
         <input type="hidden" name="cur" value="USD">
         <!-- 실서버 -->
         <!-- <input type="hidden" name="amt" value="<?= $us_price ?>"> -->
         <!-- 테스트용 -->
-        <input type="hidden" name="amt" value="5">
+
+        <input type="hidden" name="amt" value="1">
+
         <input type="hidden" name="paymethod" value="P000">
     </form>
 </section>

@@ -66,3 +66,6 @@ $params = array(
 );
 
 $sign2   = $SignatureUtil->makeSignature($params);
+
+/* 기타 */
+$siteDomain = D9_URL;
