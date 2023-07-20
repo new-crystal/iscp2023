@@ -208,13 +208,13 @@ foreach ($registration_list as $rl) {
 	if ($rl["nation_no"] == 25) {
 		for ($i = 0; $i < count($register_paths) - 1; $i++) {
 			if ($register_paths[$i] == 0) {
-				$register_path_value .= "1. 한국지질동맥경화학회 홈페이지 또는 홍보메일 <br/> ";
+				$register_path_value .= "1. KSCVP 혹은 KSCP 홈페이지 또는 홍보메일 <br/> ";
 			} else if ($register_paths[$i] == 1) {
-				$register_path_value .= "2. 유관학회 홍보메일 또는 게시판 광고 <br/>";
+				$register_path_value .= "2. 홍보메일 또는 게시판 광고 <br/>";
 			} else if ($register_paths[$i] == 2) {
 				$register_path_value .= "3. 초청연자/좌장으로 초청받음 <br/>";
 			} else if ($register_paths[$i] == 3) {
-				$register_path_value .= "4. 이전 ICoLA에 참석한 경험이 있음 <br/>";
+				$register_path_value .= "4. 이전 ISCP에 참석한 경험이 있음 <br/>";
 			} else if ($register_paths[$i] == 4) {
 				$register_path_value .= "5. 제약회사 소개 <br/>";
 			} else if ($register_paths[$i] == 5) {
@@ -227,13 +227,13 @@ foreach ($registration_list as $rl) {
 	} else {
 		for ($i = 0; $i < count($register_paths) - 1; $i++) {
 			if ($register_paths[$i] == 0) {
-				$register_path_value .= "1. 한국지질동맥경화학회 홈페이지 또는 홍보메일 <br/> ";
+				$register_path_value .= "1. KSCVP 혹은 KSCP 홈페이지 또는 홍보메일 <br/> ";
 			} else if ($register_paths[$i] == 1) {
-				$register_path_value .= "2. 유관학회 홍보메일 또는 게시판 광고 <br/> ";
+				$register_path_value .= "2. 홍보메일 또는 게시판 광고 <br/> ";
 			} else if ($register_paths[$i] == 3) {
 				$register_path_value .= "3. 초청연자/좌장으로 초청받음 <br/> ";
 			} else if ($register_paths[$i] == 2) {
-				$register_path_value .= "4. 이전 ICoLA에 참석한 경험이 있음 <br/> ";
+				$register_path_value .= "4. 이전 ISCP에 참석한 경험이 있음 <br/> ";
 			} else if ($register_paths[$i] == 5) {
 				$register_path_value .= "5. 제약회사 소개 <br/> ";
 			} else if ($register_paths[$i] == 4) {

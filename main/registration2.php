@@ -807,7 +807,7 @@ function on_pay() {
 <script src="./js/script/client/registration.js"></script>
 <script>
 function prev(idx) {
-    window.location.replace("registration.php?idx=" + idx);
+    window.location.href = "registration.php?idx=" + idx;
 }
 
 /* 23.06.07 HUBDNC_LSH 기존 작성된 부분 주석 처리 */
@@ -817,7 +817,7 @@ $('.cancel_btn').on('click', function() {
 });
 
 function move() {
-    location.replace('/main/registration3.php')
+    window.location.href = '/main/registration3.php';
 }
 
 function error() {
