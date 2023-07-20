@@ -1,25 +1,25 @@
 <?php
-	include_once('./include/head.php');
-	include_once('./include/header.php');
-	include_once('../include/submission_data.php');
+include_once('./include/head.php');
+include_once('./include/header.php');
+include_once('../include/submission_data.php');
 
-	if($admin_permission["auth_apply_poster"] == 0){
-		echo '<script>alert("권한이 없습니다.");history.back();</script>';
-	}
+if ($admin_permission["auth_apply_poster"] == 0) {
+    echo '<script>alert("권한이 없습니다.");history.back();</script>';
+}
 
-	$submission_idx = $_GET["idx"];
-	$member_idx = $_GET["no"];
+$submission_idx = $_GET["idx"];
+$member_idx = $_GET["no"];
 
-	$member_info = "SELECT
+$member_info = "SELECT
 						m.idx AS member_idx, m.email, n.nation_ko AS nation, CONCAT(m.first_name,' ',m.last_name) AS name,
 						DATE_FORMAT(m.register_date, '%y-%m-%d') AS member_register_date
 					FROM member m
 					JOIN nation n
 					ON m.nation_no = n.idx
-					WHERE m.idx = ".$member_idx;
-	$member_info_data = sql_fetch($member_info);
+					WHERE m.idx = " . $member_idx;
+$member_info_data = sql_fetch($member_info);
 
-	$sql_detail = "
+$sql_detail = "
 		SELECT
 			rs.submission_code,
 			`status`,
@@ -48,33 +48,33 @@
 		LEFT JOIN `file` AS fi_prove_age
 			ON fi_prove_age.idx = rs.prove_age_file
 		WHERE rs.is_deleted = 'N'
-		AND rs.idx = '".$submission_idx."'
-		AND rs.register = '".$member_idx."'
+		AND rs.idx = '" . $submission_idx . "'
+		AND rs.register = '" . $member_idx . "'
 	";
 
-	$detail = sql_fetch($sql_detail);
+$detail = sql_fetch($sql_detail);
 
-	if (!$detail) {
-		echo "<script>alert('Invalid abstract data.'); history.go(-1);</script>";
-		exit;
-	}
+if (!$detail) {
+    echo "<script>alert('Invalid abstract data.'); history.go(-1);</script>";
+    exit;
+}
 
-	// affiliations
-	$af_query = "
+// affiliations
+$af_query = "
 		SELECT
 			rsaf.idx, rsaf.`order`, rsaf.affiliation, rsaf.department, rsaf.department_detail, rsaf.nation_no, n.nation_en AS nation_name_en
 		FROM request_submission_affiliation AS rsaf
 		LEFT JOIN nation AS n
 			ON n.idx = rsaf.nation_no
 		WHERE rsaf.is_deleted = 'N'
-		AND rsaf.submission_idx = '".$submission_idx."'
-		AND rsaf.register = '".$member_idx."'
+		AND rsaf.submission_idx = '" . $submission_idx . "'
+		AND rsaf.register = '" . $member_idx . "'
 		ORDER BY rsaf.`order`
 	";
-	$af_list = get_data($af_query);
+$af_list = get_data($af_query);
 
-	// authors
-	$au_query = "
+// authors
+$au_query = "
 		SELECT
 			rsau.idx, 
 			rsau.`order`, 
@@ -88,18 +88,18 @@
 			mobile
 		FROM request_submission_author AS rsau
 		WHERE rsau.is_deleted = 'N'
-		AND rsau.submission_idx = '".$submission_idx."'
-		AND rsau.register = '".$member_idx."'
+		AND rsau.submission_idx = '" . $submission_idx . "'
+		AND rsau.register = '" . $member_idx . "'
 		ORDER BY rsau.`order`
 	";
 
 
-	$au_list = get_data($au_query);
+$au_list = get_data($au_query);
 
-	$au_presenting = array();
-	$au_corresponding = array();
-	$au_co_author = array();
-	/*foreach($au_list as $au){
+$au_presenting = array();
+$au_corresponding = array();
+$au_co_author = array();
+/*foreach($au_list as $au){
 		if ($au['presenting_yn'] == "Y") {
 			$au_presenting = $au;
 			//echo "<u>".$au['first_name']." ".$au['last_name']."</u><sup>".$au['order']."</sup>";
@@ -119,27 +119,28 @@
 		}
 	}*/
 
-	$topic;
-	$topic_detail;
-	if($detail['topic'] == 0) {
-	}
-	foreach($topic1_list as $tp){
-		if ($tp['idx'] == $detail['topic']) {
-			$topic = $tp["idx"].". ".$tp["name_en"];
-		}
-	}
-	if ($detail['topic'] != 5) {
-		//echo " / ";
-		foreach($topic2_list as $tp){
-			if ($tp['idx'] == $detail['topic_detail']) {
-				$topic_detail = $tp["idx"].". ".$tp['order'].". ".$tp["name_en"];
-			}
-		}
-	}
+$topic;
+$topic_detail;
+if ($detail['topic'] == 0) {
+}
+foreach ($topic1_list as $tp) {
+    if ($tp['idx'] == $detail['topic']) {
+        $topic = $tp["idx"] . ". " . $tp["name_en"];
+    }
+}
+if ($detail['topic'] != 5) {
+    //echo " / ";
+    foreach ($topic2_list as $tp) {
+        if ($tp['idx'] == $detail['topic_detail']) {
+            $topic_detail = $tp["idx"] . ". " . $tp['order'] . ". " . $tp["name_en"];
+        }
+    }
+}
 
-	// 소속 구하기
-	function get_auther_affiliation($author_idx){
-		$sql = "
+// 소속 구하기
+function get_auther_affiliation($author_idx)
+{
+    $sql = "
 			SELECT
 				#rsaf1.affiliation AS af1, rsaf1.department AS dp1,
 				#rsaf2.affiliation AS af2, rsaf2.department AS dp2,
@@ -165,179 +166,182 @@
 					SUBSTRING_INDEX(SUBSTRING_INDEX(affiliation_selected, '|', 2), '|', -1) AS af2,
 					SUBSTRING_INDEX(affiliation_selected, '|', -1) AS af3 
 				FROM request_submission_author
-				WHERE idx = '".$author_idx."'
+				WHERE idx = '" . $author_idx . "'
 			) AS rsau
 		";
-		$result = sql_fetch($sql);
+    $result = sql_fetch($sql);
 
-		return $result['text'];
-	}
+    return $result['text'];
+}
 ?>
-<section class="detail">
-    <div class="container">
-        <div class="title">
-            <h1 class="font_title">Poster Abstract Submission</h1>
-        </div>
-        <div class="contwrap has_fixed_title">
-            <!-- <div class="tab_box">
+
+<body>
+    <section class="detail">
+        <div class="container">
+            <div class="title">
+                <h1 class="font_title">Poster Abstract Submission</h1>
+            </div>
+            <div id="print_1" class="contwrap has_fixed_title" style="background-color: #fff;">
+                <!-- <div class="tab_box">
 					<ul class="tab_wrap clearfix">
 						<li class="active"><a href="./abstract_application_detail.php">기본 정보</a></li>
 						<li><a href="./abstract_application_detail2.php">댓글</a></li>
 					</ul>
 				</div> -->
-            <h2 class="sub_title">회원 정보</h2>
-            <table>
-                <colgroup>
-                    <col width="10%">
-                    <col width="40%">
-                    <col width="10%">
-                    <col width="40%">
-                </colgroup>
-                <tbody>
-                    <tr>
-                        <th>ID(Email)</th>
-                        <td><a
-                                href="./member_detail.php?idx=<?=$member_info_data["member_idx"]?>"><?=$member_info_data["email"]?></a>
-                        </td>
-                        <th>Name / Country</th>
-                        <td><?=$member_info_data["name"]?> / <?=$member_info_data["nation"]?></td>
-                    </tr>
-                    <tr>
-                        <th>등록일</th>
-                        <td><?=$member_info_data["member_register_date"]?></td>
-                        <th>Sumission Code</th>
-                        <td><?=$detail["submission_code"]?></td>
-                    </tr>
-                </tbody>
-            </table>
+                <h2 class="sub_title">회원 정보</h2>
+                <table>
+                    <colgroup>
+                        <col width="10%">
+                        <col width="40%">
+                        <col width="10%">
+                        <col width="40%">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th>ID(Email)</th>
+                            <td><a
+                                    href="./member_detail.php?idx=<?= $member_info_data["member_idx"] ?>"><?= $member_info_data["email"] ?></a>
+                            </td>
+                            <th>Name / Country</th>
+                            <td><?= $member_info_data["name"] ?> / <?= $member_info_data["nation"] ?></td>
+                        </tr>
+                        <tr>
+                            <th>등록일</th>
+                            <td><?= $member_info_data["member_register_date"] ?></td>
+                            <th>Sumission Code</th>
+                            <td><?= $detail["submission_code"] ?></td>
+                        </tr>
+                    </tbody>
+                </table>
 
-            <h2 class="sub_title">소속 정보</h2>
-            <?php
-					foreach($af_list as $aff) {
-				?>
-            <table>
-                <colgroup>
-                    <col width="10%">
-                    <col width="40%">
-                    <col width="10%">
-                    <col width="40%">
-                </colgroup>
-                <tbody>
-                    <tr>
-                        <th colspan="4"># <?=$aff["order"]?></th>
-                    </tr>
-                    <tr>
-                        <th>Affiliation</th>
-                        <td><?= $aff["affiliation"]?></td>
-                        <th>Country</th>
-                        <td><?=$aff["nation_name_en"]?></td>
-                    </tr>
-                    <tr>
-                        <th>Department </th>
+                <h2 class="sub_title">소속 정보</h2>
+                <?php
+                foreach ($af_list as $aff) {
+                ?>
+                <table>
+                    <colgroup>
+                        <col width="10%">
+                        <col width="40%">
+                        <col width="10%">
+                        <col width="40%">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th colspan="4"># <?= $aff["order"] ?></th>
+                        </tr>
+                        <tr>
+                            <th>Affiliation</th>
+                            <td><?= $aff["affiliation"] ?></td>
+                            <th>Country</th>
+                            <td><?= $aff["nation_name_en"] ?></td>
+                        </tr>
+                        <tr>
+                            <th>Department </th>
+                            <?php
+                                foreach ($department_list as $dl) {
+                                    if ($aff["department"] == $dl["idx"]) {
+                                        $de_name = $dl["name_en"];
+                                    }
+                                }
+
+                                $de_detail = ($aff["department_detail"] != "") ? "(" . $aff["department_detail"] . ")" : "";
+                                ?>
+                            <td colspan="3"><?= $de_name . "" . $de_detail ?></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <?php
+                }
+                ?>
+
+                <h2 class="sub_title">저자 정보</h2>
+                <?php
+                foreach ($au_list as $au) {
+                ?>
+                <table>
+                    <colgroup>
+                        <col width="10%">
+                        <col width="40%">
+                        <col width="10%">
+                        <col width="40%">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th colspan="4"># <?= $au["order"] ?></th>
+                        </tr>
                         <?php
-							foreach($department_list as $dl) {
-								if($aff["department"] == $dl["idx"]) {
-									$de_name = $dl["name_en"];
-								}
-							} 
-							
-							$de_detail = ($aff["department_detail"] != "") ? "(".$aff["department_detail"].")" : "";
-						?>
-                        <td colspan="3"><?=$de_name."".$de_detail?></td>
-                    </tr>
-                </tbody>
-            </table>
-            <?php
-					}
-				?>
+                            if ($au['same_signup_yn'] == "Y") {
+                            ?>
+                        <tr>
+                            <th colspan="4">Same as sign-up information</th>
+                        </tr>
+                        <?php
+                            }
 
-            <h2 class="sub_title">저자 정보</h2>
-            <?php
-					foreach($au_list as $au) {
-				?>
-            <table>
-                <colgroup>
-                    <col width="10%">
-                    <col width="40%">
-                    <col width="10%">
-                    <col width="40%">
-                </colgroup>
-                <tbody>
-                    <tr>
-                        <th colspan="4"># <?=$au["order"]?></th>
-                    </tr>
-                    <?php
-						if ($au['same_signup_yn'] == "Y") {
-				?>
-                    <tr>
-                        <th colspan="4">Same as sign-up information</th>
-                    </tr>
-                    <?php
-						}
+                            if ($au['presenting_yn'] == "Y") {
+                            ?>
+                        <tr>
+                            <th colspan="4">Presenting author</th>
+                        </tr>
+                        <?php
+                            }
 
-						if ($au['presenting_yn'] == "Y") {
-				?>
-                    <tr>
-                        <th colspan="4">Presenting author</th>
-                    </tr>
-                    <?php
-						}
-
-						if ($au['corresponding_yn'] == "Y") {
-				?>
-                    <tr>
-                        <th colspan="4">Corresponding author</th>
-                    </tr>
-                    <?php
-						}
-				?>
-                    <tr>
-                        <th>Name</th>
-                        <td><?=$au['first_name']." ".$au['last_name']?></td>
-                        <th>Affiliation / Department</th>
-                        <td><?=get_auther_affiliation($au['idx'])?></td>
-                    </tr>
-                    <tr>
-                        <th>Email</th>
-                        <td><?= $au['email']; ?></td>
-                        <th>Phone Number</th>
-                        <td><?= $au['mobile'] ?></td>
-                    </tr>
-                </tbody>
-            </table>
-            <?php
-					}
-				?>
-
-            <h2 class="sub_title">Abstract 정보</h2>
-            <table class="resize_img">
-                <colgroup>
-                    <col width="10%">
-                    <col width="40%">
-                    <col width="10%">
-                    <col width="40%">
-                </colgroup>
-                <tbody>
-                    <!-- <tr>
+                            if ($au['corresponding_yn'] == "Y") {
+                            ?>
+                        <tr>
+                            <th colspan="4">Corresponding author</th>
+                        </tr>
+                        <?php
+                            }
+                            ?>
+                        <tr>
+                            <th>Name</th>
+                            <td><?= $au['first_name'] . " " . $au['last_name'] ?></td>
+                            <th>Affiliation / Department</th>
+                            <td><?= get_auther_affiliation($au['idx']) ?></td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td><?= $au['email']; ?></td>
+                            <th>Phone Number</th>
+                            <td><?= $au['mobile'] ?></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <?php
+                }
+                ?>
+            </div>
+            <div id="print_2" class="contwrap has_fixed_title" style="background-color: #fff;">
+                <h2 class="sub_title">Abstract 정보</h2>
+                <table class="resize_img">
+                    <colgroup>
+                        <col width="10%">
+                        <col width="40%">
+                        <col width="10%">
+                        <col width="40%">
+                    </colgroup>
+                    <tbody>
+                        <!-- <tr>
 							<th>Abstract title</th>
-							<td><?=$author_detail["abstract_title"]?></td>
+							<td><?= $author_detail["abstract_title"] ?></td>
 							<th>Abstract category</th>
-							<td><?=$author_detail["category"]?></td>
+							<td><?= $author_detail["category"] ?></td>
 						</tr>
 						<tr>
 							<th>Abstract file</th>
 						<?php
-							$ext = strtolower(end(explode(".",$author_detail["file_name"])));
-							if($ext == "pdf") {
-						?>
-							<td><a href="./pdf_viewer.php?path=<?=$author_detail["path"]?>" target="_blank"><?=$author_detail["file_name"]?></a></td>
-						<?php } else {?>
-							<td><a href="<?=$author_detail["path"]?>" download><?=$author_detail["file_name"]?></a></td>
-						<?php }?>
+                        $ext = strtolower(end(explode(".", $author_detail["file_name"])));
+                        if ($ext == "pdf") {
+                        ?>
+							<td><a href="./pdf_viewer.php?path=<?= $author_detail["path"] ?>" target="_blank"><?= $author_detail["file_name"] ?></a></td>
+						<?php } else { ?>
+							<td><a href="<?= $author_detail["path"] ?>" download><?= $author_detail["file_name"] ?></a></td>
+						<?php } ?>
 							<th>Oral presentation</th>
-							<td><?=$author_detail["oral_presentation"]?></td>
+							<td><?= $author_detail["oral_presentation"] ?></td>
 						</tr> -->
-                    <!-- <tr>
+                        <!-- <tr>
 							<th>Thumbnail image</th>
 							<td colspan="3">
 								<div class="img_wrap">
@@ -345,114 +349,184 @@
 								</div>
 							</td>
 						</tr> -->
-                    <tr>
-                        <th>Abstract title</th>
-                        <td colspan="3"><?=htmlspecialchars_decode(stripslashes($detail["title"]))?></td>
-                        <!-- <th>Abstract file</th> -->
-                        <!-- <td> -->
+                        <tr>
+                            <th>Abstract title</th>
+                            <td colspan="3"><?= htmlspecialchars_decode(stripslashes($detail["title"])) ?></td>
+                            <!-- <th>Abstract file</th> -->
+                            <!-- <td> -->
+                            <?php
+                            //if ($author_detail["image1_file"]) {
+                            ?>
+                            <!-- <a href="<?= $author_detail["path"] ?>"><?= $author_detail["file_name"] ?></a> -->
+                            <?php
+                            //} else {
+                            //	echo "-";
+                            //	}
+                            ?>
+                            <!-- </td> -->
+                        </tr>
+                        <tr>
+                            <th>Preferred presentation type</th>
+                            <td colspan="3">
+                                <?= ($detail["preferred_presentation_type"] == 0) ? "Oral or Poster" : "Poster"; ?></td>
+                        </tr>
+                        <tr>
+                            <th>Topic</th>
+                            <td><?= $topic; ?></td>
+                            <th>Topic detail</th>
+                            <td><?= $topic_detail; ?></td>
+                        </tr>
+                        <!-- ra.objectives, ra.method, ra.results, ra.conclusions, ra.keywords -->
+                        <tr>
+                            <th>Objectives</th>
+                            <td colspan="3"><?= htmlspecialchars_decode(stripslashes($detail["objectives"])) ?></td>
+                        </tr>
+                        <tr>
+                            <th>Materials and Methods</th>
+                            <td colspan="3"><?= htmlspecialchars_decode(stripslashes($detail["methods"])) ?></td>
+                        </tr>
+                        <tr>
+                            <th>Results</th>
+                            <td colspan="3"><?= htmlspecialchars_decode(stripslashes($detail["results"])) ?></td>
+                        </tr>
+                        <tr>
+                            <th>Conclusions</th>
+                            <td colspan="3"><?= htmlspecialchars_decode(stripslashes($detail["conclusions"])) ?></td>
+                        </tr>
+                        <tr>
+                            <th>Keywords</th>
+                            <td colspan="3"><?= htmlspecialchars_decode(stripslashes($detail["keywords"])) ?></td>
+                        </tr>
                         <?php
-									//if ($author_detail["image1_file"]) {
-								?>
-                        <!-- <a href="<?=$author_detail["path"]?>"><?=$author_detail["file_name"]?></a> -->
+                        for ($i = 1; $i <= 5; $i++) {
+                            $key_prefix = "image" . $i . "_";
+                            $key_path = $key_prefix . "path";
+                            if ($detail[$key_path] != "") {
+                                $key_original_name = $key_prefix . "original_name";
+                                $key_caption = $key_prefix . "caption";
+                        ?>
+                        <tr>
+                            <th>Image <?= $i ?></th>
+                            <td colspan="3">
+                                <img src="<?= $detail[$key_path] ?>"
+                                    download="<?= $detail[$key_original_name] ?>"><br><br><?= $detail[$key_caption] ?>
+                            </td>
+                        </tr>
                         <?php
-									//} else {
-									//	echo "-";
-								//	}
-								?>
-                        <!-- </td> -->
-                    </tr>
-                    <tr>
-                        <th>Preferred presentation type</th>
-                        <td colspan="3">
-                            <?=($detail["preferred_presentation_type"] == 0) ? "Oral or Poster" : "Poster"; ?></td>
-                    </tr>
-                    <tr>
-                        <th>Topic</th>
-                        <td><?= $topic; ?></td>
-                        <th>Topic detail</th>
-                        <td><?= $topic_detail; ?></td>
-                    </tr>
-                    <!-- ra.objectives, ra.method, ra.results, ra.conclusions, ra.keywords -->
-                    <tr>
-                        <th>Objectives</th>
-                        <td colspan="3"><?=htmlspecialchars_decode(stripslashes($detail["objectives"]))?></td>
-                    </tr>
-                    <tr>
-                        <th>Materials and Methods</th>
-                        <td colspan="3"><?=htmlspecialchars_decode(stripslashes($detail["methods"]))?></td>
-                    </tr>
-                    <tr>
-                        <th>Results</th>
-                        <td colspan="3"><?=htmlspecialchars_decode(stripslashes($detail["results"]))?></td>
-                    </tr>
-                    <tr>
-                        <th>Conclusions</th>
-                        <td colspan="3"><?=htmlspecialchars_decode(stripslashes($detail["conclusions"]))?></td>
-                    </tr>
-                    <tr>
-                        <th>Keywords</th>
-                        <td colspan="3"><?=htmlspecialchars_decode(stripslashes($detail["keywords"]))?></td>
-                    </tr>
-                    <?php
-							for($i=1;$i<=5;$i++){
-								$key_prefix = "image".$i."_";
-								$key_path = $key_prefix."path";
-								if ($detail[$key_path] != "") {
-									$key_original_name = $key_prefix."original_name";
-									$key_caption = $key_prefix."caption";
-						?>
-                    <tr>
-                        <th>Image <?=$i?></th>
-                        <td colspan="3">
-                            <img src="<?=$detail[$key_path]?>"
-                                download="<?=$detail[$key_original_name]?>"><br><br><?=$detail[$key_caption]?>
-                        </td>
-                    </tr>
-                    <?php
-								}
-							}
-						?>
-                    <tr>
-                        <th>Have you submitted this abstract or an abstract of a similar topic at another conference?
-                        </th>
-                        <td><?=$detail["similar_yn"] == "Y" ? "Yes" : "No"?></td>
-                        <!-- <th>This research is supported by the grant of Korean Society of Lipid and Atherosclerosis.</th> -->
-                        <td><?=$detail["support_yn"] == "Y" ? "Yes" : "No"?></td>
-                    </tr>
-                    <tr>
-                        <th>Ask for ISCP 2023 Travel Grants</th>
-                        <td><?=$detail["travel_grants_yn"] == "Y" ? "Yes" : "No"?></td>
-                        <th>Apply for APSAVD Young Investigator Awards</th>
-                        <td><?=$detail["awards_yn"] == "Y" ? "Yes" : "No"?></td>
-                    </tr>
-                    <tr>
-                        <th>Ask for IAS Asia-Pacific Federation Young Investigator Grants</th>
-                        <td colspan="3"><?=$detail["investigator_grants_yn"] == "Y" ? "Yes" : "No"?></td>
-                        <!-- <th>Funding Acknowledgments</th> -->
-                        <!-- <td><?=$detail["funding_yn"] == "Y" ? "Yes" : "No"?></td> -->
-                    </tr>
-                    <?php
-							$key_prefix = "prove_age_";
-							$key_path = $key_prefix."path";
-							if ($detail["prove_age_path"] != "") {
-								$key_original_name = $key_prefix."original_name";
-						?>
-                    <tr>
-                        <th>Copy of documents(passport) that prove age</th>
-                        <td colspan="3">
-                            <a href="<?=$detail[$key_path]?>" target="_BLANK"><?=$detail[$key_original_name]?></a>
-                        </td>
-                    </tr>
-                    <?php
-							}
-						?>
-                </tbody>
-            </table>
+                            }
+                        }
+                        ?>
+                        <tr>
+                            <th>Have you submitted this abstract or an abstract of a similar topic at another
+                                conference?
+                            </th>
+                            <td><?= $detail["similar_yn"] == "Y" ? "Yes" : "No" ?></td>
+                            <!-- <th>This research is supported by the grant of Korean Society of Lipid and Atherosclerosis.</th> -->
+                            <td><?= $detail["support_yn"] == "Y" ? "Yes" : "No" ?></td>
+                        </tr>
+                        <tr>
+                            <th>Ask for ISCP 2023 Travel Grants</th>
+                            <td><?= $detail["travel_grants_yn"] == "Y" ? "Yes" : "No" ?></td>
+                            <th>Apply for APSAVD Young Investigator Awards</th>
+                            <td><?= $detail["awards_yn"] == "Y" ? "Yes" : "No" ?></td>
+                        </tr>
+                        <tr>
+                            <th>Ask for IAS Asia-Pacific Federation Young Investigator Grants</th>
+                            <td colspan="3"><?= $detail["investigator_grants_yn"] == "Y" ? "Yes" : "No" ?></td>
+                            <!-- <th>Funding Acknowledgments</th> -->
+                            <!-- <td><?= $detail["funding_yn"] == "Y" ? "Yes" : "No" ?></td> -->
+                        </tr>
+                        <?php
+                        $key_prefix = "prove_age_";
+                        $key_path = $key_prefix . "path";
+                        if ($detail["prove_age_path"] != "") {
+                            $key_original_name = $key_prefix . "original_name";
+                        ?>
+                        <tr>
+                            <th>Copy of documents(passport) that prove age</th>
+                            <td colspan="3">
+                                <a href="<?= $detail[$key_path] ?>"
+                                    target="_BLANK"><?= $detail[$key_original_name] ?></a>
+                            </td>
+                        </tr>
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
             <div class="btn_wrap">
                 <button type="button" class="border_btn"
                     onclick="location.href='./abstract_application_list2.php'">목록</button>
+                <button type="button" class="border_btn" onclick="createPDFfromHTML()">다운로드</button>
             </div>
         </div>
-    </div>
-</section>
-<?php include_once('./include/footer.php');?>
+    </section>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+<script>
+function createPDFfromHTML() {
+    const print_1 = document.querySelector("#print_1");
+    const print_2 = document.querySelector("#print_2");
+
+    const buttonBox = document.querySelector(".btn_wrap");
+    const buttons = document.querySelectorAll(".border_btn");
+
+    buttons.forEach((button) => {
+        buttonBox.removeChild(button);
+    });
+
+    // Create a new jsPDF instance
+    let doc = new jsPDF('p', 'mm', 'a4');
+    let totalPages = 0;
+
+    // Function to add HTML content to PDF
+    const addHTMLToPDF = (element) => {
+        return new Promise((resolve) => {
+            html2canvas(element, {
+                onrendered: function(canvas) {
+                    let imgData = canvas.toDataURL('image/png');
+                    let imgWidth = doc.internal.pageSize.width; // Updated line
+                    let imgHeight = canvas.height * imgWidth / canvas.width;
+
+                    if (totalPages === 0) {
+                        // Add the first page without creating a new page
+                        doc.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+                        totalPages++;
+                        resolve();
+                    } else {
+                        doc.addPage();
+                        doc.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+                        totalPages++;
+                        resolve();
+                    }
+                }
+            });
+        });
+    };
+
+    // Add print_1 HTML to PDF
+    addHTMLToPDF(print_1)
+        .then(() => {
+            // Add print_2 HTML to PDF
+            return addHTMLToPDF(print_2);
+        })
+        .then(() => {
+            // Update page numbering
+            for (let i = 1; i <= totalPages; i++) {
+                doc.setPage(i);
+            }
+
+            // Save the PDF file
+            doc.save('abstract.pdf');
+
+            // Restore buttons
+            buttons.forEach((button) => {
+                buttonBox.appendChild(button);
+            });
+        });
+}
+</script>
+<?php include_once('./include/footer.php'); ?>

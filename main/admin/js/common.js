@@ -148,9 +148,15 @@ function fnExcelReport(title, html) {
     tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
     tab_text = tab_text.replace(/<img[^>]*>/gi,""); // remove if u want images in your table
     tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // remove input params
-    tab_text = tab_text.replaceAll("+","&nbsp+");
+    tab_text = tab_text.replace(/<p[^>]*>|<\/p>/gi, ""); 
+    // Remove <p> tags
+    tab_text = tab_text.replace(/<p[^>]*>/gi, '');
+    tab_text = tab_text.replace(/<\/p>/gi, '');
 
-    console.log(tab_text);
+    // Remove <span> tags
+    tab_text = tab_text.replace(/<span[^>]*>/gi, '');
+    tab_text = tab_text.replace(/<\/span>/gi, '');
+    tab_text = tab_text.replaceAll("+","&nbsp+");
 
     var data_type = 'data:application/vnd.ms-excel';
     var ua = window.navigator.userAgent;
@@ -177,7 +183,64 @@ function fnExcelReport(title, html) {
         document.body.removeChild(elem);
     }
 }
-
+// function fnExcelReport(title, html) {
+//     var tab_text = '<html xmlns:x="urn:schemas-microsoft-com:office:excel">';
+//     tab_text += '<head><meta http-equiv="content-type" content="application/vnd.ms-excel; charset=UTF-8">';
+//     tab_text += '<xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet>';
+//     tab_text += '<x:Name>Test Sheet</x:Name>';
+//     tab_text += '<x:WorksheetOptions><x:Panes></x:Panes></x:WorksheetOptions></x:ExcelWorksheet>';
+//     tab_text += '</x:ExcelWorksheets></x:ExcelWorkbook></xml></head><body>';
+//     tab_text += "<table border='1px'>";
+  
+//     var exportTable = document.createElement('div');
+//     exportTable.innerHTML = html;
+  
+//     // Remove all HTML tags
+//     var paragraphs = exportTable.getElementsByTagName("p");
+//     for (var i = paragraphs.length - 1; i >= 0; i--) {
+//       var paragraph = paragraphs[i];
+//       paragraph.parentNode.removeChild(paragraph);
+//     }
+  
+//     var spans = exportTable.getElementsByTagName("span");
+//     for (var j = spans.length - 1; j >= 0; j--) {
+//       var span = spans[j];
+//       span.parentNode.removeChild(span);
+//     }
+  
+//     // Extract the table data
+//     var table = exportTable.querySelector("table");
+//     tab_text += table.outerHTML;
+//     tab_text += "</table></body></html>";
+  
+//     console.log(tab_text);
+  
+//     var data_type = 'data:application/vnd.ms-excel';
+//     var ua = window.navigator.userAgent;
+//     var msie = ua.indexOf("MSIE ");
+//     var fileName = title + '.xls';
+  
+//     // Check for Internet Explorer
+//     if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+//       if (window.navigator.msSaveBlob) {
+//         var blob = new Blob([tab_text], {
+//           type: "application/csv;charset=utf-8;"
+//         });
+//         navigator.msSaveBlob(blob, fileName);
+//       }
+//     } else {
+//       var blob2 = new Blob([tab_text], {
+//         type: "application/csv;charset=utf-8;"
+//       });
+//       var filename = fileName;
+//       var elem = window.document.createElement('a');
+//       elem.href = window.URL.createObjectURL(blob2);
+//       elem.download = filename;
+//       document.body.appendChild(elem);
+//       elem.click();
+//       document.body.removeChild(elem);
+//     }
+//   }
 // 숫자 타입에서 쓸 수 있도록 format() 함수 추가
 Number.prototype.format = function(){
 	var _this = this;

@@ -3,13 +3,14 @@ header('Content-Type: text/html; charset=UTF-8');
 include_once('./include/head.php');
 include_once('./include/header.php');
 
-//include "./plugin/NHNKCP/cfg/site_conf_inc.php";       // È¯°æ¼³Á¤ ÆÄÀÏ 
+
+//include "./plugin/NHNKCP/cfg/site_conf_inc.php";       // í™˜ê²½ì„¤ì • íŒŒì¼ 
 
 
 $member_idx = $_SESSION['USER']['idx'];
 $registration_idx = $_GET["idx"];
 
-//½Ç¼­¹ö¿¡¸¸ ÀÖÀ½
+//ì‹¤ì„œë²„ì—ë§Œ ìˆìŒ
 if ($_SERVER["HTTP_HOST"] == "www.iscp2023.org") {
     //echo "<script>location.replace('https://iscp2023.org/main/registration2.php?idx={$registration_idx}')</script>";
 }
@@ -20,7 +21,7 @@ if (!$registration_idx) {
     echo "<script>alert('Undefined registration number!'); window.location.replace('./registration.php');</script>";
     exit;
 }
-//°áÁ¦¹øÈ£ »ı¼º
+//ê²°ì œë²ˆí˜¸ ìƒì„±
 $rNo = $registration_idx;
 $date = date("YmdHis");
 $random = mt_rand(1, 1000);
@@ -54,7 +55,7 @@ if (!is_array($registration_data)) {
     //exit;
 }
 
-// µ¥ÀÌÅÍ
+// ë°ì´í„°
 $attendance_type = isset($registration_data["attendance_type"]) ? $registration_data["attendance_type"] : "-";
 $attendance_type = ($attendance_type == 0 ? "Offline" : ($attendance_type == 1 ? "Online" : ($attendance_type == 2 ? "Online+Offline" : "-")));
 $member_status = isset($registration_data["member_status"]) ? $registration_data["member_status"] : "-";
@@ -65,19 +66,10 @@ $price_col_name .= ($registration_data["member_status"] == 0) ? "guest_" : "memb
 //$price_col_name .= "usd";
 
 
-//if ($nation_no == 25) {
-//	$price_col_name .= "usd";
-//	$cur = "USD";
-//	$name = $first_name." ".$last_name;
-//} else {
-//	$price_col_name .= "krw";
-//	$cur = "KRW";
-//	$name = $last_name." ".$first_name;
-//}
 
 $nation_no            = isset($registration_data["nation_no"]) ? $registration_data["nation_no"] : "-";
 
-//2022-05-16 Ãß°¡
+//2022-05-16 ì¶”ê°€
 $promotion_code = isset($registration_data["promotion_code"]) ? $registration_data["promotion_code"] : -1;
 $recommended_by = isset($registration_data["recommended_by"]) ? $registration_data["recommended_by"] : "";
 $register_path = isset($registration_data["register_path"]) ? $registration_data["register_path"] : "-";
@@ -90,19 +82,19 @@ $register_path_value = "";
 if ($nation_no == 25) {
     for ($i = 0; $i < count($register_paths) - 1; $i++) {
         if ($register_paths[$i] == 0) {
-            $register_path_value .= "´ëÇÑ½ÉÇ÷°ü¾à¹°Ä¡·áÇĞÈ¸ È¨ÆäÀÌÁö ¶Ç´Â È«º¸¸ŞÀÏ</p>";
+            $register_path_value .= "ëŒ€í•œì‹¬í˜ˆê´€ì•½ë¬¼ì¹˜ë£Œí•™íšŒ í™ˆí˜ì´ì§€ ë˜ëŠ” í™ë³´ë©”ì¼</p>";
         } else if ($register_paths[$i] == 1) {
-            $register_path_value .= "<p>ISCP È«º¸¸ŞÀÏ ¶Ç´Â °Ô½ÃÆÇ ±¤°í </p> ";
+            $register_path_value .= "<p>ISCP í™ë³´ë©”ì¼ ë˜ëŠ” ê²Œì‹œíŒ ê´‘ê³  </p> ";
         } else if ($register_paths[$i] == 2) {
-            $register_path_value .= "<p>ÃÊÃ»¿¬ÀÚ/ÁÂÀåÀ¸·Î ÃÊÃ»¹ŞÀ½ </p> ";
+            $register_path_value .= "<p>ì´ˆì²­ì—°ì/ì¢Œì¥ìœ¼ë¡œ ì´ˆì²­ë°›ìŒ </p> ";
         } else if ($register_paths[$i] == 3) {
-            $register_path_value .= "<p>ÀÌÀü ISCP¿¡ Âü¼®ÇÑ °æÇèÀÌ ÀÖÀ½ </p> ";
+            $register_path_value .= "<p>ì´ì „ ISCPì— ì°¸ì„í•œ ê²½í—˜ì´ ìˆìŒ </p> ";
         } else if ($register_paths[$i] == 4) {
-            $register_path_value .= "<p>Á¦¾àÈ¸»ç ¼Ò°³ </p> ";
+            $register_path_value .= "<p>ì œì•½íšŒì‚¬ ì†Œê°œ </p> ";
         } else if ($register_paths[$i] == 5) {
-            $register_path_value .= "<p>ÁöÀÎÀ» ÅëÇØ </p> ";
+            $register_path_value .= "<p>ì§€ì¸ì„ í†µí•´ </p> ";
         } else if ($register_paths[$i] == 6) {
-            $register_path_value .= "<p>ÀÎÅÍ³İ °Ë»ö </p> ";
+            $register_path_value .= "<p>ì¸í„°ë„· ê²€ìƒ‰ </p> ";
         }
     }
 } else {
@@ -129,10 +121,10 @@ if (!empty($register_path_others)) {
     $register_path_value .= "<p>" . $register_path_others . " </p> ";
 }
 
-//2022-05-13 Ãß°¡
-//ÀÌ°Å´Â ÇÁ·ĞÆ® ¿ë ´Ü º¯¼ö ¹Ø¿¡ payment_methods´Â º¤¿£µå¿ë
+//2022-05-13 ì¶”ê°€
+//ì´ê±°ëŠ” í”„ë¡ íŠ¸ ìš© ë‹¨ ë³€ìˆ˜ ë°‘ì— payment_methodsëŠ” ë²¡ì—”ë“œìš©
 $payment_methods_select = $registration_data["payment_methods"] ?? null;
-//2022-05-12 Ãß°¡
+//2022-05-12 ì¶”ê°€
 $welcome_reception_yn = $registration_data["welcome_reception_yn"] == "Y" ? "Yes" : "No";
 $day1_luncheon_yn    = $registration_data["day1_luncheon_yn"] == "Y" ? "Yes" : "No";
 $day2_breakfast_yn    = $registration_data["day2_breakfast_yn"] == "Y" ? "Yes" : "No";
@@ -152,7 +144,7 @@ $nation                = isset($registration_data["nation_en"]) ? $registration_
 $first_name            = isset($registration_data["first_name"]) ? $registration_data["first_name"] : "-";
 $last_name            = isset($registration_data["last_name"]) ? $registration_data["last_name"] : "-";
 $name_kor            = isset($registration_data["name_kor"]) ? $registration_data["name_kor"] : "-";
-$phone                = isset($registration_data["phone"]) ? $registration_data["phone"] : "-";
+// $phone                = isset($registration_data["phone"]) ? $registration_data["phone"] : "-";
 $registration_type    = isset($registration_data["registration_type"]) ? $registration_data["registration_type"] : "-";
 $registration_type    = $registration_type == 0 ? $locale("registration_type_select1") : ($registration_type == 1 ? $locale("registration_type_select2") : $locale("registration_type_select3"));
 $affiliation        = isset($registration_data["affiliation"]) ? $registration_data["affiliation"] : "-";
@@ -170,7 +162,7 @@ foreach ($result_org as $key => $value) {
 $identification_file   = isset($registration_data["file_name"]) ? $registration_data["file_name"] : "-";
 $identification_file_path = isset($registration_data["file_path"]) ? $registration_data["file_path"] : "";
 
-// °¡°İÀÌ ¹«·áÀÎ °æ¿ì °áÁ¦ ¿Ï·á»óÅÂ·Î ¹Ù·Î º¯°æÇÔ
+// ê°€ê²©ì´ ë¬´ë£Œì¸ ê²½ìš° ê²°ì œ ì™„ë£Œìƒíƒœë¡œ ë°”ë¡œ ë³€ê²½í•¨
 /*if ($price == 0 && $registration_data['status'] == 1) {
 		$unit_col = ($language == "en") ? "us" : "kr";
 
@@ -183,7 +175,7 @@ $identification_file_path = isset($registration_data["file_path"]) ? $registrati
 										)
 									VALUES
 										(
-											4, 2, '¹«·á ½ÅÃ»', 2, 0, 0, 0, NOW(), NOW(), '{$member_idx}'
+											4, 2, 'ë¬´ë£Œ ì‹ ì²­', 2, 0, 0, 0, NOW(), NOW(), '{$member_idx}'
 										)";
 		sql_query($insert_payment_query);
 		$payment_new_no = sql_insert_id();
@@ -191,21 +183,42 @@ $identification_file_path = isset($registration_data["file_path"]) ? $registrati
 		sql_query("UPDATE request_registration SET `status` = 2, payment_no = '{$payment_new_no}' WHERE idx = '{$registration_idx}'");
 	}*/
 
-//±İ¾× º¯È¯
+
+if ($nation_no == 25) {
+    // $price_col_name .= "usd";
+    // $cur = "USD";
+
+    $name = $first_name . " " . $last_name;
+    // echo '<script>';
+    // echo 'console.log("25")';
+    // echo 'console.log("' . $name . '")';
+    // echo '</scirpt>';
+} else {
+    // $price_col_name .= "krw";
+    // $cur = "KRW";
+    $name = $last_name . " " . $first_name;
+    // echo '<script>';
+    // echo 'console.log("!!25")';
+    // echo 'console.log("' . $name . '")';
+    // echo '</scirpt>';
+}
+
+
+//ê¸ˆì•¡ ë³€í™˜
 //$us_price = "1";
 //$ko_price = "1000";
 $us_price = $registration_data["price"];
-
+$phone =  $registration_data["phone"] ?  $registration_data["phone"] : "01012345678";
 $sql_during =    "SELECT
-						IF(NOW() >= '2022-07-28 09:00:00', 'Y', 'N') AS yn
+						IF(NOW() >= '2024-07-28 09:00:00', 'Y', 'N') AS yn
 					FROM info_event";
 $r_during_yn = sql_fetch($sql_during)['yn'];
 
 
-//Æ¯Á¤ È¸¿ø °¡°İ º¯µ¿ ÀÌÈÄ »èÁ¦
-if ($registration_idx == 512) {
-    $r_during_yn = 'N';
-}
+//íŠ¹ì • íšŒì› ê°€ê²© ë³€ë™ ì´í›„ ì‚­ì œ
+// if ($registration_idx == 512) {
+//     $r_during_yn = 'N';
+// }
 
 if (!empty($_SESSION["USER"])) {
     $ksola_member_status = $member['ksola_member_status'];
@@ -243,156 +256,156 @@ if ($nation_no != 25) {
     $price_payment = $price;
 }
 
-if ($promotion_code == 0 && $promotion_code != "") {
-    $promotion_code_value = "ICoLA-77932";
-    $price_payment = 0;
-    $price = 0;
-} else if ($promotion_code == 1) {
-    $promotion_code_value = "ICoLA-59721";
-    $price_payment = $price_payment / 2;
-    $price = $price / 2;
-} else if ($promotion_code == 2) {
-    $promotion_code_value = "ICoLA-89359";
-    $price_payment = $price_payment / 2;
-    $price = $price / 2;
-} else if ($promotion_code == 4) {
-    $promotion_code_value = "ICoLA-83523";
-    $price_payment = $price_payment / 2;
-    $price = $price / 2;
-}
+// if ($promotion_code == 0 && $promotion_code != "") {
+//     $promotion_code_value = "ICoLA-77932";
+//     $price_payment = 0;
+//     $price = 0;
+// } else if ($promotion_code == 1) {
+//     $promotion_code_value = "ICoLA-59721";
+//     $price_payment = $price_payment / 2;
+//     $price = $price / 2;
+// } else if ($promotion_code == 2) {
+//     $promotion_code_value = "ICoLA-89359";
+//     $price_payment = $price_payment / 2;
+//     $price = $price / 2;
+// } else if ($promotion_code == 4) {
+//     $promotion_code_value = "ICoLA-83523";
+//     $price_payment = $price_payment / 2;
+//     $price = $price / 2;
+// }
 
 
-$price_name = ($nation_no == 25) ? "¿ø" : "USD";
+$price_name = ($nation_no == 25) ? "ì›" : "USD";
 
 
-// KG INICIS °áÁ¦¸ğµâ Á¤º¸·Îµå
+// KG INICIS ê²°ì œëª¨ë“ˆ ì •ë³´ë¡œë“œ
 include_once(D9_PATH . "/plugin/KG_INICIS/inicis_loader.php");
 ?>
 
 <?php
-//¸ğ¹ÙÀÏ¿ë
-/* kcp¿Í Åë½ÅÈÄ kcp ¼­¹ö¿¡¼­ Àü¼ÛµÇ´Â °áÁ¦ ¿äÃ» Á¤º¸ */
-$req_tx          = $_POST["req_tx"]; // ¿äÃ» Á¾·ù         
-$res_cd          = $_POST["res_cd"]; // ÀÀ´ä ÄÚµå         
-$tran_cd         = $_POST["tran_cd"]; // Æ®·£Àè¼Ç ÄÚµå     
-$ordr_idxx       = $_POST["ordr_idxx"]; // ¼îÇÎ¸ô ÁÖ¹®¹øÈ£   
-$good_name       = $_POST["good_name"]; // »óÇ°¸í            
-$good_mny        = $_POST["good_mny"]; // °áÁ¦ ÃÑ±İ¾×       
-$buyr_name       = $_POST["buyr_name"]; // ÁÖ¹®ÀÚ¸í          
-$buyr_tel1       = $_POST["buyr_tel1"]; // ÁÖ¹®ÀÚ ÀüÈ­¹øÈ£   
-$buyr_tel2       = $_POST["buyr_tel2"]; // ÁÖ¹®ÀÚ ÇÚµåÆù ¹øÈ£
-$buyr_mail       = $_POST["buyr_mail"]; // ÁÖ¹®ÀÚ E-mail ÁÖ¼Ò
-$use_pay_method  = $_POST["use_pay_method"]; // °áÁ¦ ¹æ¹ı         
-$enc_info        = $_POST["enc_info"]; // ¾ÏÈ£È­ Á¤º¸       
-$enc_data        = $_POST["enc_data"]; // ¾ÏÈ£È­ µ¥ÀÌÅÍ     
-$cash_yn         = $_POST["cash_yn"];
-$cash_tr_code    = $_POST["cash_tr_code"];
-/* ±âÅ¸ ÆÄ¶ó¸ŞÅÍ Ãß°¡ ºÎºĞ - Start - */
-$param_opt_1    = $_POST["param_opt_1"]; // ±âÅ¸ ÆÄ¶ó¸ŞÅÍ Ãß°¡ ºÎºĞ
-$param_opt_2    = $_POST["param_opt_2"]; // ±âÅ¸ ÆÄ¶ó¸ŞÅÍ Ãß°¡ ºÎºĞ
-$param_opt_3    = $_POST["param_opt_3"]; // ±âÅ¸ ÆÄ¶ó¸ŞÅÍ Ãß°¡ ºÎºĞ
-/* ±âÅ¸ ÆÄ¶ó¸ŞÅÍ Ãß°¡ ºÎºĞ - End -   */
+//ëª¨ë°”ì¼ìš©
+/* kcpì™€ í†µì‹ í›„ kcp ì„œë²„ì—ì„œ ì „ì†¡ë˜ëŠ” ê²°ì œ ìš”ì²­ ì •ë³´ */
+// $req_tx          = $_POST["req_tx"]; // ìš”ì²­ ì¢…ë¥˜         
+// $res_cd          = $_POST["res_cd"]; // ì‘ë‹µ ì½”ë“œ         
+// $tran_cd         = $_POST["tran_cd"]; // íŠ¸ëœì­ì…˜ ì½”ë“œ     
+// $ordr_idxx       = $_POST["ordr_idxx"]; // ì‡¼í•‘ëª° ì£¼ë¬¸ë²ˆí˜¸   
+// $good_name       = $_POST["good_name"]; // ìƒí’ˆëª…            
+// $good_mny        = $_POST["good_mny"]; // ê²°ì œ ì´ê¸ˆì•¡       
+// $buyr_name       = $_POST["buyr_name"]; // ì£¼ë¬¸ìëª…          
+// $buyr_tel1       = $_POST["buyr_tel1"]; // ì£¼ë¬¸ì ì „í™”ë²ˆí˜¸   
+// $buyr_tel2       = $_POST["buyr_tel2"]; // ì£¼ë¬¸ì í•¸ë“œí° ë²ˆí˜¸
+// $buyr_mail       = $_POST["buyr_mail"]; // ì£¼ë¬¸ì E-mail ì£¼ì†Œ
+// $use_pay_method  = $_POST["use_pay_method"]; // ê²°ì œ ë°©ë²•         
+// $enc_info        = $_POST["enc_info"]; // ì•”í˜¸í™” ì •ë³´       
+// $enc_data        = $_POST["enc_data"]; // ì•”í˜¸í™” ë°ì´í„°     
+// $cash_yn         = $_POST["cash_yn"];
+// $cash_tr_code    = $_POST["cash_tr_code"];
+// /* ê¸°íƒ€ íŒŒë¼ë©”í„° ì¶”ê°€ ë¶€ë¶„ - Start - */
+// $param_opt_1    = $_POST["param_opt_1"]; // ê¸°íƒ€ íŒŒë¼ë©”í„° ì¶”ê°€ ë¶€ë¶„
+// $param_opt_2    = $_POST["param_opt_2"]; // ê¸°íƒ€ íŒŒë¼ë©”í„° ì¶”ê°€ ë¶€ë¶„
+// $param_opt_3    = $_POST["param_opt_3"]; // ê¸°íƒ€ íŒŒë¼ë©”í„° ì¶”ê°€ ë¶€ë¶„
+// /* ê¸°íƒ€ íŒŒë¼ë©”í„° ì¶”ê°€ ë¶€ë¶„ - End -   */
 
-$tablet_size     = "1.0"; // È­¸é »çÀÌÁî °íÁ¤
-$url = "https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
+// $tablet_size     = "1.0"; // í™”ë©´ ì‚¬ì´ì¦ˆ ê³ ì •
+// $url = "https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
 
 ?>
 
-<!--°áÁ¦ °ü·Ã css ldh Ãß°¡ 2022-04-20-->
+<!--ê²°ì œ ê´€ë ¨ css ldh ì¶”ê°€ 2022-04-20-->
 <!-- <link href="./plugin/php_kcp_api_pay_sample/static/css/style.css" rel="stylesheet" type="text/css" id="cssLink"/> -->
 <style>
-    /*2022-05-12 ldh Ãß°¡*/
-    /*.double_btn {*/
-    /*	margin-right:10px;*/
-    /*}*/
-    /*.mb_double_btn {*/
-    /*	margin-bottom:10px;*/
-    /*}*/
-    .promote_code2 {
-        margin-top: 10px;
-    }
+/*2022-05-12 ldh ì¶”ê°€*/
+/*.double_btn {*/
+/*	margin-right:10px;*/
+/*}*/
+/*.mb_double_btn {*/
+/*	margin-bottom:10px;*/
+/*}*/
+.promote_code2 {
+    margin-top: 10px;
+}
 
-    .table_wrap {
-        overflow-y: hidden;
-    }
+.table_wrap {
+    overflow-y: hidden;
+}
 
-    .detail_table td:after {
-        width: calc(102% - 24px);
-    }
+.detail_table td:after {
+    width: calc(102% - 24px);
+}
 </style>
 <script type="text/javascript">
-    /****************************************************************/
-    /* m_Completepayment  ¼³¸í                                      */
-    /****************************************************************/
-    /* ÀÎÁõ¿Ï·á½Ã Àç±Í ÇÔ¼ö                                         */
-    /* ÇØ´ç ÇÔ¼ö¸íÀº Àı´ë º¯°æÇÏ¸é ¾ÈµË´Ï´Ù.                        */
-    /* ÇØ´ç ÇÔ¼öÀÇ À§Ä¡´Â payplus.js º¸´Ù¸ÕÀú ¼±¾ğµÇ¾î¿© ÇÕ´Ï´Ù.    */
-    /* Web ¹æ½ÄÀÇ °æ¿ì ¸®ÅÏ °ªÀÌ form À¸·Î ³Ñ¾î¿È                   */
-    /****************************************************************/
-    function m_Completepayment(FormOrJson, closeEvent) {
-        var frm = document.order_info;
+/****************************************************************/
+/* m_Completepayment  ì„¤ëª…                                      */
+/****************************************************************/
+/* ì¸ì¦ì™„ë£Œì‹œ ì¬ê·€ í•¨ìˆ˜                                         */
+/* í•´ë‹¹ í•¨ìˆ˜ëª…ì€ ì ˆëŒ€ ë³€ê²½í•˜ë©´ ì•ˆë©ë‹ˆë‹¤.                        */
+/* í•´ë‹¹ í•¨ìˆ˜ì˜ ìœ„ì¹˜ëŠ” payplus.js ë³´ë‹¤ë¨¼ì € ì„ ì–¸ë˜ì–´ì—¬ í•©ë‹ˆë‹¤.    */
+/* Web ë°©ì‹ì˜ ê²½ìš° ë¦¬í„´ ê°’ì´ form ìœ¼ë¡œ ë„˜ì–´ì˜´                   */
+/****************************************************************/
+function m_Completepayment(FormOrJson, closeEvent) {
+    var frm = document.order_info;
 
-        /********************************************************************/
-        /* FormOrJsonÀº °¡¸ÍÁ¡ ÀÓÀÇ È°¿ë ±İÁö                               */
-        /* frm °ª¿¡ FormOrJson °ªÀÌ ¼³Á¤ µÊ frm °ªÀ¸·Î È°¿ë ÇÏ¼Å¾ß µË´Ï´Ù.  */
-        /* FormOrJson °ªÀ» È°¿ë ÇÏ½Ã·Á¸é ±â¼úÁö¿øÆÀÀ¸·Î ¹®ÀÇ¹Ù¶ø´Ï´Ù.       */
-        /********************************************************************/
-        GetField(frm, FormOrJson);
+    /********************************************************************/
+    /* FormOrJsonì€ ê°€ë§¹ì  ì„ì˜ í™œìš© ê¸ˆì§€                               */
+    /* frm ê°’ì— FormOrJson ê°’ì´ ì„¤ì • ë¨ frm ê°’ìœ¼ë¡œ í™œìš© í•˜ì…”ì•¼ ë©ë‹ˆë‹¤.  */
+    /* FormOrJson ê°’ì„ í™œìš© í•˜ì‹œë ¤ë©´ ê¸°ìˆ ì§€ì›íŒ€ìœ¼ë¡œ ë¬¸ì˜ë°”ëë‹ˆë‹¤.       */
+    /********************************************************************/
+    GetField(frm, FormOrJson);
 
 
-        if (frm.res_cd.value == "0000") {
-            //alert("°áÁ¦ ½ÂÀÎ ¿äÃ» Àü,\n\n¹İµå½Ã °áÁ¦Ã¢¿¡¼­ °í°´´ÔÀÌ °áÁ¦ ÀÎÁõ ¿Ï·á ÈÄ\n\n¸®ÅÏ ¹ŞÀº ordr_chk ¿Í ¾÷Ã¼ Ãø ÁÖ¹®Á¤º¸¸¦\n\n´Ù½Ã ÇÑ¹ø °ËÁõ ÈÄ °áÁ¦ ½ÂÀÎ ¿äÃ»ÇÏ½Ã±â ¹Ù¶ø´Ï´Ù."); //¾÷Ã¼ ¿¬µ¿ ½Ã ÇÊ¼ö È®ÀÎ »çÇ×.
-            /*
-            					 °¡¸ÍÁ¡ ¸®ÅÏ°ª Ã³¸® ¿µ¿ª
-            */
+    if (frm.res_cd.value == "0000") {
+        //alert("ê²°ì œ ìŠ¹ì¸ ìš”ì²­ ì „,\n\në°˜ë“œì‹œ ê²°ì œì°½ì—ì„œ ê³ ê°ë‹˜ì´ ê²°ì œ ì¸ì¦ ì™„ë£Œ í›„\n\në¦¬í„´ ë°›ì€ ordr_chk ì™€ ì—…ì²´ ì¸¡ ì£¼ë¬¸ì •ë³´ë¥¼\n\në‹¤ì‹œ í•œë²ˆ ê²€ì¦ í›„ ê²°ì œ ìŠ¹ì¸ ìš”ì²­í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤."); //ì—…ì²´ ì—°ë™ ì‹œ í•„ìˆ˜ í™•ì¸ ì‚¬í•­.
+        /*
+        					 ê°€ë§¹ì  ë¦¬í„´ê°’ ì²˜ë¦¬ ì˜ì—­
+        */
 
-            frm.submit();
-        } else {
-            alert("[" + frm.res_cd.value + "] " + frm.res_msg.value);
+        frm.submit();
+    } else {
+        alert("[" + frm.res_cd.value + "] " + frm.res_msg.value);
 
-            closeEvent();
-        }
+        closeEvent();
     }
+}
 </script>
-<!-- 23.06.07 HUBDNC_LSH º¯°æ PG»ç Á¤º¸ -->
-<!--Å×½ºÆ® JS-->
+<!-- 23.06.07 HUBDNC_LSH ë³€ê²½ PGì‚¬ ì •ë³´ -->
+<!--í…ŒìŠ¤íŠ¸ JS-->
 <!-- <script language="javascript" type="text/javascript" src="https://stgstdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script> -->
-<!--¿î¿µ JS>-->
+<!--ìš´ì˜ JS>-->
 <script language="javascript" type="text/javascript" src="https://stdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8">
 </script>
 <script type="text/javascript">
-    // 23.06.07 HUBDNC_LSH º¯°æ PG»ç °áÁ¦¹öÆ° ½ºÅ©¸³Æ® (PC)
-    function paybtn() {
-        INIStdPay.pay('SendPayForm_id');
+// 23.06.07 HUBDNC_LSH ë³€ê²½ PGì‚¬ ê²°ì œë²„íŠ¼ ìŠ¤í¬ë¦½íŠ¸ (PC)
+function paybtn() {
+    INIStdPay.pay('SendPayForm_id');
+}
+
+// 23.06.07 HUBDNC_LSH ë³€ê²½ PGì‚¬ ê²°ì œë²„íŠ¼ ìŠ¤í¬ë¦½íŠ¸ (MOBILE)
+function on_pay() {
+
+    let payment_methods = parseInt($("input[name=payment_methods]:checked").val());
+
+    // payment methods ì„ íƒì— ë”°ë¼ ëª¨ë°”ì¼ P_INI_PAYMENT(ì§€ë¶ˆë°©ì‹) ë³€ê²½
+    if (payment_methods == 0) {
+        $('input[name="P_INI_PAYMENT"]').val("CARD");
+    } else if (payment_methods == 1) {
+        $('input[name="P_INI_PAYMENT"]').val("BANK");
     }
 
-    // 23.06.07 HUBDNC_LSH º¯°æ PG»ç °áÁ¦¹öÆ° ½ºÅ©¸³Æ® (MOBILE)
-    function on_pay() {
+    myform = document.mobileweb;
+    myform.action = "https://mobile.inicis.com/smart/payment/";
+    myform.target = "_self";
+    myform.submit();
 
-        let payment_methods = parseInt($("input[name=payment_methods]:checked").val());
-
-        // payment methods ¼±ÅÃ¿¡ µû¶ó ¸ğ¹ÙÀÏ P_INI_PAYMENT(ÁöºÒ¹æ½Ä) º¯°æ
-        if (payment_methods == 0) {
-            $('input[name="P_INI_PAYMENT"]').val("CARD");
-        } else if (payment_methods == 1) {
-            $('input[name="P_INI_PAYMENT"]').val("BANK");
-        }
-
-        myform = document.mobileweb;
-        myform.action = "https://mobile.inicis.com/smart/payment/";
-        myform.target = "_self";
-        myform.submit();
-
-    }
+}
 </script>
 <!--
-		°áÁ¦Ã¢ È£Ãâ JS
-		 °³¹ß : https://testpay.kcp.co.kr/plugin/payplus_web.jsp
-		 ¿î¿µ : https://pay.kcp.co.kr/plugin/payplus_web.jsp
+		ê²°ì œì°½ í˜¸ì¶œ JS
+		 ê°œë°œ : https://testpay.kcp.co.kr/plugin/payplus_web.jsp
+		 ìš´ì˜ : https://pay.kcp.co.kr/plugin/payplus_web.jsp
 -->
 <!--  <script type="text/javascript" src="https://pay.kcp.co.kr/plugin/payplus_web.jsp"></script> -->
 <script type="text/javascript" src="https://pay.kcp.co.kr/plugin/payplus_web.jsp"></script>
-<!-- °Å·¡µî·Ï ÇÏ´Â kcp ¼­¹ö¿Í Åë½ÅÀ» À§ÇÑ ½ºÅ©¸³Æ®-->
+<!-- ê±°ë˜ë“±ë¡ í•˜ëŠ” kcp ì„œë²„ì™€ í†µì‹ ì„ ìœ„í•œ ìŠ¤í¬ë¦½íŠ¸-->
 <script type="text/javascript" src="./plugin/NHNKCP/mobile_sample/js/approval_key.js?v=0.2"></script>
 
 <section class="container submit_application payment">
@@ -400,11 +413,7 @@ $url = "https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
         <div class="sub_inner">
             <div>
                 <h2>Registration</h2>
-                <ul class="clearfix">
-                    <li>Home</li>
-                    <li>Registration</li>
-                    <li>Payment</li>
-                </ul>
+                <div class="color-bar"></div>
             </div>
         </div>
     </div>
@@ -434,12 +443,12 @@ $url = "https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
                                 <?php
                                 if ($nation_no == 25) {
                                 ?>
-                                    <!--¿©±â È¤½Ã ¸ğ¸£´Ï ÁÖÀÇ-->
-                                    <input type="hidden" name="buyr_name" value="<?= $name_kor; ?>" />
+                                <!--ì—¬ê¸° í˜¹ì‹œ ëª¨ë¥´ë‹ˆ ì£¼ì˜-->
+                                <input type="hidden" name="buyr_name" value="<?= $name_kor; ?>" />
                                 <?php
                                 } else {
                                 ?>
-                                    <input type="hidden" name="buyr_name" value="<?= $first_name ?> <?= $last_name ?>" />
+                                <input type="hidden" name="buyr_name" value="<?= $first_name ?> <?= $last_name ?>" />
                                 <?php
                                 }
                                 ?>
@@ -448,10 +457,10 @@ $url = "https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
                             <?php
                             if ($nation_no == 25) {
                             ?>
-                                <tr>
-                                    <th>Name(Kor)</th>
-                                    <td><?= $name_kor; ?></td>
-                                </tr>
+                            <tr>
+                                <th>Name(Kor)</th>
+                                <td><?= $name_kor; ?></td>
+                            </tr>
                             <?php
                             }
                             ?>
@@ -465,18 +474,32 @@ $url = "https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
                             </tr>
                             <tr>
                                 <th>Others</th>
-                                <td>
+                                <!-- <td>
                                     Welcome Reception (17:10-20:00, 23 Nov (Thu), 2023): <?= $welcome_reception_yn ?>
                                     </br>
-                                    Day 1 ? Luncheon Symposium (12:00-12:50, 23 Nov (Thu), 2023):
+                                    Day 1 - Luncheon Symposium (12:00-12:50, 23 Nov (Thu), 2023):
                                     <?= $day1_luncheon_yn ?> </br>
-                                    Day 2 ? Breakfast Symposium (08:00-09:00, 24 Nov (Fri), 2023):
+                                    Day 2 - Breakfast Symposium (08:00-09:00, 24 Nov (Fri), 2023):
                                     <?= $day2_breakfast_yn ?> </br>
                                     Day 2 - Luncheon Symposium (12:00-12:50, 24 Nov (Fri), 2023):
                                     <?= $day2_luncheon_yn ?> </br>
-                                    Day 3 ? Breakfast Symposium (08:00-09:00, 25 Nov (Sat), 2023):
+                                    Day 3 - Breakfast Symposium (08:00-09:00, 25 Nov (Sat), 2023):
                                     <?= $day3_breakfast_yn ?> </br>
                                     Day 3 - Luncheon Symposium (12:05-12:55, 25 Nov (Sat), 2023):
+                                    <?= $day3_luncheon_yn ?> </br>
+                                </td> -->
+                                <td>
+                                    Welcome Reception (23 Nov (Thu), 2023): <?= $welcome_reception_yn ?>
+                                    </br>
+                                    Day 1 - Luncheon Symposium (23 Nov (Thu), 2023):
+                                    <?= $day1_luncheon_yn ?> </br>
+                                    Day 2 - Breakfast Symposium (24 Nov (Fri), 2023):
+                                    <?= $day2_breakfast_yn ?> </br>
+                                    Day 2 - Luncheon Symposium (24 Nov (Fri), 2023):
+                                    <?= $day2_luncheon_yn ?> </br>
+                                    Day 3 - Breakfast Symposium (25 Nov (Sat), 2023):
+                                    <?= $day3_breakfast_yn ?> </br>
+                                    Day 3 - Luncheon Symposium (25 Nov (Sat), 2023):
                                     <?= $day3_luncheon_yn ?> </br>
                                 </td>
                             </tr>
@@ -485,13 +508,13 @@ $url = "https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
                                     <?php
                                     if ($nation_no == 25) {
                                     ?>
-                                        <p class="bold">ISCP 2023 °³ÃÖ Á¤º¸¸¦ ¾î¶»°Ô ¾Ë°Ô µÇ¼Ì³ª¿ä?</p>
-                                        </br>
+                                    <p class="bold">ISCP 2023 ê°œìµœ ì •ë³´ë¥¼ ì–´ë–»ê²Œ ì•Œê²Œ ë˜ì…¨ë‚˜ìš”?</p>
+                                    </br>
                                     <?php
                                     } else {
                                     ?>
-                                        <p class="bold">How did you hear about the ISCP 2023?</p>
-                                        </br>
+                                    <p class="bold">How did you hear about the ISCP 2023?</p>
+                                    </br>
 
                                     <?php
                                     }
@@ -523,23 +546,29 @@ $url = "https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
                             <?php
                             if ($promotion_code != 0) {
                             ?>
-                                <tr>
-                                    <th>Payment methods</th>
-                                    <td>
-                                        <div class="radio_wrap">
-                                            <ul class="flex">
-                                                <li>
-                                                    <input <?= $payment_methods_select == 0 ? "checked" : ""; ?> type="radio" class="radio required" id="pay_type1" name="payment_methods" value="0">
-                                                    <label for="pay_type1"><?= ($nation_no != 25) ? "Credit Card" : "Ä«µå °áÁ¦"; ?></label>
-                                                </li>
-                                                <li>
-                                                    <input <?= $payment_methods_select == 1 ? "checked" : ""; ?> type="radio" class="radio required" id="pay_type2" name="payment_methods" value="1">
-                                                    <label for="pay_type2"><?= ($nation_no != 25) ? "Bank Transfer" : "°èÁÂ ÀÌÃ¼"; ?></label>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <th>Payment methods</th>
+                                <td>
+                                    <div class="radio_wrap">
+                                        <ul class="flex">
+                                            <li>
+                                                <input <?= $payment_methods_select == 0 ? "checked" : ""; ?>
+                                                    type="radio" class="radio required" id="pay_type1"
+                                                    name="payment_methods" value="0">
+                                                <label
+                                                    for="pay_type1"><?= ($nation_no != 25) ? "Credit Card" : "ì¹´ë“œ ê²°ì œ"; ?></label>
+                                            </li>
+                                            <li>
+                                                <input <?= $payment_methods_select == 1 ? "checked" : ""; ?>
+                                                    type="radio" class="radio required" id="pay_type2"
+                                                    name="payment_methods" value="1">
+                                                <label
+                                                    for="pay_type2"><?= ($nation_no != 25) ? "Bank Transfer" : "ê³„ì¢Œ ì´ì²´"; ?></label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
                             <?php
                             }
                             ?>
@@ -556,89 +585,95 @@ $url = "https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
                             &gt;</a></p>
                 </div>
                 <!-- btn_wrap -->
-                <!-- ±âÁ¸ ¹öÆ° ¸¶Å©¾÷
+                <!-- ê¸°ì¡´ ë²„íŠ¼ ë§ˆí¬ì—…
 				<div class="btn_wrap">
 					<button type="button" class="btn submit" onclick="kgpay();"><?= $locale("d_payment_btn") ?></button>
 					<?php if ($_SESSION["language"] != "ko") { ?>
 						<button type="button" class="btn submit" onclick="payment();"><?= $locale("payment_btn") ?></button>
 					<?php } ?>
 				</div>-->
-                <!-- 220324 ±âÁ¸¿¡´Â °áÁ¦¹æ½ÄÀÌ '±¹³»/ÇØ¿Ü'·Î ºĞ¸®µÇ¾úÀ¸³ª, ÇöÀç´Â 1°³ÀÇ ¹öÆ°À¸·Î ÅëÀÏµÊ (HUBDNC LJH2)-->
+                <!-- 220324 ê¸°ì¡´ì—ëŠ” ê²°ì œë°©ì‹ì´ 'êµ­ë‚´/í•´ì™¸'ë¡œ ë¶„ë¦¬ë˜ì—ˆìœ¼ë‚˜, í˜„ì¬ëŠ” 1ê°œì˜ ë²„íŠ¼ìœ¼ë¡œ í†µì¼ë¨ (HUBDNC LJH2)-->
 
-                <!--  23.06.0 HUBDNC_LSH PC °áÁ¦¹öÆ° ±â´É   -->
+                <!--  23.06.0 HUBDNC_LSH PC ê²°ì œë²„íŠ¼ ê¸°ëŠ¥   -->
                 <div class="pager_btn_wrap pc_only centerT pager_btn_wrap half">
-                    <button type="button" class="btn green_btn pc-wd-3" onclick="prev(<?= $registration_idx; ?>)">Prev</button>
+                    <button type="button" class="btn green_btn pc-wd-3"
+                        onclick="prev(<?= $registration_idx; ?>)">Prev</button>
 
                     <?php
                     if ($payment_methods_select == 0) {
                         if ($nation_no == 25) {
-                            //100% ÇÒÀÎ
+                            //100% í• ì¸
                     ?>
-                            <button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="paybtn()">
-                                Payment
-                            </button>
-                        <?php
+                    <button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="paybtn()">
+                        Payment
+                    </button>
+                    <?php
                         } else {
                         ?>
-                            <!-- ±âÁ¸ : jsf__pay(document.order_info) / Å×½ºÆ® º¯°æ : paybtn() )  -->
-                            <button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="alert('prepare...')">
-                                Payment
-                            </button>
-                        <?php
+                    <!-- ê¸°ì¡´ : jsf__pay(document.order_info) / í…ŒìŠ¤íŠ¸ ë³€ê²½ : paybtn() )  -->
+                    <button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="payment()">
+                        Payment
+                    </button>
+                    <?php
                         }
                     } else {
                         if ($nation_no == 25) {
                         ?>
-                            <!-- ±âÁ¸ : code_100() / Å×½ºÆ® º¯°æ : paybtn() )  -->
-                            <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="transfer(<?= $nation_no; ?>)">
-                                Payment
-                            </button>
-                        <?php
+                    <!-- ê¸°ì¡´ : code_100() / í…ŒìŠ¤íŠ¸ ë³€ê²½ : paybtn() )  -->
+                    <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3"
+                        onclick="transfer(<?= $nation_no; ?>)">
+                        Payment
+                    </button>
+                    <?php
                         } else {
                         ?>
-                            <!-- ±âÁ¸ : transfer() / Å×½ºÆ® º¯°æ : paybtn() )  -->
-                            <button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="transfer(<?= $nation_no; ?>)">
-                                Payment
-                            </button>
+                    <!-- ê¸°ì¡´ : transfer() / í…ŒìŠ¤íŠ¸ ë³€ê²½ : paybtn() )  -->
+                    <button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3"
+                        onclick="transfer(<?= $nation_no; ?>)">
+                        Payment
+                    </button>
                     <?php
                         }
                     }
                     ?>
                 </div>
-                <!--  23.06.0 HUBDNC_LSH ¸ğ¹ÙÀÏ °áÁ¦¹öÆ° ±â´É          -->
+                <!--  23.06.0 HUBDNC_LSH ëª¨ë°”ì¼ ê²°ì œë²„íŠ¼ ê¸°ëŠ¥          -->
                 <div class=" pager_btn_wrap mb_only centerT pager_btn_wrap half">
-                    <button type="button" class="btn green_btn pc-wd-3" onclick="prev(<?= $registration_idx; ?>)">Prev</button>
+                    <button type="button" class="btn green_btn pc-wd-3"
+                        onclick="prev(<?= $registration_idx; ?>)">Prev</button>
                     <?php
                     if ($payment_methods_select == 0) {
                         if ($nation_no == 25) {
                     ?>
-                            <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="on_pay()">
-                                Payment
-                            </button>
-                        <?php
+                    <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="on_pay()">
+                        Payment
+                    </button>
+                    <?php
                         } else {
                         ?>
-                            <!-- ±âÁ¸ : mb_click() / Å×½ºÆ® º¯°æ : paybtn() )  -->
-                            <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="alert('prepare...')">
-                                Payment
-                            </button>
-                        <?php
+                    <!-- ê¸°ì¡´ : mb_click() / í…ŒìŠ¤íŠ¸ ë³€ê²½ : paybtn() )  -->
+                    <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="payment()">
+                        Payment
+                    </button>
+                    <?php
 
                         }
                     } else {
                         if ($nation_no == 25) {
                         ?>
-                            <!-- ±âÁ¸ : code_100() / Å×½ºÆ® º¯°æ : paybtn() )  -->
-                            <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="transfer(<?= $nation_no; ?>)">
-                                Payment
-                            </button>
-                        <?php
+                    <!-- ê¸°ì¡´ : code_100() / í…ŒìŠ¤íŠ¸ ë³€ê²½ : paybtn() )  -->
+                    <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3"
+                        onclick="transfer(<?= $nation_no; ?>)">
+                        Payment
+                    </button>
+                    <?php
                         } else {
                         ?>
-                            <!-- ±âÁ¸ : transfer() / Å×½ºÆ® º¯°æ : paybtn() )  -->
-                            <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="transfer(<?= $nation_no; ?>)">
-                                Payment
-                            </button>
+                    <!-- ê¸°ì¡´ : transfer() / í…ŒìŠ¤íŠ¸ ë³€ê²½ : paybtn() )  -->
+                    <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3"
+                        onclick="transfer(<?= $nation_no; ?>)">
+                        Payment
+                    </button>
                     <?php
                         }
                     }
@@ -648,289 +683,200 @@ $url = "https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
         </div>
     </form>
 
-    <!-- 23.06.07 HUBDNC_LSH º¯°æ ÈÄ PG»ç ÆÄ¶ó¹ÌÅÍ Àü¼Û form (PC)-->
-    <form id="SendPayForm_id" name="" method="POST" accept-charset="EUC-KR" class="mt-5">
-        <!-- ÇÊ¼ö -->
+    <!-- 23.06.07 HUBDNC_LSH ë³€ê²½ í›„ PGì‚¬ íŒŒë¼ë¯¸í„° ì „ì†¡ form (PC)-->
+    <form id="SendPayForm_id" method="post" class="mt-5" accept-charset="UTF-8">
+        <!-- í•„ìˆ˜ -->
         <input type="hidden" name="version" value="1.0">
         <input type="hidden" name="mid" value="<?= $mid ?>">
         <input type="hidden" name="goodname" value="ISCP 2023">
-        <input type="hidden" name="oid" value="<?= $orderNumber ?>">
+        <input type="hidden" name="oid" value="<?= $order_code ?>">
         <input type="hidden" name="price" value="<?= $price ?>">
         <input type="hidden" name="currency" value="WON">
-        <input type="hidden" name="buyername" value="ISCP 2023">
-        <input type="hidden" name="buyertel" value="01012345678">
+        <input type="hidden" name="buyername" value="<?= $name_kor ?>">
+        <input type="hidden" name="buyertel" value="<?= $phone ?>">
         <input type="hidden" name="buyeremail" value="<?= $email ?>">
         <input type="hidden" name="timestamp" value="<?= $timestamp ?>">
         <input type="hidden" name="signature" value="<?= $sign ?>">
         <input type="hidden" name="returnUrl" value="https://iscp2023.org/main/plugin/KG_INICIS/result.php">
         <input type="hidden" name="closeUrl" value="https://iscp2023.org/main/plugin/KG_INICIS/close.php">
         <input type="hidden" name="mKey" value="<?= $mKey ?>">
-
-        <!-- ±âº»¿É¼Ç -->
+        <input type="hidden" name="charset" value="UTF-8">
+        <!-- ê¸°ë³¸ì˜µì…˜ -->
         <input type="hidden" name="gopaymethod" value="Card">
+        <!--ê²°ì œìˆ˜ë‹¨-->
+
         <input type="hidden" name="acceptmethod" value="HPP(1):below1000:centerCd(Y)">
         <input type="hidden" name="use_chkfake" value="<?= $use_chkfake ?>">
         <input type="hidden" name="verification" value="<?= $sign2 ?>">
+
     </form>
 
-    <!-- 23.06.07 HUBDNC_LSH º¯°æ ÈÄ PG»ç ÆÄ¶ó¹ÌÅÍ Àü¼Û form (MOBILE)-->
+    <!-- 23.06.07 HUBDNC_LSH ë³€ê²½ í›„ PGì‚¬ íŒŒë¼ë¯¸í„° ì „ì†¡ form (MOBILE)-->
     <form name="mobileweb" id="" method="post" class="mt-5" accept-charset="euc-kr">
         <input type="hidden" name="P_INI_PAYMENT" value="">
-        <input type="hidden" name="P_MID" value="iscpkrcvph">
-        <input type="hidden" name="P_OID" value="mobile_test1234">
+        <input type="hidden" name="P_MID" value="<?= $mid ?>">
+        <input type="hidden" name="P_OID" value="<?= $order_code ?>">
         <input type="hidden" name="P_AMT" value="<?= $price ?>">
-        <input type="hidden" name="P_GOODS" value="ISCP">
-        <input type="hidden" name="P_UNAME" value="ISCP">
+        <input type="hidden" name="P_GOODS" value="ISCP 2023">
+        <input type="hidden" name="P_UNAME" value="<?= $name_kor ?>">
         <input type="hidden" name="P_MOBILE" value="<?= $phone ?>">
         <input type="hidden" name="P_EMAIL" value="<?= $email ?>">
         <input type="hidden" name="P_CHARSET" value="utf8">
         <input type="hidden" name="P_RESERVED" value="below1000=Y&vbank_receipt=Y&centerCd=Y">
-        <!-- <input type="hidden" name="P_NEXT_URL" value="https://iscp2023.org/main/registration3_test.php"> -->
+        <input type="hidden" name="P_NEXT_URL" value="https://iscp2023.org/main/plugin/KG_INICIS/mo_result.php">
+    </form>
+
+
+
+    <!-- ì—‘ì‹¬ë² ì´ ê²°ì œ -->
+    <form class="form-horizontal" name="regForm" method="post"
+        action="https://iscp2023.org/main/plugin/eximbay/request_test.php">
+        <!-- ê²°ì œì— í•„ìš” í•œ í•„ìˆ˜ íŒŒë¼ë¯¸í„° -->
+        <input type="hidden" name="ver" value="230" /><!-- ì—°ë™ ë²„ì „ -->
+        <input type="hidden" name="txntype" value="PAYMENT" /><!-- ê±°ë˜ íƒ€ì… -->
+        <input type="hidden" name="charset" value="UTF-8" /><!-- ê³ ì • : UTF-8 -->
+
+        <!-- statusurl(í•„ìˆ˜ ê°’) : ê²°ì œ ì™„ë£Œ ì‹œ Back-end ë°©ì‹ìœ¼ë¡œ Eximbay ì„œë²„ì—ì„œ statusurlì— ì§€ì •ëœ ê°€ë§¹ì  í˜ì´ì§€ë¥¼ Back-endë¡œ í˜¸ì¶œí•˜ì—¬ íŒŒë¼ë¯¸í„°ë¥¼ ì „ì†¡ -->
+        <!-- ìŠ¤í¬ë¦½íŠ¸, ì¿ í‚¤, ì„¸ì…˜ ì‚¬ìš© ë¶ˆê°€ -->
+        <input type="hidden" name="statusurl" value="https://iscp2023.org/main/plugin/eximbay/status.php" />
+        <input type="hidden" name="returnurl" value="https://iscp2023.org/main/plugin/eximbay/return_test.php" />
+
+        <!--ê²°ì œ ì™„ë£Œ ì‹œ Front-end ë°©ì‹ìœ¼ë¡œ ì‚¬ìš©ì ë¸Œë¼ìš°ì € ìƒì— í˜¸ì¶œë˜ì–´ ë³´ì—¬ì§ˆ ê°€ë§¹ì  í˜ì´ì§€ -->
+
+        <!-- ê²°ì œ ì‘ë‹µ ê°’ ì²˜ë¦¬ íŒŒë¼ë¯¸í„° -->
+        <input type="hidden" name="rescode" />
+        <input type="hidden" name="resmsg" />
+
+        <!-- í…ŒìŠ¤íŠ¸ìš© -->
+        <input type="hidden" name="mid" value="1849705C64">
+        <!-- ì‹¤ì„œë²„ -->
+        <!-- <input type="hidden" name="mid" value="189A6E05E4"> -->
+        <input type="hidden" name="ref" value="<?= $order_code ?>">
+        <input type="hidden" name="ostype" value="P">
+        <input type="hidden" name="displaytype" value="P">
+        <input type="hidden" name="email" value="<?= $email ?>">
+        <input type="hidden" name="buyer" value="<?= $name ?>">
+        <input type="hidden" name="tel" value="<?= $phone ?>">
+        <input type="hidden" name="item_0_product" value="ISCP 2023">
+        <input type="hidden" name="item_0_quantity" value="1">
+        <!-- ì‹¤ì„œë²„ -->
+        <input type="hidden" name="item_0_unitPrice" value="<?= $us_price ?>">
+        <!-- í…ŒìŠ¤íŠ¸ìš© -->
+        <!-- <input type="hidden" name="item_0_unitPrice" value="5"> -->
+
+        <input type="hidden" name="lang" value="<?= $language == "ko" ? "KR" : "EN" ?>">
+        <input type="hidden" name="cur" value="USD">
+        <!-- ì‹¤ì„œë²„ -->
+        <input type="hidden" name="amt" value="<?= $us_price ?>">
+        <!-- í…ŒìŠ¤íŠ¸ìš© -->
+        <!-- <input type="hidden" name="amt" value="5"> -->
+        <!-- union pay -->
+        <!-- <input type="hidden" name="paymethod" value="P000"> -->
     </form>
 </section>
 <script src="./js/script/client/registration.js"></script>
+<div class="popup cancel_pop">
+    <div class="pop_bg"></div>
+    <div class="pop_contents">
+        <button type="button" class="pop_close"><img src="./img/icons/pop_close.png"></button>
+        <h3 class="pop_title"><?= $locale("cancellation_tit") ?></h3>
+        <p class="pre"><?= $locale("cancellation_txt") ?></p>
+        <div class="table_wrap c_table_wrap2">
+            <table class="c_table2">
+                <thead>
+                    <tr>
+                        <th><?= $locale("date") ?></th>
+                        <th><?= $locale("cancellation_table_category2") ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><?= $locale("cancellation_table_data1") ?></td>
+                        <td><?= $locale("cancellation_table_data1_1") ?></td>
+                    </tr>
+                    <tr>
+                        <td><?= $locale("cancellation_table_data2") ?></td>
+                        <td><?= $locale("cancellation_table_data2_1") ?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</section>
+<script src="./js/script/client/registration.js"></script>
 <script>
-    function prev(idx) {
-        window.location.replace("registration.php?idx=" + idx);
-    }
+function prev(idx) {
+    window.location.replace("registration.php?idx=" + idx);
+}
 
-    /* 23.06.07 HUBDNC_LSH ±âÁ¸ ÀÛ¼ºµÈ ºÎºĞ ÁÖ¼® Ã³¸® */
+/* 23.06.07 HUBDNC_LSH ê¸°ì¡´ ì‘ì„±ëœ ë¶€ë¶„ ì£¼ì„ ì²˜ë¦¬ */
 
-    function code_100() {
-        var registration_idx = "<?php //= $registration_idx; 
+$('.cancel_btn').on('click', function() {
+    $('.cancel_pop').show();
+});
+
+function move() {
+    location.replace('/main/registration3.php')
+}
+
+function error() {
+    setTimeout(function() {
+        var error_msg = $("input[name=resmsg]").val();
+        alert(locale(language.value)("payment_fail_msg") + " " + locale(language.value)("retry_msg") + "\n" +
+            error_msg);
+    }, 50)
+}
+
+function mb_click() {
+
+    //ajax_save();
+
+    document.getElementById("mb_submit").click();
+    //kcp_AJAX();
+}
+
+
+/* 23.06.07 HUBDNC_LSH ê¸°ì¡´ ì‘ì„±ëœ ë¶€ë¶„ ì£¼ì„ ì²˜ë¦¬ */
+$(document).on("change", "input[name=payment_methods]", function() {
+    var promotion_code = "<?php //= $promotion_code; 
                                 ?>//";
-        var nation_no = "<?php //= $nation_no 
-                            ?>//";
+    if ($(this).val() == 0) {
+        $("#pc_payment_btn").removeAttr("onclick");
+        $("#mb_payment_btn").removeAttr("onclick");
 
-        var data = {
-            "flag": "code_100_payment",
-            "registration_idx": registration_idx,
-            "nation_no": nation_no
-        };
-
-        $.ajax({
-            url: PATH + "ajax/client/ajax_payment.php",
-            type: "POST",
-            data: data,
-            dataType: "JSON",
-            success: function(res) {
-                if (res.code == 200) {
-                    window.location.replace("mypage_registration.php");
-                } else if (res.code == 400) {
-                    alert(res.msg);
-                    return;
-                }
-            }
-        });
-    }
-
-    function apply() {
-
-        var promotion_code = $("input[name=promotion_code]").val();
-        var registration_idx = "<?php //= $registration_idx; 
-                                ?>//";
-
-        var data = {
-            "flag": "promotion_code_update",
-            "promotion_code": promotion_code,
-            "registration_idx": registration_idx
-        };
-
-        $.ajax({
-            url: PATH + "ajax/client/ajax_registration.php",
-            type: "POST",
-            data: data,
-            dataType: "JSON",
-            success: function(res) {
-                if (res.code == 200) {
-                    if (res.promotion_code_value == 0) {
-                        $(".code_result").html(res.promotion_code + " [100% Discount]");
-                    } else if (res.promotion_code_value == 1 || res.promotion_code_value == 2 || res
-                        .promotion_code_value == 4) {
-                        $(".code_result").html(res.promotion_code + " [50% Discount]");
-                    } else if (res.promotion_code_value == 3) {
-                        //$(".code_result").html("Promotion code used");
-                        alert("Promotion code used");
-                        $("input[name=hidden_code]").val("");
-                    }
-                    $("input[name=hidden_code]").val(res.promotion_code_value);
-                    //window.location.replace("registration2.php?idx="+registration_idx);
-                } else if (res.code == 401) {
-                    $(".code_result").html("Invalid promotion code");
-                    $("input[name=hidden_code]").val("");
-                    return false;
-                }
-            }
-        });
-    }
-
-    function complete() {
-
-        var registration_idx = "<?php //= $registration_idx; 
-                                ?>//";
-        var hidden_code = $("input[name=hidden_code]").val();
-
-        if (!hidden_code || hidden_code == 3) {
-            alert("Please check the promotion code");
-            return;
-        }
-
-        var recommended_by = $("input[name=recommended_by]").val().trim();
-        var recommended_by_trim = "";
-
-        //ÃßÃµÀÎ À¯È¿¼º
-        if (!recommended_by) {
-            alert("Invalid Recommended by");
-            return;
-        }
-
-        recommended_by_trim = recommended_by.toLowerCase();
-        recommended_by_trim = recommended_by_trim.replace(/ /g, "")
-
-        var data = {
-            "flag": "promotion_code_complate",
-            "recommended_by": recommended_by,
-            "recommended_by_trim": recommended_by_trim,
-            "hidden_code": hidden_code,
-            "registration_idx": registration_idx
-        };
-
-        $.ajax({
-            url: PATH + "ajax/client/ajax_registration.php",
-            type: "POST",
-            data: data,
-            dataType: "JSON",
-            success: function(res) {
-                if (res.code == 200) {
-                    window.location.replace("registration2.php?idx=" + registration_idx);
-                } else if (res.code == 400) {
-                    alert(res.msg);
-                    return;
-                } else if (res.code == 401) {
-                    alert("Invalid promotion code");
-                    return;
-                } else if (res.code == 402) {
-                    alert("Promotion code used");
-                    return;
-                }
-            }
-        });
-    }
-
-    $('.cancel_btn').on('click', function() {
-        $('.cancel_pop').show();
-    });
-
-    function move() {
-        location.replace('/main/registration3.php')
-    }
-
-    function error() {
-        setTimeout(function() {
-            var error_msg = $("input[name=resmsg]").val();
-            alert(locale(language.value)("payment_fail_msg") + " " + locale(language.value)("retry_msg") + "\n" +
-                error_msg);
-        }, 50)
-    }
-
-    function mb_click() {
-
-        ajax_save();
-
-        document.getElementById("mb_submit").click();
-        //kcp_AJAX();
-    }
-
-
-    /* 23.06.07 HUBDNC_LSH ±âÁ¸ ÀÛ¼ºµÈ ºÎºĞ ÁÖ¼® Ã³¸® */
-    $(document).on("change", "input[name=payment_methods]", function() {
-        var promotion_code = "<?php //= $promotion_code; 
-                                ?>//";
-        if ($(this).val() == 0) {
-            $("#pc_payment_btn").removeAttr("onclick");
-            $("#mb_payment_btn").removeAttr("onclick");
-
-            if (promotion_code == 0) {
-                $("#pc_payment_btn").attr("onclick", "code_100()");
-                $("#mb_payment_btn").attr("onclick", "code_100()");
-            } else {
-                // $("#pc_payment_btn").attr("onclick", "jsf__pay(document.order_info);");
-                $("#mb_payment_btn").attr("onclick", "mb_click()");
-            }
+        if (promotion_code == 0) {
+            $("#pc_payment_btn").attr("onclick", "code_100()");
+            $("#mb_payment_btn").attr("onclick", "code_100()");
         } else {
-            $("#pc_payment_btn").removeAttr("onclick");
-            $("#mb_payment_btn").removeAttr("onclick");
-
-            if (promotion_code == 0) {
-                $("#pc_payment_btn").attr("onclick", "code_100()");
-                $("#mb_payment_btn").attr("onclick", "code_100()");
-            } else {
-                $("#pc_payment_btn").attr("onclick", "transfer();");
-                $("#mb_payment_btn").attr("onclick", "transfer();");
-            }
+            // $("#pc_payment_btn").attr("onclick", "jsf__pay(document.order_info);");
+            $("#mb_payment_btn").attr("onclick", "mb_click()");
         }
-    });
+    } else {
+        $("#pc_payment_btn").removeAttr("onclick");
+        $("#mb_payment_btn").removeAttr("onclick");
 
-    function transfer(nation_no) {
-
-        // var registration_idx = "<?php $registration_idx; ?>";
-        var registration_idx = window.location.search.split("=")[1];
-        var payment_methods = $("input[name=payment_methods]:checked").val();
-        // console.log(nation_no)
-        // console.log(registration_idx)
-        // ajax_save();
-        window.location.replace(PATH + "registration_account.php?idx=" + registration_idx + "&nation_no=" + nation_no);
-        // window.location.replace(PATH + "registration_account.php");
+        if (promotion_code == 0) {
+            $("#pc_payment_btn").attr("onclick", "code_100()");
+            $("#mb_payment_btn").attr("onclick", "code_100()");
+        } else {
+            $("#pc_payment_btn").attr("onclick", "transfer();");
+            $("#mb_payment_btn").attr("onclick", "transfer();");
+        }
     }
+});
 
-    function ajax_save() {
-        var registration_idx = "<?php $registration_idx;
-                                ?>";
-        var payment_methods = $("input[name=payment_methods]:checked").val();
-        var data = new FormData();
-        data.append("flag", "method_update");
-        data.append("idx", registration_idx);
-        data.append("payment_methods", payment_methods)
+function transfer(nation_no) {
 
-        $.ajax({
-            url: PATH + "ajax/client/ajax_registration.php",
-            type: "POST",
-            data: data,
-            dataType: "JSON",
-            contentType: false,
-            processData: false,
-            success: function(res) {
-                if (res.code == 200) {
-
-                } else if (res.code == 400) {
-                    alert(locale(language.value)("error_registration"));
-                    return false;
-                } else if (res.code == 401) {
-                    alert(locale(language.value)("already_registration"));
-                    return false;
-                } else {
-                    alert(locale(language.value)("reject_msg") + locale(language.value)("retry_msg"));
-                    return false;
-                }
-            }
-        });
-    }
-    $(document).on("keyup", ".en_num_keyup", function(key) {
-        var pattern_eng = /[^0-9||a-zA-Z\s||-]/gi;
-        var _this = $(this);
-        if (key.keyCode != 8) {
-            var first_name = _this.val().replace(pattern_eng, '');
-            _this.val(first_name);
-        }
-    });
-    $(document).on("keyup", ".ko_en_keyup", function(key) {
-        var pattern_eng = /[^a-zA-Z\s||¤¡-¤¾°¡-ÆR]/gi;
-        var _this = $(this);
-        if (key.keyCode != 8) {
-            var first_name = _this.val().replace(pattern_eng, '');
-            _this.val(first_name);
-        }
-    });
+    // var registration_idx = "<?php $registration_idx; ?>";
+    var registration_idx = window.location.search.split("=")[1];
+    var payment_methods = $("input[name=payment_methods]:checked").val();
+    // console.log(nation_no)
+    // console.log(registration_idx)
+    // ajax_save();
+    window.location.replace(PATH + "registration_account.php?idx=" + registration_idx + "&nation_no=" + nation_no);
+    // window.location.replace(PATH + "registration_account.php");
+}
 </script>
 
 <?php include_once('./include/footer.php'); ?>

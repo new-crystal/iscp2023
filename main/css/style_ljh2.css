@@ -247,6 +247,7 @@
 .main_speaker2 {
   display: flex;
   flex-wrap: wrap;
+  width: 500px;
   height: 171px;
 }
 
@@ -4465,7 +4466,12 @@ width:920px;
       font-weight: 900;
       line-height: 2.5;
     }
-
+    .abstract_btn_box{
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-around;
+    }
 
     .guide_red_box{
       display: flex;
@@ -4484,6 +4490,23 @@ width:920px;
       font-weight: 900;
     }
 
+
+    .guide_blue_box{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: calc(35% - 19px);
+      height: 79px;
+      margin: 50px auto;
+      background-color: #003366;
+      color: #fff;
+      border-radius: 8px;
+      padding: 10px;
+    }
+    .guide_blue_box > a{
+      font-size: 20px;
+      font-weight: 900;
+    }
 
     .step_container{
       display: flex;
@@ -4674,21 +4697,33 @@ width:920px;
     }
 
     @media screen and (max-width: 1000px){
+      .abstract_btn_box{
+        flex-direction: column;
+      }
       .guide_red_box{
         width: calc(50% - 19px);
       }
       .guide_red_box{
         font-size: 18px;
       }
+
+      .guide_blue_box{
+        width: calc(50% - 19px);
+        font-size: 18px;
+      }
     }
     @media screen and (max-width: 725px){
+   
       .guide_red_box{
         width: calc(80% - 19px);
       }
       .guide_red_box > a {
         font-size: 15px;
       }
-    }
+      .guide_blue_box{
+        width: calc(80% - 19px);
+        font-size: 15px;
+    }}
 
     @media screen and (max-width: 1200px){
       .submission_keydate{

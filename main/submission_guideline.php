@@ -14,6 +14,30 @@ $sql_during =    "SELECT
 					FROM info_event";
 $r_during_yn = sql_fetch($sql_during)['yn'];
 
+//로그인 여부
+$user_idx = $member["idx"] ?? -1;
+
+//abstract 작성 여부
+$my_submission_list_query = "
+		SELECT
+			rs.idx, rs.`status`, 
+			IFNULL(rs.title, '-') AS title,
+			(
+				CASE rs.`status`
+					WHEN 0 THEN 'In progress'
+					WHEN 1 THEN 'Complete'
+				END
+			) AS status_text,
+			DATE(rs.register_date) AS register_ymd
+		FROM request_submission AS rs
+		WHERE rs.is_deleted = 'N'
+		AND rs.register = '{$user_idx}'
+		ORDER BY rs.idx DESC
+	";
+
+
+$submission_list = get_data($my_submission_list_query);
+
 //특정 회원 가격 변동 이후 삭제
 //if($registration_idx == 512) {
 //	$r_during_yn = 'N';
@@ -87,11 +111,21 @@ if ($during_yn === "Y") {
                     <!-- <a href="javascript:;" class="btn_oval_line" target="_blank">Abstract Submission Form Download</a> -->
                 </div>
             </div>
+            <div class="abstract_btn_box">
+                <div class="guide_red_box" style="cursor: pointer;"><a href="./abstract_submission.php">Abstract
+                        Submission </a>
+                </div>
+                <?php
+                    if (!$submission_list || $user_idx <= 0) { ?>
+                <div></div>
+                <?php  } else { ?>
 
-            <div class="guide_red_box" style="cursor: pointer;"><a href="./abstract_submission.php">Abstract
-                    Submission </a>
+                <div class="guide_blue_box" style="cursor: pointer;"><a href="./mypage_abstract.php">Abstracts in
+                        progress </a>
+                </div>
+
+                <?php   } ?>
             </div>
-
             <!-- contents2 -->
             <div class="circle_title" id="scroll">Key dates</div>
             <div class="details submission_keydate">
@@ -112,44 +146,8 @@ if ($during_yn === "Y") {
             <!-- contents3 -->
             <div class="circle_title">Steps for Abstract Submission</div>
             <div class="details step_gradation">
-                <div class="step_container">
-                    <div class="step_1">
-                        <div class="circle_step">
-                            <p>STEP</p>
-                            <span>01</span>
-                        </div>
-                        <p>Click the Abstract <br>Submission Button <br>(Bottom right corner<br> of the page)</p>
-                    </div>
-                    <div class="step_2">
-                        <div class="circle_step">
-                            <p>STEP</p>
-                            <span>02</span>
-                        </div>
-                        <p>Log-in (If you don’t<br> have an account,<br>please sign up first)</p>
-                    </div>
-                    <div class="step_3">
-                        <div class="circle_step">
-                            <p>STEP</p>
-                            <span>03</span>
-                        </div>
-                        <p>Fill out personal<br> information and <br>author information. <br>Then click the Next
-                            <br>button
-                        </p>
-                    </div>
-                    <div class="step_4">
-                        <div class="circle_step">
-                            <p>STEP</p>
-                            <span>04</span>
-                        </div>
-                        <p>Fill out the abstract <br>section.</p>
-                    </div>
-                    <div class="step_5">
-                        <div class="circle_step">
-                            <p>STEP</p>
-                            <span>05</span>
-                        </div>
-                        <p>Completed</p>
-                    </div>
+                <div style="overflow-x: auto;">
+                    <img src="./img/steps.png" alt="steps" style="max-width:100%; min-width:650px; height:auto;" />
                 </div>
             </div>
             <!-- contents4 -->

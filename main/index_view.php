@@ -182,47 +182,47 @@ $notice_list = get_data($notice_list_query);
                 <h1 class="noti_wrap_title">Plenary Speakers</h1>
                 <div class="speakers_slick" style="background-color: #043858;">
                     <ul class="main_speaker2 slick-slider">
-                        <li class="index_speaker1" style="background-color: #043858;">
+                        <li class="index_speaker1" style="background-color: #043858; width:100px;">
                             <div class="profile_circle">
                                 <div class="profile_wrap"></div>
                             </div>
-                            <h5 class="title">Haluzik_Martin</h5>
+                            <h5 class="title" style="font-weight:500">Haluzik_Martin</h5>
                             <!-- <div class="career">Verve therapeutics,<br>USA</div> -->
                         </li>
-                        <li class="index_speaker2" style="background-color: #043858;">
+                        <li class="index_speaker2" style="background-color: #043858; width:100px;">
                             <div class="profile_circle">
                                 <div class="profile_wrap"></div>
                             </div>
-                            <h5 class="title">Thomas-Kahan</h5>
+                            <h5 class="title" style="font-weight:500; font-size:14px;">Thomas-Kahan</h5>
                             <!-- <div class="career">Macau University of Science &<br>Technology, China</div> -->
                         </li>
-                        <li class="index_speaker3" style="background-color: #043858;">
+                        <li class="index_speaker3" style="background-color: #043858; width:100px;">
                             <div class="profile_circle">
                                 <div class="profile_wrap"></div>
                             </div>
-                            <h5 class="title">TBD</h5>
+                            <h5 class="title" style="font-weight:500">TBD</h5>
                             <!-- <div class="career">University of Cambridge,<br>UK</div> -->
                         </li>
-                        <li class="index_speaker4">
+                        <li class="index_speaker4" style="background-color: #043858; width:100px;">
                             <div class="profile_circle">
                                 <div class="profile_wrap"></div>
                             </div>
-                            <h5 class="title">TBD</h5>
+                            <h5 class="title" style="font-weight:500;">TBD</h5>
                             <!-- <div class="career">Regeneron Pharmaceuticals,<br>USA</div> -->
                         </li>
-                        <li class="index_speaker5">
+                        <!-- <li class="index_speaker5">
                             <div class="profile_circle">
                                 <div class="profile_wrap"></div>
                             </div>
-                            <h5 class="title">TBD</h5>
-                            <!-- <div class="career">National Center for Geriatrics<br>and Gerontology, Japan</div> -->
-                        </li>
+                            <h5 class="title" style="font-weight:500">TBD</h5> -->
+                        <!-- <div class="career">National Center for Geriatrics<br>and Gerontology, Japan</div> -->
+                        <!-- </li>
                         <li class="index_speaker6">
                             <div class="profile_circle">
                                 <div class="profile_wrap"></div>
                             </div>
-                            <h5 class="title">TBD</h5>
-                            <!-- <div class="career">University of the Philippines,<br>Philippines</div> -->
+                            <h5 class="title" style="font-weight:500">TBD</h5> -->
+                        <!-- <div class="career">University of the Philippines,<br>Philippines</div> -->
                         </li>
                     </ul>
                 </div>

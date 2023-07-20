@@ -400,6 +400,8 @@ function createMessage($language, $mail_type, $fname, $to, $subject, $time, $tmp
 									Attention Potential Presenting Author: Upon successful submission of your abstract, you will immediately see the following confirmation notice on your screen, followed by the same message via e-mail. If you did not receive the following message, your abstract was not successfully submitted. Please try again, or contact (iscp@into-on.com) for assistance if you are having difficulty.
 										<br>
 										The deadline for abstract submissions is  October 27 (Fri) (submissions close at 11:59pm Korea Standard Time). It is your responsibility to address questions about submissions before  October 27 (Fri), so that if there is a problem, we can still help you make the submission on time. Be sure to print and/or save the confirmation of submission notices for reference in case of a problem or question.
+										<br>
+										Please note: You can modify the submitted abstract until the deadline.
 										</p>
 
 									<p style='font-size:15px; font-weight:bold; color:#000; margin-top:30px;'>Abstract Successfully Submitted</p>
