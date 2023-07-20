@@ -198,14 +198,10 @@ if ($during_yn !== "Y") {
                     </tr>
                     <tr>
                         <td>17:40-18:40</td>
-                        <td style="background-color: #FBD9E8;">Satellite Session 3</td>
-                        <td style="background-color: #FBD9E8;">Satellite Session 4</td>
-                    </tr>
-                    <tr>
-                        <td>18:40-19:20</td>
                         <td style="background-color: #B8D6F2;">Moderate Session 1</td>
                         <td style="background-color: #B8D6F2;">Moderate Session 2</td>
                     </tr>
+
                     <tr style="border: none;">
                         <td style="padding: 0;" colspan="3">
                             <img src="./img/programheader3.png" />
@@ -283,7 +279,8 @@ if ($during_yn !== "Y") {
                     </tr>
                     <tr>
                         <td style="background-color: #F0F0F0;">17:00-18:00</td>
-                        <td style="background-color: #F0F0F0;" colspan="2" style="font-weight: normal;">폐회식</td>
+                        <td style="background-color: #F0F0F0;" colspan="2" style="font-weight: normal;">closing ceremony
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -424,14 +421,10 @@ if ($during_yn !== "Y") {
                     </tr>
                     <tr>
                         <td>17:40-18:40</td>
-                        <td style="background-color: #FBD9E8;">Satellite Session 3</td>
-                        <td style="background-color: #FBD9E8;">Satellite Session 4</td>
-                    </tr>
-                    <tr>
-                        <td>18:40-19:20</td>
                         <td style="background-color: #B8D6F2;">Moderate Session 1</td>
                         <td style="background-color: #B8D6F2;">Moderate Session 2</td>
                     </tr>
+
                 </table>
             </div>
 
@@ -523,7 +516,8 @@ if ($during_yn !== "Y") {
                     </tr>
                     <tr>
                         <td style="background-color: #F0F0F0;">17:00-18:00</td>
-                        <td style="background-color: #F0F0F0;" colspan="2" style="font-weight: normal;">폐회식</td>
+                        <td style="background-color: #F0F0F0;" colspan="2" style="font-weight: normal;">closing ceremony
+                        </td>
                     </tr>
                 </table>
             </div>

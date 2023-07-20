@@ -831,6 +831,43 @@ else if ($_POST["flag"] == "signup_join") {
                                         is_deleted = 'Y'
                                     WHERE idx = {$member_idx};
                                 ";
+
+	$delete_member = sql_query($delete_member_query);
+
+	if ($delete_member) {
+		$res = [
+			code => 200,
+			msg => "delete success"
+		];
+		echo json_encode($res);
+		exit;
+	} else {
+		$res = [
+			code => 400,
+			msg => "error"
+		];
+		echo json_encode($res);
+		exit;
+	}
+} else if ($_POST["flag"] == "delete_registration") {
+	$member_idx = isset($_POST["idx"]) ? $_POST["idx"] : "";
+
+	if ($member_idx == "") {
+		$res = [
+			code => 400,
+			msg => "error"
+		];
+		echo json_encode($res);
+		exit;
+	}
+
+	$delete_member_query =  "
+                                    UPDATE request_registration
+                                    SET
+                                        is_deleted = 'Y'
+                                    WHERE register = {$member_idx};
+                                ";
+
 	$delete_member = sql_query($delete_member_query);
 
 	if ($delete_member) {
