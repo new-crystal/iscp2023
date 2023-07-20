@@ -1,3 +1,4 @@
+
 <?php
 include_once('./include/head.php');
 
@@ -193,5 +194,4 @@ if ($payment_method == 0) {
         });
     }
 </script>
-
 </html>
