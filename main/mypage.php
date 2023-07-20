@@ -171,6 +171,13 @@ echo "<script>
         margin: 10px 0 0;
     }
 }
+
+.mypage_warning {
+    font-size: 24px;
+    font-weight: 600;
+    color: red;
+    margin-bottom: 20px;
+}
 </style>
 <script>
 $(document).ready(function() {
@@ -336,6 +343,10 @@ $(document).ready(function() {
             <input type="hidden" name="check_type" value="1">
             <form name="modify_form">
                 <div class="pc_only">
+                    <p class="mypage_warning">*If you need to change your country or personal information, please
+                        contact
+                        the Operation
+                        Secretariat</p>
                     <table class="table detail_table">
                         <colgroup>
                             <col class="col_th" />
@@ -372,8 +383,8 @@ $(document).ready(function() {
                             <th><span class="red_txt">*</span><?= $locale("country") ?></th>
                             <td>
                                 <div class="max_normal">
-                                    <select id="nation_no" name="nation_no" class="required"
-                                        onchange="option_changes()">
+                                    <select id="nation_no" name="nation_no" class="required" onchange="option_changes()"
+                                        disabled>
                                         <?php
                                         foreach ($nation_list as $n) {
                                             if ($language == "ko") {
@@ -512,11 +523,11 @@ $(document).ready(function() {
                                 <!-- <div> -->
                             </td>
                         </tr>
-                        <tr style="display: none;">
+                        <tr>
                             <th><span class="red_txt">*</span><?= $locale("category_title") ?></th>
                             <td>
                                 <div class="max_normal">
-                                    <select name="category" id="category" class="select_others">
+                                    <select name="category" id="category" class="select_others" disabled>
                                         <?php
                                         $category_arr = array("Professor", "Specialist", "Fellow", "Resident", "Researcher", "Military Medical Officer", "Nurse", "Nutritionist", "Student", "Pharmacist", "Corporate member", "Others");
                                         $category_count = 0;
@@ -550,11 +561,11 @@ $(document).ready(function() {
                             </td>
                         </tr>
                         <!--2022-05-09 추가사항-->
-                        <tr style="display: none;">
+                        <tr>
                             <th><span class="red_txt">*</span>Title</th>
                             <td class="clearfix">
                                 <div class="max_normal responsive_float clearfix">
-                                    <select name="title" id="title" class="select_others">
+                                    <select name="title" id="title" class="select_others" disabled>
                                         <option value="" selected hidden>Choose</option>
                                         <?php
                                         $title_arr = array("Professor", "Dr.", "Mr.", "Ms.", "Others");
@@ -591,11 +602,11 @@ $(document).ready(function() {
                                 <!-- <span class="mini_alert"></span>
                             </td>
                         </tr> -->
-                        <tr style="display: none;">
+                        <tr>
                             <th><span class="red_txt">*</span>Degree</th>
                             <td class="clearfix">
                                 <div class="max_normal responsive_float clearfix">
-                                    <select name="degree" id="degree" class="select_others">
+                                    <select name="degree" id="degree" class="select_others" disabled>
                                         <option value="" selected hidden>Choose</option>
                                         <?php
                                         $degree_arr = array("M.D", "Ph.D.", "M.D., Ph.D.", "Others");

@@ -1,4 +1,3 @@
-
 <?php
 include_once('./include/head.php');
 
@@ -51,6 +50,10 @@ $payment_date = $data["payment_date_text"] ?? "-";
 
 if ($payment_method == 0) {
     $payment_method = "Card";
+} else if ($payment_method == 1) {
+    $payment_method = "Transfer";
+} else if ($payment_method == 2) {
+    $payment_method = "";
 }
 ?>
 
