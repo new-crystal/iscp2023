@@ -64,7 +64,7 @@
 		}
 
 		// test icomes와 비교하여 뒤의 조건 삭제
-		// if($rescode == "0000" && strtolower($resmsg) === "success.") {
+		//if($rescode == "0000" && strtolower($resmsg) === "success.") {
 		if ($rescode == "0000") {
 			$insert_payment_query =	"
 									INSERT payment

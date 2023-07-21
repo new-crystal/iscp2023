@@ -4,8 +4,8 @@
     아래 설정 된 값은 테스트용 secretKey입니다.
     테스트로만 진행하시고 발급 받으신 값으로 변경하셔야 됩니다.
  */
-$secretKey = "289F40E6640124B2628640168C3C5464"; // 테스트 secretkey
-//$secretKey = "304FD62FE40340F5593E40397840F1E4"; //가맹점 secretkey
+//$secretKey = "289F40E6640124B2628640168C3C5464"; // 테스트 secretkey
+$secretKey = "304FD62FE40340F5593E40397840F1E4"; //가맹점 secretkey
 
 foreach ($_POST as $Key => $value) {
 

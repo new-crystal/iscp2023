@@ -141,6 +141,7 @@ $html .= '<th style="background-color:#FFE699; border-style: solid; border-width
 $html .= '<th style="background-color:#FFE699; border-style: solid; border-width:thin;">전문의번호</th>';
 $html .= '<th style="background-color:#FFE699; border-style: solid; border-width:thin;">영양사번호</th>';
 $html .= '<th style="background-color:#FFE699; border-style: solid; border-width:thin;">Phone Number</th>';
+
 // $html .= '<th style="background-color:#DDEBF7; border-style: solid; border-width:thin;">Welcome Reception</th>';
 // $html .= '<th style="background-color:#DDEBF7; border-style: solid; border-width:thin;">D1LS</th>';
 $html .= '<th style="background-color:#DDEBF7; border-style: solid; border-width:thin;">D2BS</th>';

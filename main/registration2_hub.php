@@ -698,10 +698,6 @@ function on_pay() {
                 </div>
             </div>
         </div>
-        <?php
-            echo "123";
-            echo $siteDomain;
-            ?>
     </form>
 
     <!-- 23.06.07 HUBDNC_LSH 변경 후 PG사 파라미터 전송 form (PC)-->
@@ -746,7 +742,7 @@ function on_pay() {
 
     <!-- 엑심베이 결제 -->
 
-    <form class="form-horizontal" name="regForm" method="post" action="<?= $siteDomain ?>/plugin/eximbay/request_test.php">
+    <form class="form-horizontal" name="regForm" method="post" action="<?= $siteDomain ?>/plugin/eximbay/request.php">
 
         <!-- 결제에 필요 한 필수 파라미터 -->
         <input type="hidden" name="ver" value="230" /><!-- 연동 버전 -->
@@ -767,10 +763,10 @@ function on_pay() {
         <input type="hidden" name="resmsg" />
 
         <!-- 테스트용 -->
-        <input type="hidden" name="mid" value="1849705C64">
+        <!-- <input type="hidden" name="mid" value="1849705C64"> -->
         <!-- 실서버 -->
 
-        <!--<input type="hidden" name="mid" value="189A6E05E4">-->
+		<input type="hidden" name="mid" value="189A6E05E4">
 
         <input type="hidden" name="ref" value="<?= $order_code ?>">
         <input type="hidden" name="ostype" value="P">
@@ -784,7 +780,7 @@ function on_pay() {
         <!-- <input type="hidden" name="item_0_unitPrice" value="<?= $us_price ?>"> -->
         <!-- 테스트용 -->
 
-        <input type="hidden" name="item_0_unitPrice" value="1">
+        <input type="hidden" name="item_0_unitPrice" value="5">
 
         <input type="hidden" name="lang" value="<?= $language == "ko" ? "KR" : "EN" ?>">
         <input type="hidden" name="cur" value="USD">

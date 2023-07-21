@@ -1,3 +1,4 @@
+
 <?php
 include_once('./include/head.php');
 include_once('./include/header.php');
@@ -42,31 +43,68 @@ if ($for_offline) {
 }
 
 $select_member_list_query = "
-									SELECT
-										m.idx, 
-										m.email, 
-										n.nation_ko, 
-										m.first_name, m.last_name, 
-										m.phone, 
-										IF(m.affiliation IS NULL, '-', m.affiliation) AS affiliation, 
-										IF(req.idx IS NULL, 'N', 'Y') AS printable_nametag_yn,
-										DATE_FORMAT(m.register_date, '%y-%m-%d') AS regist_date
-									FROM member m
-									{$join_req_type} JOIN (
-										SELECT
-											rr.idx, rr.register
-										FROM request_registration AS rr
-										INNER JOIN payment AS pmt
-											ON pmt.idx = rr.payment_no
-										WHERE rr.`status` = 2
-									) AS req
-										ON req.register = m.idx
-									LEFT JOIN nation n
-									ON m.nation_no = n.idx
-									WHERE is_deleted = 'N'
-									{$where}
-									GROUP BY m.idx
-									ORDER BY m.register_date DESC
+SELECT									
+rr.idx,
+in_n.nation_en AS in_nation_en,
+rr.price,
+rr.welcome_reception_yn,
+rr.day1_luncheon_yn,
+rr.day2_breakfast_yn,
+rr.day2_luncheon_yn,
+rr.day3_breakfast_yn,
+rr.day3_luncheon_yn,
+
+rr.register_path,
+rr.register_path_others,
+rr.payment_methods,
+rr.promotion_code,
+rr.recommended_by,
+
+rr.invitation_yn,
+CONCAT(rr.invitation_first_name,' ',rr.invitation_last_name) AS invitation_name,
+rr.invitation_nation_no,
+rr.invitation_address,
+rr.invitation_passport,
+rr.invitation_date_of_birth,
+rr.invitation_date_of_issue,
+rr.invitation_date_of_expiry,
+rr.invitation_length_of_visit,
+
+rr.member_type, rr.member_status, rr.nation_no,
+m.member_idx, m.member_email, m.member_name, m.member_nation, m.member_name_kor,
+m.licence_number, m.specialty_number, m.nutritionist_number, m.phone, m.request_food,
+m.affiliation, m.department, m.affiliation_kor, 
+DATE(rr.register_date) AS register_date, rr.email AS registration_email, CONCAT(rr.first_name,' ',rr.last_name) AS registration_name,
+IFNULL(rr.status, '1') AS registration_status,
+DATE(p.payment_date) AS payment_date, p.total_price_kr, p.total_price_us,
+
+n.nation_ko AS registration_nation,
+(CASE
+	WHEN rr.member_status = '1'
+	THEN '회원'
+	WHEN rr.member_status = '0'
+	THEN '비회원'
+	ELSE '-'
+END) AS member_status
+FROM request_registration rr
+LEFT JOIN (
+SELECT
+	m.idx AS member_idx, m.email AS member_email, CONCAT(m.first_name,' ',m.last_name) AS member_name, n.nation_ko AS member_nation, m.name_kor AS member_name_kor, m.phone, m.licence_number, m.specialty_number, m.nutritionist_number, m.request_food, m.affiliation_kor, 
+	m.affiliation, m.department
+FROM member m
+JOIN nation n
+ON m.nation_no = n.idx
+) AS m
+ON rr.register = m.member_idx
+LEFT JOIN nation n
+ON rr.nation_no = n.idx
+LEFT JOIN payment p
+ON rr.payment_no = p.idx
+LEFT JOIN nation in_n
+ON rr.invitation_nation_no = in_n.idx
+WHERE rr.is_deleted = 'N'
+{$where}
+ORDER BY rr.register_date
 								";
 
 //    error_log(print_r($select_member_list_query, TRUE), 3, '/tmp/errors.log');
@@ -79,20 +117,46 @@ $html .= '<tr class="tr_center">';
 $html .= '<th>ID(Email)</th>';
 $html .= '<th>Country</th>';
 $html .= '<th>Name</th>';
-$html .= '<th>Phone Number</th>';
+$html .= '<th>Member</th>';
+$html .= '<th>department</th>';
 $html .= '<th>Affiliation</th>';
+$html .= '<th>Phone Number</th>';
+$html .= '<th>Category</th>';
+$html .= '<th>licence number</th>';
+$html .= '<th>specialty number</th>';
+$html .= '<th>nutritionist number</th>';
+$html .= '<th>request food</th>';
 $html .= '<th>등록일</th>';
 $html .= '</tr>';
 $html .= '</thead>';
 $html .= '<tbody>';
 foreach ($member_list as $ml) {
 	$html .= '<tr class="tr_center">';
-	$html .= '<td><a href="./member_detail.php?idx=' . $ml["idx"] . '">' . $ml["email"] . '</a></td>';
-	$html .= '<td>' . $ml["nation_ko"] . '</td>';
-	$html .= '<td>' . $ml["first_name"] . " " . $ml["last_name"] . '</td>';
+	$html .= '<td><a href="./member_detail.php?idx=' . $ml["idx"] . '">' . $ml["member_email"] . '</a></td>';
+	$html .= '<td>' . $ml["member_nation"] . '</td>';
+	$html .= '<td>' . $ml["member_name"] . '</td>';
+	$html .= '<td>' . $ml["member_status"] . '</td>';
+	$html .= '<td>' . $ml["department"] . '</td>';
 	$html .= '<td>' . $ml["affiliation"] . '</td>';
 	$html .= '<td>' . $ml["phone"] . '</td>';
-	$html .= '<td>' . $ml["regist_date"] . '</td>';
+	$html .= '<td>' . $ml["member_type"] . '</td>';
+	if ($ml["licence_number"] == "Not applicable") {
+		$html .= '<td></td>';
+	} else {
+		$html .= '<td>' . $ml["licence_number"] . '</td>';
+	}
+	if ($ml["specialty_number"] == "Not applicable") {
+		$html .= '<td></td>';
+	} else {
+		$html .= '<td>' . $ml["specialty_number"] . '</td>';
+	}
+	if ($ml["nutritionist_number"] == "Not applicable") {
+		$html .= '<td></td>';
+	} else {
+		$html .= '<td>' . $ml["nutritionist_number"] . '</td>';
+	}
+	$html .= '<td>' . $ml["request_food"] . '</td>';
+	$html .= '<td>' . $ml["register_date"] . '</td>';
 	$html .= '</tr>';
 }
 $html .= '</tbody>';
@@ -117,6 +181,7 @@ $count = count($member_list);
 	<div class="container">
 		<div class="title clearfix">
 			<?php
+			//  print_r($member_list);
 			if ($for_offline) {
 			?>
 				<h1 class="font_title">일반 회원 (오프라인 회원만 보기)</h1>
@@ -191,9 +256,9 @@ $count = count($member_list);
 						foreach ($member_list as $list) {
 					?>
 							<tr class="tr_center">
-								<td><a href="./member_detail.php?idx=<?= $list["idx"] ?>"><?= $list["email"] ?></a></td>
-								<td><?= $list["nation_ko"] ?></td>
-								<td><?= $list["first_name"] . " " . $list["last_name"] ?></td>
+								<td><a href="./member_detail.php?idx=<?= $list["idx"] ?>"><?= $list["member_email"] ?></a></td>
+								<td><?= $list["member_nation"] ?></td>
+								<td><?= $list["member_name"] . " " . $list["last_name"] ?></td>
 								<td><?= $list["phone"] ?></td>
 								<td><?= $list["affiliation"] ?></td>
 								<!--<td>
@@ -207,7 +272,7 @@ $count = count($member_list);
 								}
 								?>
 							</td>-->
-								<td><?= $list["regist_date"] ?></td>
+								<td><?= $list["register_date"] ?></td>
 							</tr>
 					<?php
 						}
@@ -222,4 +287,5 @@ $count = count($member_list);
 <script>
 	var html = '<?= $html ?>';
 </script>
+
 <?php include_once('./include/footer.php'); ?>
