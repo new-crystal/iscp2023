@@ -22,9 +22,6 @@ if ($_POST["flag"] == "payment_eximbay") {
 	$resdt = $_POST["resdt"];
 	$resmsg = $_POST["resmsg"];
 
-	echo $rescode.'<br/>';
-	echo $resmsg; exit;
-
 	switch ($payment_type) {
 		case "P101":
 			$payment_type_name = "VISA";
@@ -65,6 +62,7 @@ if ($_POST["flag"] == "payment_eximbay") {
 	if (strpos($payment_no, "N")) {
 		$registration_no = intval(explode("N", $payment_no)[1]);
 	}
+
 	// test icomes와 비교하여 뒤의 조건 삭제
 	// if($rescode == "0000" && strtolower($resmsg) === "success.") {
 	if ($rescode == "0000") {
@@ -420,5 +418,6 @@ else if ($_POST["flag"] == "kcp_payment_kor") {
 		exit;
 	}
 }
+
 
 ?>
