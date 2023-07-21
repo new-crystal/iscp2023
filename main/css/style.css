@@ -1549,7 +1549,7 @@ span.eligibility_open {
   font-family: "Open Sans", sans-serif;
 }
 .main .footer_wrap {
-  display: none;
+  /* display: none; */
 }
 .main_section .container {
   max-width: 1080px;

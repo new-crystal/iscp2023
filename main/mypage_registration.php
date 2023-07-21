@@ -1,4 +1,3 @@
-
 <?php include_once('./include/head.php'); ?>
 <?php include_once('./include/header.php'); ?>
 <?php
@@ -145,7 +144,7 @@ if (!empty($_SESSION["USER"])) {
                             $before_price_text = number_format($before_price);
                             // $promotion_code = $list["promotion_code"] ?? -1;
 
-                            $unit_code = ($before_price > 1000) ? "￦" : "$";
+                            $unit_code = ($before_price > 1000) ? "￦" : "USD";
                             // if ($promotion_code == 0 && $promotion_code != "") {
                             //     $before_price = 0;
                             // } else if ($promotion_code == 1 || $promotion_code == 2 || $promotion_code == 4) {
