@@ -1,3 +1,4 @@
+
 <?php
 include_once('./include/head.php');
 include_once('./include/header.php');
@@ -286,4 +287,5 @@ $count = count($member_list);
 <script>
 	var html = '<?= $html ?>';
 </script>
+
 <?php include_once('./include/footer.php'); ?>

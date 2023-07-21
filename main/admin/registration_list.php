@@ -117,7 +117,7 @@ $html .= $date_time . ' ' . $count . '명';
 $html .= '</th></tr>';
 $html .= '<tr class="tr_center">';
 $html .= '<th style="background-color:#D9D9D9; border-style: solid; border-width:thin;" colspan="2">Registration</th>';
-$html .= '<th style="background-color:#FFF2CC; border-style: solid; border-width:thin;" colspan="17">Participants Information</th>';
+$html .= '<th style="background-color:#FFF2CC; border-style: solid; border-width:thin;" colspan="15">Participants Information</th>';
 $html .= '<th style="background-color:#BDD7EE; border-style: solid; border-width:thin;" colspan="4">Satellite Session</th>';
 $html .= '<th style="background-color:#D9D9D9; border-style: solid; border-width:thin;" colspan="1">Others</th>';
 $html .= '<th style="background-color:#FFCCCC; border-style: solid; border-width:thin;" colspan="6">Payment Information</th>';
@@ -141,8 +141,7 @@ $html .= '<th style="background-color:#FFE699; border-style: solid; border-width
 $html .= '<th style="background-color:#FFE699; border-style: solid; border-width:thin;">전문의번호</th>';
 $html .= '<th style="background-color:#FFE699; border-style: solid; border-width:thin;">영양사번호</th>';
 $html .= '<th style="background-color:#FFE699; border-style: solid; border-width:thin;">Phone Number</th>';
-$html .= '<th style="background-color:#FFE699; border-style: solid; border-width:thin;">Title</th>';
-$html .= '<th style="background-color:#FFE699; border-style: solid; border-width:thin;">Degree</th>';
+
 // $html .= '<th style="background-color:#DDEBF7; border-style: solid; border-width:thin;">Welcome Reception</th>';
 // $html .= '<th style="background-color:#DDEBF7; border-style: solid; border-width:thin;">D1LS</th>';
 $html .= '<th style="background-color:#DDEBF7; border-style: solid; border-width:thin;">D2BS</th>';
@@ -331,8 +330,6 @@ foreach ($registration_list as $rl) {
 	$html .= '<td style="border-style: solid; border-width:thin;">' . ($rl["specialty_number"] != "Not applicable" ? $rl["specialty_number"] : "") . '</td>';
 	$html .= '<td style="border-style: solid; border-width:thin;">' . ($rl["nutritionist_number"] != "Not applicable" ? $rl["nutritionist_number"] : "") . '</td>';
 	$html .= '<td style="border-style: solid; border-width:thin;">' . $rl["phone"] . '</td>';
-	$html .= '<td style="border-style: solid; border-width:thin;">' . $rl["title"] . '</td>';
-	$html .= '<td style="border-style: solid; border-width:thin;">' . $rl["degree"] . '</td>';
 	// $html .= '<td style="border-style: solid; border-width:thin;">' . $rl["welcome_reception_yn"] . '</td>';
 	// $html .= '<td style="border-style: solid; border-width:thin;">' . $rl["day1_luncheon_yn"] . '</td>';
 	$html .= '<td style="border-style: solid; border-width:thin;">' . $rl["day2_breakfast_yn"] . '</td>';
