@@ -416,11 +416,6 @@ include_once(D9_PATH . "/plugin/KG_INICIS/inicis_loader.php");
             <div>
                 <h2>Registration</h2>
                 <div class="color-bar"></div>
-                <?php
-                print_r("1234");
-                print_r($_arr_phone)
-                ?>
-
             </div>
         </div>
     </div>
@@ -768,7 +763,9 @@ include_once(D9_PATH . "/plugin/KG_INICIS/inicis_loader.php");
         <!-- <input type="hidden" name="paymethod" value="P000"> -->
     </form>
 </section>
-<script src="./js/script/client/registration.js"></script>
+<script src="./js/script/client/registration.js">
+
+</script>
 <div class="popup cancel_pop">
     <div class="pop_bg"></div>
     <div class="pop_contents">

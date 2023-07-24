@@ -1,4 +1,3 @@
-
 <?php
 header('Content-Type: text/html; charset=UTF-8');
 include_once('./include/head.php');
@@ -215,6 +214,7 @@ if ($during_yn !== "Y") {
             <div class="sub_inner">
                 <div>
                     <h2>Registration</h2>
+
                     <!-- <ul class="clearfix">
                     <li>Home</li>
                     <li>Registration</li>
@@ -237,6 +237,9 @@ if ($during_yn !== "Y") {
                                 <th><?= $locale("id") ?></th>
                                 <td id="email"><?= isset($user_info["email"]) ? $user_info["email"] : "" ?></td>
                             </tr>
+                            <tr style="display: none;">
+                                <input name="phone" type="hidden" id="phone" value="<?php echo $phone; ?>" />
+                            </tr>
                             <?php
                             if ($langage == "en") {
                             ?>
@@ -248,6 +251,7 @@ if ($during_yn !== "Y") {
                                     </td>
                                     <input name="first_name" type="hidden" value="<?= isset($user_info["first_name"]) ? $user_info["first_name"] : "" ?>">
                                     <input name="last_name" type="hidden" value="<?= isset($user_info["last_name"]) ? $user_info["last_name"] : "" ?>">
+
                                 </tr>
                             <?php
                             } else {

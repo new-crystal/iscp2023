@@ -144,6 +144,7 @@ $nation                = isset($registration_data["nation_en"]) ? $registration_
 $first_name            = isset($registration_data["first_name"]) ? $registration_data["first_name"] : "-";
 $last_name            = isset($registration_data["last_name"]) ? $registration_data["last_name"] : "-";
 $name_kor            = isset($registration_data["name_kor"]) ? $registration_data["name_kor"] : "-";
+// $phone                = isset($registration_data["phone"]) ? $registration_data["phone"] : "-";
 $registration_type    = isset($registration_data["registration_type"]) ? $registration_data["registration_type"] : "-";
 $registration_type    = $registration_type == 0 ? $locale("registration_type_select1") : ($registration_type == 1 ? $locale("registration_type_select2") : $locale("registration_type_select3"));
 $affiliation        = isset($registration_data["affiliation"]) ? $registration_data["affiliation"] : "-";
@@ -749,9 +750,9 @@ function on_pay() {
         <input type="hidden" name="resmsg" />
 
         <!-- 테스트용 -->
-        <!--<input type="hidden" name="mid" value="1849705C64">-->
+        <input type="hidden" name="mid" value="1849705C64">
         <!-- 실서버 -->
-        <input type="hidden" name="mid" value="189A6E05E4">
+        <!-- <input type="hidden" name="mid" value="189A6E05E4"> -->
         <input type="hidden" name="ref" value="<?= $order_code ?>">
         <input type="hidden" name="ostype" value="P">
         <input type="hidden" name="displaytype" value="P">
@@ -775,7 +776,9 @@ function on_pay() {
         <!-- <input type="hidden" name="paymethod" value="P000"> -->
     </form>
 </section>
-<script src="./js/script/client/registration.js"></script>
+<script src="./js/script/client/registration.js">
+
+</script>
 <div class="popup cancel_pop">
     <div class="pop_bg"></div>
     <div class="pop_contents">
@@ -808,7 +811,7 @@ function on_pay() {
 <script src="./js/script/client/registration.js"></script>
 <script>
 function prev(idx) {
-    window.location.href = "registration.php?idx=" + idx;
+    window.location.replace("registration.php?idx=" + idx);
 }
 
 /* 23.06.07 HUBDNC_LSH 기존 작성된 부분 주석 처리 */
@@ -818,7 +821,7 @@ $('.cancel_btn').on('click', function() {
 });
 
 function move() {
-    window.location.href = '/main/registration3.php';
+    location.replace('/main/registration3.php')
 }
 
 function error() {
