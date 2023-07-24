@@ -129,7 +129,7 @@ if ($_POST["flag"] == "registration") {
 												nation_no = {$nation_no},
 												last_name = '{$last_name}',
 												first_name = '{$first_name}',
-												#phone = '{$phone}',
+												phone = '{$phone}',
 												#registration_type = '{$registration_type}',
 												register = '{$user_idx}',
 												#payment_methods		= '{$payment_methods}',

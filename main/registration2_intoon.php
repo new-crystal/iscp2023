@@ -1,4 +1,3 @@
-
 <?php
 header('Content-Type: text/html; charset=UTF-8');
 include_once('./include/head.php');
@@ -209,7 +208,9 @@ if ($nation_no == 25) {
 //$us_price = "1";
 //$ko_price = "1000";
 $us_price = $registration_data["price"];
-$phone =  $registration_data["phone"] ?  $registration_data["phone"] : "01012345678";
+$_arr_phone = explode("-", $registration_data["phone"]);
+$nation_tel = $_arr_phone[0];
+$phone = implode("-", array_splice($_arr_phone, 1));
 $sql_during =    "SELECT
 						IF(NOW() >= '2024-07-28 09:00:00', 'Y', 'N') AS yn
 					FROM info_event";
@@ -315,58 +316,58 @@ include_once(D9_PATH . "/plugin/KG_INICIS/inicis_loader.php");
 <!--결제 관련 css ldh 추가 2022-04-20-->
 <!-- <link href="./plugin/php_kcp_api_pay_sample/static/css/style.css" rel="stylesheet" type="text/css" id="cssLink"/> -->
 <style>
-/*2022-05-12 ldh 추가*/
-/*.double_btn {*/
-/*	margin-right:10px;*/
-/*}*/
-/*.mb_double_btn {*/
-/*	margin-bottom:10px;*/
-/*}*/
-.promote_code2 {
-    margin-top: 10px;
-}
+    /*2022-05-12 ldh 추가*/
+    /*.double_btn {*/
+    /*	margin-right:10px;*/
+    /*}*/
+    /*.mb_double_btn {*/
+    /*	margin-bottom:10px;*/
+    /*}*/
+    .promote_code2 {
+        margin-top: 10px;
+    }
 
-.table_wrap {
-    overflow-y: hidden;
-}
+    .table_wrap {
+        overflow-y: hidden;
+    }
 
-.detail_table td:after {
-    width: calc(102% - 24px);
-}
+    .detail_table td:after {
+        width: calc(102% - 24px);
+    }
 </style>
 <script type="text/javascript">
-/****************************************************************/
-/* m_Completepayment  설명                                      */
-/****************************************************************/
-/* 인증완료시 재귀 함수                                         */
-/* 해당 함수명은 절대 변경하면 안됩니다.                        */
-/* 해당 함수의 위치는 payplus.js 보다먼저 선언되어여 합니다.    */
-/* Web 방식의 경우 리턴 값이 form 으로 넘어옴                   */
-/****************************************************************/
-function m_Completepayment(FormOrJson, closeEvent) {
-    var frm = document.order_info;
+    /****************************************************************/
+    /* m_Completepayment  설명                                      */
+    /****************************************************************/
+    /* 인증완료시 재귀 함수                                         */
+    /* 해당 함수명은 절대 변경하면 안됩니다.                        */
+    /* 해당 함수의 위치는 payplus.js 보다먼저 선언되어여 합니다.    */
+    /* Web 방식의 경우 리턴 값이 form 으로 넘어옴                   */
+    /****************************************************************/
+    function m_Completepayment(FormOrJson, closeEvent) {
+        var frm = document.order_info;
 
-    /********************************************************************/
-    /* FormOrJson은 가맹점 임의 활용 금지                               */
-    /* frm 값에 FormOrJson 값이 설정 됨 frm 값으로 활용 하셔야 됩니다.  */
-    /* FormOrJson 값을 활용 하시려면 기술지원팀으로 문의바랍니다.       */
-    /********************************************************************/
-    GetField(frm, FormOrJson);
+        /********************************************************************/
+        /* FormOrJson은 가맹점 임의 활용 금지                               */
+        /* frm 값에 FormOrJson 값이 설정 됨 frm 값으로 활용 하셔야 됩니다.  */
+        /* FormOrJson 값을 활용 하시려면 기술지원팀으로 문의바랍니다.       */
+        /********************************************************************/
+        GetField(frm, FormOrJson);
 
 
-    if (frm.res_cd.value == "0000") {
-        //alert("결제 승인 요청 전,\n\n반드시 결제창에서 고객님이 결제 인증 완료 후\n\n리턴 받은 ordr_chk 와 업체 측 주문정보를\n\n다시 한번 검증 후 결제 승인 요청하시기 바랍니다."); //업체 연동 시 필수 확인 사항.
-        /*
-        					 가맹점 리턴값 처리 영역
-        */
+        if (frm.res_cd.value == "0000") {
+            //alert("결제 승인 요청 전,\n\n반드시 결제창에서 고객님이 결제 인증 완료 후\n\n리턴 받은 ordr_chk 와 업체 측 주문정보를\n\n다시 한번 검증 후 결제 승인 요청하시기 바랍니다."); //업체 연동 시 필수 확인 사항.
+            /*
+            					 가맹점 리턴값 처리 영역
+            */
 
-        frm.submit();
-    } else {
-        alert("[" + frm.res_cd.value + "] " + frm.res_msg.value);
+            frm.submit();
+        } else {
+            alert("[" + frm.res_cd.value + "] " + frm.res_msg.value);
 
-        closeEvent();
+            closeEvent();
+        }
     }
-}
 </script>
 <!-- 23.06.07 HUBDNC_LSH 변경 PG사 정보 -->
 <!--테스트 JS-->
@@ -375,29 +376,29 @@ function m_Completepayment(FormOrJson, closeEvent) {
 <script language="javascript" type="text/javascript" src="https://stdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8">
 </script>
 <script type="text/javascript">
-// 23.06.07 HUBDNC_LSH 변경 PG사 결제버튼 스크립트 (PC)
-function paybtn() {
-    INIStdPay.pay('SendPayForm_id');
-}
-
-// 23.06.07 HUBDNC_LSH 변경 PG사 결제버튼 스크립트 (MOBILE)
-function on_pay() {
-
-    let payment_methods = parseInt($("input[name=payment_methods]:checked").val());
-
-    // payment methods 선택에 따라 모바일 P_INI_PAYMENT(지불방식) 변경
-    if (payment_methods == 0) {
-        $('input[name="P_INI_PAYMENT"]').val("CARD");
-    } else if (payment_methods == 1) {
-        $('input[name="P_INI_PAYMENT"]').val("BANK");
+    // 23.06.07 HUBDNC_LSH 변경 PG사 결제버튼 스크립트 (PC)
+    function paybtn() {
+        INIStdPay.pay('SendPayForm_id');
     }
 
-    myform = document.mobileweb;
-    myform.action = "https://mobile.inicis.com/smart/payment/";
-    myform.target = "_self";
-    myform.submit();
+    // 23.06.07 HUBDNC_LSH 변경 PG사 결제버튼 스크립트 (MOBILE)
+    function on_pay() {
 
-}
+        let payment_methods = parseInt($("input[name=payment_methods]:checked").val());
+
+        // payment methods 선택에 따라 모바일 P_INI_PAYMENT(지불방식) 변경
+        if (payment_methods == 0) {
+            $('input[name="P_INI_PAYMENT"]').val("CARD");
+        } else if (payment_methods == 1) {
+            $('input[name="P_INI_PAYMENT"]').val("BANK");
+        }
+
+        myform = document.mobileweb;
+        myform.action = "https://mobile.inicis.com/smart/payment/";
+        myform.target = "_self";
+        myform.submit();
+
+    }
 </script>
 <!--
 		결제창 호출 JS
@@ -415,6 +416,11 @@ function on_pay() {
             <div>
                 <h2>Registration</h2>
                 <div class="color-bar"></div>
+                <?php
+                print_r("1234");
+                print_r($_arr_phone)
+                ?>
+
             </div>
         </div>
     </div>
@@ -444,12 +450,12 @@ function on_pay() {
                                 <?php
                                 if ($nation_no == 25) {
                                 ?>
-                                <!--여기 혹시 모르니 주의-->
-                                <input type="hidden" name="buyr_name" value="<?= $name_kor; ?>" />
+                                    <!--여기 혹시 모르니 주의-->
+                                    <input type="hidden" name="buyr_name" value="<?= $name_kor; ?>" />
                                 <?php
                                 } else {
                                 ?>
-                                <input type="hidden" name="buyr_name" value="<?= $first_name ?> <?= $last_name ?>" />
+                                    <input type="hidden" name="buyr_name" value="<?= $first_name ?> <?= $last_name ?>" />
                                 <?php
                                 }
                                 ?>
@@ -458,10 +464,10 @@ function on_pay() {
                             <?php
                             if ($nation_no == 25) {
                             ?>
-                            <tr>
-                                <th>Name(Kor)</th>
-                                <td><?= $name_kor; ?></td>
-                            </tr>
+                                <tr>
+                                    <th>Name(Kor)</th>
+                                    <td><?= $name_kor; ?></td>
+                                </tr>
                             <?php
                             }
                             ?>
@@ -509,13 +515,13 @@ function on_pay() {
                                     <?php
                                     if ($nation_no == 25) {
                                     ?>
-                                    <p class="bold">ISCP 2023 개최 정보를 어떻게 알게 되셨나요?</p>
-                                    </br>
+                                        <p class="bold">ISCP 2023 개최 정보를 어떻게 알게 되셨나요?</p>
+                                        </br>
                                     <?php
                                     } else {
                                     ?>
-                                    <p class="bold">How did you hear about the ISCP 2023?</p>
-                                    </br>
+                                        <p class="bold">How did you hear about the ISCP 2023?</p>
+                                        </br>
 
                                     <?php
                                     }
@@ -547,29 +553,23 @@ function on_pay() {
                             <?php
                             if ($promotion_code != 0) {
                             ?>
-                            <tr>
-                                <th>Payment methods</th>
-                                <td>
-                                    <div class="radio_wrap">
-                                        <ul class="flex">
-                                            <li>
-                                                <input <?= $payment_methods_select == 0 ? "checked" : ""; ?>
-                                                    type="radio" class="radio required" id="pay_type1"
-                                                    name="payment_methods" value="0">
-                                                <label
-                                                    for="pay_type1"><?= ($nation_no != 25) ? "Credit Card" : "카드 결제"; ?></label>
-                                            </li>
-                                            <li>
-                                                <input <?= $payment_methods_select == 1 ? "checked" : ""; ?>
-                                                    type="radio" class="radio required" id="pay_type2"
-                                                    name="payment_methods" value="1">
-                                                <label
-                                                    for="pay_type2"><?= ($nation_no != 25) ? "Bank Transfer" : "계좌 이체"; ?></label>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <th>Payment methods</th>
+                                    <td>
+                                        <div class="radio_wrap">
+                                            <ul class="flex">
+                                                <li>
+                                                    <input <?= $payment_methods_select == 0 ? "checked" : ""; ?> type="radio" class="radio required" id="pay_type1" name="payment_methods" value="0">
+                                                    <label for="pay_type1"><?= ($nation_no != 25) ? "Credit Card" : "카드 결제"; ?></label>
+                                                </li>
+                                                <li>
+                                                    <input <?= $payment_methods_select == 1 ? "checked" : ""; ?> type="radio" class="radio required" id="pay_type2" name="payment_methods" value="1">
+                                                    <label for="pay_type2"><?= ($nation_no != 25) ? "Bank Transfer" : "계좌 이체"; ?></label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
                             <?php
                             }
                             ?>
@@ -597,42 +597,39 @@ function on_pay() {
 
                 <!--  23.06.0 HUBDNC_LSH PC 결제버튼 기능   -->
                 <div class="pager_btn_wrap pc_only centerT pager_btn_wrap half">
-                    <button type="button" class="btn green_btn pc-wd-3"
-                        onclick="prev(<?= $registration_idx; ?>)">Prev</button>
+                    <button type="button" class="btn green_btn pc-wd-3" onclick="prev(<?= $registration_idx; ?>)">Prev</button>
 
                     <?php
                     if ($payment_methods_select == 0) {
                         if ($nation_no == 25) {
                             //100% 할인
                     ?>
-                    <button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="paybtn()">
-                        Payment
-                    </button>
-                    <?php
+                            <button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="paybtn()">
+                                Payment
+                            </button>
+                        <?php
                         } else {
                         ?>
-                    <!-- 기존 : jsf__pay(document.order_info) / 테스트 변경 : paybtn() )  -->
-                    <button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="payment()">
-                        Payment
-                    </button>
-                    <?php
+                            <!-- 기존 : jsf__pay(document.order_info) / 테스트 변경 : paybtn() )  -->
+                            <button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="payment()">
+                                Payment
+                            </button>
+                        <?php
                         }
                     } else {
                         if ($nation_no == 25) {
                         ?>
-                    <!-- 기존 : code_100() / 테스트 변경 : paybtn() )  -->
-                    <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3"
-                        onclick="transfer(<?= $nation_no; ?>)">
-                        Payment
-                    </button>
-                    <?php
+                            <!-- 기존 : code_100() / 테스트 변경 : paybtn() )  -->
+                            <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="transfer(<?= $nation_no; ?>)">
+                                Payment
+                            </button>
+                        <?php
                         } else {
                         ?>
-                    <!-- 기존 : transfer() / 테스트 변경 : paybtn() )  -->
-                    <button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3"
-                        onclick="transfer(<?= $nation_no; ?>)">
-                        Payment
-                    </button>
+                            <!-- 기존 : transfer() / 테스트 변경 : paybtn() )  -->
+                            <button id="pc_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="transfer(<?= $nation_no; ?>)">
+                                Payment
+                            </button>
                     <?php
                         }
                     }
@@ -640,41 +637,38 @@ function on_pay() {
                 </div>
                 <!--  23.06.0 HUBDNC_LSH 모바일 결제버튼 기능          -->
                 <div class=" pager_btn_wrap mb_only centerT pager_btn_wrap half">
-                    <button type="button" class="btn green_btn pc-wd-3"
-                        onclick="prev(<?= $registration_idx; ?>)">Prev</button>
+                    <button type="button" class="btn green_btn pc-wd-3" onclick="prev(<?= $registration_idx; ?>)">Prev</button>
                     <?php
                     if ($payment_methods_select == 0) {
                         if ($nation_no == 25) {
                     ?>
-                    <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="on_pay()">
-                        Payment
-                    </button>
-                    <?php
+                            <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="on_pay()">
+                                Payment
+                            </button>
+                        <?php
                         } else {
                         ?>
-                    <!-- 기존 : mb_click() / 테스트 변경 : paybtn() )  -->
-                    <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="payment()">
-                        Payment
-                    </button>
-                    <?php
+                            <!-- 기존 : mb_click() / 테스트 변경 : paybtn() )  -->
+                            <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="payment()">
+                                Payment
+                            </button>
+                        <?php
 
                         }
                     } else {
                         if ($nation_no == 25) {
                         ?>
-                    <!-- 기존 : code_100() / 테스트 변경 : paybtn() )  -->
-                    <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3"
-                        onclick="transfer(<?= $nation_no; ?>)">
-                        Payment
-                    </button>
-                    <?php
+                            <!-- 기존 : code_100() / 테스트 변경 : paybtn() )  -->
+                            <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="transfer(<?= $nation_no; ?>)">
+                                Payment
+                            </button>
+                        <?php
                         } else {
                         ?>
-                    <!-- 기존 : transfer() / 테스트 변경 : paybtn() )  -->
-                    <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3"
-                        onclick="transfer(<?= $nation_no; ?>)">
-                        Payment
-                    </button>
+                            <!-- 기존 : transfer() / 테스트 변경 : paybtn() )  -->
+                            <button id="mb_payment_btn" type="button" class="btn green_btn pc-wd-3" onclick="transfer(<?= $nation_no; ?>)">
+                                Payment
+                            </button>
                     <?php
                         }
                     }
@@ -730,8 +724,7 @@ function on_pay() {
 
 
     <!-- 엑심베이 결제 -->
-    <form class="form-horizontal" name="regForm" method="post"
-        action="https://iscp2023.org/main/plugin/eximbay/request_test.php">
+    <form class="form-horizontal" name="regForm" method="post" action="https://iscp2023.org/main/plugin/eximbay/request_test.php">
         <!-- 결제에 필요 한 필수 파라미터 -->
         <input type="hidden" name="ver" value="230" /><!-- 연동 버전 -->
         <input type="hidden" name="txntype" value="PAYMENT" /><!-- 거래 타입 -->
@@ -807,77 +800,77 @@ function on_pay() {
 </section>
 <script src="./js/script/client/registration.js"></script>
 <script>
-function prev(idx) {
-    window.location.replace("registration.php?idx=" + idx);
-}
-
-/* 23.06.07 HUBDNC_LSH 기존 작성된 부분 주석 처리 */
-
-$('.cancel_btn').on('click', function() {
-    $('.cancel_pop').show();
-});
-
-function move() {
-    location.replace('/main/registration3.php')
-}
-
-function error() {
-    setTimeout(function() {
-        var error_msg = $("input[name=resmsg]").val();
-        alert(locale(language.value)("payment_fail_msg") + " " + locale(language.value)("retry_msg") + "\n" +
-            error_msg);
-    }, 50)
-}
-
-function mb_click() {
-
-    //ajax_save();
-
-    document.getElementById("mb_submit").click();
-    //kcp_AJAX();
-}
-
-
-/* 23.06.07 HUBDNC_LSH 기존 작성된 부분 주석 처리 */
-$(document).on("change", "input[name=payment_methods]", function() {
-    var promotion_code = "<?php //= $promotion_code; 
-                                ?>//";
-    if ($(this).val() == 0) {
-        $("#pc_payment_btn").removeAttr("onclick");
-        $("#mb_payment_btn").removeAttr("onclick");
-
-        if (promotion_code == 0) {
-            $("#pc_payment_btn").attr("onclick", "code_100()");
-            $("#mb_payment_btn").attr("onclick", "code_100()");
-        } else {
-            // $("#pc_payment_btn").attr("onclick", "jsf__pay(document.order_info);");
-            $("#mb_payment_btn").attr("onclick", "mb_click()");
-        }
-    } else {
-        $("#pc_payment_btn").removeAttr("onclick");
-        $("#mb_payment_btn").removeAttr("onclick");
-
-        if (promotion_code == 0) {
-            $("#pc_payment_btn").attr("onclick", "code_100()");
-            $("#mb_payment_btn").attr("onclick", "code_100()");
-        } else {
-            $("#pc_payment_btn").attr("onclick", "transfer();");
-            $("#mb_payment_btn").attr("onclick", "transfer();");
-        }
+    function prev(idx) {
+        window.location.replace("registration.php?idx=" + idx);
     }
-});
 
-function transfer(nation_no) {
+    /* 23.06.07 HUBDNC_LSH 기존 작성된 부분 주석 처리 */
 
-    // var registration_idx = "<?php $registration_idx; ?>";
-    var registration_idx = window.location.search.split("=")[1];
-    var payment_methods = $("input[name=payment_methods]:checked").val();
-    // console.log(nation_no)
-    // console.log(registration_idx)
-    // ajax_save();
-    window.location.replace(PATH + "registration_account.php?idx=" + registration_idx + "&nation_no=" + nation_no);
-    // window.location.replace(PATH + "registration_account.php");
-}
+    $('.cancel_btn').on('click', function() {
+        $('.cancel_pop').show();
+    });
+
+    function move() {
+        location.replace('/main/registration3.php')
+    }
+
+    function error() {
+        setTimeout(function() {
+            var error_msg = $("input[name=resmsg]").val();
+            alert(locale(language.value)("payment_fail_msg") + " " + locale(language.value)("retry_msg") + "\n" +
+                error_msg);
+        }, 50)
+    }
+
+    function mb_click() {
+
+        //ajax_save();
+
+        document.getElementById("mb_submit").click();
+        //kcp_AJAX();
+    }
+
+
+    /* 23.06.07 HUBDNC_LSH 기존 작성된 부분 주석 처리 */
+    $(document).on("change", "input[name=payment_methods]", function() {
+        var promotion_code = "<?php //= $promotion_code; 
+                                ?>//";
+        if ($(this).val() == 0) {
+            $("#pc_payment_btn").removeAttr("onclick");
+            $("#mb_payment_btn").removeAttr("onclick");
+
+            if (promotion_code == 0) {
+                $("#pc_payment_btn").attr("onclick", "code_100()");
+                $("#mb_payment_btn").attr("onclick", "code_100()");
+            } else {
+                // $("#pc_payment_btn").attr("onclick", "jsf__pay(document.order_info);");
+                $("#mb_payment_btn").attr("onclick", "mb_click()");
+            }
+        } else {
+            $("#pc_payment_btn").removeAttr("onclick");
+            $("#mb_payment_btn").removeAttr("onclick");
+
+            if (promotion_code == 0) {
+                $("#pc_payment_btn").attr("onclick", "code_100()");
+                $("#mb_payment_btn").attr("onclick", "code_100()");
+            } else {
+                $("#pc_payment_btn").attr("onclick", "transfer();");
+                $("#mb_payment_btn").attr("onclick", "transfer();");
+            }
+        }
+    });
+
+    function transfer(nation_no) {
+
+        // var registration_idx = "<?php $registration_idx; ?>";
+        var registration_idx = window.location.search.split("=")[1];
+        var payment_methods = $("input[name=payment_methods]:checked").val();
+        // console.log(nation_no)
+        // console.log(registration_idx)
+        // ajax_save();
+        window.location.replace(PATH + "registration_account.php?idx=" + registration_idx + "&nation_no=" + nation_no);
+        // window.location.replace(PATH + "registration_account.php");
+    }
 </script>
 
 <?php include_once('./include/footer.php'); ?>
