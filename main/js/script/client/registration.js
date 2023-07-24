@@ -21,7 +21,7 @@ $(document).ready(function(){
 		var name_kor = $("#name_kor").text();
 		var nation = $("#nation").text();
 		var nation_no = $("#nation_no").val();
-
+		var phone = $("#phone").text();
 		//db에서는 category가 member_type
 		var category = $("#category").text();
 
@@ -56,6 +56,7 @@ $(document).ready(function(){
 	
 		data.append("flag", "registration");
 		data.append("email", email);
+		data.append("phone", phone);
 		data.append("name_en", name_en);
 		data.append("name_kor", name_kor);
 		data.append("last_name", last_name);

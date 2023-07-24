@@ -23,7 +23,7 @@ if ($_POST["flag"] == "registration") {
 	$first_name = isset($_POST["first_name"]) ? $_POST["first_name"] : "";
 	$name_kor = isset($_POST["name_kor"]) ? $_POST["name_kor"] : "";
 	//$nation_tel = isset($_POST["nation_tel"]) ? $_POST["nation_tel"] : "";
-	//$phone = isset($_POST["phone"]) ? $_POST["phone"] : "";
+	$phone = isset($_POST["phone"]) ? $_POST["phone"] : "";
 	$member_type = isset($_POST["member_type"]) ? $_POST["member_type"] : "";
 	//$member_type = ($member_type != "Choose") ? $member_type : "";
 	//$registration_type = isset($_POST["registration_type"]) ? $_POST["registration_type"] : "";
