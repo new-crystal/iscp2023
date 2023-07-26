@@ -2,22 +2,17 @@
     <div class="fixed_btn_clone"></div>
     <div class="fixed_btn_wrap">
         <ul class="toolbar_wrap">
-            <li><button type="button" onClick="location.href='/main/board_notice.php'"><i><img
-                            src="/main/img/footer_notice.png" alt=""></i></button></li>
-            <li><button type="button" onClick="location.href='/main/registration.php'"><i><img
-                            src="/main/img/footer_registration.png" alt=""></i></button></li>
-            <li><button type="button" onClick="location.href='/main/abstract_submission.php'"><i><img
-                            src="/main/img/footer_abstract.png" alt=""></i></button></li>
+            <li><button type="button" onClick="location.href='/main/board_notice.php'"><i><img src="/main/img/footer_notice.png" alt=""></i></button></li>
+            <li><button type="button" onClick="location.href='/main/registration.php'"><i><img src="/main/img/footer_registration.png" alt=""></i></button></li>
+            <li><button type="button" onClick="location.href='/main/abstract_submission.php'"><i><img src="/main/img/footer_abstract.png" alt=""></i></button></li>
             <?php
             if ($_SESSION["USER"]["idx"] == "") {
             ?>
-            <li><button type="button" onClick="alert('Need to login.')"><i><img src="/main/img/footer_mypage.png"
-                            alt=""></i></button></li>
+                <li><button type="button" onClick="alert('Need to login.')"><i><img src="/main/img/footer_mypage.png" alt=""></i></button></li>
             <?php
             } else {
             ?>
-            <li><button type="button" onClick="location.href='/main/mypage.php'"><i><img
-                            src="/main/img/footer_mypage.png" alt=""></i></button></li>
+                <li><button type="button" onClick="location.href='/main/mypage.php'"><i><img src="/main/img/footer_mypage.png" alt=""></i></button></li>
             <?php
             }
             ?>
@@ -35,46 +30,36 @@
             <!-- <span>Sponsored by</span> -->
             <ul class="sponsor_list">
                 <li>
-                    <a target="_blank" href="http://eng.yuhan.co.kr/Main/"><img src="/main/img/main_logo/gold04.png"
-                            alt=""></a>
+                    <a target="_blank" href="http://eng.yuhan.co.kr/Main/"><img src="/main/img/main_logo/gold04.png" alt=""></a>
                 </li>
                 <li>
-                    <a target="_blank" href="https://www.inno-n.com/eng/"><img src="/main/img/main_logo/gold10.png"
-                            alt=""></a>
+                    <a target="_blank" href="https://www.inno-n.com/eng/"><img src="/main/img/main_logo/gold10.png" alt=""></a>
                 </li>
                 <li>
-                    <a target="_blank" href="https://www.daewoong.co.kr/en/main/index"><img
-                            src="/main/img/main_logo/login_sponsor01.png" alt=""></a>
+                    <a target="_blank" href="https://www.daewoong.co.kr/en/main/index"><img src="/main/img/main_logo/login_sponsor01.png" alt=""></a>
                 </li>
 
                 <li>
-                    <a target="_blank" href="https://www.novonordisk.co.kr/"><img class="novo_logo"
-                            src="/main/img/main_logo/logo_novo.png" alt=""></a>
+                    <a target="_blank" href="https://www.novonordisk.co.kr/"><img class="novo_logo" src="/main/img/main_logo/logo_novo.png" alt=""></a>
                 </li>
                 <li>
-                    <a target="_blank" href="https://www.hanmi.co.kr"><img src="/main/img/main_logo/gold01.png"
-                            alt=""></a>
+                    <a target="_blank" href="https://www.hanmi.co.kr"><img src="/main/img/main_logo/gold01.png" alt=""></a>
                 </li>
                 <li>
-                    <a target="_blank" href="https://pharm.boryung.co.kr/eng/index.do"><img
-                            src="/main/img/main_logo/silver04.png" alt=""></a>
+                    <a target="_blank" href="https://pharm.boryung.co.kr/eng/index.do"><img src="/main/img/main_logo/silver04.png" alt=""></a>
                 </li>
                 <li>
-                    <a target="_blank" href="https://www.gccorp.com/kor/index"><img
-                            src="/main/img/main_logo/GC_biopharma_03.png" alt=""></a>
+                    <a target="_blank" href="https://www.gccorp.com/kor/index"><img src="/main/img/main_logo/GC_biopharma_03.png" alt=""></a>
                 </li>
 
                 <li>
-                    <a target="_blank" href="https://www.jw-pharma.co.kr/pharma/en/main.jsp"><img
-                            src="/main/img/main_logo/login_sponsor03.png" alt=""></a>
+                    <a target="_blank" href="https://www.jw-pharma.co.kr/pharma/en/main.jsp"><img src="/main/img/main_logo/login_sponsor03.png" alt=""></a>
                 </li>
                 <li>
-                    <a target="_blank" href="http://en.donga-st.com/Main.da"><img src="/main/img/main_logo/bronze05.png"
-                            alt=""></a>
+                    <a target="_blank" href="http://en.donga-st.com/Main.da"><img src="/main/img/main_logo/bronze05.png" alt=""></a>
                 </li>
                 <li>
-                    <a target="_blank" href="https://www.astrazeneca.com/"><img src="/main/img/main_logo/silver02.png"
-                            alt=""></a>
+                    <a target="_blank" href="https://www.astrazeneca.com/"><img src="/main/img/main_logo/silver02.png" alt=""></a>
                 </li>
 
 
@@ -229,8 +214,7 @@
 
             <div>
                 <div class="footer_left">
-                    <h1 onClick="javascript:location.href='/main/index.php'" class="pointer"><img
-                            class="footer_left_img_first" src="/main/img/footer_logo.png" alt="footer_logo">
+                    <h1 onClick="javascript:location.href='/main/index.php'" class="pointer"><img class="footer_left_img_first" src="/main/img/footer_logo.png" alt="footer_logo">
                         <img class="footer_left_img_second" src="/main/img/footer_logo02.png" alt="footer_logo">
                     </h1>
                     <!-- <ul>
@@ -248,7 +232,7 @@
                     <h1 class="f_title">Organized by<br />Korean Society of Cardiovascular Pharmacotherapy</h1>
                     <ul class="f_info">
                         <li>31, Seochojungang-ro 18-gil, Seocho-gu, Seoul, Republic of Korea</li>
-                        <li>Tel: 070-8873-6030 E-mail: k-iscp@naver.com</li>
+                        <li>Tel: 070-8873-6030 E-mail: k-iscp@kscvp.org</li>
                         <!-- <li>Business Registration Number: 110-82-60956</li> -->
                     </ul>
                     <h1 class="f_title" style="margin-top: 30px;">Korean Society of Cardiovascular Disease Prevention
@@ -296,56 +280,47 @@
 </div>
 
 <script>
-$(".sponsor_list").slick({
-    variableWidth: true,
-    autoplay: true,
-    autoplaySpeed: 4000,
-});
+    $(".sponsor_list").slick({
+        variableWidth: true,
+        autoplay: true,
+        autoplaySpeed: 4000,
+    });
 
-$('.term3_btn').on('click', function() {
-    $('.term3').show();
-})
-$('.term4_btn').on('click', function() {
-    $('.term4').show();
-})
+    $('.term3_btn').on('click', function() {
+        $('.term3').show();
+    })
+    $('.term4_btn').on('click', function() {
+        $('.term4').show();
+    })
 
 
-if ($("section").hasClass("index_test")) {
-    $(".fixed_btn_wrap").addClass("index_pg");
-}
-// fixed button 스크롤할때 고정
-var footer_height = $('.footer_wrap').outerHeight();
-$(window).on('scroll', function() {
-    var scroll_top = $(window).scrollTop();
-
-    if (scroll_top > 50) {
-        $(".btn_top").fadeIn(300);
-    } else {
-        $(".btn_top").fadeOut(300);
+    if ($("section").hasClass("index_test")) {
+        $(".fixed_btn_wrap").addClass("index_pg");
     }
+    // fixed button 스크롤할때 고정
+    var footer_height = $('.footer_wrap').outerHeight();
+    $(window).on('scroll', function() {
+        var scroll_top = $(window).scrollTop();
 
-    var footer_top = $(".footer_wrap").offset().top;
-    var fixed_bottom = $(".fixed_btn_clone").offset().top + $(".fixed_btn_clone").outerHeight();
-    if (!$("section").hasClass("index_test")) {
-
-        if (32 >= footer_top - fixed_bottom) {
-            // $(".fixed_btn_wrap").addClass("on");
-            // $(".fixed_btn_wrap").css("bottom", footer_height + 32 + "px");
+        if (scroll_top > 50) {
+            $(".btn_top").fadeIn(300);
         } else {
-            // $(".fixed_btn_wrap").removeClass("on");
-            $(".fixed_btn_wrap").css("bottom", "32px");
+            $(".btn_top").fadeOut(300);
         }
-    }
-});
-if (window.innerWidth < 1300) {
-    const btnWrap = document.querySelector(".fixed_btn_wrap")
-    btnWrap.style.display = "none";
-}
-if (window.innerWidth >= 1300) {
-    const btnWrap = document.querySelector(".fixed_btn_wrap")
-    btnWrap.style.display = "";
-}
-window.onresize = function() {
+
+        var footer_top = $(".footer_wrap").offset().top;
+        var fixed_bottom = $(".fixed_btn_clone").offset().top + $(".fixed_btn_clone").outerHeight();
+        if (!$("section").hasClass("index_test")) {
+
+            if (32 >= footer_top - fixed_bottom) {
+                // $(".fixed_btn_wrap").addClass("on");
+                // $(".fixed_btn_wrap").css("bottom", footer_height + 32 + "px");
+            } else {
+                // $(".fixed_btn_wrap").removeClass("on");
+                $(".fixed_btn_wrap").css("bottom", "32px");
+            }
+        }
+    });
     if (window.innerWidth < 1300) {
         const btnWrap = document.querySelector(".fixed_btn_wrap")
         btnWrap.style.display = "none";
@@ -354,11 +329,20 @@ window.onresize = function() {
         const btnWrap = document.querySelector(".fixed_btn_wrap")
         btnWrap.style.display = "";
     }
-}
-// top button 클릭이벤트
-$(".btn_top").click(function() {
-    $("html, body").animate({
-        scrollTop: 0
-    }, 500)
-})
+    window.onresize = function() {
+        if (window.innerWidth < 1300) {
+            const btnWrap = document.querySelector(".fixed_btn_wrap")
+            btnWrap.style.display = "none";
+        }
+        if (window.innerWidth >= 1300) {
+            const btnWrap = document.querySelector(".fixed_btn_wrap")
+            btnWrap.style.display = "";
+        }
+    }
+    // top button 클릭이벤트
+    $(".btn_top").click(function() {
+        $("html, body").animate({
+            scrollTop: 0
+        }, 500)
+    })
 </script>
