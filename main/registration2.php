@@ -211,6 +211,7 @@ $us_price = $registration_data["price"];
 $_arr_phone = explode("-", $registration_data["phone"]);
 $nation_tel = $_arr_phone[0];
 $phone = implode("-", array_splice($_arr_phone, 1));
+$phone = $phone ?  $phone : "-";
 $sql_during =    "SELECT
 						IF(NOW() >= '2024-07-28 09:00:00', 'Y', 'N') AS yn
 					FROM info_event";
@@ -416,6 +417,7 @@ function on_pay() {
             <div>
                 <h2>Registration</h2>
                 <div class="color-bar"></div>
+
             </div>
         </div>
     </div>
@@ -750,9 +752,9 @@ function on_pay() {
         <input type="hidden" name="resmsg" />
 
         <!-- 테스트용 -->
-        <input type="hidden" name="mid" value="1849705C64">
+        <!-- <input type="hidden" name="mid" value="1849705C64"> -->
         <!-- 실서버 -->
-        <!-- <input type="hidden" name="mid" value="189A6E05E4"> -->
+        <input type="hidden" name="mid" value="189A6E05E4">
         <input type="hidden" name="ref" value="<?= $order_code ?>">
         <input type="hidden" name="ostype" value="P">
         <input type="hidden" name="displaytype" value="P">
@@ -811,7 +813,7 @@ function on_pay() {
 <script src="./js/script/client/registration.js"></script>
 <script>
 function prev(idx) {
-    window.location.replace("registration.php?idx=" + idx);
+    window.location.href = `registration.php?idx=${idx}`
 }
 
 /* 23.06.07 HUBDNC_LSH 기존 작성된 부분 주석 처리 */
